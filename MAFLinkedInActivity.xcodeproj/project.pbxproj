@@ -16,7 +16,7 @@
 		E1E8F79718593AC00078909D /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1E8F79518593AC00078909D /* Main_iPhone.storyboard */; };
 		E1E8F79A18593AC00078909D /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1E8F79818593AC00078909D /* Main_iPad.storyboard */; };
 		E1E8F79D18593AC00078909D /* MFMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E8F79C18593AC00078909D /* MFMasterViewController.m */; };
-		E1E8F7A018593AC00078909D /* MFDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E8F79F18593AC00078909D /* MFDetailViewController.m */; };
+		E1E8F7A018593AC00078909D /* MFTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E8F79F18593AC00078909D /* MFTextViewController.m */; };
 		E1E8F7A218593AC00078909D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1E8F7A118593AC00078909D /* Images.xcassets */; };
 		E1E8F7A918593AC00078909D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E8F7A818593AC00078909D /* XCTest.framework */; };
 		E1E8F7AA18593AC00078909D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E8F78318593AC00078909D /* Foundation.framework */; };
@@ -50,8 +50,8 @@
 		E1E8F79918593AC00078909D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		E1E8F79B18593AC00078909D /* MFMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFMasterViewController.h; sourceTree = "<group>"; };
 		E1E8F79C18593AC00078909D /* MFMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFMasterViewController.m; sourceTree = "<group>"; };
-		E1E8F79E18593AC00078909D /* MFDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFDetailViewController.h; sourceTree = "<group>"; };
-		E1E8F79F18593AC00078909D /* MFDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFDetailViewController.m; sourceTree = "<group>"; };
+		E1E8F79E18593AC00078909D /* MFTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFTextViewController.h; sourceTree = "<group>"; };
+		E1E8F79F18593AC00078909D /* MFTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFTextViewController.m; sourceTree = "<group>"; };
 		E1E8F7A118593AC00078909D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E1E8F7A718593AC00078909D /* MAFLinkedInActivityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MAFLinkedInActivityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E8F7A818593AC00078909D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -123,8 +123,8 @@
 				E1E8F79818593AC00078909D /* Main_iPad.storyboard */,
 				E1E8F79B18593AC00078909D /* MFMasterViewController.h */,
 				E1E8F79C18593AC00078909D /* MFMasterViewController.m */,
-				E1E8F79E18593AC00078909D /* MFDetailViewController.h */,
-				E1E8F79F18593AC00078909D /* MFDetailViewController.m */,
+				E1E8F79E18593AC00078909D /* MFTextViewController.h */,
+				E1E8F79F18593AC00078909D /* MFTextViewController.m */,
 				E1E8F7A118593AC00078909D /* Images.xcassets */,
 				E1E8F78A18593AC00078909D /* Supporting Files */,
 			);
@@ -259,7 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1E8F7A018593AC00078909D /* MFDetailViewController.m in Sources */,
+				E1E8F7A018593AC00078909D /* MFTextViewController.m in Sources */,
 				E1E8F79018593AC00078909D /* main.m in Sources */,
 				E1E8F79418593AC00078909D /* MFAppDelegate.m in Sources */,
 				E1E8F79D18593AC00078909D /* MFMasterViewController.m in Sources */,
@@ -481,6 +481,7 @@
 				E1E8F7BA18593AC00078909D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1E8F7BB18593AC00078909D /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +490,7 @@
 				E1E8F7BD18593AC00078909D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

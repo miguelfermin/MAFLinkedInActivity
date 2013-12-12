@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Miguel Fermin. All rights reserved.
 //
 
-#import "MFDetailViewController.h"
+#import "MFTextViewController.h"
 
-@interface MFDetailViewController ()
+@interface MFTextViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
 @end
 
-@implementation MFDetailViewController
+@implementation MFTextViewController
 
 #pragma mark - Managing the detail item
 

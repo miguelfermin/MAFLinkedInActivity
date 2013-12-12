@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MFDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface MFTextViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
