@@ -10,7 +10,7 @@
 
 @class MFStoryViewController;
 
-@interface MFMasterViewController : UITableViewController
+@interface MFStoriesViewController : UITableViewController
 
 @property (strong, nonatomic) MFStoryViewController *detailViewController;
 
