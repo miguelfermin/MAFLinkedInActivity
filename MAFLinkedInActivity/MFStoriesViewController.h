@@ -12,6 +12,6 @@
 
 @interface MFStoriesViewController : UITableViewController
 
-@property (strong, nonatomic) MFStoryViewController *detailViewController;
+@property (strong, nonatomic) MFStoryViewController *storyViewController;
 
 @end

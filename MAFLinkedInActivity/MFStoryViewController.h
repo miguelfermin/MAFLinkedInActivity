@@ -10,7 +10,14 @@
 
 @interface MFStoryViewController : UIViewController <UISplitViewControllerDelegate>
 
-@property (strong, nonatomic) id detailItem;
+//@property (strong, nonatomic) id detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+@property(weak, nonatomic) IBOutlet UILabel *storyTitleLabel;
+
+@property(weak, nonatomic) IBOutlet UITextView *storyTextView;
+
+@property(weak, nonatomic) IBOutlet UIImageView *storyImageView;
+
+
 @end
