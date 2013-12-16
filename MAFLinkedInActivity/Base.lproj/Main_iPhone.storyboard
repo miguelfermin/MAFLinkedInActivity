@@ -62,10 +62,10 @@
             </objects>
             <point key="canvasLocation" x="459" y="64"/>
         </scene>
-        <!--Text View Controller - Detail-->
+        <!--Story View Controller - Detail-->
         <scene sceneID="Cn3-H9-jdl">
             <objects>
-                <viewController title="Detail" id="Ah7-4n-0Wa" customClass="MFTextViewController" sceneMemberID="viewController">
+                <viewController title="Detail" id="Ah7-4n-0Wa" customClass="MFStoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gWU-cy-8Tt"/>
                         <viewControllerLayoutGuide type="bottom" id="B32-kI-vSF"/>

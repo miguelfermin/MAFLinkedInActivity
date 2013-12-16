@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class MFTextViewController;
+@class MFStoryViewController;
 
 @interface MFMasterViewController : UITableViewController
 
-@property (strong, nonatomic) MFTextViewController *detailViewController;
+@property (strong, nonatomic) MFStoryViewController *detailViewController;
 
 @end

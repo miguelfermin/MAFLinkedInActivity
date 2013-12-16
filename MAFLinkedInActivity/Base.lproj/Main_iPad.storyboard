@@ -19,10 +19,10 @@
             </objects>
             <point key="canvasLocation" x="448" y="-630"/>
         </scene>
-        <!--Text View Controller - Detail-->
+        <!--Story View Controller - Detail-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="Detail" id="JEX-9P-axG" customClass="MFTextViewController" sceneMemberID="viewController">
+                <viewController title="Detail" id="JEX-9P-axG" customClass="MFStoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kC5-Bb-RbI"/>
                         <viewControllerLayoutGuide type="bottom" id="UW6-x6-bk9"/>

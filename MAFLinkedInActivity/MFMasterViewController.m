@@ -8,7 +8,7 @@
 
 #import "MFMasterViewController.h"
 
-#import "MFTextViewController.h"
+#import "MFStoryViewController.h"
 
 @interface MFMasterViewController () {
     NSMutableArray *_objects;
@@ -34,7 +34,7 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (MFTextViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.detailViewController = (MFStoryViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
 - (void)didReceiveMemoryWarning
