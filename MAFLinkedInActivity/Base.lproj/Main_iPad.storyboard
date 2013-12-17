@@ -66,15 +66,22 @@
                                 <rect key="frame" x="0.0" y="724" width="703" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem width="494" style="plain" systemItem="fixedSpace" id="5vc-hJ-1op"/>
-                                    <barButtonItem systemItem="action" id="fF5-kU-JtA">
-                                        <color key="tintColor" red="0.0025693964439999998" green="0.85681089740000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <barButtonItem width="151" style="plain" systemItem="fixedSpace" id="5vc-hJ-1op"/>
+                                    <barButtonItem style="plain" id="Krx-AH-Amv">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="qXV-io-5gs">
+                                            <rect key="frame" x="167" y="7" width="361" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Share Story"/>
+                                                <segment title="Share Image"/>
+                                                <segment title="Share Link"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="sharingOptions:" destination="JEX-9P-axG" eventType="valueChanged" id="v4p-0i-H1E"/>
+                                            </connections>
+                                        </segmentedControl>
                                     </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Xff-SM-l2L"/>
-                                    <barButtonItem systemItem="action" id="GIH-03-uci">
-                                        <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="oqp-hZ-0st"/>
+                                    <barButtonItem width="126" style="plain" systemItem="fixedSpace" id="hbm-LQ-KxE"/>
                                     <barButtonItem systemItem="action" id="4mC-Oe-CGV"/>
                                 </items>
                             </toolbar>
@@ -97,6 +104,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Story" id="mOI-FS-AaM"/>
                     <connections>
+                        <outlet property="sharingOptionsSegmentedControl" destination="qXV-io-5gs" id="odP-Iu-LVB"/>
                         <outlet property="storyImageView" destination="Lyc-Q8-On4" id="WLv-iK-WOt"/>
                         <outlet property="storyTextView" destination="kvI-8m-Xdc" id="UJ8-7D-Dj0"/>
                         <outlet property="storyTitleLabel" destination="brz-CI-QFc" id="hbS-nP-qXY"/>
