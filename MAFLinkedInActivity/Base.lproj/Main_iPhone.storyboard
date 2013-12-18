@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -178,10 +178,10 @@
             </objects>
             <point key="canvasLocation" x="459" y="64"/>
         </scene>
-        <!--View Controller - Tech Companies Press-->
+        <!--Story View Controller - Tech Companies Press-->
         <scene sceneID="SPw-6y-xQD">
             <objects>
-                <viewController id="KGf-Ba-bDc" sceneMemberID="viewController">
+                <viewController id="KGf-Ba-bDc" customClass="MFStoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zHa-oh-36J"/>
                         <viewControllerLayoutGuide type="bottom" id="QFK-eQ-geq"/>
@@ -212,7 +212,11 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="JeF-Te-HTh"/>
-                                    <barButtonItem title="Item" systemItem="action" id="6fC-gl-BhJ"/>
+                                    <barButtonItem title="Item" systemItem="action" id="6fC-gl-BhJ">
+                                        <connections>
+                                            <action selector="shareImageBarButtonItem:" destination="KGf-Ba-bDc" id="mGh-QP-6HO"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -236,10 +240,10 @@
             </objects>
             <point key="canvasLocation" x="1887" y="-622"/>
         </scene>
-        <!--View Controller - A.I.G. Sells Aircraft -->
+        <!--Story View Controller - A.I.G. Sells Aircraft -->
         <scene sceneID="sbq-s0-HU9">
             <objects>
-                <viewController id="0w0-BX-rFD" sceneMemberID="viewController">
+                <viewController id="0w0-BX-rFD" customClass="MFStoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qEF-pl-8ig"/>
                         <viewControllerLayoutGuide type="bottom" id="UC1-Bn-UY3"/>
@@ -267,7 +271,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem width="263" style="plain" systemItem="fixedSpace" id="vc1-3h-EAw"/>
-                                    <barButtonItem systemItem="action" id="pzK-BC-gyy"/>
+                                    <barButtonItem systemItem="action" id="pzK-BC-gyy">
+                                        <connections>
+                                            <action selector="shareImageBarButtonItem:" destination="0w0-BX-rFD" id="nmo-te-SAl"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -291,10 +299,10 @@
             </objects>
             <point key="canvasLocation" x="1887" y="74"/>
         </scene>
-        <!--View Controller - Tech Companies Press-->
+        <!--Story View Controller - Tech Companies Press-->
         <scene sceneID="wBf-rU-6Yc">
             <objects>
-                <viewController id="GwO-1a-hnb" sceneMemberID="viewController">
+                <viewController id="GwO-1a-hnb" customClass="MFStoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Ep-av-eSD"/>
                         <viewControllerLayoutGuide type="bottom" id="Uzk-at-JTe"/>
@@ -329,7 +337,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="3KQ-Re-Kuu"/>
-                                    <barButtonItem title="Item" systemItem="action" id="Xru-Mq-QvN"/>
+                                    <barButtonItem title="Item" systemItem="action" id="Xru-Mq-QvN">
+                                        <connections>
+                                            <action selector="shareLinkBarButtonItem:" destination="GwO-1a-hnb" id="iuM-KL-4fE"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -352,10 +364,10 @@
             </objects>
             <point key="canvasLocation" x="1887" y="762"/>
         </scene>
-        <!--View Controller - A.I.G. Sells Aircraft -->
+        <!--Story View Controller - A.I.G. Sells Aircraft -->
         <scene sceneID="EaI-dl-NhJ">
             <objects>
-                <viewController id="ud4-Ja-Jhy" sceneMemberID="viewController">
+                <viewController id="ud4-Ja-Jhy" customClass="MFStoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZBZ-7N-gJp"/>
                         <viewControllerLayoutGuide type="bottom" id="tlh-Ai-xPl"/>
@@ -390,7 +402,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="rGi-oD-DHV"/>
-                                    <barButtonItem title="Item" systemItem="action" id="H96-fH-kMm"/>
+                                    <barButtonItem title="Item" systemItem="action" id="H96-fH-kMm">
+                                        <connections>
+                                            <action selector="shareLinkBarButtonItem:" destination="ud4-Ja-Jhy" id="pLW-QW-dlg"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -448,7 +464,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="YMD-I0-rLJ"/>
-                                    <barButtonItem title="Item" systemItem="action" id="oSc-Lh-5cO"/>
+                                    <barButtonItem title="Item" systemItem="action" id="oSc-Lh-5cO">
+                                        <connections>
+                                            <action selector="shareTextBarButtonItem:" destination="Ah7-4n-0Wa" id="o9C-bE-9Qk"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -472,10 +492,10 @@
             </objects>
             <point key="canvasLocation" x="1887" y="-2051"/>
         </scene>
-        <!--View Controller - A.I.G. Sells Aircraft -->
+        <!--Story View Controller - A.I.G. Sells Aircraft -->
         <scene sceneID="enC-Mw-Anb">
             <objects>
-                <viewController id="nUR-c4-sfQ" sceneMemberID="viewController">
+                <viewController id="nUR-c4-sfQ" customClass="MFStoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ntP-yH-9mU"/>
                         <viewControllerLayoutGuide type="bottom" id="ScO-ss-2nI"/>
@@ -507,7 +527,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="tso-wS-hFQ"/>
-                                    <barButtonItem title="Item" systemItem="action" id="nT6-mY-9SO"/>
+                                    <barButtonItem title="Item" systemItem="action" id="nT6-mY-9SO">
+                                        <connections>
+                                            <action selector="shareTextBarButtonItem:" destination="nUR-c4-sfQ" id="Zor-aF-m87"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

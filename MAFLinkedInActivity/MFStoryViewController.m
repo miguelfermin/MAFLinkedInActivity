@@ -5,23 +5,31 @@
 //  Created by Miguel Fermin on 12/11/13.
 //  Copyright (c) 2013 Miguel Fermin. All rights reserved.
 //
-//  Description: This class presents the static content (stories) to be used to test 'MFLinkedInSharingLibrary' static library.
+//  Description: This class presents the static content (stories) to be used to test 'MAFLinkedInSharingLibrary' static library.
 //               This class is responsable to handle views transition; presents and dismiss the UIActivityView, etc.
 
 #import "MFStoryViewController.h"
+
 
 @interface MFStoryViewController ()
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
-// Handle sharing options. iPad only
+// This property is used to set Sharing options on UISegmentedControl - iPad only
 @property(weak, nonatomic) IBOutlet UISegmentedControl *sharingOptionsSegmentedControl;
--(IBAction)sharingOptions:(id)sender;
+
+// Share UIBarButtonItem event handler: iPad
+-(IBAction)shareStoryBarButtonItem:(id)sender;
+
+// Share UIBarButtonItem event handlers: iPhone
+-(IBAction)shareTextBarButtonItem:(id)sender;
+-(IBAction)shareImageBarButtonItem:(id)sender;
+-(IBAction)shareLinkBarButtonItem:(id)sender;
 
 @end
 
-@implementation MFStoryViewController
 
+@implementation MFStoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,9 +48,13 @@
 
 
 
-#pragma mark - Handle Sharing Options Segmented Control Events
+#pragma mark - Share UIBarButtonItem event handler: iPad
 
--(IBAction)sharingOptions:(id)sender {
+-(IBAction)shareStoryBarButtonItem:(id)sender {
+    
+    // Present appropriate UIActivityView depending on the "sharingOptionsSegmentedControl" options
+    
+    // NOTE: implementation pending, UIActivityView must be presented on a popover
     
     switch ([_sharingOptionsSegmentedControl selectedSegmentIndex]) {
         case 0:
@@ -58,7 +70,73 @@
         default:
             break;
     }
+}
+
+
+
+#pragma mark - Share UIBarButtonItem event handlers: iPhone
+
+-(IBAction)shareTextBarButtonItem:(id)sender {
     
+    // Initialize a UIActivityViewController with a comment. Set the Activity types we don't want to present
+    UIActivityViewController *avc = [[UIActivityViewController alloc]initWithActivityItems:@[@"Comments go here"] applicationActivities:@[]];
+    
+    [avc setExcludedActivityTypes:@[UIActivityTypePostToTwitter,
+                                    UIActivityTypeMail,
+                                    UIActivityTypeMessage,
+                                    UIActivityTypeCopyToPasteboard,
+                                    UIActivityTypeAirDrop,
+                                    UIActivityTypePrint,
+                                    UIActivityTypeAssignToContact,
+                                    UIActivityTypeSaveToCameraRoll,
+                                    UIActivityTypeAddToReadingList]];
+    
+    // Present activityViewController modally
+    [self presentViewController:avc animated:YES completion:nil];
+}
+
+
+-(IBAction)shareImageBarButtonItem:(id)sender {
+    
+    // Image to share
+    UIImage *img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Tech Companies Press" ofType:@"png"]];
+    
+    // Initialize a UIActivityViewController with an image. Set the Activity types we don't want to present
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[img] applicationActivities:@[]];
+    
+    [activityViewController setExcludedActivityTypes:@[UIActivityTypePostToTwitter,
+                                    UIActivityTypeMail,
+                                    UIActivityTypeMessage,
+                                    UIActivityTypeCopyToPasteboard,
+                                    UIActivityTypeAirDrop,
+                                    UIActivityTypePrint,
+                                    UIActivityTypeAssignToContact,
+                                    UIActivityTypeSaveToCameraRoll,
+                                    UIActivityTypeAddToReadingList]];
+    
+    // Present activityViewController modally
+    [self presentViewController:activityViewController animated:YES completion:nil];
+}
+
+-(IBAction)shareLinkBarButtonItem:(id)sender {
+    
+    // Link to share
+    NSURL *url = [NSURL URLWithString:@"http://google.com"];
+    
+    // Initialize a UIActivityViewController with an URL. Set the Activity types we don't want to present
+    UIActivityViewController *avc = [[UIActivityViewController alloc]initWithActivityItems:@[url] applicationActivities:@[]];
+    
+    [avc setExcludedActivityTypes:@[UIActivityTypePostToTwitter,
+                                    UIActivityTypeMail,
+                                    UIActivityTypeMessage,
+                                    UIActivityTypeCopyToPasteboard,
+                                    UIActivityTypeAirDrop,
+                                    UIActivityTypePrint,
+                                    UIActivityTypeAssignToContact,
+                                    UIActivityTypeSaveToCameraRoll,
+                                    UIActivityTypeAddToReadingList]];
+    
+    [self presentViewController:avc animated:YES completion:nil];
 }
 
 
@@ -71,7 +149,6 @@
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
 }
-
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
     
     // Called when the view is shown again in the split view, invalidating the button and popover controller.

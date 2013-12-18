@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -76,13 +76,14 @@
                                                 <segment title="Share Image"/>
                                                 <segment title="Share Link"/>
                                             </segments>
-                                            <connections>
-                                                <action selector="sharingOptions:" destination="JEX-9P-axG" eventType="valueChanged" id="v4p-0i-H1E"/>
-                                            </connections>
                                         </segmentedControl>
                                     </barButtonItem>
                                     <barButtonItem width="126" style="plain" systemItem="fixedSpace" id="hbm-LQ-KxE"/>
-                                    <barButtonItem systemItem="action" id="4mC-Oe-CGV"/>
+                                    <barButtonItem systemItem="action" id="4mC-Oe-CGV">
+                                        <connections>
+                                            <action selector="shareStoryBarButtonItem:" destination="JEX-9P-axG" id="QkH-M6-cNd"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -104,7 +105,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Story" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="sharingOptionsSegmentedControl" destination="qXV-io-5gs" id="odP-Iu-LVB"/>
+                        <outlet property="sharingOptionsSegmentedControl" destination="qXV-io-5gs" id="jAx-Cv-vN3"/>
                         <outlet property="storyImageView" destination="Lyc-Q8-On4" id="WLv-iK-WOt"/>
                         <outlet property="storyTextView" destination="kvI-8m-Xdc" id="UJ8-7D-Dj0"/>
                         <outlet property="storyTitleLabel" destination="brz-CI-QFc" id="hbS-nP-qXY"/>
