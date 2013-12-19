@@ -214,7 +214,7 @@
                                     <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="JeF-Te-HTh"/>
                                     <barButtonItem title="Item" systemItem="action" id="6fC-gl-BhJ">
                                         <connections>
-                                            <action selector="shareImageBarButtonItem:" destination="KGf-Ba-bDc" id="mGh-QP-6HO"/>
+                                            <action selector="storyOneShareImageBarButtonItem:" destination="KGf-Ba-bDc" id="hlw-dP-T3F"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -273,7 +273,7 @@
                                     <barButtonItem width="263" style="plain" systemItem="fixedSpace" id="vc1-3h-EAw"/>
                                     <barButtonItem systemItem="action" id="pzK-BC-gyy">
                                         <connections>
-                                            <action selector="shareImageBarButtonItem:" destination="0w0-BX-rFD" id="nmo-te-SAl"/>
+                                            <action selector="storyTwoShareImageBarButtonItem:" destination="0w0-BX-rFD" id="E3u-39-xPE"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -339,7 +339,7 @@
                                     <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="3KQ-Re-Kuu"/>
                                     <barButtonItem title="Item" systemItem="action" id="Xru-Mq-QvN">
                                         <connections>
-                                            <action selector="shareLinkBarButtonItem:" destination="GwO-1a-hnb" id="iuM-KL-4fE"/>
+                                            <action selector="storyOneShareLinkBarButtonItem:" destination="GwO-1a-hnb" id="rwU-pr-23s"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -404,7 +404,7 @@
                                     <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="rGi-oD-DHV"/>
                                     <barButtonItem title="Item" systemItem="action" id="H96-fH-kMm">
                                         <connections>
-                                            <action selector="shareLinkBarButtonItem:" destination="ud4-Ja-Jhy" id="pLW-QW-dlg"/>
+                                            <action selector="storyTwoShareLinkBarButtonItem:" destination="ud4-Ja-Jhy" id="Yfr-k0-ibP"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -466,7 +466,7 @@
                                     <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="YMD-I0-rLJ"/>
                                     <barButtonItem title="Item" systemItem="action" id="oSc-Lh-5cO">
                                         <connections>
-                                            <action selector="shareTextBarButtonItem:" destination="Ah7-4n-0Wa" id="o9C-bE-9Qk"/>
+                                            <action selector="storyOneShareTextBarButtonItem:" destination="Ah7-4n-0Wa" id="5pd-bp-x65"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -529,7 +529,7 @@
                                     <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="tso-wS-hFQ"/>
                                     <barButtonItem title="Item" systemItem="action" id="nT6-mY-9SO">
                                         <connections>
-                                            <action selector="shareTextBarButtonItem:" destination="nUR-c4-sfQ" id="Zor-aF-m87"/>
+                                            <action selector="storyTwoShareTextBarButtonItem:" destination="nUR-c4-sfQ" id="Ys7-B7-77W"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

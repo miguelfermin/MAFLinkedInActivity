@@ -31,40 +31,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A.I.G. Sells Aircraft Leasing Unit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brz-CI-QFc">
-                                <rect key="frame" x="176" y="108" width="351" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="61W-FD-ekD"/>
-                                    <constraint firstAttribute="width" constant="351" id="DTj-T8-RMd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvI-8m-Xdc">
-                                <rect key="frame" x="20" y="152" width="663" height="231"/>
+                                <rect key="frame" x="20" y="113" width="663" height="226"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="231" id="Fuw-3q-5bl"/>
+                                    <constraint firstAttribute="height" constant="226" id="8B9-Xk-6P8"/>
                                 </constraints>
-                                <string key="text">The business has long been regarded as one of the crown jewels in A.I.G.’s empire. But since its taxpayer-financed bailout in 2008, A.I.G. has sought to sell off nonessential operations to raise money. I.L.F.C., as the aircraft lessor is known, was long considered an attractive asset to sell, given both its size – it owned 913 planes as of Sept. 30 – and the capital requirements needed to support the business. </string>
+                                <string key="text">The new vision of electronics retailing was on display last week at a spacious new Verizon Wireless store in a mall in Puyallup, Wash., outside Seattle. An employee used an app on a smartphone to pilot a toy drone. Music thumped from an array of wireless speakers. And another employee coached a couple perched on stools about using their smartphones. Brian Garduno, a customer reclining in a red leather chair, likened the old Verizon store in the same mall to “being in a train car.”</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tech Companies Press.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lyc-Q8-On4">
-                                <rect key="frame" x="130" y="324" width="443" height="350"/>
+                                <rect key="frame" x="153" y="378" width="397" height="333"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="350" id="37D-Cj-bRG"/>
-                                    <constraint firstAttribute="width" constant="443" id="DI6-dY-Wcv"/>
+                                    <constraint firstAttribute="width" constant="397" id="Uuc-d8-KrL"/>
                                 </constraints>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byh-YI-PIy">
                                 <rect key="frame" x="0.0" y="724" width="703" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="L8P-09-Uaa"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem width="151" style="plain" systemItem="fixedSpace" id="5vc-hJ-1op"/>
                                     <barButtonItem style="plain" id="Krx-AH-Amv">
@@ -86,29 +77,42 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tech Companies Press" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfj-Uz-34L">
+                                <rect key="frame" x="249" y="113" width="205" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="J7s-Hg-jeX"/>
+                                    <constraint firstAttribute="width" constant="205" id="U1A-ZN-Q2G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="byh-YI-PIy" secondAttribute="bottom" id="1NG-EO-YrS"/>
-                            <constraint firstItem="brz-CI-QFc" firstAttribute="top" secondItem="kC5-Bb-RbI" secondAttribute="bottom" constant="44" id="5Ib-MD-zfM"/>
-                            <constraint firstItem="kvI-8m-Xdc" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="CGc-sv-B6X"/>
-                            <constraint firstItem="Lyc-Q8-On4" firstAttribute="centerX" secondItem="byh-YI-PIy" secondAttribute="centerX" id="L2J-w6-pG9"/>
-                            <constraint firstItem="Lyc-Q8-On4" firstAttribute="top" secondItem="kvI-8m-Xdc" secondAttribute="bottom" constant="-59" id="Q1N-Sv-96q"/>
-                            <constraint firstItem="kvI-8m-Xdc" firstAttribute="top" secondItem="brz-CI-QFc" secondAttribute="bottom" constant="20" id="Ru6-Mu-AsO"/>
-                            <constraint firstItem="brz-CI-QFc" firstAttribute="centerX" secondItem="kvI-8m-Xdc" secondAttribute="centerX" id="dHq-aK-Hz5"/>
-                            <constraint firstAttribute="trailing" secondItem="kvI-8m-Xdc" secondAttribute="trailing" constant="20" symbolic="YES" id="dMP-dX-Nzn"/>
-                            <constraint firstItem="Lyc-Q8-On4" firstAttribute="centerX" secondItem="kvI-8m-Xdc" secondAttribute="centerX" id="fDc-mG-hDR"/>
-                            <constraint firstItem="byh-YI-PIy" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="hi9-A2-tyL"/>
+                            <constraint firstItem="nfj-Uz-34L" firstAttribute="centerX" secondItem="kvI-8m-Xdc" secondAttribute="centerX" id="2gE-Ts-m3Y"/>
+                            <constraint firstItem="kvI-8m-Xdc" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="6oh-6H-3Sa"/>
+                            <constraint firstItem="nfj-Uz-34L" firstAttribute="top" secondItem="kC5-Bb-RbI" secondAttribute="bottom" constant="49" id="Ary-aQ-a5N"/>
+                            <constraint firstItem="Lyc-Q8-On4" firstAttribute="top" secondItem="kvI-8m-Xdc" secondAttribute="bottom" constant="39" id="TJ8-FF-2SV"/>
+                            <constraint firstItem="byh-YI-PIy" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="U3c-6h-OVJ"/>
+                            <constraint firstItem="byh-YI-PIy" firstAttribute="top" secondItem="Lyc-Q8-On4" secondAttribute="bottom" priority="212" constant="31" id="a6K-66-LPI"/>
+                            <constraint firstAttribute="bottom" secondItem="byh-YI-PIy" secondAttribute="bottom" id="c44-kp-ipH"/>
+                            <constraint firstItem="byh-YI-PIy" firstAttribute="centerX" secondItem="Lyc-Q8-On4" secondAttribute="centerX" id="eC9-nk-Iqa"/>
+                            <constraint firstItem="nfj-Uz-34L" firstAttribute="centerX" secondItem="Lyc-Q8-On4" secondAttribute="centerX" id="lSm-AE-IAB"/>
+                            <constraint firstAttribute="trailing" secondItem="kvI-8m-Xdc" secondAttribute="trailing" constant="20" symbolic="YES" id="von-Wf-R4n"/>
+                            <constraint firstItem="kvI-8m-Xdc" firstAttribute="top" secondItem="nfj-Uz-34L" secondAttribute="top" id="z4m-jm-Hb0"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Story" id="mOI-FS-AaM"/>
                     <connections>
+                        <outlet property="shareBarButtonItem" destination="4mC-Oe-CGV" id="vni-ms-9aJ"/>
                         <outlet property="sharingOptionsSegmentedControl" destination="qXV-io-5gs" id="jAx-Cv-vN3"/>
                         <outlet property="storyImageView" destination="Lyc-Q8-On4" id="WLv-iK-WOt"/>
                         <outlet property="storyTextView" destination="kvI-8m-Xdc" id="UJ8-7D-Dj0"/>
-                        <outlet property="storyTitleLabel" destination="brz-CI-QFc" id="hbS-nP-qXY"/>
+                        <outlet property="storyTitleLabel" destination="nfj-Uz-34L" id="Xwa-ef-etD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
