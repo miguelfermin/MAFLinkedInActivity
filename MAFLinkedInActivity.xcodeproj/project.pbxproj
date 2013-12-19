@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E16D7E92186364D2001BA35F /* libMAFLinkedInActivityLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E8F1863639C001BA35F /* libMAFLinkedInActivityLibrary.a */; };
 		E199B30A185F89C40010035F /* Tech Companies Press.png in Resources */ = {isa = PBXBuildFile; fileRef = E199B308185F89C40010035F /* Tech Companies Press.png */; };
 		E199B30D185F8A1B0010035F /* AGI Sells Aircraft.png in Resources */ = {isa = PBXBuildFile; fileRef = E199B30C185F8A1B0010035F /* AGI Sells Aircraft.png */; };
 		E1E8F78418593AC00078909D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E8F78318593AC00078909D /* Foundation.framework */; };
@@ -28,6 +29,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E16D7E8E1863639C001BA35F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E16D7E891863639C001BA35F /* MAFLinkedInActivityLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E16D7E6018635E33001BA35F;
+			remoteInfo = MAFLinkedInActivityLibrary;
+		};
+		E16D7E901863639C001BA35F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E16D7E891863639C001BA35F /* MAFLinkedInActivityLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E16D7E7018635E33001BA35F;
+			remoteInfo = MAFLinkedInActivityLibraryTests;
+		};
 		E1E8F7AC18593AC00078909D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1E8F77818593AC00078909D /* Project object */;
@@ -38,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E16D7E891863639C001BA35F /* MAFLinkedInActivityLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MAFLinkedInActivityLibrary.xcodeproj; path = MAFLinkedInActivityLibrary/MAFLinkedInActivityLibrary.xcodeproj; sourceTree = "<group>"; };
 		E199B308185F89C40010035F /* Tech Companies Press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tech Companies Press.png"; sourceTree = "<group>"; };
 		E199B30C185F8A1B0010035F /* AGI Sells Aircraft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AGI Sells Aircraft.png"; sourceTree = "<group>"; };
 		E1E8F78018593AC00078909D /* MAFLinkedInActivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAFLinkedInActivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E16D7E92186364D2001BA35F /* libMAFLinkedInActivityLibrary.a in Frameworks */,
 				E1E8F78618593AC00078909D /* CoreGraphics.framework in Frameworks */,
 				E1E8F78818593AC00078909D /* UIKit.framework in Frameworks */,
 				E1E8F78418593AC00078909D /* Foundation.framework in Frameworks */,
@@ -88,6 +105,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E16D7E8A1863639C001BA35F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E16D7E8F1863639C001BA35F /* libMAFLinkedInActivityLibrary.a */,
+				E16D7E911863639C001BA35F /* MAFLinkedInActivityLibraryTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E199B305185F833D0010035F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +146,7 @@
 		E1E8F77718593AC00078909D = {
 			isa = PBXGroup;
 			children = (
+				E16D7E891863639C001BA35F /* MAFLinkedInActivityLibrary.xcodeproj */,
 				E199B307185F89910010035F /* Images */,
 				E199B306185F83B70010035F /* Views */,
 				E199B305185F833D0010035F /* View Controllers */,
@@ -254,6 +281,12 @@
 			mainGroup = E1E8F77718593AC00078909D;
 			productRefGroup = E1E8F78118593AC00078909D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E16D7E8A1863639C001BA35F /* Products */;
+					ProjectRef = E16D7E891863639C001BA35F /* MAFLinkedInActivityLibrary.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E1E8F77F18593AC00078909D /* MAFLinkedInActivity */,
@@ -261,6 +294,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E16D7E8F1863639C001BA35F /* libMAFLinkedInActivityLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMAFLinkedInActivityLibrary.a;
+			remoteRef = E16D7E8E1863639C001BA35F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E16D7E911863639C001BA35F /* MAFLinkedInActivityLibraryTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MAFLinkedInActivityLibraryTests.xctest;
+			remoteRef = E16D7E901863639C001BA35F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E1E8F77E18593AC00078909D /* Resources */ = {
@@ -436,6 +486,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAFLinkedInActivity/MAFLinkedInActivity-Prefix.pch";
 				INFOPLIST_FILE = "MAFLinkedInActivity/MAFLinkedInActivity-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -449,6 +500,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAFLinkedInActivity/MAFLinkedInActivity-Prefix.pch";
 				INFOPLIST_FILE = "MAFLinkedInActivity/MAFLinkedInActivity-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
