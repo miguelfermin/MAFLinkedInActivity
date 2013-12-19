@@ -43,6 +43,13 @@
 			remoteGlobalIDString = E16D7E7018635E33001BA35F;
 			remoteInfo = MAFLinkedInActivityLibraryTests;
 		};
+		E16D7E981863743A001BA35F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E16D7E891863639C001BA35F /* MAFLinkedInActivityLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E16D7E5F18635E33001BA35F;
+			remoteInfo = MAFLinkedInActivityLibrary;
+		};
 		E1E8F7AC18593AC00078909D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1E8F77818593AC00078909D /* Project object */;
@@ -231,6 +238,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E16D7E991863743A001BA35F /* PBXTargetDependency */,
 			);
 			name = MAFLinkedInActivity;
 			productName = MAFLinkedInActivity;
@@ -359,6 +367,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E16D7E991863743A001BA35F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MAFLinkedInActivityLibrary;
+			targetProxy = E16D7E981863743A001BA35F /* PBXContainerItemProxy */;
+		};
 		E1E8F7AD18593AC00078909D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E1E8F77F18593AC00078909D /* MAFLinkedInActivity */;
