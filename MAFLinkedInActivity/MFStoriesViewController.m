@@ -11,9 +11,6 @@
 #import "MFStoriesViewController.h"
 #import "MFStoryViewController.h"
 
-// Import static library headers
-#import "MAFLinkedInActivityLibrary/LinkedInUIActivity.h"
-
 
 @interface MFStoriesViewController ()
 
@@ -36,11 +33,6 @@
     
     // initialize MFStoryViewController
     self.storyViewController = (MFStoryViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    
-    
-    // Test static library classes
-    LinkedInUIActivity *linkedInUIActivity = [[LinkedInUIActivity alloc]init];
-    [linkedInUIActivity displaySomthing];
 }
 
 - (void)didReceiveMemoryWarning {

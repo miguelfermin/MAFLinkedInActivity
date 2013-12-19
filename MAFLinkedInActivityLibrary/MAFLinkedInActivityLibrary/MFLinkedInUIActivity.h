@@ -14,9 +14,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LinkedInUIActivity : UIActivity
-
-/*! Simple test to show the client app was linked to this Static Library */
--(void)displaySomthing;
+@interface MFLinkedInUIActivity : UIActivity
 
 @end

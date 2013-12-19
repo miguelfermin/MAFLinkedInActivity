@@ -22,7 +22,6 @@
 // Share UIBarButtonItem (iPad), use for presenting the popover which contains the activity view.
 @property(weak, nonatomic) IBOutlet UIBarButtonItem *shareBarButtonItem;
 
-
 // Share UIBarButtonItem event handler: iPad
 -(IBAction)shareStoryBarButtonItem:(id)sender;
 
@@ -42,6 +41,9 @@
 -(void)presentPopoverWithActivityViewToShareStoryImage;
 -(void)presentPopoverWithActivityViewToShareStoryURL;
 
+// Custom UIActivity object
+@property (strong,nonatomic) MFLinkedInUIActivity *linkedIn;
+
 @end
 
 
@@ -55,7 +57,8 @@
         [self.masterPopoverController dismissPopoverAnimated:YES];
     }
     
-    
+    // Initialize custome UIActivity obejct for the sharing operations
+    _linkedIn = [[MFLinkedInUIActivity alloc]init];
     
 #pragma mark Load static content
     _storyOneText = @"The new vision of electronics retailing was on display last week at a spacious new Verizon Wireless store in a mall in Puyallup, Wash., outside Seattle. An employee used an app on a smartphone to pilot a toy drone. Music thumped from an array of wireless speakers. And another employee coached a couple perched on stools about using their smartphones. Brian Garduno, a customer reclining in a red leather chair, likened the old Verizon store in the same mall to “being in a train car.”";
@@ -139,10 +142,10 @@
 // iPhone
 -(void)presentActivityViewToShareStoryText:(NSString*)storyText {
     
-    // NOTE: UIActivityTypePostToFacebook and UIActivityTypePostToTwitter are being shown for presentation purposes only, once the custom UIActivityView is ready, these will be removed. MF, 2012.12.18
+    // NOTE: UIActivityTypePostToFacebook is being shown for presentation purposes only, once the custom UIActivityView is ready, these will be removed. MF, 2012.12.18
     
     // Initialize a UIActivityViewController with a comment.
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[storyText] applicationActivities:@[]];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[storyText] applicationActivities:@[_linkedIn]];
     
     // Set the Activity types we don't want to present.
     [activityViewController setExcludedActivityTypes:@[UIActivityTypeMail,
@@ -152,7 +155,8 @@
                                                        UIActivityTypePrint,
                                                        UIActivityTypeAssignToContact,
                                                        UIActivityTypeSaveToCameraRoll,
-                                                       UIActivityTypeAddToReadingList]];
+                                                       UIActivityTypeAddToReadingList,
+                                                       UIActivityTypePostToTwitter]];
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) { // Pending implementation, MF, 2013.12.18
@@ -166,7 +170,7 @@
 -(void)presentActivityViewToShareStoryImage:(UIImage*)storyImage {
     
     // Initialize a UIActivityViewController with an image.
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[storyImage] applicationActivities:@[]];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[storyImage] applicationActivities:@[_linkedIn]];
     
     // Set the Activity types we don't want to present.
     [activityViewController setExcludedActivityTypes:@[UIActivityTypeMail,
@@ -176,7 +180,8 @@
                                                        UIActivityTypePrint,
                                                        UIActivityTypeAssignToContact,
                                                        UIActivityTypeSaveToCameraRoll,
-                                                       UIActivityTypeAddToReadingList]];
+                                                       UIActivityTypeAddToReadingList,
+                                                       UIActivityTypePostToTwitter]];
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) { // Pending implementation, MF, 2013.12.18
@@ -190,7 +195,7 @@
 -(void)presentActivityViewToShareStoryURL:(NSURL*)storyURL {
     
     // Initialize a UIActivityViewController with an URL.
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[storyURL] applicationActivities:@[]];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[storyURL] applicationActivities:@[_linkedIn]];
     
     // Set the Activity types we don't want to present.
     [activityViewController setExcludedActivityTypes:@[UIActivityTypeMail,
@@ -200,7 +205,8 @@
                                                        UIActivityTypePrint,
                                                        UIActivityTypeAssignToContact,
                                                        UIActivityTypeSaveToCameraRoll,
-                                                       UIActivityTypeAddToReadingList]];
+                                                       UIActivityTypeAddToReadingList,
+                                                       UIActivityTypePostToTwitter]];
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) { // Pending implementation, MF, 2013.12.18
@@ -215,7 +221,7 @@
 -(void)presentPopoverWithActivityViewToShareStoryText {
     
     // Initialize a UIActivityViewController with a comment.
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[_storyTextView.text] applicationActivities:@[]];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[_storyTextView.text] applicationActivities:@[_linkedIn]];
     
     // Set the Activity types we don't want to present.
     [activityViewController setExcludedActivityTypes:@[UIActivityTypeMail,
@@ -225,7 +231,8 @@
                                                        UIActivityTypePrint,
                                                        UIActivityTypeAssignToContact,
                                                        UIActivityTypeSaveToCameraRoll,
-                                                       UIActivityTypeAddToReadingList]];
+                                                       UIActivityTypeAddToReadingList,
+                                                       UIActivityTypePostToTwitter]];
     
     _sharingActivityViewPopoverController = [[UIPopoverController alloc]initWithContentViewController:activityViewController];
     
@@ -247,7 +254,7 @@
 -(void)presentPopoverWithActivityViewToShareStoryImage {
     
     // Initialize a UIActivityViewController with a comment.
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[_storyImageView.image] applicationActivities:@[]];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[_storyImageView.image] applicationActivities:@[_linkedIn]];
     
     // Set the Activity types we don't want to present.
     [activityViewController setExcludedActivityTypes:@[UIActivityTypeMail,
@@ -257,7 +264,8 @@
                                                        UIActivityTypePrint,
                                                        UIActivityTypeAssignToContact,
                                                        UIActivityTypeSaveToCameraRoll,
-                                                       UIActivityTypeAddToReadingList]];
+                                                       UIActivityTypeAddToReadingList,
+                                                       UIActivityTypePostToTwitter]];
     
     _sharingActivityViewPopoverController = [[UIPopoverController alloc]initWithContentViewController:activityViewController];
     
@@ -283,7 +291,7 @@
     }
     
     // Initialize a UIActivityViewController with a comment.
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[_storyURL] applicationActivities:@[]];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[_storyURL] applicationActivities:@[_linkedIn]];
     
     // Set the Activity types we don't want to present.
     [activityViewController setExcludedActivityTypes:@[UIActivityTypeMail,
@@ -293,7 +301,8 @@
                                                        UIActivityTypePrint,
                                                        UIActivityTypeAssignToContact,
                                                        UIActivityTypeSaveToCameraRoll,
-                                                       UIActivityTypeAddToReadingList]];
+                                                       UIActivityTypeAddToReadingList,
+                                                       UIActivityTypePostToTwitter]];
     
     _sharingActivityViewPopoverController = [[UIPopoverController alloc]initWithContentViewController:activityViewController];
     

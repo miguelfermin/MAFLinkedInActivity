@@ -14,8 +14,9 @@
 		E16D7E7818635E33001BA35F /* libMAFLinkedInActivityLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6018635E33001BA35F /* libMAFLinkedInActivityLibrary.a */; };
 		E16D7E7E18635E33001BA35F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E16D7E7C18635E33001BA35F /* InfoPlist.strings */; };
 		E16D7E8018635E33001BA35F /* MAFLinkedInActivityLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E16D7E7F18635E33001BA35F /* MAFLinkedInActivityLibraryTests.m */; };
-		E16D7E95186368A0001BA35F /* LinkedInUIActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E16D7E94186368A0001BA35F /* LinkedInUIActivity.m */; };
-		E16D7E96186368AA001BA35F /* LinkedInUIActivity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E16D7E93186368A0001BA35F /* LinkedInUIActivity.h */; };
+		E16D7E95186368A0001BA35F /* MFLinkedInUIActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E16D7E94186368A0001BA35F /* MFLinkedInUIActivity.m */; };
+		E16D7E96186368AA001BA35F /* MFLinkedInUIActivity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E16D7E93186368A0001BA35F /* MFLinkedInUIActivity.h */; };
+		E16D7EA91863A657001BA35F /* activity.png in Resources */ = {isa = PBXBuildFile; fileRef = E16D7EA81863A657001BA35F /* activity.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				E16D7E96186368AA001BA35F /* LinkedInUIActivity.h in CopyFiles */,
+				E16D7E96186368AA001BA35F /* MFLinkedInUIActivity.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,8 +52,9 @@
 		E16D7E7B18635E33001BA35F /* MAFLinkedInActivityLibraryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MAFLinkedInActivityLibraryTests-Info.plist"; sourceTree = "<group>"; };
 		E16D7E7D18635E33001BA35F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E16D7E7F18635E33001BA35F /* MAFLinkedInActivityLibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAFLinkedInActivityLibraryTests.m; sourceTree = "<group>"; };
-		E16D7E93186368A0001BA35F /* LinkedInUIActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedInUIActivity.h; sourceTree = "<group>"; };
-		E16D7E94186368A0001BA35F /* LinkedInUIActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedInUIActivity.m; sourceTree = "<group>"; };
+		E16D7E93186368A0001BA35F /* MFLinkedInUIActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInUIActivity.h; sourceTree = "<group>"; };
+		E16D7E94186368A0001BA35F /* MFLinkedInUIActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInUIActivity.m; sourceTree = "<group>"; };
+		E16D7EA81863A657001BA35F /* activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +112,9 @@
 		E16D7E6518635E33001BA35F /* Library Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E16D7E93186368A0001BA35F /* LinkedInUIActivity.h */,
-				E16D7E94186368A0001BA35F /* LinkedInUIActivity.m */,
+				E16D7E93186368A0001BA35F /* MFLinkedInUIActivity.h */,
+				E16D7E94186368A0001BA35F /* MFLinkedInUIActivity.m */,
+				E16D7EA81863A657001BA35F /* activity.png */,
 				E16D7E6618635E33001BA35F /* Supporting Files */,
 			);
 			name = "Library Classes";
@@ -214,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E16D7EA91863A657001BA35F /* activity.png in Resources */,
 				E16D7E7E18635E33001BA35F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,7 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E16D7E95186368A0001BA35F /* LinkedInUIActivity.m in Sources */,
+				E16D7E95186368A0001BA35F /* MFLinkedInUIActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

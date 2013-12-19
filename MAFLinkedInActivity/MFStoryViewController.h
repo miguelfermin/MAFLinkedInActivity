@@ -10,6 +10,10 @@
 
 #import <UIKit/UIKit.h>
 
+// static library headers
+#import "MAFLinkedInActivityLibrary/MFLinkedInUIActivity.h"
+
+
 @interface MFStoryViewController : UIViewController <UISplitViewControllerDelegate, UIPopoverControllerDelegate>
 
 @property(weak, nonatomic) IBOutlet UILabel *storyTitleLabel;
