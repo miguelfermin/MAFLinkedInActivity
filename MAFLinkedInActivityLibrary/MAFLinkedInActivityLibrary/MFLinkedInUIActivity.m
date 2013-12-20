@@ -14,74 +14,86 @@
 
 #import "MFLinkedInUIActivity.h"
 
+// Authentication data
+#define API_KEY             @"77tp47xbo381qe"
+#define SECRET_KEY          @"0000"
+#define OAUTH_USER_TOKEN    @"0000"
+#define OAUTH_USER_SECRET   @"0000"
+
+
 @implementation MFLinkedInUIActivity
 
 
 #pragma mark - Methods to Override to provide LinkedIn service information.
 
-// NOTE: all comments have Apple's description, to be changed when customized. MF, 2013.12.19
-
-/*
- * An identifier for the type of service being provided.
- * This method returns nil by default. Subclasses must override this method and return a valid string that identifies the application service. This string is not presented to the user.
- */
--(NSString *)activityType {
-    return @"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn";
-}
-
-/*
- * A user-readable string describing the service.
- * This method returns nil by default. Subclasses must override this method and return a user-readable string that describes the service. The string you return should be localized.
- */
--(NSString *)activityTitle {
-    return NSLocalizedString(@"LinkedIn", @"LinkedIn");
-}
-
-
-/*
- * An image that identifies the service to the user.
- * This method returns nil by default. Subclasses must override this method and return a valid image object. The image is used to generate a button for your service in the UI displayed by the UIActivityViewController object.
- */
--(UIImage *)activityImage {
-    // This image is a placeholder for now, needs to be changed. MF, 2013.12.19
-    
-    return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"activity" ofType:@"png"]];
-    //return [UIImage imageNamed:@"activity.png"];
-}
-
-/*
- * Returns a Boolean indicating whether the service can act on the specified data items.
- *
- * The default implementation of this method returns NO. Subclasses must override it and return YES if the data in the activityItems parameter can be operated on by your service. Your 
- * implementation should check the types of the objects
- * in the array and use that information to determine if your service can act on the corresponding data.
- *
- * The UIActivityViewController object calls this method when determining which services to show to the user.
- */
--(BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
-    return YES;
-}
-
-
-/*
- * Prepares your service to act on the specified data.
- *
- * The default implementation of this method does nothing. This method is called after the user has selected your service but before your service is asked to perform its action.
- * Subclasses should override this method and use it to store a reference to the data items in the activityItems parameter. In addition, if the implementation of your service requires displaying
- * additional UI to the user, you can use this method to prepare your view controller object and make it available from the activityViewController method.
- */
--(void)prepareWithActivityItems:(NSArray *)activityItems {
-    //
-}
-
-
-/*
- * Returns the category of the activity, which may be used to group activities in the UI.
- * Override this method to define a different activity category for your custom activity.
- */
 +(UIActivityCategory)activityCategory {
     return UIActivityCategoryShare;
 }
 
+-(NSString *)activityType {
+    return @"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn";
+}
+
+-(NSString *)activityTitle {
+    return NSLocalizedString(@"LinkedIn", @"LinkedIn");
+}
+
+-(UIImage *)activityImage {
+    return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"activity" ofType:@"png"]];// This image is a placeholder for now.
+}
+
+-(BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    return YES;
+}
+
+-(void)prepareWithActivityItems:(NSArray *)activityItems {
+    
+    // ** This is assuming authentication is required. This code will run only when getting the access_token for the first time ** //
+    
+    
+    // Initialize the webview presenting LinkedIn's authentication dialog.
+    
+    _authenticationWebView = [[UIWebView alloc]init];
+    
+    _authenticationViewController = [[UIViewController alloc]init];
+    
+    _authenticationViewController.view = _authenticationWebView;
+    
+    UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelActivity)];
+    
+    _authenticationViewController.navigationItem.leftBarButtonItem = cancelBarButtonItem;
+    
+    
+    // Prepare redirect to LinkedIn's authorization dialog
+    NSString *scope = @"r_basicprofile";
+    NSString *state = @"DCMMFWF10268sdffef102";
+    NSString *redirectURI = @"https://www.google.com";// redirect to Google now, need to figure out the app URI.
+    NSString *linkedInAuthorizationDialog = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@", API_KEY, scope, state, redirectURI];
+    [_authenticationWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:linkedInAuthorizationDialog]]];
+    
+    
+    // Prepare UINavigationViewController
+    _authenticationNavigationViewController = [[UINavigationController alloc]init];
+    
+    // iPhone and iPod modal view are always in full screen and will ignores this presentation style
+    [_authenticationNavigationViewController setModalPresentationStyle:UIModalPresentationFormSheet];
+    
+    [_authenticationNavigationViewController addChildViewController:_authenticationViewController];
+}
+
+
+
+#pragma mark - Custom Activity View Controller
+
+// This method returns the authorization dialog view for now. Will be updated.
+-(UIViewController *)activityViewController {
+    return _authenticationNavigationViewController;
+}
+
+
+
+-(void)cancelActivity {
+    [self activityDidFinish:NO];
+}
 
 @end

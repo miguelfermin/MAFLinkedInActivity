@@ -319,7 +319,7 @@
     
     // Disable to prevent multiple popovers
     [_shareBarButtonItem setEnabled:NO];
-}
+} 
 
 
 
