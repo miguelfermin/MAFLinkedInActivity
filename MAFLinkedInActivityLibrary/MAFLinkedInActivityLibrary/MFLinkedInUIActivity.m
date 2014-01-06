@@ -7,79 +7,86 @@
 //
 //  Description: xx...
 //
-//  Purpose: xx...
-//
 //  How to use: xx...
 
 
 #import "MFLinkedInUIActivity.h"
 
-// Authentication data
-#define API_KEY             @"77tp47xbo381qe"
-#define SECRET_KEY          @"0000"
-#define OAUTH_USER_TOKEN    @"0000"
-#define OAUTH_USER_SECRET   @"0000"
-
-
 @implementation MFLinkedInUIActivity
+
+
+#pragma mark - 
+-(id)init {
+    self = [super init];
+    if (self) {
+        // Initialize linkedInAccount instance variable.
+        _linkedInAccount = [[MFLinkedInAccount alloc]init];
+    }
+    return self;
+}
 
 
 #pragma mark - Methods to Override to provide LinkedIn service information.
 
 +(UIActivityCategory)activityCategory {
+    //NSLog(@"activityCategory");
     return UIActivityCategoryShare;
 }
 
 -(NSString *)activityType {
+    //NSLog(@"activityType");
     return @"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn";
 }
 
 -(NSString *)activityTitle {
+    //NSLog(@"activityTitle");
     return NSLocalizedString(@"LinkedIn", @"LinkedIn");
 }
 
 -(UIImage *)activityImage {
+    //NSLog(@"activityImage");
     return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"activity" ofType:@"png"]];// This image is a placeholder for now.
 }
 
 -(BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
+    //NSLog(@"canPerformWithActivityItems:");
     return YES;
 }
 
 -(void)prepareWithActivityItems:(NSArray *)activityItems {
+    //NSLog(@"prepareWithActivityItems:");
     
-    // ** This is assuming authentication is required. This code will run only when getting the access_token for the first time ** //
-    
-    
-    // Initialize the webview presenting LinkedIn's authentication dialog.
-    
-    _authenticationWebView = [[UIWebView alloc]init];
-    
-    _authenticationViewController = [[UIViewController alloc]init];
-    
-    _authenticationViewController.view = _authenticationWebView;
-    
-    UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelActivity)];
-    
-    _authenticationViewController.navigationItem.leftBarButtonItem = cancelBarButtonItem;
-    
-    
-    // Prepare redirect to LinkedIn's authorization dialog
-    NSString *scope = @"r_basicprofile";
-    NSString *state = @"DCMMFWF10268sdffef102";
-    NSString *redirectURI = @"https://www.google.com";// redirect to Google now, need to figure out the app URI.
-    NSString *linkedInAuthorizationDialog = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@", API_KEY, scope, state, redirectURI];
-    [_authenticationWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:linkedInAuthorizationDialog]]];
-    
-    
-    // Prepare UINavigationViewController
-    _authenticationNavigationViewController = [[UINavigationController alloc]init];
-    
-    // iPhone and iPod modal view are always in full screen and will ignores this presentation style
-    [_authenticationNavigationViewController setModalPresentationStyle:UIModalPresentationFormSheet];
-    
-    [_authenticationNavigationViewController addChildViewController:_authenticationViewController];
+    if ([_linkedInAccount accessToken]) {
+        NSLog(@"GOOD TOKEN");
+        
+        // Access token exists, but the expiration date needs to checked. If access token is expired, we'll ask _linkedInAccount to refresh it.
+    }
+    else {
+        NSLog(@"NULL TOKEN");
+        
+        // Access token doesn't exist, so the user needs to be authenticated.
+        
+        [self prepareLinkedInActivityViewControllerToAuthenticate];
+    }
 }
+
+
+
+-(void)prepareLinkedInActivityViewControllerToAuthenticate {
+    
+    // Setup  _authenticationViewController and assign it to the _linkedInActivityViewController.
+    _authenticationViewController = [[MFLinkedInAuthenticationViewController alloc]init];
+    
+    [_authenticationViewController setLinkedInUIActivity:self];
+    
+    [_authenticationViewController prepareAuthenticationView];
+    
+    _linkedInActivityViewController = _authenticationViewController;
+}
+
+
+
+
 
 
 
@@ -87,13 +94,7 @@
 
 // This method returns the authorization dialog view for now. Will be updated.
 -(UIViewController *)activityViewController {
-    return _authenticationNavigationViewController;
-}
-
-
-
--(void)cancelActivity {
-    [self activityDidFinish:NO];
+    return _linkedInActivityViewController;
 }
 
 @end

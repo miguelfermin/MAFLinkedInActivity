@@ -5,26 +5,30 @@
 //  Created by Miguel Fermin on 12/19/13.
 //  Copyright (c) 2013 Miguel Fermin. All rights reserved.
 //
-//  Description: xx...
-//
-//  Purpose: xx...
-//
-//  How to use: xx...
 
 
 #import <UIKit/UIKit.h>
+#import "MFLinkedInAccount.h"
+#import "MFLinkedInAuthenticationViewController.h"
 
+@class MFLinkedInAuthenticationViewController;
+
+///  Provide LinkedIn sharing service to the user. Handle sign-in and authentication process.
 @interface MFLinkedInUIActivity : UIActivity
 
 
-@property (nonatomic,strong) UINavigationController *authenticationNavigationViewController;
-@property (nonatomic,strong) UIViewController *authenticationViewController;
-@property (nonatomic,strong) UIWebView *authenticationWebView;
+///  An instance of MFLinkedInAccount is responsable for saving/storing the access token obtained from the MFLinkedInAuthenticationViewController (in the application keychain), retrieving the access token, and refresh it when it expires.
+@property (nonatomic,strong) MFLinkedInAccount *linkedInAccount;
+
+///  This is the view controller that will be returned by the activityViewController method. This propery will be instantiated to be either an instance of MFLinkedInAuthenticationViewController or MFLinkedInComposeViewController in the prepareWithActivityItems: method, depending on the access token availability. This ViewController is presented to the user when the LinkedIn service is selected.
+@property (nonatomic,strong) UIViewController *linkedInActivityViewController;
+
+///  Manage the LinkedIn authentication process.
+@property (nonatomic,strong) MFLinkedInAuthenticationViewController *authenticationViewController;
 
 
-/*! This method dismisses the sharing interface, whether it is the LinkedIn authentication interface or the Composing interface.
- This method calls activityDidFinish: method and sends NO to it's complete parameter to indicate that the service wasn't completed successfully.
- */
--(void)cancelActivity;
+///  Create an instance of MFLinkedInAuthenticationViewController and assign it to linkedInActivityViewController. The super class (UIActivity) activityViewController method will return this view controller.
+-(void)prepareLinkedInActivityViewControllerToAuthenticate;
+
 
 @end

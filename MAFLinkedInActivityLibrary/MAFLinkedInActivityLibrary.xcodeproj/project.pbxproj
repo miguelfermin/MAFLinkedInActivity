@@ -6,7 +6,25 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		E1DC946A1875BDFA0001C0C5 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = E1DC946D1875BDFA0001C0C5 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				E1DC946E1875BE0D0001C0C5 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		E150A48B187B4BFC00F7B446 /* MFLinkedInAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E150A48A187B4BFC00F7B446 /* MFLinkedInAccount.m */; };
+		E150A48C187B525100F7B446 /* MFLinkedInAccount.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E150A489187B4BFC00F7B446 /* MFLinkedInAccount.h */; };
+		E150A48F187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E150A48E187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m */; };
+		E150A490187B631200F7B446 /* MFLinkedInAuthenticationViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E150A48D187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.h */; };
 		E16D7E6418635E33001BA35F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6318635E33001BA35F /* Foundation.framework */; };
 		E16D7E7218635E33001BA35F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E7118635E33001BA35F /* XCTest.framework */; };
 		E16D7E7318635E33001BA35F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6318635E33001BA35F /* Foundation.framework */; };
@@ -37,12 +55,18 @@
 			dstSubfolderSpec = 16;
 			files = (
 				E16D7E96186368AA001BA35F /* MFLinkedInUIActivity.h in CopyFiles */,
+				E150A48C187B525100F7B446 /* MFLinkedInAccount.h in CopyFiles */,
+				E150A490187B631200F7B446 /* MFLinkedInAuthenticationViewController.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E150A489187B4BFC00F7B446 /* MFLinkedInAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInAccount.h; sourceTree = "<group>"; };
+		E150A48A187B4BFC00F7B446 /* MFLinkedInAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInAccount.m; sourceTree = "<group>"; };
+		E150A48D187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInAuthenticationViewController.h; sourceTree = "<group>"; };
+		E150A48E187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInAuthenticationViewController.m; sourceTree = "<group>"; };
 		E16D7E6018635E33001BA35F /* libMAFLinkedInActivityLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMAFLinkedInActivityLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16D7E6318635E33001BA35F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E16D7E6718635E33001BA35F /* MAFLinkedInActivityLibrary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MAFLinkedInActivityLibrary-Prefix.pch"; sourceTree = "<group>"; };
@@ -114,6 +138,10 @@
 			children = (
 				E16D7E93186368A0001BA35F /* MFLinkedInUIActivity.h */,
 				E16D7E94186368A0001BA35F /* MFLinkedInUIActivity.m */,
+				E150A489187B4BFC00F7B446 /* MFLinkedInAccount.h */,
+				E150A48A187B4BFC00F7B446 /* MFLinkedInAccount.m */,
+				E150A48D187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.h */,
+				E150A48E187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m */,
 				E16D7EA81863A657001BA35F /* activity.png */,
 				E16D7E6618635E33001BA35F /* Supporting Files */,
 			);
@@ -208,6 +236,7 @@
 			targets = (
 				E16D7E5F18635E33001BA35F /* MAFLinkedInActivityLibrary */,
 				E16D7E6F18635E33001BA35F /* MAFLinkedInActivityLibraryTests */,
+				E1DC946A1875BDFA0001C0C5 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -224,11 +253,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E1DC946E1875BE0D0001C0C5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Miguel\";\ncompanyID=\"com.miguelfermin\";\ncompanyURL=\"http://miguel.com\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"~/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.miguel\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E16D7E5C18635E33001BA35F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E150A48B187B4BFC00F7B446 /* MFLinkedInAccount.m in Sources */,
+				E150A48F187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m in Sources */,
 				E16D7E95186368A0001BA35F /* MFLinkedInUIActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +442,20 @@
 			};
 			name = Release;
 		};
+		E1DC946B1875BDFA0001C0C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E1DC946C1875BDFA0001C0C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -421,6 +482,15 @@
 			buildConfigurations = (
 				E16D7E8718635E33001BA35F /* Debug */,
 				E16D7E8818635E33001BA35F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1DC946D1875BDFA0001C0C5 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1DC946B1875BDFA0001C0C5 /* Debug */,
+				E1DC946C1875BDFA0001C0C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
