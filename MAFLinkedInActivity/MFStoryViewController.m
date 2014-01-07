@@ -160,7 +160,7 @@
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) { // Pending implementation, MF, 2013.12.18
-        NSLog(@"activityType: %@, completed: %d", activityType, completed);
+        //NSLog(@"activityType: %@, completed: %d", activityType, completed);
     }];
     
     // Present activityViewController in a modal view
@@ -243,7 +243,7 @@
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) { // Pending implementation, MF, 2013.12.18
-        NSLog(@"activityType: %@, completed: %d", activityType, completed);
+        //NSLog(@"activityType: %@, completed: %d", activityType, completed);
     }];
     
     
@@ -276,7 +276,7 @@
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) { // Pending implementation, MF, 2013.12.18
-        NSLog(@"activityType: %@, completed: %d", activityType, completed);
+        //NSLog(@"activityType: %@, completed: %d", activityType, completed);
     }];
     
     
@@ -313,7 +313,7 @@
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) { // Pending implementation, MF, 2013.12.18
-        NSLog(@"activityType: %@, completed: %d", activityType, completed);
+        //NSLog(@"activityType: %@, completed: %d", activityType, completed);
     }];
     
     

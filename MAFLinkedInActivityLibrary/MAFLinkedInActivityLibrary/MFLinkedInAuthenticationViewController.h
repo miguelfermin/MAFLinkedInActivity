@@ -12,7 +12,7 @@
 @class MFLinkedInUIActivity;
 
 ///  Manage the LinkedIn authentication process.
-@interface MFLinkedInAuthenticationViewController : UINavigationController
+@interface MFLinkedInAuthenticationViewController : UINavigationController <UIWebViewDelegate>
 
 /// Weak reference to MFLinkedInUIActivity in order to call the activityDidFinish: when the cancel button is tapped.
 @property (nonatomic,weak) MFLinkedInUIActivity *linkedInUIActivity;

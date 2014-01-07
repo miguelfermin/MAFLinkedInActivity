@@ -19,6 +19,7 @@
 -(id)init {
     self = [super init];
     if (self) {
+        
         // Initialize linkedInAccount instance variable.
         _linkedInAccount = [[MFLinkedInAccount alloc]init];
     }
@@ -57,12 +58,12 @@
     //NSLog(@"prepareWithActivityItems:");
     
     if ([_linkedInAccount accessToken]) {
-        NSLog(@"GOOD TOKEN");
+        //NSLog(@"GOOD TOKEN");
         
-        // Access token exists, but the expiration date needs to checked. If access token is expired, we'll ask _linkedInAccount to refresh it.
+        // Access token exists, but the expiration date needs to checked. If access token is expired, ask _linkedInAccount to refresh it.
     }
     else {
-        NSLog(@"NULL TOKEN");
+        //NSLog(@"NULL TOKEN");
         
         // Access token doesn't exist, so the user needs to be authenticated.
         
@@ -75,11 +76,11 @@
 -(void)prepareLinkedInActivityViewControllerToAuthenticate {
     
     // Setup  _authenticationViewController and assign it to the _linkedInActivityViewController.
+    
     _authenticationViewController = [[MFLinkedInAuthenticationViewController alloc]init];
     
     [_authenticationViewController setLinkedInUIActivity:self];
     
-    [_authenticationViewController prepareAuthenticationView];
     
     _linkedInActivityViewController = _authenticationViewController;
 }
