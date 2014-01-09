@@ -8,6 +8,9 @@
 
 #import "MFLinkedInAuthenticationViewController.h"
 
+// This is a test to make sure app links correctly against the libraries.
+#import "UICKeyChainStore.h"
+
 // LinkedIn's authorization dialog redirect parameters macros.
 #define API_KEY         @"77tp47xbo381qe"           // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
 #define SECRET_KEY      @"kFz3z5L4XxKnbljU"         // Required. Value of your secret key given when you registered your application with LinkedIn.
@@ -42,6 +45,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // This is a test to make sure app links correctly against the libraries.
+    UICKeyChainStore *store = [UICKeyChainStore keyChainStore];
+    [store setString:@"kishikawakatsumi@mac.com" forKey:@"username"];
+    [store setString:@"password1234" forKey:@"password"];
+    //[store synchronize]; // Write to keychain.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -307,7 +316,7 @@
 -(void)handleLinkedInAuthenticationError:(NSError*)error {
     
     // Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
-    NSLog(@"error code: %i, error. domain: %@",error.code,error.domain);
+    NSLog(@"error code: %ld, error domain: %@",(long)error.code,error.domain);
 }
 
 

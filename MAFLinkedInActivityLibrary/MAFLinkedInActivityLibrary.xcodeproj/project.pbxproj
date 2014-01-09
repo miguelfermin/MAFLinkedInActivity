@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		D090473D233C41D893FD1407 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F53BFFDA43E3466CA0582DC0 /* libPods.a */; };
 		E150A48B187B4BFC00F7B446 /* MFLinkedInAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E150A48A187B4BFC00F7B446 /* MFLinkedInAccount.m */; };
 		E150A48C187B525100F7B446 /* MFLinkedInAccount.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E150A489187B4BFC00F7B446 /* MFLinkedInAccount.h */; };
 		E150A48F187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E150A48E187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m */; };
@@ -63,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2F43C997E76E473B9C8E9600 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		E150A489187B4BFC00F7B446 /* MFLinkedInAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInAccount.h; sourceTree = "<group>"; };
 		E150A48A187B4BFC00F7B446 /* MFLinkedInAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInAccount.m; sourceTree = "<group>"; };
 		E150A48D187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInAuthenticationViewController.h; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		E16D7E93186368A0001BA35F /* MFLinkedInUIActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInUIActivity.h; sourceTree = "<group>"; };
 		E16D7E94186368A0001BA35F /* MFLinkedInUIActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInUIActivity.m; sourceTree = "<group>"; };
 		E16D7EA81863A657001BA35F /* activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity.png; sourceTree = "<group>"; };
+		F53BFFDA43E3466CA0582DC0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E16D7E6418635E33001BA35F /* Foundation.framework in Frameworks */,
+				D090473D233C41D893FD1407 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +115,7 @@
 				E16D7E7918635E33001BA35F /* MAFLinkedInActivityLibraryTests */,
 				E16D7E6218635E33001BA35F /* Frameworks */,
 				E16D7E6118635E33001BA35F /* Products */,
+				2F43C997E76E473B9C8E9600 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +134,7 @@
 				E16D7E6318635E33001BA35F /* Foundation.framework */,
 				E16D7E7118635E33001BA35F /* XCTest.framework */,
 				E16D7E7418635E33001BA35F /* UIKit.framework */,
+				F53BFFDA43E3466CA0582DC0 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -182,9 +188,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E16D7E8318635E33001BA35F /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityLibrary" */;
 			buildPhases = (
+				9DE893097ED94000A4C0BC8E /* Check Pods Manifest.lock */,
 				E16D7E5C18635E33001BA35F /* Sources */,
 				E16D7E5D18635E33001BA35F /* Frameworks */,
 				E16D7E5E18635E33001BA35F /* CopyFiles */,
+				AA7E141DD2374566B3A5984E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,6 +262,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9DE893097ED94000A4C0BC8E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AA7E141DD2374566B3A5984E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E1DC946E1875BE0D0001C0C5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,11 +420,15 @@
 		};
 		E16D7E8418635E33001BA35F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F43C997E76E473B9C8E9600 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/MAFLinkedInActivityLibrary.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAFLinkedInActivityLibrary/MAFLinkedInActivityLibrary-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -394,11 +436,15 @@
 		};
 		E16D7E8518635E33001BA35F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F43C997E76E473B9C8E9600 /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/MAFLinkedInActivityLibrary.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAFLinkedInActivityLibrary/MAFLinkedInActivityLibrary-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
