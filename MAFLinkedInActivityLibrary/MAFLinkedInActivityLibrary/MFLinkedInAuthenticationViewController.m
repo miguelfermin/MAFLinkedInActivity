@@ -8,9 +8,6 @@
 
 #import "MFLinkedInAuthenticationViewController.h"
 
-// This is a test to make sure app links correctly against the libraries.
-#import "UICKeyChainStore.h"
-
 // LinkedIn's authorization dialog redirect parameters macros.
 #define API_KEY         @"77tp47xbo381qe"           // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
 #define SECRET_KEY      @"kFz3z5L4XxKnbljU"         // Required. Value of your secret key given when you registered your application with LinkedIn.
@@ -45,12 +42,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    // This is a test to make sure app links correctly against the libraries.
-    UICKeyChainStore *store = [UICKeyChainStore keyChainStore];
-    [store setString:@"kishikawakatsumi@mac.com" forKey:@"username"];
-    [store setString:@"password1234" forKey:@"password"];
-    //[store synchronize]; // Write to keychain.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -246,9 +237,7 @@
     
     NSString *requestBodyString = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=%@&redirect_uri=%@&client_id=%@&client_secret=%@",authorizationCode,REDIRECT_URI,API_KEY,SECRET_KEY];
     
-    NSURL *url = [NSURL URLWithString:requestBodyString];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestBodyString]];
     
     [[delegateFreeSession dataTaskWithRequest:request
                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -280,19 +269,22 @@
     
     NSError *jsonParsingError = nil;
     
-    NSJSONSerialization *dictionayFromJsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonParsingError];
+    NSJSONSerialization *dictionayFromJsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&jsonParsingError];
     
     NSString *accessTokenString = [(NSDictionary*)dictionayFromJsonData objectForKey:@"access_token"];
     
-    NSString *expirationDateString = [(NSDictionary*)dictionayFromJsonData objectForKey:@"expires_in"];
+    NSString *expiresInString =   [NSString stringWithFormat:@"%@",[(NSDictionary*)dictionayFromJsonData objectForKey:@"expires_in"]]; // NSJSONSerialization returns __NSCFNumber, convert to NSString
     
     
-    // At this point the access_token and expires_in values are ready to be stored in the keychain.
-    NSLog(@"objectForKey: expires_in =   %@",expirationDateString);
-    NSLog(@"objectForKey: access_token = %@",accessTokenString);
+    // Save access_token and expires_in in Keychain, along with a timestamp to know the date the token was created
     
+    [_linkedInUIActivity.linkedInAccount setAccessToken:accessTokenString];
     
-    // Save access_token and expires_in in Keychain
+    [_linkedInUIActivity.linkedInAccount setExpiresIn:expiresInString];
+    
+    [_linkedInUIActivity.linkedInAccount setTokenIssueDateString:[_linkedInUIActivity.linkedInAccount stringFromDate:[NSDate date]]];
+    
+    // NOTE: setting the username is pending... todo when working on the sign out feature. MF, 2014.01.13
     
     
     // Dismiss Authentication Dialog
@@ -306,7 +298,7 @@
 ///  This method dismisses the sharing interface, whether it is the LinkedIn authentication interface or the Composing interface.
 ///  This method calls activityDidFinish: method and sends NO to it's complete parameter to indicate that the service wasn't completed successfully.
 -(void)cancelActivity; {
-    //NSLog(@"cancelActivity");
+    NSLog(@"cancelActivity");
     [_linkedInUIActivity activityDidFinish:NO];
 }
 
@@ -324,8 +316,6 @@
 - (void)dealloc {
     _authenticationWebView.delegate = nil;
 }
-
-
 
 
 @end

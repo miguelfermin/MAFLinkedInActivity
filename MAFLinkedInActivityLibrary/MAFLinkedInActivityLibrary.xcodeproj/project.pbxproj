@@ -35,7 +35,6 @@
 		E16D7E8018635E33001BA35F /* MAFLinkedInActivityLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E16D7E7F18635E33001BA35F /* MAFLinkedInActivityLibraryTests.m */; };
 		E16D7E95186368A0001BA35F /* MFLinkedInUIActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E16D7E94186368A0001BA35F /* MFLinkedInUIActivity.m */; };
 		E16D7E96186368AA001BA35F /* MFLinkedInUIActivity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E16D7E93186368A0001BA35F /* MFLinkedInUIActivity.h */; };
-		E16D7EA91863A657001BA35F /* activity.png in Resources */ = {isa = PBXBuildFile; fileRef = E16D7EA81863A657001BA35F /* activity.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +79,6 @@
 		E16D7E7F18635E33001BA35F /* MAFLinkedInActivityLibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAFLinkedInActivityLibraryTests.m; sourceTree = "<group>"; };
 		E16D7E93186368A0001BA35F /* MFLinkedInUIActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInUIActivity.h; sourceTree = "<group>"; };
 		E16D7E94186368A0001BA35F /* MFLinkedInUIActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInUIActivity.m; sourceTree = "<group>"; };
-		E16D7EA81863A657001BA35F /* activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity.png; sourceTree = "<group>"; };
 		F53BFFDA43E3466CA0582DC0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -148,7 +146,6 @@
 				E150A48A187B4BFC00F7B446 /* MFLinkedInAccount.m */,
 				E150A48D187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.h */,
 				E150A48E187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m */,
-				E16D7EA81863A657001BA35F /* activity.png */,
 				E16D7E6618635E33001BA35F /* Supporting Files */,
 			);
 			name = "Library Classes";
@@ -254,7 +251,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E16D7EA91863A657001BA35F /* activity.png in Resources */,
 				E16D7E7E18635E33001BA35F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

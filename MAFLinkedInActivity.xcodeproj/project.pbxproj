@@ -10,6 +10,14 @@
 		E15E0955187F45EA0091ABA6 /* libMAFLinkedInActivityLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E15E0954187F45EA0091ABA6 /* libMAFLinkedInActivityLibrary.a */; };
 		E199B30A185F89C40010035F /* Tech Companies Press.png in Resources */ = {isa = PBXBuildFile; fileRef = E199B308185F89C40010035F /* Tech Companies Press.png */; };
 		E199B30D185F8A1B0010035F /* AGI Sells Aircraft.png in Resources */ = {isa = PBXBuildFile; fileRef = E199B30C185F8A1B0010035F /* AGI Sells Aircraft.png */; };
+		E1A52F281880905C00B8A66B /* linkedIn-positive.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A52F201880905C00B8A66B /* linkedIn-positive.png */; };
+		E1A52F291880905C00B8A66B /* linkedIn-positive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A52F211880905C00B8A66B /* linkedIn-positive@2x.png */; };
+		E1A52F2A1880905C00B8A66B /* linkedIn-positive@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A52F221880905C00B8A66B /* linkedIn-positive@2x~ipad.png */; };
+		E1A52F2B1880905C00B8A66B /* linkedIn-positive~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A52F231880905C00B8A66B /* linkedIn-positive~ipad.png */; };
+		E1A52F30188092F900B8A66B /* linkedIn-negative.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A52F2C188092F900B8A66B /* linkedIn-negative.png */; };
+		E1A52F31188092F900B8A66B /* linkedIn-negative@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A52F2D188092F900B8A66B /* linkedIn-negative@2x.png */; };
+		E1A52F32188092F900B8A66B /* linkedIn-negative@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A52F2E188092F900B8A66B /* linkedIn-negative@2x~ipad.png */; };
+		E1A52F33188092F900B8A66B /* linkedIn-negative~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A52F2F188092F900B8A66B /* linkedIn-negative~ipad.png */; };
 		E1E8F78418593AC00078909D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E8F78318593AC00078909D /* Foundation.framework */; };
 		E1E8F78618593AC00078909D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E8F78518593AC00078909D /* CoreGraphics.framework */; };
 		E1E8F78818593AC00078909D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E8F78718593AC00078909D /* UIKit.framework */; };
@@ -42,6 +50,14 @@
 		E15E0954187F45EA0091ABA6 /* libMAFLinkedInActivityLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMAFLinkedInActivityLibrary.a; path = "../../../../Library/Developer/Xcode/DerivedData/MAFLinkedInActivity-aslfnacxzhmqcjarqeyzqpjgzyvo/Build/Products/Debug-iphoneos/libMAFLinkedInActivityLibrary.a"; sourceTree = "<group>"; };
 		E199B308185F89C40010035F /* Tech Companies Press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tech Companies Press.png"; sourceTree = "<group>"; };
 		E199B30C185F8A1B0010035F /* AGI Sells Aircraft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AGI Sells Aircraft.png"; sourceTree = "<group>"; };
+		E1A52F201880905C00B8A66B /* linkedIn-positive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive.png"; sourceTree = "<group>"; };
+		E1A52F211880905C00B8A66B /* linkedIn-positive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive@2x.png"; sourceTree = "<group>"; };
+		E1A52F221880905C00B8A66B /* linkedIn-positive@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive@2x~ipad.png"; sourceTree = "<group>"; };
+		E1A52F231880905C00B8A66B /* linkedIn-positive~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive~ipad.png"; sourceTree = "<group>"; };
+		E1A52F2C188092F900B8A66B /* linkedIn-negative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative.png"; sourceTree = "<group>"; };
+		E1A52F2D188092F900B8A66B /* linkedIn-negative@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative@2x.png"; sourceTree = "<group>"; };
+		E1A52F2E188092F900B8A66B /* linkedIn-negative@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative@2x~ipad.png"; sourceTree = "<group>"; };
+		E1A52F2F188092F900B8A66B /* linkedIn-negative~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative~ipad.png"; sourceTree = "<group>"; };
 		E1E8F78018593AC00078909D /* MAFLinkedInActivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAFLinkedInActivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E8F78318593AC00078909D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E1E8F78518593AC00078909D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -116,6 +132,14 @@
 			children = (
 				E199B30C185F8A1B0010035F /* AGI Sells Aircraft.png */,
 				E199B308185F89C40010035F /* Tech Companies Press.png */,
+				E1A52F201880905C00B8A66B /* linkedIn-positive.png */,
+				E1A52F211880905C00B8A66B /* linkedIn-positive@2x.png */,
+				E1A52F221880905C00B8A66B /* linkedIn-positive@2x~ipad.png */,
+				E1A52F231880905C00B8A66B /* linkedIn-positive~ipad.png */,
+				E1A52F2C188092F900B8A66B /* linkedIn-negative.png */,
+				E1A52F2D188092F900B8A66B /* linkedIn-negative@2x.png */,
+				E1A52F2E188092F900B8A66B /* linkedIn-negative@2x~ipad.png */,
+				E1A52F2F188092F900B8A66B /* linkedIn-negative~ipad.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -271,12 +295,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A52F32188092F900B8A66B /* linkedIn-negative@2x~ipad.png in Resources */,
+				E1A52F2B1880905C00B8A66B /* linkedIn-positive~ipad.png in Resources */,
+				E1A52F30188092F900B8A66B /* linkedIn-negative.png in Resources */,
+				E1A52F281880905C00B8A66B /* linkedIn-positive.png in Resources */,
+				E1A52F31188092F900B8A66B /* linkedIn-negative@2x.png in Resources */,
 				E1E8F79A18593AC00078909D /* Main_iPad.storyboard in Resources */,
 				E199B30D185F8A1B0010035F /* AGI Sells Aircraft.png in Resources */,
 				E199B30A185F89C40010035F /* Tech Companies Press.png in Resources */,
 				E1E8F7A218593AC00078909D /* Images.xcassets in Resources */,
 				E1E8F79718593AC00078909D /* Main_iPhone.storyboard in Resources */,
+				E1A52F2A1880905C00B8A66B /* linkedIn-positive@2x~ipad.png in Resources */,
+				E1A52F33188092F900B8A66B /* linkedIn-negative~ipad.png in Resources */,
 				E1E8F78E18593AC00078909D /* InfoPlist.strings in Resources */,
+				E1A52F291880905C00B8A66B /* linkedIn-positive@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

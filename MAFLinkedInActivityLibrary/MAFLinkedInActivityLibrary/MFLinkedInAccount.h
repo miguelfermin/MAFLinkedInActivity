@@ -15,11 +15,28 @@
 ///  LinkedIn access token. An access token is unique to a user and an API Key. You need access tokens in order to make API calls to LinkedIn on behalf of the user who authorized your application. Access tokens have a life span of 60 days
 @property (nonatomic,strong) NSString *accessToken;
 
-///  The LinkedIn's access token expiration date.
-@property (nonatomic,strong) NSDate *accessTokenExpirationDate;
+///  The value of parameter "expires_in" is the number of seconds from the date the access_token is obtained that this access_token will expire in (usually in 60 days).
+@property (nonatomic,strong) NSString *expiresIn;
+
+///  A timestamp string representing the date the access_token was obtain. This value will be used to reconstruct a date from expiresIn and compare that date to the present date to determine if the access_token needs to be refreshed.
+@property (nonatomic,strong) NSString *tokenIssueDateString;
 
 ///  User's LinkedIn account user name.
 @property (nonatomic,strong) NSString *username;
+
+
+///  Checks the date the access_token was created to determine if it needs to be refreshed.
+///  @return Returns YES if it needs fresh, and NO if it doesn't.
+-(BOOL)tokenNeedsToBeRefreshed;
+
+
+///  Converts a NSDate with the format "dd-MM-yyyy" to a NSString.
+///  @return A NSString representing the passed parameter date formatted as "dd-MM-yyyy"
+-(NSString*)stringFromDate:(NSDate*)date;
+
+
+///  Calls UICKeyChainStore's removeAllItems method.
+-(void)removeAllItemsFromKeyChain;
 
 
 @end

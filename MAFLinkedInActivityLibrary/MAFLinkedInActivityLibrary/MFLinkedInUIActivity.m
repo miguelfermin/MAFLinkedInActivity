@@ -14,8 +14,6 @@
 
 @implementation MFLinkedInUIActivity
 
-
-#pragma mark - 
 -(id)init {
     self = [super init];
     if (self) {
@@ -25,6 +23,7 @@
     }
     return self;
 }
+
 
 
 #pragma mark - Methods to Override to provide LinkedIn service information.
@@ -45,8 +44,9 @@
 }
 
 -(UIImage *)activityImage {
-    //NSLog(@"activityImage");
-    return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"activity" ofType:@"png"]];// This image is a placeholder for now.
+    
+    //return [UIImage imageNamed:@"linkedIn-positive"];
+    return [UIImage imageNamed:@"linkedIn-negative"];
 }
 
 -(BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
@@ -58,19 +58,20 @@
     //NSLog(@"prepareWithActivityItems:");
     
     if ([_linkedInAccount accessToken]) {
-        //NSLog(@"GOOD TOKEN");
+        NSLog(@"GOOD TOKEN: %@, Composing View Should Be Presented",[_linkedInAccount accessToken]);
         
         // Access token exists, but the expiration date needs to checked. If access token is expired, ask _linkedInAccount to refresh it.
+        
+        // At the moment the _linkedInActivityViewController is presented with _authenticationViewController for iPad, this needs fix, MF, 2014.01.13
     }
     else {
-        //NSLog(@"NULL TOKEN");
+        NSLog(@"NULL TOKEN: %@, Authentication View Should Be Presented",[_linkedInAccount accessToken]);
         
         // Access token doesn't exist, so the user needs to be authenticated.
         
         [self prepareLinkedInActivityViewControllerToAuthenticate];
     }
 }
-
 
 
 -(void)prepareLinkedInActivityViewControllerToAuthenticate {
@@ -81,13 +82,8 @@
     
     [_authenticationViewController setLinkedInUIActivity:self];
     
-    
     _linkedInActivityViewController = _authenticationViewController;
 }
-
-
-
-
 
 
 
