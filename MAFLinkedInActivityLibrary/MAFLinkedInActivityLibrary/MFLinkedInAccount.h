@@ -35,6 +35,23 @@
 -(NSString*)stringFromDate:(NSDate*)date;
 
 
+///  Converts passed string parameter to a NSDate object with the format "dd-MM-yyyy".
+///
+///  @param string NSString to convert to NSDate
+///
+///  @return NSDate object with format "dd-MM-yyyy"
+-(NSDate*)dateFromString:(NSString*)string;
+
+
+///  Creates an NSDate with n days away from the passed date parameter, where n = days parameter.
+///
+///  @param days The number of days away from the passed date. For days before pass negative values.
+///  @param date The reference date to create earlier, equal, or later dates.
+///
+///  @return A date which is n days away from the passed date, where n = days parameter.
+-(NSDate*)dateWithDays:(NSInteger)days FromDate:(NSDate*)date;
+
+
 ///  Calls UICKeyChainStore's removeAllItems method.
 -(void)removeAllItemsFromKeyChain;
 

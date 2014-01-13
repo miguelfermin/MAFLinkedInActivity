@@ -21,7 +21,7 @@
         // Initialize self.
         
         // Uncomment to see all items in keychain
-        NSLog(@"_keychainStore: %@", [UICKeyChainStore keyChainStoreWithService:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"]);
+        //NSLog(@"_keychainStore: %@", [UICKeyChainStore keyChainStoreWithService:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"]);
         
         // Uncomment to remove all items from keychain
         //[self removeAllItemsFromKeyChain];
@@ -86,59 +86,39 @@
 
 -(BOOL)tokenNeedsToBeRefreshed {
     
-    // *** NOTE: Below is a Pseudocode describing the Process needed in order to determine if an access token needs to be refreshed
-    //           This code could move somewhere else when working on that section of the project.
+    // 1. Convert "token_issue_date_string" NSString to NSDate using the tokenIssueDateString property
     
-#pragma mark - 1. Store expires_in in keychain as a NSString
-    //[_keychainStore setString:@"5183999" forKey:@"expires_in"];
+    NSDate *tokenIssueDate = [self dateFromString:[self tokenIssueDateString]];
     
     
-#pragma mark - 2. Convert current date "token_issue_date_string" to a NSString and store in keychain
-    NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init]; // Format is very important!!
-    [dateFormatter2 setDateFormat:@"dd-MM-yyyy"];
-    NSString *stringFromDate = [dateFormatter2 stringFromDate:[NSDate date]];
-    NSLog(@"stringFromDate:      %@",stringFromDate);
-    //[_keychainStore setString:stringFromDate forKey:@"date_token_was_issue"]; // ***
+    // 2. Convert expires_in NSString to NSDate using tokenIssueDate and the expiresIn property
     
-#pragma mark - 3. Fetch expires_in NSString from keychain
-    //[_keychainStore stringForKey:@"expires_in"]; // ***
+    NSTimeInterval expires_in = [[NSNumber numberWithInt:[[self expiresIn] doubleValue]] doubleValue];
     
-#pragma mark - 4. Fetch "date_token_was_issue" NSString from keychain
-    //[_keychainStore stringForKey:@"date_token_was_issue"]; // ***
+    NSDate *tokenExpirationDate = [NSDate dateWithTimeInterval:expires_in sinceDate:tokenIssueDate];
+    //NSLog(@"Access Token Expiration Date: %@",tokenExpirationDate);
     
-#pragma mark - 5. Convert "token_issue_date_string" NSString to NSDate
-    //NSString *dateString = @"01-02-2010";
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // Format is very important!!
-    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    NSDate *dateFromString = [[NSDate alloc] init];
-    dateFromString = [dateFormatter dateFromString:stringFromDate];
-    NSLog(@"dateFromString:      %@",dateFromString);
     
-#pragma mark - 6. Convert expires_in NSString to NSDate using the timestamp
-    NSString *str = @"5183999";
-    NSNumber *num = [NSNumber numberWithInt:[str intValue]];
-    NSTimeInterval expires_in = [num intValue];
-    NSDate *tokenExpirationDate = [NSDate dateWithTimeInterval:expires_in sinceDate:dateFromString];
-    NSLog(@"tokenExpirationDate: %@",tokenExpirationDate);
+    // 3. Create an NSDate representing 'n' days before the access_token expiration date.
+    //    NOTE: the value you pass to the dateWithDays:FromDate: method's 'days' parameter will be the number of days.
     
-#pragma mark - 7. Compare present date to expires_in (recunstructed) date to determine if token needs refresh.
-    // The two operands are equal.
-    // The tokenExpirationDate and the Current Date are exactly equal to each other,
-    if ([tokenExpirationDate compare:[NSDate date]] == NSOrderedSame) {
-        //NSLog(@"tokenExpirationDate: %@",tokenExpirationDate);
-    }
-    // The left operand is smaller than the right operand.
-    // The tokenExpirationDate is earlier in time than the Current Date,
-    if ([tokenExpirationDate compare:[NSDate date]] == NSOrderedAscending) {
-        //NSLog(@"tokenExpirationDate: %@",tokenExpirationDate);
-    }
-    // The left operand is greater than the right operand.
-    // The tokenExpirationDate is later in time than the Current Date,
-    if ([tokenExpirationDate compare:[NSDate date]] == NSOrderedDescending) {
-        //NSLog(@"tokenExpirationDate: %@",tokenExpirationDate);
-    }
+    NSDate *daysBeforeExpiration = [self dateWithDays:-10 FromDate:tokenExpirationDate];
+    //NSLog(@"daysBeforeExpiration:         %@",daysBeforeExpiration);
     
-    return YES;
+    
+    // 4. If daysBeforeExpiration is earlier in time than (the current Date) return YES to indicate the access_token needs to be refreshed.
+    //    Otherwise return NO to indicate the access_token doesn't yet need to be refreshed.
+    
+    return ([daysBeforeExpiration compare:[NSDate date]] == NSOrderedAscending);
+    
+    
+    
+    // Date math tests
+    /*
+    NSDate *testDate = [self dateWithDays:-1 FromDate:tokenExpirationDate];
+    NSLog(@"testDate:                     %@",testDate);
+    return ([testDate compare:tokenExpirationDate] == NSOrderedAscending);
+     */
 }
 
 
@@ -153,6 +133,25 @@
     
     return [dateFormatter stringFromDate:[NSDate date]];
 }
+
+-(NSDate*)dateFromString:(NSString*)string {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // Format is very important!!
+    
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    
+    return [dateFormatter dateFromString:string];
+}
+
+-(NSDate*)dateWithDays:(NSInteger)days FromDate:(NSDate*)date {
+    
+    NSDateComponents *daysBeforeComponents = [[NSDateComponents alloc]init];
+    
+    daysBeforeComponents.day = days;
+    
+    return [[NSCalendar currentCalendar] dateByAddingComponents:daysBeforeComponents toDate:date options:0];
+}
+
 
 
 #pragma mark - Delete Account From Keychain

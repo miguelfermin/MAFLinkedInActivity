@@ -58,11 +58,23 @@
     //NSLog(@"prepareWithActivityItems:");
     
     if ([_linkedInAccount accessToken]) {
-        NSLog(@"GOOD TOKEN: %@, Composing View Should Be Presented",[_linkedInAccount accessToken]);
+        NSLog(@"GOOD TOKEN: %@, Composing View Should Be Presented\n ",[_linkedInAccount accessToken]);
         
-        // Access token exists, but the expiration date needs to checked. If access token is expired, ask _linkedInAccount to refresh it.
+        /*
+         * NOTES: 
+         *          - Access token exists, but the expiration date needs to checked. If access token is expired, ask _linkedInAccount to refresh it.
+         *
+         *          - At the moment the _linkedInActivityViewController is presented with _authenticationViewController for iPad, this needs fix, MF, 2014.01.13
+         */
         
-        // At the moment the _linkedInActivityViewController is presented with _authenticationViewController for iPad, this needs fix, MF, 2014.01.13
+        if ([_linkedInAccount tokenNeedsToBeRefreshed]) { // Case when access_token needs to be refreshed
+            
+            NSLog(@"ACCESS TOKEN NEEDS TO BE REFRESHED");
+        }
+        else { // Case when access_token is valid and the compose view needs to be prepared
+            
+            NSLog(@"PRESENT COMPOSE_VIEW");
+        }
     }
     else {
         NSLog(@"NULL TOKEN: %@, Authentication View Should Be Presented",[_linkedInAccount accessToken]);
