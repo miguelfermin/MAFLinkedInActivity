@@ -45,8 +45,8 @@
 
 -(UIImage *)activityImage {
     
-    //return [UIImage imageNamed:@"linkedIn-positive"];
-    return [UIImage imageNamed:@"linkedIn-negative"];
+    return [UIImage imageNamed:@"linkedIn-positive"];
+    //return [UIImage imageNamed:@"linkedIn-negative"];
 }
 
 -(BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
@@ -55,6 +55,12 @@
 }
 
 -(void)prepareWithActivityItems:(NSArray *)activityItems {
+    
+    // Store a reference to the data items in the activityItems parameter.
+    
+    _linkedInActivityItems = activityItems;
+    
+    
     //NSLog(@"prepareWithActivityItems:");
     
     if ([_linkedInAccount accessToken]) {
@@ -71,9 +77,12 @@
             
             NSLog(@"ACCESS TOKEN NEEDS TO BE REFRESHED");
         }
-        else { // Case when access_token is valid and the compose view needs to be prepared
-            
+        else {
             NSLog(@"PRESENT COMPOSE_VIEW");
+            
+            // Case when access_token is valid and the compose view needs to be prepared
+            
+            [self prepareLinkedInActivityViewControllerToCompose];
         }
     }
     else {
@@ -86,6 +95,18 @@
 }
 
 
+
+#pragma mark - Custom Activity View Controller
+
+// This method returns the authorization dialog view for now. Will be updated.
+-(UIViewController *)activityViewController {
+    return _linkedInActivityViewController;
+}
+
+
+
+#pragma mark - activityViewController Setup
+
 -(void)prepareLinkedInActivityViewControllerToAuthenticate {
     
     // Setup  _authenticationViewController and assign it to the _linkedInActivityViewController.
@@ -97,13 +118,24 @@
     _linkedInActivityViewController = _authenticationViewController;
 }
 
-
-
-#pragma mark - Custom Activity View Controller
-
-// This method returns the authorization dialog view for now. Will be updated.
--(UIViewController *)activityViewController {
-    return _linkedInActivityViewController;
+-(void)prepareLinkedInActivityViewControllerToCompose {
+    
+    // Setup  _composeViewController and assign it to the _linkedInActivityViewController.
+    
+    _composeViewController = [[MFLinkedInComposeViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    
+    [_composeViewController setLinkedInUIActivity:self];
+    
+    
+    // Add _composeViewController to navigationVC
+    UINavigationController *navigationController = [[UINavigationController alloc]init];
+    
+    [navigationController setModalPresentationStyle:UIModalPresentationFormSheet];
+    
+    [navigationController addChildViewController:_composeViewController];
+    
+    _linkedInActivityViewController = navigationController;
+    
 }
 
 @end
