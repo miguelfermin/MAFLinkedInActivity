@@ -15,8 +15,7 @@
     self = [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
     [self configureStoryTextViewWithString:story];
-    
-    
+
     // This is very important if setting up constraints in code.
     [_storyTextView  setTranslatesAutoresizingMaskIntoConstraints:NO];
     

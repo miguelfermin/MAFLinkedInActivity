@@ -103,6 +103,7 @@
                 UIImage *storyImage = [_linkedInUIActivity.linkedInActivityItems objectAtIndex:0];
                 
                 cell = [[MFStoryImageCell alloc]initWithImage:storyImage];
+                
             }
             
             if ([[_linkedInUIActivity.linkedInActivityItems objectAtIndex:0] isKindOfClass:[NSURL class]]) {

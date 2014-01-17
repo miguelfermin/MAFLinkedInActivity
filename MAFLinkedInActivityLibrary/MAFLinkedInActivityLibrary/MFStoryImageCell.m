@@ -16,14 +16,11 @@
     
     [self configureStoryWithImage:storyImage];
     
-    
     [_commentTextView  setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_storyImageView   setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    
     [self.contentView addSubview:_commentTextView];
     [self.contentView addSubview:_storyImageView];
-    
     
     [self createTextViewConstraints];
     [self createImageViewConstraints];
@@ -68,8 +65,7 @@
     
     _commentTextView.font = [UIFont fontWithName:@"Helvetica-light" size:17];
     
-    //[_commentTextView becomeFirstResponder];
-    
+    [_commentTextView becomeFirstResponder];
     
     
     
@@ -125,24 +121,18 @@
                                                                         multiplier: 1.0
                                                                           constant: 10.0];
     
-    
-    
     NSLayoutConstraint *siblingConstraint = [NSLayoutConstraint constraintWithItem: _commentTextView
                                                                          attribute: NSLayoutAttributeTrailing
                                                                          relatedBy: NSLayoutRelationEqual
-                                                                            toItem: _storyImageView // ???
+                                                                            toItem: _storyImageView
                                                                          attribute: NSLayoutAttributeLeading
                                                                         multiplier: 1.0
                                                                           constant: -8.0];
-                                             
-                                             
-    
     // Set priority
     [topConstraint setPriority:UILayoutPriorityRequired];
     [trailingConstraint setPriority:UILayoutPriorityRequired];
     [bottomConstraint setPriority:UILayoutPriorityRequired];
     [leadingConstraint setPriority:UILayoutPriorityRequired];
-    
     [siblingConstraint setPriority:UILayoutPriorityRequired];
     
     
@@ -151,7 +141,6 @@
     [self.contentView addConstraint:trailingConstraint];
     [self.contentView addConstraint:bottomConstraint];
     [self.contentView addConstraint:leadingConstraint];
-    
     [self.contentView addConstraint:siblingConstraint];
 }
 
@@ -175,28 +164,23 @@
                                                                          multiplier: 1.0
                                                                            constant: -10.0];
     
-    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem: _storyImageView
-                                                                        attribute: NSLayoutAttributeBottom
-                                                                        relatedBy: NSLayoutRelationEqual
-                                                                           toItem: self.contentView
-                                                                        attribute: NSLayoutAttributeBottom
-                                                                       multiplier: 1.0
-                                                                         constant: -58.0];
-    
-    
-    
+    NSLayoutConstraint *aspectRatioConstraint = [NSLayoutConstraint constraintWithItem: _storyImageView
+                                                                             attribute: NSLayoutAttributeWidth
+                                                                             relatedBy: NSLayoutRelationEqual
+                                                                                toItem: _storyImageView
+                                                                             attribute: NSLayoutAttributeHeight
+                                                                            multiplier: _storyImageView.image.size.width / _storyImageView.image.size.height
+                                                                              constant: 0.0];
     
     // Set priority
     [topConstraint setPriority:UILayoutPriorityRequired];
     [trailingConstraint setPriority:UILayoutPriorityRequired];
-    [bottomConstraint setPriority:UILayoutPriorityRequired];
-    
+    [aspectRatioConstraint setPriority:UILayoutPriorityRequired];
     
     // Add to parent view
     [self.contentView addConstraint:topConstraint];
     [self.contentView addConstraint:trailingConstraint];
-    [self.contentView addConstraint:bottomConstraint];
+    [self.contentView addConstraint:aspectRatioConstraint];
 }
-
 
 @end
