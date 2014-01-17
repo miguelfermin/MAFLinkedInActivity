@@ -11,7 +11,7 @@
 #import "MFStoryCell.h"
 #import "MFStoryImageCell.h"
 #import "MFStoryLinkCell.h"
-#import "TargetAudienceCell.h"
+#import "MFTargetAudienceCell.h"
 
 @class MFLinkedInUIActivity;
 

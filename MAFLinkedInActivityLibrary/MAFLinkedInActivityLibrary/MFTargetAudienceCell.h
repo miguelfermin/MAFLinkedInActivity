@@ -1,5 +1,5 @@
 //
-//  TargetAudienceCell.h
+//  MFTargetAudienceCell.h
 //  MAFLinkedInActivityLibrary
 //
 //  Created by Miguel Fermin on 1/15/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TargetAudienceCell : UITableViewCell
+@interface MFTargetAudienceCell : UITableViewCell
 
 @property(nonatomic,strong) UISegmentedControl *targetAudienceSegmentedControl;
 

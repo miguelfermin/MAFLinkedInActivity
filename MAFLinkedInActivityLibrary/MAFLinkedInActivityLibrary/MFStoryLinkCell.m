@@ -19,7 +19,9 @@
     
     [self addSubview:_commentTextView];
     
-    [self addSubview:_linkTextView];
+    
+    //[self addSubview:_linkTextView];
+    [self.contentView addSubview:_linkTextView];
     
     return self;
 }
@@ -54,20 +56,14 @@
     } else {
         textViewRect = CGRectMake(0.0, 12.0, 196.0, 147.0);
     }
+    
     _commentTextView = [[UITextView alloc]initWithFrame:textViewRect];
     
-    UIFont *font = [UIFont fontWithName:@"Helvetica-light" size:17];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = NSTextAlignmentLeft;
-    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:@" "
-                                                                    attributes:@ {
-                                                                        NSFontAttributeName : font,
-                                                                        NSParagraphStyleAttributeName:paragraphStyle}];
+    _commentTextView.textAlignment = NSTextAlignmentLeft;
     
-    [_commentTextView setAttributedText:attString];
+    _commentTextView.font = [UIFont fontWithName:@"Helvetica-light" size:17];
     
     [_commentTextView becomeFirstResponder];
-    
     
     
     // Configure Link TextView

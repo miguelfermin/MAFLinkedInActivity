@@ -118,7 +118,8 @@
             
         case 1:
         {
-            cell = [[TargetAudienceCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+            cell = [[MFTargetAudienceCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+            
         }
             break;
         default:
@@ -150,6 +151,7 @@
         default:
             break;
     }
+    
     return result;
 }
 

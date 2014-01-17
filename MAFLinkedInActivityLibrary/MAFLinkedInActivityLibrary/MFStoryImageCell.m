@@ -16,9 +16,17 @@
     
     [self configureStoryWithImage:storyImage];
     
-    [self addSubview:_commentTextView];
     
-    [self addSubview:_storyImageView];
+    [_commentTextView  setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_storyImageView   setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    
+    [self.contentView addSubview:_commentTextView];
+    [self.contentView addSubview:_storyImageView];
+    
+    
+    [self createTextViewConstraints];
+    [self createImageViewConstraints];
     
     return self;
 }
@@ -51,21 +59,16 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         textViewRect = CGRectMake(0.0, 12.0, 196.0, 147.0);
     } else {
-        textViewRect = CGRectMake(0.0, 12.0, 196.0, 147.0);
+        textViewRect = CGRectMake(10.0, 10.0, 189.0, 139.0);
     }
+    
     _commentTextView = [[UITextView alloc]initWithFrame:textViewRect];
     
-    UIFont *font = [UIFont fontWithName:@"Helvetica-light" size:17];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = NSTextAlignmentLeft;
-    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:@" "
-                                                                    attributes:@ {
-                                                                        NSFontAttributeName : font,
-                                                                        NSParagraphStyleAttributeName:paragraphStyle}];
+    _commentTextView.textAlignment = NSTextAlignmentLeft;
     
-    [_commentTextView setAttributedText:attString];
+    _commentTextView.font = [UIFont fontWithName:@"Helvetica-light" size:17];
     
-    [_commentTextView becomeFirstResponder];
+    //[_commentTextView becomeFirstResponder];
     
     
     
@@ -76,11 +79,124 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         imageViewRect = CGRectMake(404.0, 12.0, 110.0, 99.0);
     } else {
-        imageViewRect = CGRectMake(204.0, 12.0, 110.0, 99.0);
+        imageViewRect = CGRectMake(207.0, 10.0, 103.0, 90.0);
     }
     _storyImageView = [[UIImageView alloc]initWithFrame:imageViewRect];
     
     _storyImageView.image = storyImage;
 }
+
+
+
+#pragma mark - Auto Layout Constraints
+
+-(void)createTextViewConstraints {
+    
+    // Create constraints
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem: _commentTextView
+                                                                     attribute: NSLayoutAttributeTop
+                                                                     relatedBy: NSLayoutRelationEqual
+                                                                        toItem: self.contentView
+                                                                     attribute: NSLayoutAttributeTop
+                                                                    multiplier: 1.0
+                                                                      constant: 10.0];
+    
+    NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem: _commentTextView
+                                                                          attribute: NSLayoutAttributeTrailing
+                                                                          relatedBy: NSLayoutRelationEqual
+                                                                             toItem: self.contentView
+                                                                          attribute: NSLayoutAttributeTrailing
+                                                                         multiplier: 1.0
+                                                                           constant: -121.0];
+    
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem: _commentTextView
+                                                                        attribute: NSLayoutAttributeBottom
+                                                                        relatedBy: NSLayoutRelationEqual
+                                                                           toItem: self.contentView
+                                                                        attribute: NSLayoutAttributeBottom
+                                                                       multiplier: 1.0
+                                                                         constant: -10.0];
+    
+    NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem: _commentTextView
+                                                                         attribute: NSLayoutAttributeLeading
+                                                                         relatedBy: NSLayoutRelationEqual
+                                                                            toItem: self.contentView
+                                                                         attribute: NSLayoutAttributeLeading
+                                                                        multiplier: 1.0
+                                                                          constant: 10.0];
+    
+    
+    
+    NSLayoutConstraint *siblingConstraint = [NSLayoutConstraint constraintWithItem: _commentTextView
+                                                                         attribute: NSLayoutAttributeTrailing
+                                                                         relatedBy: NSLayoutRelationEqual
+                                                                            toItem: _storyImageView // ???
+                                                                         attribute: NSLayoutAttributeLeading
+                                                                        multiplier: 1.0
+                                                                          constant: -8.0];
+                                             
+                                             
+    
+    // Set priority
+    [topConstraint setPriority:UILayoutPriorityRequired];
+    [trailingConstraint setPriority:UILayoutPriorityRequired];
+    [bottomConstraint setPriority:UILayoutPriorityRequired];
+    [leadingConstraint setPriority:UILayoutPriorityRequired];
+    
+    [siblingConstraint setPriority:UILayoutPriorityRequired];
+    
+    
+    // Add to parent view
+    [self.contentView addConstraint:topConstraint];
+    [self.contentView addConstraint:trailingConstraint];
+    [self.contentView addConstraint:bottomConstraint];
+    [self.contentView addConstraint:leadingConstraint];
+    
+    [self.contentView addConstraint:siblingConstraint];
+}
+
+
+-(void)createImageViewConstraints {
+    
+    // Create constraints
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem: _storyImageView
+                                                                     attribute: NSLayoutAttributeTop
+                                                                     relatedBy: NSLayoutRelationEqual
+                                                                        toItem: self.contentView
+                                                                     attribute: NSLayoutAttributeTop
+                                                                    multiplier: 1.0
+                                                                      constant: 10.0];
+    
+    NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem: _storyImageView
+                                                                          attribute: NSLayoutAttributeTrailing
+                                                                          relatedBy: NSLayoutRelationEqual
+                                                                             toItem: self.contentView
+                                                                          attribute: NSLayoutAttributeTrailing
+                                                                         multiplier: 1.0
+                                                                           constant: -10.0];
+    
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem: _storyImageView
+                                                                        attribute: NSLayoutAttributeBottom
+                                                                        relatedBy: NSLayoutRelationEqual
+                                                                           toItem: self.contentView
+                                                                        attribute: NSLayoutAttributeBottom
+                                                                       multiplier: 1.0
+                                                                         constant: -58.0];
+    
+    
+    
+    
+    // Set priority
+    [topConstraint setPriority:UILayoutPriorityRequired];
+    [trailingConstraint setPriority:UILayoutPriorityRequired];
+    [bottomConstraint setPriority:UILayoutPriorityRequired];
+    
+    
+    // Add to parent view
+    [self.contentView addConstraint:topConstraint];
+    [self.contentView addConstraint:trailingConstraint];
+    [self.contentView addConstraint:bottomConstraint];
+}
+
 
 @end

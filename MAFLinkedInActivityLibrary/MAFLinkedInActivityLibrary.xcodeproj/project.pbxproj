@@ -51,8 +51,8 @@
 		E1A18ABB18870E2F00B07671 /* MFStoryCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1143D771886F92D0044E072 /* MFStoryCell.h */; };
 		E1A18ABC18870E3300B07671 /* MFStoryImageCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1143D7A1886F95D0044E072 /* MFStoryImageCell.h */; };
 		E1A18ABD18870E3800B07671 /* MFStoryLinkCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1143D7D1886F9830044E072 /* MFStoryLinkCell.h */; };
-		E1A18AC118872C8200B07671 /* TargetAudienceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A18AC018872C8200B07671 /* TargetAudienceCell.m */; };
-		E1A18AC218872C8C00B07671 /* TargetAudienceCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A18ABF18872C8200B07671 /* TargetAudienceCell.h */; };
+		E1A18AC118872C8200B07671 /* MFTargetAudienceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A18AC018872C8200B07671 /* MFTargetAudienceCell.m */; };
+		E1A18AC218872C8C00B07671 /* MFTargetAudienceCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1A18ABF18872C8200B07671 /* MFTargetAudienceCell.h */; };
 		E1DE8E24188590730010010E /* MFLinkedInComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DE8E23188590730010010E /* MFLinkedInComposeViewController.m */; };
 		E1DE8E25188591EE0010010E /* MFLinkedInComposeViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1DE8E22188590730010010E /* MFLinkedInComposeViewController.h */; };
 /* End PBXBuildFile section */
@@ -81,7 +81,7 @@
 				E150A490187B631200F7B446 /* MFLinkedInAuthenticationViewController.h in CopyFiles */,
 				E1A18ABB18870E2F00B07671 /* MFStoryCell.h in CopyFiles */,
 				E1A18ABC18870E3300B07671 /* MFStoryImageCell.h in CopyFiles */,
-				E1A18AC218872C8C00B07671 /* TargetAudienceCell.h in CopyFiles */,
+				E1A18AC218872C8C00B07671 /* MFTargetAudienceCell.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,9 +120,8 @@
 		E178E72618847B6F0055B6F7 /* linkedIn-positive@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "linkedIn-positive@2x~ipad.png"; path = "MAFLinkedInActivityLibraryResources/linkedIn-positive@2x~ipad.png"; sourceTree = "<group>"; };
 		E178E72718847B6F0055B6F7 /* linkedIn-positive~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "linkedIn-positive~ipad.png"; path = "MAFLinkedInActivityLibraryResources/linkedIn-positive~ipad.png"; sourceTree = "<group>"; };
 		E178E72818847B6F0055B6F7 /* Tech Companies Press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tech Companies Press.png"; path = "MAFLinkedInActivityLibraryResources/Tech Companies Press.png"; sourceTree = "<group>"; };
-		E1A18ABF18872C8200B07671 /* TargetAudienceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetAudienceCell.h; sourceTree = "<group>"; };
-		E1A18AC018872C8200B07671 /* TargetAudienceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetAudienceCell.m; sourceTree = "<group>"; };
-		E1A18AC318872DE900B07671 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		E1A18ABF18872C8200B07671 /* MFTargetAudienceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTargetAudienceCell.h; sourceTree = "<group>"; };
+		E1A18AC018872C8200B07671 /* MFTargetAudienceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTargetAudienceCell.m; sourceTree = "<group>"; };
 		E1DE8E22188590730010010E /* MFLinkedInComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInComposeViewController.h; sourceTree = "<group>"; };
 		E1DE8E23188590730010010E /* MFLinkedInComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInComposeViewController.m; sourceTree = "<group>"; };
 		F53BFFDA43E3466CA0582DC0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,9 +200,8 @@
 				E1143D7B1886F95D0044E072 /* MFStoryImageCell.m */,
 				E1143D7D1886F9830044E072 /* MFStoryLinkCell.h */,
 				E1143D7E1886F9830044E072 /* MFStoryLinkCell.m */,
-				E1A18ABF18872C8200B07671 /* TargetAudienceCell.h */,
-				E1A18AC018872C8200B07671 /* TargetAudienceCell.m */,
-				E1A18AC318872DE900B07671 /* Storyboard.storyboard */,
+				E1A18ABF18872C8200B07671 /* MFTargetAudienceCell.h */,
+				E1A18AC018872C8200B07671 /* MFTargetAudienceCell.m */,
 				E16D7E6618635E33001BA35F /* Supporting Files */,
 			);
 			name = "Library Classes";
@@ -397,7 +395,7 @@
 				E1143D791886F92D0044E072 /* MFStoryCell.m in Sources */,
 				E1143D7F1886F9830044E072 /* MFStoryLinkCell.m in Sources */,
 				E150A48B187B4BFC00F7B446 /* MFLinkedInAccount.m in Sources */,
-				E1A18AC118872C8200B07671 /* TargetAudienceCell.m in Sources */,
+				E1A18AC118872C8200B07671 /* MFTargetAudienceCell.m in Sources */,
 				E150A48F187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m in Sources */,
 				E1DE8E24188590730010010E /* MFLinkedInComposeViewController.m in Sources */,
 				E16D7E95186368A0001BA35F /* MFLinkedInUIActivity.m in Sources */,
