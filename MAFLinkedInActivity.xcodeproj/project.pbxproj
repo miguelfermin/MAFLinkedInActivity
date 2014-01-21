@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E15E0955187F45EA0091ABA6 /* libMAFLinkedInActivityLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E15E0954187F45EA0091ABA6 /* libMAFLinkedInActivityLibrary.a */; };
+		E1D5C87D188B0F2200848372 /* AGI Sells Aircraft.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D5C873188B0F2200848372 /* AGI Sells Aircraft.png */; };
+		E1D5C886188B0F2200848372 /* Tech Companies Press.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D5C87C188B0F2200848372 /* Tech Companies Press.png */; };
+		E1D5C8D9188B195E00848372 /* MFCompose_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1D5C8D8188B195E00848372 /* MFCompose_iPhone.storyboard */; };
 		E1E8F78418593AC00078909D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E8F78318593AC00078909D /* Foundation.framework */; };
 		E1E8F78618593AC00078909D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E8F78518593AC00078909D /* CoreGraphics.framework */; };
 		E1E8F78818593AC00078909D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E8F78718593AC00078909D /* UIKit.framework */; };
@@ -38,6 +41,9 @@
 
 /* Begin PBXFileReference section */
 		E15E0954187F45EA0091ABA6 /* libMAFLinkedInActivityLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMAFLinkedInActivityLibrary.a; path = "../../../../Library/Developer/Xcode/DerivedData/MAFLinkedInActivity-aslfnacxzhmqcjarqeyzqpjgzyvo/Build/Products/Debug-iphoneos/libMAFLinkedInActivityLibrary.a"; sourceTree = "<group>"; };
+		E1D5C873188B0F2200848372 /* AGI Sells Aircraft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AGI Sells Aircraft.png"; path = "MAFLinkedInActivity/MAFLinkedInActivityResources/AGI Sells Aircraft.png"; sourceTree = "<group>"; };
+		E1D5C87C188B0F2200848372 /* Tech Companies Press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tech Companies Press.png"; path = "MAFLinkedInActivity/MAFLinkedInActivityResources/Tech Companies Press.png"; sourceTree = "<group>"; };
+		E1D5C8D8188B195E00848372 /* MFCompose_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFCompose_iPhone.storyboard; sourceTree = "<group>"; };
 		E1E8F78018593AC00078909D /* MAFLinkedInActivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAFLinkedInActivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E8F78318593AC00078909D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E1E8F78518593AC00078909D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -87,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E112A136188ADC02007EDB18 /* MAFLinkedInActivity Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E1D5C873188B0F2200848372 /* AGI Sells Aircraft.png */,
+				E1D5C87C188B0F2200848372 /* Tech Companies Press.png */,
+			);
+			name = "MAFLinkedInActivity Resources";
+			sourceTree = "<group>";
+		};
 		E199B305185F833D0010035F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +118,7 @@
 			children = (
 				E1E8F79518593AC00078909D /* Main_iPhone.storyboard */,
 				E1E8F79818593AC00078909D /* Main_iPad.storyboard */,
+				E1D5C8D8188B195E00848372 /* MFCompose_iPhone.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -110,6 +126,7 @@
 		E1E8F77718593AC00078909D = {
 			isa = PBXGroup;
 			children = (
+				E112A136188ADC02007EDB18 /* MAFLinkedInActivity Resources */,
 				E199B306185F83B70010035F /* Views */,
 				E199B305185F833D0010035F /* View Controllers */,
 				E1E8F78918593AC00078909D /* MAFLinkedInActivity */,
@@ -257,10 +274,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1D5C87D188B0F2200848372 /* AGI Sells Aircraft.png in Resources */,
 				E1E8F79A18593AC00078909D /* Main_iPad.storyboard in Resources */,
 				E1E8F7A218593AC00078909D /* Images.xcassets in Resources */,
 				E1E8F79718593AC00078909D /* Main_iPhone.storyboard in Resources */,
 				E1E8F78E18593AC00078909D /* InfoPlist.strings in Resources */,
+				E1D5C886188B0F2200848372 /* Tech Companies Press.png in Resources */,
+				E1D5C8D9188B195E00848372 /* MFCompose_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -46,7 +46,6 @@
 -(UIImage *)activityImage {
     
     return [UIImage imageNamed:@"linkedIn-positive"];
-    //return [UIImage imageNamed:@"linkedIn-negative"];
 }
 
 -(BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
@@ -64,7 +63,7 @@
     //NSLog(@"prepareWithActivityItems:");
     
     if ([_linkedInAccount accessToken]) {
-        NSLog(@"GOOD TOKEN: %@, Composing View Should Be Presented\n ",[_linkedInAccount accessToken]);
+        //NSLog(@"GOOD TOKEN: %@, Composing View Should Be Presented\n ",[_linkedInAccount accessToken]);
         
         /*
          * NOTES: 
@@ -75,10 +74,10 @@
         
         if ([_linkedInAccount tokenNeedsToBeRefreshed]) { // Case when access_token needs to be refreshed
             
-            NSLog(@"ACCESS TOKEN NEEDS TO BE REFRESHED");
+            //NSLog(@"ACCESS TOKEN NEEDS TO BE REFRESHED");
         }
         else {
-            NSLog(@"PRESENT COMPOSE_VIEW");
+            //NSLog(@"PRESENT COMPOSE_VIEW");
             
             // Case when access_token is valid and the compose view needs to be prepared
             
@@ -86,7 +85,7 @@
         }
     }
     else {
-        NSLog(@"NULL TOKEN: %@, Authentication View Should Be Presented",[_linkedInAccount accessToken]);
+        //NSLog(@"NULL TOKEN: %@, Authentication View Should Be Presented",[_linkedInAccount accessToken]);
         
         // Access token doesn't exist, so the user needs to be authenticated.
         
@@ -136,6 +135,13 @@
     
     _linkedInActivityViewController = navigationController;
     
+    
+    
+    /* In case a storyboard is needed to present the overlay compose controller
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPhone" bundle:nil];
+    NSLog(@"storyboard: %@",storyboard);
+    UIViewController *coolVC = [storyboard instantiateViewControllerWithIdentifier:@"awesomeVC"];
+    _linkedInActivityViewController = coolVC;*/
 }
 
 @end

@@ -11,9 +11,11 @@
 // LinkedIn's authorization dialog redirect parameters macros.
 #define API_KEY         @"77tp47xbo381qe"           // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
 #define SECRET_KEY      @"kFz3z5L4XxKnbljU"         // Required. Value of your secret key given when you registered your application with LinkedIn.
-#define SCOPE           @"r_basicprofile"           // Optional. Use it to specify a list of member permissions that you need and these will be shown to the user on LinkedIn's authorization form.
 #define STATE           @"DCMMFWF10268sdffef102"    // Required. A long unique string value of your choice that is hard to guess. Used to prevent CSRF.
 #define REDIRECT_URI    @"https://www.google.com"   // Required. URI in your app where users will be sent after authorization.
+#define SCOPE           @"rw_nus"                   // Optional. Use it to specify a list of member permissions that you need and these will be shown to the user on LinkedIn's authorization form.
+                                                    // However, for the purpose of this library (share story) this value is required, and it must be of value "rw_nus" to retrieve and post updates
+                                                    // to LinkedIn as authenticated user.
 
 #define DENIED_REQUEST_ERROR_DESCRIPTION @"the+user+denied+your+request" // Short description of the user canceled authorization error. Provided by LinkedIn Documentation.
 
