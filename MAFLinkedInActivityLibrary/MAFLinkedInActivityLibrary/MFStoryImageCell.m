@@ -10,11 +10,11 @@
 
 @implementation MFStoryImageCell
 
--(id)initWithImage:(UIImage*)storyImage {
+-(id)initWithImageURL:(NSURL*)imageURL {
     
     self = [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
-    [self configureStoryWithImage:storyImage];
+    [self configureStoryWithImageURL:imageURL];
     
     [_commentTextView  setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_storyImageView   setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -48,7 +48,7 @@
 
 #pragma mark - Helper Methods
 
--(void)configureStoryWithImage:(UIImage*)storyImage {
+-(void)configureStoryWithImageURL:(NSURL*)imageURL {
     
     // Configure Comment TextView
     
@@ -79,7 +79,11 @@
     }
     _storyImageView = [[UIImageView alloc]initWithFrame:imageViewRect];
     
-    _storyImageView.image = storyImage;
+    
+    
+    // Get image from URL
+    
+    _storyImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
 }
 
 

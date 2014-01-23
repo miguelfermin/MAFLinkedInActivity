@@ -10,27 +10,38 @@
 
 @implementation MFStoryCell
 
+/*
 -(id)initWithStoryText:(NSString*)story {
     
     self = [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
-    [self configureStoryTextViewWithString:story];
-
-    // This is very important if setting up constraints in code.
-    [_storyTextView  setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self configureStoryTextView];
     
-    [self.contentView addSubview:_storyTextView];
+    [_commentTextView  setTranslatesAutoresizingMaskIntoConstraints:NO]; // This is very important if setting up constraints in code.
+    
+    [self.contentView addSubview:_commentTextView];
     
     [self createTextViewConstraints];
     
     return self;
-}
+}*/
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    
     if (self) {
+        
         // Initialization code
+        
+        [self configureStoryTextView];
+        
+        [_commentTextView  setTranslatesAutoresizingMaskIntoConstraints:NO]; // This is very important if setting up constraints in code.
+        
+        [self.contentView addSubview:_commentTextView];
+        
+        [self createTextViewConstraints];
+        
     }
     return self;
 }
@@ -45,10 +56,12 @@
 
 #pragma mark - Helper Methods
 
--(void)configureStoryTextViewWithString:(NSString*)story {
+-(void)configureStoryTextView {
     
     // NOTE: This code is temporary and needs to be revised.
+    
     CGFloat width = 0.0;
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         
         width  = 540;
@@ -57,11 +70,15 @@
         width = 300;
     }
     
+    
     // Create text view and it's text
-    _storyTextView = [[UITextView alloc]initWithFrame:CGRectMake(10.0, 10.0, width, 139.0)];
-    _storyTextView.text = story;
-    _storyTextView.textAlignment = NSTextAlignmentLeft;
-    _storyTextView.font = [UIFont fontWithName:@"Helvetica-light" size:17];
+    
+    _commentTextView = [[UITextView alloc]initWithFrame:CGRectMake(10.0, 10.0, width, 139.0)];
+    
+    _commentTextView.textAlignment = NSTextAlignmentLeft;
+    
+    _commentTextView.font = [UIFont fontWithName:@"Helvetica-light" size:17];
+    
     //[_storyTextView becomeFirstResponder];
     
 }
@@ -70,7 +87,7 @@
 -(void)createTextViewConstraints {
     
     // Create constraints
-    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem: _storyTextView
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem: _commentTextView
                                                                      attribute: NSLayoutAttributeTop
                                                                      relatedBy: NSLayoutRelationEqual
                                                                         toItem: self.contentView
@@ -78,7 +95,7 @@
                                                                     multiplier: 1.0
                                                                       constant: 10.0];
     
-    NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem: _storyTextView
+    NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem: _commentTextView
                                                                           attribute: NSLayoutAttributeTrailing
                                                                           relatedBy: NSLayoutRelationEqual
                                                                              toItem: self.contentView
@@ -86,7 +103,7 @@
                                                                          multiplier: 1.0
                                                                            constant: -10.0];
     
-    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem: _storyTextView
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem: _commentTextView
                                                                         attribute: NSLayoutAttributeBottom
                                                                         relatedBy: NSLayoutRelationEqual
                                                                            toItem: self.contentView
@@ -94,14 +111,13 @@
                                                                        multiplier: 1.0
                                                                          constant: -10.0];
     
-    NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem: _storyTextView
+    NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem: _commentTextView
                                                                          attribute: NSLayoutAttributeLeading
                                                                          relatedBy: NSLayoutRelationEqual
                                                                             toItem: self.contentView
                                                                          attribute: NSLayoutAttributeLeading
                                                                         multiplier: 1.0
                                                                           constant: 10.0];
-    
     // Set priority
     [topConstraint setPriority:UILayoutPriorityRequired];
     [trailingConstraint setPriority:UILayoutPriorityRequired];

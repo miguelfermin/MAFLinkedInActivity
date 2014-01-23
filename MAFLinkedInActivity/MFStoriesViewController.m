@@ -53,11 +53,11 @@
                 
                 _storyViewController.storyTitleLabel.text = @"Tech Companies Press";
                 
-                _storyViewController.storyTextView.text = _storyViewController.storyOneText;
+                _storyViewController.storyTextView.text = _storyViewController.storyOneDescription;
                 
-                _storyViewController.storyImageView.image = _storyViewController.storyOneImage;
+                _storyViewController.storyImageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Tech Companies Press" ofType:@"png"]];
                 
-                _storyViewController.storyURL = _storyViewController.storyOneURL;
+                _storyViewController.story = @"STORY ONE";
                 
                 break;
                 
@@ -65,11 +65,11 @@
                 
                 _storyViewController.storyTitleLabel.text = @"AGI Sells Aircraft";
                 
-                _storyViewController.storyTextView.text = _storyViewController.storyTwoText;
+                _storyViewController.storyTextView.text = _storyViewController.storyTwoDescription;
                 
-                _storyViewController.storyImageView.image = _storyViewController.storyTwoImage;
+                _storyViewController.storyImageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AGI Sells Aircraft" ofType:@"png"]];
                 
-                _storyViewController.storyURL = _storyViewController.storyTwoURL;
+                _storyViewController.story = @"STORY TWO";
                 
                 break;
                 

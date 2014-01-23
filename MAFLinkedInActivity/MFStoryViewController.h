@@ -21,12 +21,16 @@
 @property(weak, nonatomic) IBOutlet UIImageView *storyImageView;
 
 // Static content
-@property (nonatomic) NSString *storyOneText;
-@property (nonatomic) NSString *storyTwoText;
-@property (nonatomic) UIImage *storyOneImage;
-@property (nonatomic) UIImage *storyTwoImage;
+
+@property (nonatomic) NSString *storyOneTitle;
+@property (nonatomic) NSString *storyTwoTitle;
+@property (nonatomic) NSString *storyOneDescription;
+@property (nonatomic) NSString *storyTwoDescription;
 @property (nonatomic) NSURL *storyOneURL;
 @property (nonatomic) NSURL *storyTwoURL;
-@property (nonatomic) NSURL *storyURL; // This URL is set dynamically; on iPad only
+@property (nonatomic) NSURL *storyOneImageURL;
+@property (nonatomic) NSURL *storyTwoImageURL;
 
+// iPad only properties
+@property (nonatomic) NSString *story; // Flag to know which story is selected
 @end

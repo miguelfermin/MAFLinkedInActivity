@@ -11,13 +11,9 @@
 @interface MFStoryCell : UITableViewCell
 
 ///  UITextView to display the story.
-@property(nonatomic,strong) UITextView *storyTextView;
+@property(nonatomic,strong) UITextView *commentTextView;
 
-///  Initializes a MFStoryCell instance with the story string to the the storyTextView property. This method calls the
-///
-///  @param story The story string used to set the storyTextView property.
-///
-///  @return Initialized MFStoryCell.
--(id)initWithStoryText:(NSString*)story;
+
+//-(id)initWithStoryText:(NSString*)story;
 
 @end

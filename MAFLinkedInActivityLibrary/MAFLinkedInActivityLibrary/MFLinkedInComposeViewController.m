@@ -8,8 +8,11 @@
 
 #import "MFLinkedInComposeViewController.h"
 
-#define VISIBILITY_ANYONE           @"anyone"
-#define VISIBILITY_CONNECTIONS_ONLY @"connections-only"
+// MACRO constants per Library Specifications
+#define TITLE_INDEX               0
+#define DESCRIPTION_INDEX         1
+#define SUBMITTED_URL_INDEX       2
+#define SUBMITTED_IMAGE_URL_INDEX 3
 
 
 @interface MFLinkedInComposeViewController ()
@@ -17,6 +20,12 @@
 // Private properties
 @property (nonatomic,strong) UIViewController *composeViewController;
 @property (nonatomic,strong) UITableViewController *composeTableViewController;
+
+// Map LinkedIn Share API fields
+@property (nonatomic,strong) NSString *storyTitle;          // Title of shared document
+@property (nonatomic,strong) NSString *storyDescription;    // Description of shared content
+@property (nonatomic,strong) NSURL *submittedURL;      // URL for shared content
+@property (nonatomic,strong) NSURL *submittedImageURL; // URL for image of shared content
 
 @end
 
@@ -37,11 +46,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelActivity)];
     UIBarButtonItem *postBarButtonItem =   [[UIBarButtonItem alloc]init];
@@ -52,6 +56,33 @@
     self.navigationItem.leftBarButtonItem = cancelBarButtonItem;
     self.navigationItem.rightBarButtonItem = postBarButtonItem;
     self.title = @"LinkedIn";
+    
+    /* 
+    // Testing NSArray //
+    NSString *title = @"TITLE";
+    NSString *description = @"DESCRIPTION";
+    NSString *URL = @"URL";
+    NSString *imageURL = @"IMAGE-URL";
+    // Array order must be: 0-title, 1-description, 2-URL, 3-imageURL
+    NSNull *null = [NSNull null];
+    NSArray *array = @[title, description, URL, imageURL];
+    NSLog(@"[array objectAtIndex:0]: %@",[array objectAtIndex:0]);
+    NSLog(@"[array objectAtIndex:1]: %@",[array objectAtIndex:1]);
+    NSLog(@"[array objectAtIndex:2]: %@",[array objectAtIndex:2]);
+    NSLog(@"[array objectAtIndex:3]: %@\n\n ",[array objectAtIndex:3]);
+    if ([[array objectAtIndex:IMAGE_INDEX] class] != [null class]) { // image-URL is ok!
+        NSLog(@"image-URL is ok!. Present MFStoryImageCell");
+        if ([[array objectAtIndex:URL_INDEX] class] == [null class]) {
+            NSLog(@"image-URL is ok!. But URL is bad!. If this is the case, just use the image-URL in place of the URL");
+        }
+    }
+    else if ([[array objectAtIndex:URL_INDEX] class] != [null class]) { // URL is ok!
+        NSLog(@"image-URL is bad! and URL is ok!. Present MFStoryLinkCell");
+    }
+    else { // URL and image-URL are bad!
+        NSLog(@"URL and image-URL are bad!. Present MFStoryCell run-1");
+    }
+    // Testing NSArray*/
 }
 
 
@@ -69,35 +100,69 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
- 
-    //static NSString *CellIdentifier = @"Cell";
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     UITableViewCell *cell;
     
     switch (indexPath.section) {
+            
         case 0:
         {
-            if ([[_linkedInUIActivity.linkedInActivityItems objectAtIndex:0] isKindOfClass:[NSString class]]) { // Sharing Story (comment) and URL
+            NSArray *activityItems = _linkedInUIActivity.linkedInActivityItems;
+            NSNull  *nullItem = [NSNull null];
+            
+            if ([[activityItems objectAtIndex:SUBMITTED_IMAGE_URL_INDEX] class] != [nullItem class]) { // image-URL is ok!
+                NSLog(@"image-URL is ok!. Present MFStoryImageCell");
                 
-                NSString *storyString = [_linkedInUIActivity.linkedInActivityItems objectAtIndex:0];
+                // initialize appropriate cell
                 
-                cell = [[MFStoryCell alloc]initWithStoryText:storyString];
+                cell = [[MFStoryImageCell alloc]initWithImageURL:[activityItems objectAtIndex:SUBMITTED_IMAGE_URL_INDEX]];
+                
+                // Get share API values from activityItems
+                
+                _storyTitle =        [activityItems objectAtIndex:TITLE_INDEX];
+                _storyDescription =  [activityItems objectAtIndex:DESCRIPTION_INDEX];
+                _submittedURL =      [activityItems objectAtIndex:SUBMITTED_URL_INDEX];
+                _submittedImageURL = [activityItems objectAtIndex:SUBMITTED_IMAGE_URL_INDEX];
+                
+                
+                // if the required "_submittedURL" is not provided, _submittedImageURLwill be used.
+                
+                if ([[activityItems objectAtIndex:SUBMITTED_URL_INDEX] class] == [nullItem class]) {
+                    NSLog(@"image-URL is ok!. But URL is bad!. If this is the case, just use the image-URL in place of the URL");
+                    
+                    _submittedURL = [activityItems objectAtIndex:SUBMITTED_IMAGE_URL_INDEX];
+                }
             }
             
-            if ([[_linkedInUIActivity.linkedInActivityItems objectAtIndex:0] isKindOfClass:[UIImage class]]) { // Sharing Story's Image-URL, URL, and Comment
+            else if ([[activityItems objectAtIndex:SUBMITTED_URL_INDEX] class] != [nullItem class]) { // URL is ok!
+                NSLog(@"image-URL is bad! and URL is ok!. Present MFStoryLinkCell");
                 
-                UIImage *storyImage = [_linkedInUIActivity.linkedInActivityItems objectAtIndex:0];
+                // initialize appropriate cell
                 
-                cell = [[MFStoryImageCell alloc]initWithImage:storyImage];
+                cell = [[MFStoryLinkCell alloc]initWithURL:[activityItems objectAtIndex:SUBMITTED_URL_INDEX]];
                 
+                // Get share API values from activityItems
+                
+                _storyTitle =             [activityItems objectAtIndex:TITLE_INDEX];
+                _storyDescription =       [activityItems objectAtIndex:DESCRIPTION_INDEX];
+                _submittedURL =      [activityItems objectAtIndex:SUBMITTED_URL_INDEX];
             }
             
-            if ([[_linkedInUIActivity.linkedInActivityItems objectAtIndex:0] isKindOfClass:[NSURL class]]) { // Sharing Story's URL, and Comment
+            else { // URL and image-URL are bad!
+                NSLog(@"URL and image-URL are bad!. Present MFStoryCell run-1");
                 
-                NSURL *storyURL = [_linkedInUIActivity.linkedInActivityItems objectAtIndex:0];
+                // initialize appropriate cell
                 
-                cell = [[MFStoryLinkCell alloc]initWithURL:storyURL];
+                cell = [[MFStoryCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+                
+                // Get share API values from activityItems
+                
+                _storyTitle =             [activityItems objectAtIndex:TITLE_INDEX];
+                _storyDescription =       [activityItems objectAtIndex:DESCRIPTION_INDEX];
+                
+                // if the required "_submittedURL" is not provided, http://www.linkedin.com will be used.
+                
+                _submittedURL = [NSURL URLWithString:@"http://www.linkedin.com"];
             }
         }
             break;
@@ -190,50 +255,56 @@
     [_linkedInUIActivity activityDidFinish:YES];
 }
 
+
 ///  Determine the activity item type, prepare a JSON object for corresponding item, convert to NSData object, and return it.
 ///
 ///  @return NSData object with the correct JSON object for the activity item.
 -(NSData*)postData {
     
-    
-    // NOTE: Most of the implementation of this method is pending. After learning about the required LinkedIn Share API requirements, the Demo app
-    //       needs to be updated to pass the required items to the custom UIActivity. Also the table view cell datasource method needs to be updated.
-    //       below are some dummy values to demostrate that the post functionality works. MF, 2014-01-21.
+    // NOTE: Still need to handle cases when objects are nil, MF, 2014-01-22
     
     UITableViewCell *composeCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    //UITableViewCell *targetCell  = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]]; // Pending; implement after MFShareVisibilityViewController is created. MF, 2014-01-21
     
     NSData *data = nil;
     
+    // This still needs implementation, MF, 2014-01-22
+    //UITableViewCell *targetCell  = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]]; // Pending; implement after MFShareVisibilityViewController is created. MF, 2014-01-21
     NSString *code = @"connections-only"; //  anyone  or  connections-only
+    
+    
     
     // Post Story REST
     
     if ([composeCell isKindOfClass:[MFStoryCell class]]) {
         
-        NSString *comment = [[(MFStoryCell*)composeCell storyTextView]text];
+        NSString *comment = [[(MFStoryCell*)composeCell commentTextView]text];
         
-        NSString *url = @"http://www.nytimes.com/2013/12/16/technology/tech-companies-press-for-a-better-retail-experience.html?ref=technology";
+        NSString *url = @"http://www.linkedin.com"; // place holder URL
         
-        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"submitted-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,url,code];
+        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\", \"submitted-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,_storyTitle, _storyDescription,url,code];
         
         data = [json dataUsingEncoding:NSUTF8StringEncoding];
     }
+    
     
     // Post Image REST
     
     if ([composeCell isKindOfClass:[MFStoryImageCell class]]) {
         
+        // Get comment from textView
         NSString *comment = [[(MFStoryImageCell*)composeCell commentTextView]text];
         
-        NSString *url = @"http://www.nytimes.com/2013/12/16/technology/tech-companies-press-for-a-better-retail-experience.html?ref=technology";
+        // Convert NSURL to NSString for json string
+        NSString *submittedURL = [NSString stringWithFormat:@"%@",_submittedURL];
         
-        NSString *imageURL = @"https://raw.github.com/miguelfermin/MAFLinkedInActivity/share_story/MAFLinkedInActivityLibrary/MAFLinkedInActivityLibraryResources/AGI%20Sells%20Aircraft.png";
+        NSString *submittedImageURL = [NSString stringWithFormat:@"%@",_submittedImageURL];
         
-        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"submitted-image-url\":\"%@\", \"submitted-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,imageURL,url,code];
+        // Compose API call
+        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\", \"submitted-url\":\"%@\",\"submitted-image-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,_storyTitle,_storyDescription,submittedURL,submittedImageURL,code];
         
         data = [json dataUsingEncoding:NSUTF8StringEncoding];
     }
+    
     
     // Post Link REST
     
@@ -241,9 +312,11 @@
         
         NSString *comment = [[(MFStoryLinkCell*)composeCell commentTextView]text];
         
-        NSString *url = @"http://www.nytimes.com/2013/12/16/technology/tech-companies-press-for-a-better-retail-experience.html?ref=technology";
+        // Convert NSURL to NSString for json string
+        NSString *submittedURL = [NSString stringWithFormat:@"%@",_submittedURL];
         
-        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"submitted-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,url,code];
+        // Compose API call
+        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\", \"submitted-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,_storyTitle,_storyDescription,submittedURL,code];
         
         data = [json dataUsingEncoding:NSUTF8StringEncoding];
     }

@@ -10,7 +10,7 @@
 
 @interface MFStoryImageCell : UITableViewCell
 
--(id)initWithImage:(UIImage*)storyImage;
+-(id)initWithImageURL:(NSURL*)imageURL;
 
 @property(nonatomic,strong) UITextView *commentTextView;
 
