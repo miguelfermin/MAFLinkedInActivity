@@ -12,6 +12,7 @@
 #import "MFStoryImageCell.h"
 #import "MFStoryLinkCell.h"
 #import "MFTargetAudienceCell.h"
+#import "MFLinkedInActivityItem.h"
 
 @class MFLinkedInUIActivity;
 
@@ -19,5 +20,7 @@
 
 /// Weak reference to MFLinkedInUIActivity in order to call the activityDidFinish: to dismiss the linkedInActivityViewController.
 @property (nonatomic,weak) MFLinkedInUIActivity *linkedInUIActivity;
+
+@property(nonatomic,strong) MFLinkedInActivityItem *linkedInActivityItem;
 
 @end

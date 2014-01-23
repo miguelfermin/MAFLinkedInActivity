@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#warning This class is to be deleted, since we no longer posting text by itself.
 @interface MFStoryCell : UITableViewCell
 
 ///  UITextView to display the story.

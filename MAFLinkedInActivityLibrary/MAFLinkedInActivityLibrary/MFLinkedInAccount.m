@@ -12,7 +12,6 @@
 
 @implementation MFLinkedInAccount
 
-
 - (id)init {
     self = [super init];
     
@@ -28,6 +27,7 @@
     }
     return self;
 }
+
 
 
 #pragma mark - Custom Getters, To abstract the keychain operation
@@ -54,7 +54,6 @@
 
 
 
-
 #pragma mark - Custom Setters
 
 -(void)setUsername:(NSString *)username {
@@ -76,8 +75,6 @@
     
     [UICKeyChainStore setString:tokenIssueDateString forKey:@"token_issue_date_string" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
 }
-
-
 
 
 
@@ -109,15 +106,6 @@
     //    Otherwise return NO to indicate the access_token doesn't yet need to be refreshed.
     
     return ([daysBeforeExpiration compare:[NSDate date]] == NSOrderedAscending);
-    
-    
-    
-    // Date math tests
-    /*
-    NSDate *testDate = [self dateWithDays:-1 FromDate:tokenExpirationDate];
-    NSLog(@"testDate:                     %@",testDate);
-    return ([testDate compare:tokenExpirationDate] == NSOrderedAscending);
-     */
 }
 
 

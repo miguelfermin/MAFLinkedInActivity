@@ -29,17 +29,14 @@
 #pragma mark - Methods to Override to provide LinkedIn service information.
 
 +(UIActivityCategory)activityCategory {
-    //NSLog(@"activityCategory");
     return UIActivityCategoryShare;
 }
 
 -(NSString *)activityType {
-    //NSLog(@"activityType");
     return @"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn";
 }
 
 -(NSString *)activityTitle {
-    //NSLog(@"activityTitle");
     return NSLocalizedString(@"LinkedIn", @"LinkedIn");
 }
 
@@ -49,25 +46,60 @@
 }
 
 -(BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
-    //NSLog(@"canPerformWithActivityItems:");
-    return YES;
+    
+    __block BOOL hasURL = NO;
+    
+    [activityItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        // If obj is MFLinkedInActivityItem, it's guarantee there's a URL, since that a requirement of that class
+        
+        if ([obj isKindOfClass:[MFLinkedInActivityItem class]] == YES) {
+            
+            hasURL = YES;
+            
+            *stop  = YES;
+            
+            return;
+        }
+        
+#warning The two cases (commented) below are for when there's no content to share, only a link. Still experimantal
+         /*
+        // If a URL was passed
+        if ([obj isKindOfClass:[NSURL class]] == YES) {
+            
+            hasURL = YES;
+            
+            *stop  = YES;
+            
+            return;
+        }
+        
+        // If a String formatted as URL was passed
+        if ([obj isKindOfClass:[NSString class]] == YES && [NSURL URLWithString:obj] != nil) {
+            
+            hasURL = YES;
+            
+            *stop  = YES;
+            
+            return;
+        }*/
+    }];
+    
+    return hasURL;
 }
 
 -(void)prepareWithActivityItems:(NSArray *)activityItems {
     
-    // Store a reference to the data items in the activityItems parameter.
+    // Store a reference to the data items in the activityItems parameter so it can be retrieve by other methods
     
     _linkedInActivityItems = activityItems;
-    
-    
-    //NSLog(@"prepareWithActivityItems:");
     
     if ([_linkedInAccount accessToken]) {
         //NSLog(@"GOOD TOKEN: %@, Composing View Should Be Presented\n ",[_linkedInAccount accessToken]);
         
         /*
          * NOTES: 
-         *          - Access token exists, but the expiration date needs to checked. If access token is expired, ask _linkedInAccount to refresh it.
+         *          - Access token exists, but the expiration date needs to be checked. If access token is expired, ask _linkedInAccount to refresh it.
          *
          *          - At the moment the _linkedInActivityViewController is presented with _authenticationViewController for iPad, this needs fix, MF, 2014.01.13
          */
@@ -75,6 +107,7 @@
         if ([_linkedInAccount tokenNeedsToBeRefreshed]) { // Case when access_token needs to be refreshed
             
             //NSLog(@"ACCESS TOKEN NEEDS TO BE REFRESHED");
+#warning Code to handle cases when the access_token has expired is pending
         }
         else {
             //NSLog(@"PRESENT COMPOSE_VIEW");
@@ -124,6 +157,14 @@
     _composeViewController = [[MFLinkedInComposeViewController alloc]initWithStyle:UITableViewStyleGrouped];
     
     [_composeViewController setLinkedInUIActivity:self];
+    
+    if ([[_linkedInActivityItems objectAtIndex:0] isKindOfClass:[MFLinkedInActivityItem class]]) {
+        
+        [_composeViewController setLinkedInActivityItem:[_linkedInActivityItems objectAtIndex:0]];
+    }
+    else {
+#warning Code to box _linkedInActivityItems items into a single MFLinkedInActivityItem might be needed here... MF, 2014-01-23
+    }
     
     
     // Add _composeViewController to navigationVC

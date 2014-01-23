@@ -12,7 +12,7 @@
 
 // static library headers
 #import "MAFLinkedInActivityLibrary/MFLinkedInUIActivity.h"
-
+#import "MAFLinkedInActivityLibrary/MFLinkedInActivityItem.h"
 
 @interface MFStoryViewController : UIViewController <UISplitViewControllerDelegate, UIPopoverControllerDelegate>
 
@@ -21,7 +21,6 @@
 @property(weak, nonatomic) IBOutlet UIImageView *storyImageView;
 
 // Static content
-
 @property (nonatomic) NSString *storyOneTitle;
 @property (nonatomic) NSString *storyTwoTitle;
 @property (nonatomic) NSString *storyOneDescription;

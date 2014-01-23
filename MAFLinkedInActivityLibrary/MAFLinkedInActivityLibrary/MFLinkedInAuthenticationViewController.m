@@ -53,49 +53,10 @@
 
 
 
-
--(void)prepareAuthenticationView {
-    
-    // Initialize WebView and set its Delegate.
-    
-    _authenticationWebView = [[UIWebView alloc]init];
-    
-    _authenticationWebView.delegate = self;
-    
-    //_authenticationWebView.scalesPageToFit = YES;
-    
-    _authenticationViewController = [[UIViewController alloc]init];
-    
-    _authenticationViewController.view = _authenticationWebView;
-    
-    
-    // Setup cancel button
-    
-    UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelActivity)];
-    
-    _authenticationViewController.navigationItem.leftBarButtonItem = cancelBarButtonItem;
-    
-    
-    // Generate Authorization Code by redirecting user to LinkedIn's authorization dialog. UIWebViewDelegate methods will handle the redirected URI
-    
-    NSString *linkedInAuthorizationDialog = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@", API_KEY, SCOPE, STATE, REDIRECT_URI];
-    
-    [_authenticationWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:linkedInAuthorizationDialog]]];
-    
-    
-    // iPhone and iPod modal view are always in full screen and will ignore this presentation style
-    
-    [self setModalPresentationStyle:UIModalPresentationFormSheet];
-    
-    [self addChildViewController:_authenticationViewController];
-}
-
-
 #pragma mark - UIWebViewDelegate Methods
 
 // NOTE: This method is not complete. MF, 2014.01.07
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    //NSLog(@"webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType\n ");
     
     /* 
      * Here we have the opportunity to prevent the URI (URL) redirect and handle the response accordingly.
@@ -158,10 +119,11 @@
             }
         }
     }
-    // Need to add to to avoid the redirect. MF, 2014.01,07
+    
+#warning The width of the webview on iPad has to be adjusted...
+    
     return YES;
 }
-
 /*
 - (void)webViewDidStartLoad:(UIWebView *)webView { // To be determined if the rest of the delegate methods are needed.
     //NSLog(@"webViewDidStartLoad:(UIWebView *)webView\n ");
@@ -174,7 +136,6 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     //NSLog(@"webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error\n ");
 }*/
-
 
 
 
@@ -286,21 +247,65 @@
     
     [_linkedInUIActivity.linkedInAccount setTokenIssueDateString:[_linkedInUIActivity.linkedInAccount stringFromDate:[NSDate date]]];
     
-    // NOTE: setting the username is pending... todo when working on the sign out feature. MF, 2014.01.13
-    
+#warning Setting the username is pending... todo when working on the sign out feature. MF, 2014.01.13
     
     // Dismiss Authentication Dialog
     
-    [self cancelActivity];
+    [self dismissAuthenticationView];
 }
 
 
 
+#pragma mark - Helper Methods
+
+-(void)prepareAuthenticationView {
+    
+    // Initialize WebView and set its Delegate.
+    
+    _authenticationWebView = [[UIWebView alloc]init];
+    
+    _authenticationWebView.delegate = self;
+    
+    //_authenticationWebView.scalesPageToFit = YES;
+    
+    _authenticationViewController = [[UIViewController alloc]init];
+    
+    _authenticationViewController.view = _authenticationWebView;
+    
+    
+    // Setup cancel button
+    
+    UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelActivity)];
+    
+    _authenticationViewController.navigationItem.leftBarButtonItem = cancelBarButtonItem;
+    
+    
+    // Generate Authorization Code by redirecting user to LinkedIn's authorization dialog. UIWebViewDelegate methods will handle the redirected URI
+    
+    NSString *linkedInAuthorizationDialog = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@", API_KEY, SCOPE, STATE, REDIRECT_URI];
+    
+    [_authenticationWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:linkedInAuthorizationDialog]]];
+    
+    
+    // iPhone and iPod modal view are always in full screen and will ignore this presentation style
+    
+    [self setModalPresentationStyle:UIModalPresentationFormSheet];
+    
+    [self addChildViewController:_authenticationViewController];
+}
+
+///  This method calls _linkedInUIActivity's activityDidFinish: method passing YES to the didFinishe parameter to indicate the authentication was successful.
+-(void)dismissAuthenticationView {
+    
+    [_linkedInUIActivity activityDidFinish:YES];
+    
+#warning Need to find a way to present the Compose View right after dismissing this view
+    //[_linkedInUIActivity prepareLinkedInActivityViewControllerToCompose];
+}
 
 ///  This method dismisses the sharing interface, whether it is the LinkedIn authentication interface or the Composing interface.
 ///  This method calls activityDidFinish: method and sends NO to it's complete parameter to indicate that the service wasn't completed successfully.
 -(void)cancelActivity; {
-    NSLog(@"cancelActivity");
     [_linkedInUIActivity activityDidFinish:NO];
 }
 
@@ -309,15 +314,13 @@
 ///  @param error The error object to handle.
 -(void)handleLinkedInAuthenticationError:(NSError*)error {
     
-    // Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
-    NSLog(@"error code: %ld, error domain: %@",(long)error.code,error.domain);
+#warning Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
+    //NSLog(@"error code: %ld, error domain: %@",(long)error.code,error.domain);
 }
-
 
 // Before releasing an instance of UIWebView for which you have set a delegate, you must first set the UIWebView delegate property to nil before disposing of the UIWebView instance.
 - (void)dealloc {
     _authenticationWebView.delegate = nil;
 }
-
 
 @end
