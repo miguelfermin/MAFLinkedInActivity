@@ -4,10 +4,6 @@
 //
 //  Created by Miguel Fermin on 12/19/13.
 //  Copyright (c) 2013 Miguel Fermin. All rights reserved.
-//
-//  Description: xx...
-//
-//  How to use: xx...
 
 
 #import "MFLinkedInUIActivity.h"
@@ -126,11 +122,6 @@
     }
 }
 
-
-
-#pragma mark - Custom Activity View Controller
-
-// This method returns the authorization dialog view for now. Will be updated.
 -(UIViewController *)activityViewController {
     return _linkedInActivityViewController;
 }
@@ -152,37 +143,56 @@
 
 -(void)prepareLinkedInActivityViewControllerToCompose {
     
-    // Setup  _composeViewController and assign it to the _linkedInActivityViewController.
+    // Setup  _composePresentationViewController and assign it to the _linkedInActivityViewController.
     
-    _composeViewController = [[MFLinkedInComposeViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    UIViewController *mfViewController;
     
-    [_composeViewController setLinkedInUIActivity:self];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPhone" bundle:nil];
+        //NSLog(@"iPhone storyboard: %@",storyboard);
+        
+        mfViewController = [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
+    }
+    else {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPad" bundle:nil];
+        //NSLog(@"iPad storyboard: %@",storyboard);
+        
+        mfViewController = [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
+    }
+    
+    _composePresentationViewController = (MFLinkedInComposePresentationViewController*)mfViewController;
+    
+   [_composePresentationViewController setLinkedInUIActivity:self];
+    
     
     if ([[_linkedInActivityItems objectAtIndex:0] isKindOfClass:[MFLinkedInActivityItem class]]) {
         
-        [_composeViewController setLinkedInActivityItem:[_linkedInActivityItems objectAtIndex:0]];
+        [_composePresentationViewController setLinkedInActivityItem:[_linkedInActivityItems objectAtIndex:0]];
     }
     else {
 #warning Code to box _linkedInActivityItems items into a single MFLinkedInActivityItem might be needed here... MF, 2014-01-23
     }
     
     
-    // Add _composeViewController to navigationVC
-    UINavigationController *navigationController = [[UINavigationController alloc]init];
+    // Setup Custom Transition and Animation Delegate
     
-    [navigationController setModalPresentationStyle:UIModalPresentationFormSheet];
+    MFTransitioningDelegate *transitionDelegate = [[MFTransitioningDelegate alloc]init];
     
-    [navigationController addChildViewController:_composeViewController];
+    [_composePresentationViewController setTransitioningDelegate:transitionDelegate];
     
-    _linkedInActivityViewController = navigationController;
+#warning There's an issue with iPad custom presentation
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
+        [_composePresentationViewController setModalPresentationStyle:UIModalPresentationCustom];
+    }
     
     
+    // Assign custom compose controller
     
-    /* In case a storyboard is needed to present the overlay compose controller
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPhone" bundle:nil];
-    NSLog(@"storyboard: %@",storyboard);
-    UIViewController *coolVC = [storyboard instantiateViewControllerWithIdentifier:@"awesomeVC"];
-    _linkedInActivityViewController = coolVC;*/
+    _linkedInActivityViewController = _composePresentationViewController;
 }
+
+
 
 @end

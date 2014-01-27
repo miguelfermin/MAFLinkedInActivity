@@ -10,9 +10,16 @@
 
 @interface MFLinkedInComposeViewController ()
 
-// Private properties
-@property (nonatomic,strong) UIViewController *composeViewController;
-@property (nonatomic,strong) UITableViewController *composeTableViewController;
+// IB Connections
+@property(nonatomic,weak) IBOutlet UITextView *contentCommentTextView;
+
+@property(nonatomic,weak) IBOutlet UIImageView *contentImageView;
+
+@property(nonatomic,weak) IBOutlet UILabel *contentVisibilityLabel;
+
+-(IBAction)postBarButtonItem;
+
+-(IBAction)cancelBarButtonItem;
 
 @end
 
@@ -32,83 +39,36 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
-    UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelActivity)];
-    UIBarButtonItem *postBarButtonItem =   [[UIBarButtonItem alloc]init];
-    postBarButtonItem.title = @"Post";
-    postBarButtonItem.target = self;
-    postBarButtonItem.action = @selector(postStory);
     
-    self.navigationItem.leftBarButtonItem = cancelBarButtonItem;
-    self.navigationItem.rightBarButtonItem = postBarButtonItem;
-    self.title = @"LinkedIn";
-}
-
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // If submittedImageURL property is nil, the client only provide a link to the story, based on this load UIImageView with correct content.
     
-    UITableViewCell *cell;
-    
-    switch (indexPath.section) {
-        case 0:
-        {
-            if ([_linkedInActivityItem submittedImageURL] != nil) {
-                
-                NSLog(@"submittedImageURL is valid, post image");
-                
-                cell = [[MFStoryImageCell alloc]initWithImageURL:[_linkedInActivityItem submittedImageURL]];
-            }
-            else {
-                
-                NSLog(@"submittedImageURL is NOT valid, post link");
-                
-                cell = [[MFStoryLinkCell alloc]initWithURL:[_linkedInActivityItem submittedURL]];
-            }
-        }
-            break;
-        case 1:
-        {
-            cell = [[MFTargetAudienceCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-        }
-            break;
-        default:
-            break;
+    if ([_linkedInActivityItem submittedImageURL] != nil) {
+        
+        //NSLog(@"submittedImageURL is valid, post image");
+        
+        [_contentImageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:_linkedInActivityItem.submittedImageURL]]]; // Need to use GCD for performance...
+        
     }
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
-    return cell;
-}
-
-
-#pragma mark - Table view delegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    CGFloat result = 0.0;
-    
-    switch (indexPath.section) {
-        case 0:
-            result = 160.0; // Compose
-            break;
-        case 1:
-            result = 44.0; // Target Audience
-            break;
-            
-        default:
-            break;
+    else {
+        //NSLog(@"submittedImageURL is NOT valid, post link");
+        
+        [_contentImageView setImage:[UIImage imageNamed:@"linkedIn-negative"]]; // temp image for testing...
     }
-    return result;
+    
+    
+    // Set anyone  as default visibility code when the compose view is presented.
+    
+    _visibilityCode = @"anyone";
+    
+    [_contentVisibilityLabel setText:@"Anyone"];
+    
+    
+    // Present Keyboard as soon as the view is shown
+    
+    [_contentCommentTextView becomeFirstResponder];
 }
 
 
@@ -123,7 +83,7 @@
     NSURLSession *delegateFreeSession =  [NSURLSession sessionWithConfiguration:SessionConfiguration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     
     // Prepare LinkedIn Share API
-    NSString *accessToken = [[_linkedInUIActivity linkedInAccount]accessToken];
+    NSString *accessToken = [[_composePresentationViewController.linkedInUIActivity linkedInAccount]accessToken];
     
     NSString *requestBody = [NSString stringWithFormat:@"https://api.linkedin.com/v1/people/~/shares?oauth2_access_token=%@",accessToken];
     
@@ -144,33 +104,37 @@
                                        fromData:data
                               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                   
-#warning There are cases when the access_token becomes invalid, the data object should be checked and access_token renew if needed..
                                   NSLog(@"data: %@\n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+                                  
+#warning There are cases when the access_token becomes invalid, the data object should be checked and access_token renew if needed..
+                                  // NOTE: This needs better checking code, perhaps checking the data HTML content, but for now use the error varible value
+                                  
+                                  if (!error) {
+                                      
+                                      // Assuming there's no error and the post was successful.
+                                      
+                                      [self performOperationsAfterPostSucceeded];
+                                  }
+                                  else {
+                                      // Handle case when post fails
+                                      
+                                      [self performOperationsAfterPostFailed];
+                                  }
                               }
       ]resume];
-    
-    // Dismiss MFLinkedInComposeViewController
-    [_linkedInUIActivity activityDidFinish:YES];
 }
 
 -(NSData*)postData {
     
-    // NOTE: Still need to handle cases when objects are nil, MF, 2014-01-22
-    
-    UITableViewCell *composeCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    
     NSData *data = nil;
     
-#warning Setting the target audience needs implementation, MF, 2014-01-23
-    //UITableViewCell *targetCell  = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]]; // Pending; implement after MFShareVisibilityViewController is created. MF, 2014-01-21
-    NSString *code = @"connections-only"; //  anyone  or  connections-only
-    
-    // Post Image REST
-    
-    if ([composeCell isKindOfClass:[MFStoryImageCell class]]) {
+    if ([_linkedInActivityItem submittedImageURL] != nil) {
+        
+        // Post Image REST
         
         // Gather API call fields
-        NSString *comment = [[(MFStoryImageCell*)composeCell commentTextView]text];
+        
+        NSString *comment = [_contentCommentTextView text];
         
         NSString *title = [_linkedInActivityItem contentTitle];
         
@@ -178,6 +142,7 @@
         
         
         // Convert NSURL to NSString for json string
+        
         NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]];
         
         NSString *submittedImageURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedImageURL]];
@@ -185,32 +150,59 @@
         
         // Compose API call
         
-        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\",\"submitted-url\":\"%@\",\"submitted-image-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,title,description,submittedURL,submittedImageURL,code];
+        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\",\"submitted-url\":\"%@\",\"submitted-image-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,title,description,submittedURL,submittedImageURL,_visibilityCode];
         
         data = [json dataUsingEncoding:NSUTF8StringEncoding];
     }
-    
-    // Post Link REST
-    
-    if ([composeCell isKindOfClass:[MFStoryLinkCell class]]) {
+    else {
+        // Post Link REST
         
         // Gather API call fields
-        NSString *comment = [[(MFStoryImageCell*)composeCell commentTextView]text];
+        
+        NSString *comment = [_contentCommentTextView text];
         
         NSString *title = [_linkedInActivityItem contentTitle];
         
         NSString *description = [_linkedInActivityItem contentDescription];
         
+        
         // Convert NSURL to NSString for json string
+        
         NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]];
         
         
         // Compose API call
         
-        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\",\"submitted-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,title,description,submittedURL,code];
+        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\",\"submitted-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,title,description,submittedURL,_visibilityCode];
         
         data = [json dataUsingEncoding:NSUTF8StringEncoding];
     }
+    /*
+    // Post Image REST
+    if ([composeCell isKindOfClass:[MFStoryImageCell class]]) {
+        // Gather API call fields
+        NSString *comment = [[(MFStoryImageCell*)composeCell commentTextView]text];
+        NSString *title = [_linkedInActivityItem contentTitle];
+        NSString *description = [_linkedInActivityItem contentDescription];
+        // Convert NSURL to NSString for json string
+        NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]];
+        NSString *submittedImageURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedImageURL]];
+        // Compose API call
+        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\",\"submitted-url\":\"%@\",\"submitted-image-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,title,description,submittedURL,submittedImageURL,code];
+        data = [json dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    // Post Link REST
+    if ([composeCell isKindOfClass:[MFStoryLinkCell class]]) {
+        // Gather API call fields
+        NSString *comment = [[(MFStoryImageCell*)composeCell commentTextView]text];
+        NSString *title = [_linkedInActivityItem contentTitle];
+        NSString *description = [_linkedInActivityItem contentDescription];
+        // Convert NSURL to NSString for json string
+        NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]];
+        // Compose API call
+        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\",\"submitted-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,title,description,submittedURL,code];
+        data = [json dataUsingEncoding:NSUTF8StringEncoding];
+    }*/
     
     return data;
 }
@@ -219,12 +211,66 @@
 
 #pragma mark - Helper Methods
 
-///  This method dismisses the sharing interface, whether it is the LinkedIn authentication interface or the Composing interface.
-///  This method calls activityDidFinish: method and sends NO to it's complete parameter to indicate that the service wasn't completed successfully.
--(void)cancelActivity; {
+-(IBAction)postBarButtonItem {
     
-    //NSLog(@"cancelActivity");
-    [_linkedInUIActivity activityDidFinish:NO];
+    [self postStory];
 }
+
+-(IBAction)cancelBarButtonItem {
+    
+    [_composePresentationViewController cancelActivity];
+}
+
+-(void)updateVisibilityCodeWithString:(NSString*)code {
+    
+    _visibilityCode = code;
+    
+    
+    // Ensure UILabel is in upper case
+    
+    if ([code isEqualToString:@"anyone"]) {
+        
+        [_contentVisibilityLabel setText:@"Anyone"];
+        
+    }
+    else {
+        [_contentVisibilityLabel setText:@"Connections Only"];
+    }
+}
+
+
+
+#pragma mark - After POST request Callbacks
+
+-(void)performOperationsAfterPostSucceeded {
+    
+    // Delegate the dismiss after succeeded operation to parent view controller.
+    
+    [_composePresentationViewController donePosting];
+}
+
+-(void)performOperationsAfterPostFailed {
+#warning Pending implementation.
+    // 1. Re-attempt to post
+    
+    // 2. If re-atttemp fails, present 'post fail, please try again' message.
+}
+
+
+
+#pragma mark - Segue Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier]isEqualToString:@"Visibility View Controller Segue"]) {
+        
+        _visivilityViewController = [segue destinationViewController];
+        
+        [_visivilityViewController setComposeViewController:self];
+        
+        [_visivilityViewController updateInterface];
+    }
+}
+
 
 @end

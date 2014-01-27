@@ -11,7 +11,7 @@
 @implementation MFStoryImageCell
 
 -(id)initWithImageURL:(NSURL*)imageURL {
-    
+    /*
     self = [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
     [self configureStoryWithImageURL:imageURL];
@@ -25,6 +25,7 @@
     [self createTextViewConstraints];
     [self createImageViewConstraints];
     
+    */
     return self;
 }
 
@@ -37,7 +38,7 @@
     return self;
 }
 
-
+/*
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     
     [super setSelected:selected animated:animated];
@@ -56,7 +57,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         textViewRect = CGRectMake(0.0, 12.0, 196.0, 147.0);
     } else {
-        textViewRect = CGRectMake(10.0, 10.0, 189.0, 139.0);
+        textViewRect = CGRectMake(6.0, 6.0, 186.0, 169.0);
     }
     
     _commentTextView = [[UITextView alloc]initWithFrame:textViewRect];
@@ -75,7 +76,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         imageViewRect = CGRectMake(404.0, 12.0, 110.0, 99.0);
     } else {
-        imageViewRect = CGRectMake(207.0, 10.0, 103.0, 90.0);
+        imageViewRect = CGRectMake(200.0, 20.0, 80.0, 80.0);
     }
     _storyImageView = [[UIImageView alloc]initWithFrame:imageViewRect];
     
@@ -187,4 +188,5 @@
     [self.contentView addConstraint:aspectRatioConstraint];
 }
 
+*/
 @end

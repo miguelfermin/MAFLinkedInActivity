@@ -16,6 +16,7 @@
     if (self) {
         // Initialization code
         
+        /*
         CGRect rect;
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -39,6 +40,8 @@
         [self.contentView addSubview:_targetAudienceSegmentedControl];
         
         [self createSegmentedControlAutoLayoutConstraints];
+         
+         */
         
     }
     return self;
@@ -227,8 +230,6 @@
     
     [self.contentView addConstraint:leadingConstraint];
 }
-
-
 
 
 

@@ -10,10 +10,11 @@
 #import <UIKit/UIKit.h>
 #import "MFLinkedInAccount.h"
 #import "MFLinkedInAuthenticationViewController.h"
-#import "MFLinkedInComposeViewController.h"
 #import "MFLinkedInActivityItem.h"
+#import "MFLinkedInComposePresentationViewController.h"
+#import "MFTransitioningDelegate.h"
 
-@class MFLinkedInAuthenticationViewController,MFLinkedInComposeViewController;
+@class MFLinkedInAuthenticationViewController,MFLinkedInComposePresentationViewController;
 
 ///  Provide LinkedIn sharing service to the user. Handle sign-in and authentication process.
 @interface MFLinkedInUIActivity : UIActivity
@@ -27,8 +28,8 @@
 ///  Manage the LinkedIn authentication process.
 @property (nonatomic,strong) MFLinkedInAuthenticationViewController *authenticationViewController;
 
-///  Manage the LinkedIn compose process.
-@property (nonatomic,strong) MFLinkedInComposeViewController *composeViewController;
+///  Manage the LinkedIn compose process, including the overlay presentation.
+@property (nonatomic,strong) MFLinkedInComposePresentationViewController *composePresentationViewController;
 
 ///  Store a reference to the data items in the activityItems parameter of the prepareWithActivityItems: method.
 @property (nonatomic,strong) NSArray *linkedInActivityItems;
