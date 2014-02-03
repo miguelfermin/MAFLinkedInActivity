@@ -93,24 +93,36 @@
     if ([_linkedInAccount accessToken]) {
         //NSLog(@"GOOD TOKEN: %@, Composing View Should Be Presented\n ",[_linkedInAccount accessToken]);
         
-        /*
-         * NOTES: 
-         *          - Access token exists, but the expiration date needs to be checked. If access token is expired, ask _linkedInAccount to refresh it.
-         *
-         *          - At the moment the _linkedInActivityViewController is presented with _authenticationViewController for iPad, this needs fix, MF, 2014.01.13
-         */
+        // Access token exists, but the expiration date needs to be checked. If access token is expired, ask _linkedInAccount to refresh it.
         
-        if ([_linkedInAccount tokenNeedsToBeRefreshed]) { // Case when access_token needs to be refreshed
-            
-            //NSLog(@"ACCESS TOKEN NEEDS TO BE REFRESHED");
-#warning Code to handle cases when the access_token has expired is pending
-        }
-        else {
-            //NSLog(@"PRESENT COMPOSE_VIEW");
-            
-            // Case when access_token is valid and the compose view needs to be prepared
-            
-            [self prepareLinkedInActivityViewControllerToCompose];
+        switch ([_linkedInAccount tokenStatus]) {
+                
+            case MFAccessTokenStatusGood:
+                
+                NSLog(@"MFAccessTokenStatusGood\n ");
+                
+                [self prepareLinkedInActivityViewControllerToCompose];
+                
+                break;
+                
+            case MFAccessTokenStatusAboutToExpire:
+                
+                //NSLog(@"MFAccessTokenStatusAboutToExpire\n ");
+                
+                [self refreshAccessToken];
+                
+                break;
+                
+            case MFAccessTokenStatusExpired:
+                
+                //NSLog(@"MFAccessTokenStatusExpired\n ");
+                
+                [self prepareLinkedInActivityViewControllerToAuthenticate];
+                
+                break;
+                
+            default:
+                break;
         }
     }
     else {
@@ -187,11 +199,32 @@
         [_composePresentationViewController setModalPresentationStyle:UIModalPresentationCustom];
     }
     
-    
     // Assign custom compose controller
     
     _linkedInActivityViewController = _composePresentationViewController;
 }
+
+
+
+#pragma mark - Handle Expired Access tokens
+
+-(void)refreshAccessToken {
+    
+    // Delegate refresh operation to MFLinkedInAccount
+    
+    [_linkedInAccount refreshToken];
+    
+    
+    
+    //NSLog(@"After refreshAccessToken...\n ");
+    
+    // Call prepareLinkedInActivityViewControllerToCompose to start the post
+    
+    //[self prepareLinkedInActivityViewControllerToCompose];
+    
+}
+
+
 
 
 

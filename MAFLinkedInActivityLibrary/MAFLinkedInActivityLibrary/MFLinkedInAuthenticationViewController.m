@@ -12,7 +12,7 @@
 #define API_KEY         @"77tp47xbo381qe"           // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
 #define SECRET_KEY      @"kFz3z5L4XxKnbljU"         // Required. Value of your secret key given when you registered your application with LinkedIn.
 #define STATE           @"DCMMFWF10268sdffef102"    // Required. A long unique string value of your choice that is hard to guess. Used to prevent CSRF.
-#define REDIRECT_URI    @"https://www.google.com"   // Required. URI in your app where users will be sent after authorization.
+#define REDIRECT_URI    @"https://www.google.com" // Required. URI in your app where users will be sent after authorization.
 #define SCOPE           @"rw_nus"                   // Optional. Use it to specify a list of member permissions that you need and these will be shown to the user on LinkedIn's authorization form.
                                                     // However, for the purpose of this library (share story) this value is required, and it must be of value "rw_nus" to retrieve and post updates
                                                     // to LinkedIn as authenticated user.
@@ -61,7 +61,7 @@
     /* 
      * Here we have the opportunity to prevent the URI (URL) redirect and handle the response accordingly.
      * 
-     * A custome URL Scheme would add unnecessary complexity that can easily be avoided by intervening the request and extract the
+     * A custom URL Scheme would add unnecessary complexity that can easily be avoided by intervening the request and extract the
      * LinkedIn Authorization Code.
      *
      * Upon successful authorization, the redirected URL should look like:                                  YOUR_REDIRECT_URI/?code=AUTHORIZATION_CODE&state=STATE
@@ -72,7 +72,27 @@
      */
     
     NSString *redirectedURLString = [[request URL] absoluteString];
-    //NSLog(@"Redirect URL: %@\n ",redirectedURLString);
+    
+    NSLog(@"request: %@",request);
+    NSLog(@"[[request URL] absoluteString]: %@\n ",[[request URL] absoluteString]);
+    
+    NSLog(@"\n **************************************************************************************************shouldStartLoadWithRequest:");
+    NSURL *url = [request URL];
+    NSLog(@"url: %@\n ",url);
+    
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSLog(@"[cookieStorage cookieAcceptPolicy]: %i",[cookieStorage cookieAcceptPolicy]);
+    NSArray *cookies = [cookieStorage cookiesForURL:url];
+    //NSLog(@"cookies: %i",cookies.count);
+    
+    for (NSHTTPCookie *cookie in cookies) {
+        NSLog(@"cookie: %@",cookie.name);
+    }
+    NSLog(@"\n **************************************************************************************************");
+    
+    
+    
+    
     
     // Ensure the response has the redirected URI to then avoid it althogether. This is to make sure the redirect is avoided only when the authorization_code is requested.
     
@@ -213,10 +233,27 @@
                                  * You can uncomment the line below to log the response to the console.
                                  *
                                  */
-                                //NSLog(@"dataString: %@\n \n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
-                                
+                                //NSLog(@"data: %@\n \n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+                                //NSLog(@"response: %@\n \n ",[[response URL]absoluteString]);
                                 
                                 // This method will extract the JSON object by using the NSJSONSerialization class, saves the values in the Keychain, and dismisses the authentication view.
+                                
+                                
+                                NSLog(@"\n *************************************************************************************requestAccessTokenByExchangingAuthorizationCode:");
+                                NSURL *url = [request URL];
+                                NSLog(@"url: %@\n ",url);
+                                
+                                NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+                                NSLog(@"[cookieStorage cookieAcceptPolicy]: %i",[cookieStorage cookieAcceptPolicy]);
+                                NSArray *cookies = [cookieStorage cookiesForURL:url];
+                                //NSLog(@"cookies: %i",cookies.count);
+                                
+                                for (NSHTTPCookie *cookie in cookies) {
+                                    NSLog(@"cookie: %@",cookie.name);
+                                }
+                                NSLog(@"\n **************************************************************************************************");
+                                
+                                
                                 
                                 [self completeAuthenticationProcessWithResponseData:data];
     }
