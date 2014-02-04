@@ -11,8 +11,6 @@
 
 @interface MFTransitioningDelegate : NSObject <UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
 
-
-@property (nonatomic) BOOL reverse;
-
+@property (nonatomic, assign, getter = isPresenting) BOOL presenting;
 
 @end

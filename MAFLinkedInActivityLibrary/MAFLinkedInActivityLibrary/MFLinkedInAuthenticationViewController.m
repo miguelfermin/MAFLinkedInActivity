@@ -12,7 +12,7 @@
 #define API_KEY         @"77tp47xbo381qe"           // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
 #define SECRET_KEY      @"kFz3z5L4XxKnbljU"         // Required. Value of your secret key given when you registered your application with LinkedIn.
 #define STATE           @"DCMMFWF10268sdffef102"    // Required. A long unique string value of your choice that is hard to guess. Used to prevent CSRF.
-#define REDIRECT_URI    @"https://www.google.com" // Required. URI in your app where users will be sent after authorization.
+#define REDIRECT_URI    @"https://www.newstex.com" // Required. URI in your app where users will be sent after authorization.
 #define SCOPE           @"rw_nus"                   // Optional. Use it to specify a list of member permissions that you need and these will be shown to the user on LinkedIn's authorization form.
                                                     // However, for the purpose of this library (share story) this value is required, and it must be of value "rw_nus" to retrieve and post updates
                                                     // to LinkedIn as authenticated user.
@@ -55,7 +55,6 @@
 
 #pragma mark - UIWebViewDelegate Methods
 
-// NOTE: This method is not complete. MF, 2014.01.07
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     /* 
@@ -72,26 +71,17 @@
      */
     
     NSString *redirectedURLString = [[request URL] absoluteString];
+    //NSLog(@"request: %@",request);
+    //NSLog(@"[[request URL] absoluteString]: %@\n ",[[request URL] absoluteString]);
     
-    NSLog(@"request: %@",request);
-    NSLog(@"[[request URL] absoluteString]: %@\n ",[[request URL] absoluteString]);
-    
-    NSLog(@"\n **************************************************************************************************shouldStartLoadWithRequest:");
-    NSURL *url = [request URL];
-    NSLog(@"url: %@\n ",url);
-    
+    /*
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSLog(@"[cookieStorage cookieAcceptPolicy]: %i",[cookieStorage cookieAcceptPolicy]);
-    NSArray *cookies = [cookieStorage cookiesForURL:url];
-    //NSLog(@"cookies: %i",cookies.count);
-    
-    for (NSHTTPCookie *cookie in cookies) {
-        NSLog(@"cookie: %@",cookie.name);
+    for (NSHTTPCookie *cookie in [cookieStorage cookiesForURL:[request URL]]) {
+        NSLog(@"cookie in URL: %@",cookie.name);
     }
-    NSLog(@"\n **************************************************************************************************");
-    
-    
-    
+    for (NSHTTPCookie *cookie in [cookieStorage cookies]) {
+        NSLog(@"cookie: %@",cookie.name);
+    }*/
     
     
     // Ensure the response has the redirected URI to then avoid it althogether. This is to make sure the redirect is avoided only when the authorization_code is requested.
@@ -144,6 +134,7 @@
     
     return YES;
 }
+
 /*
 - (void)webViewDidStartLoad:(UIWebView *)webView { // To be determined if the rest of the delegate methods are needed.
     //NSLog(@"webViewDidStartLoad:(UIWebView *)webView\n ");
@@ -151,55 +142,15 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     //NSLog(@"webViewDidFinishLoad:(UIWebView *)webView\n ");
+    
+    //NSLog(@"[[webView.request URL]absoluteString]: %@",[[webView.request URL]absoluteString]);
+    //NSURLRequest *httpRequest = (NSURLRequest*)webView.request;
+    //NSLog(@"[httpRequest allHTTPHeaderFields]: %@",[httpRequest allHTTPHeaderFields]);
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     //NSLog(@"webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error\n ");
 }*/
-
-
-
-#pragma mark - Extract GET Parameter values from URL Response
-
--(NSString *)extractGetParameter:(NSString *)parameter fromURLString:(NSString *)redirectedURLString {
-    
-    // This dictionary will be used to store parameter names and values once they are extracted in the fast enumeration below.
-    
-    NSMutableDictionary *queryStringsDictionary = [[NSMutableDictionary alloc] init];
-    
-    
-    // Get an array that only contains the response parameters. Array index[0] will have the redirect_uri string  and index[1] will have all parameters in one string
-    
-    redirectedURLString = [[redirectedURLString componentsSeparatedByString:@"?"] objectAtIndex:1];
-    
-    
-    // These variables will be used to store the request parameter names and values into the dictionary as key-object pairs
-    
-    NSString *parameterValue = nil;
-    NSString *parameterKey = nil;
-    
-    
-    // Now instead of separating the redirect URL from the response parameters, do a fast enumeration to iterate over all parameters, and store it in the dictionary.
-    
-    for (NSString *queryString in [redirectedURLString componentsSeparatedByString:@"&"]) {
-        
-        // Extract the characters after the '=', replace '+' with empty string, replace the percent escapes, and then assign this string to the parameterValue variable.
-        
-        parameterValue = [[[[queryString componentsSeparatedByString:@"="] objectAtIndex:1]stringByReplacingOccurrencesOfString:@"+" withString:@" "]stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        
-        // Extract the characters before the '=', this is the parameter name.
-        
-        parameterKey = [[queryString componentsSeparatedByString:@"="] objectAtIndex:0];
-        
-        
-        // Enter the extracted value-key pair into the dictionary
-        
-        [queryStringsDictionary setValue:parameterValue forKey:parameterKey];
-    }
-    
-    return [queryStringsDictionary objectForKey:parameter];
-}
 
 
 
@@ -236,24 +187,8 @@
                                 //NSLog(@"data: %@\n \n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
                                 //NSLog(@"response: %@\n \n ",[[response URL]absoluteString]);
                                 
+                                
                                 // This method will extract the JSON object by using the NSJSONSerialization class, saves the values in the Keychain, and dismisses the authentication view.
-                                
-                                
-                                NSLog(@"\n *************************************************************************************requestAccessTokenByExchangingAuthorizationCode:");
-                                NSURL *url = [request URL];
-                                NSLog(@"url: %@\n ",url);
-                                
-                                NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-                                NSLog(@"[cookieStorage cookieAcceptPolicy]: %i",[cookieStorage cookieAcceptPolicy]);
-                                NSArray *cookies = [cookieStorage cookiesForURL:url];
-                                //NSLog(@"cookies: %i",cookies.count);
-                                
-                                for (NSHTTPCookie *cookie in cookies) {
-                                    NSLog(@"cookie: %@",cookie.name);
-                                }
-                                NSLog(@"\n **************************************************************************************************");
-                                
-                                
                                 
                                 [self completeAuthenticationProcessWithResponseData:data];
     }
@@ -294,6 +229,46 @@
 
 
 #pragma mark - Helper Methods
+
+-(NSString *)extractGetParameter:(NSString *)parameter fromURLString:(NSString *)redirectedURLString {
+    
+    // This dictionary will be used to store parameter names and values once they are extracted in the fast enumeration below.
+    
+    NSMutableDictionary *queryStringsDictionary = [[NSMutableDictionary alloc] init];
+    
+    
+    // Get an array that only contains the response parameters. Array index[0] will have the redirect_uri string  and index[1] will have all parameters in one string
+    
+    redirectedURLString = [[redirectedURLString componentsSeparatedByString:@"?"] objectAtIndex:1];
+    
+    
+    // These variables will be used to store the request parameter names and values into the dictionary as key-object pairs
+    
+    NSString *parameterValue = nil;
+    NSString *parameterKey = nil;
+    
+    
+    // Now instead of separating the redirect URL from the response parameters, do a fast enumeration to iterate over all parameters, and store it in the dictionary.
+    
+    for (NSString *queryString in [redirectedURLString componentsSeparatedByString:@"&"]) {
+        
+        // Extract the characters after the '=', replace '+' with empty string, replace the percent escapes, and then assign this string to the parameterValue variable.
+        
+        parameterValue = [[[[queryString componentsSeparatedByString:@"="] objectAtIndex:1]stringByReplacingOccurrencesOfString:@"+" withString:@" "]stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        
+        // Extract the characters before the '=', this is the parameter name.
+        
+        parameterKey = [[queryString componentsSeparatedByString:@"="] objectAtIndex:0];
+        
+        
+        // Enter the extracted value-key pair into the dictionary
+        
+        [queryStringsDictionary setValue:parameterValue forKey:parameterKey];
+    }
+    
+    return [queryStringsDictionary objectForKey:parameter];
+}
 
 -(void)prepareAuthenticationView {
     
@@ -347,7 +322,6 @@
 }
 
 ///  Handle LinkedIn Authentication error.
-///
 ///  @param error The error object to handle.
 -(void)handleLinkedInAuthenticationError:(NSError*)error {
     

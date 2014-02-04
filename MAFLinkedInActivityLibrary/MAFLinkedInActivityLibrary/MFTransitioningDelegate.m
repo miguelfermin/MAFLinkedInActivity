@@ -8,114 +8,171 @@
 
 #import "MFTransitioningDelegate.h"
 
-static NSTimeInterval const MFAnimatedTransitionDuration = 0.8f;
-static NSTimeInterval const MFAnimatedTransitionMacroDuration = 0.15f;
 
 @implementation MFTransitioningDelegate
 
+{
+    CGFloat _presentedViewHeightPortrait;
+    CGFloat _presentedViewHeightLandscape;
+}
+
+-(id)init {
+    self = [super init];
+    if (self) {
+        // Initialize self.
+        
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            
+            _presentedViewHeightPortrait = 568.0f;
+            _presentedViewHeightLandscape = 320.0f;
+        }
+        else {
+            _presentedViewHeightPortrait = 720.0f;
+            _presentedViewHeightLandscape = 440.0f;
+        }
+    }
+    return self;
+}
 
 #pragma mark - UIViewControllerTransitioningDelegate
 
-// Called when a transition requires the animator object to use when presenting a view controller.
 -(id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    /*
-     NSLog(@"animationControllerForPresentedController:  %@",presented);
-     NSLog(@"presentingController:                       %@",presenting);
-     NSLog(@"sourceController:                           %@",source);*/
-    //presented.modalPresentationStyle = UIModalPresentationCurrentContext;
-    
+    self.presenting = YES;
     return self;
 }
 
-// Called when a transition requires the animator object to use when dismissing a view controller.
 -(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    
-    _reverse = YES;
-    
+    self.presenting = NO;
     return self;
-}
-
-// Called when a transition requires the animator object that can manage an interactive transition when dismissing a view controller.
--(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-    return nil;
-}
-
-// Called when a transition requires the animator object that can manage an interactive transition when presenting a view controller.
--(id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
-    return nil;
 }
 
 
 
 #pragma mark - UIViewControllerAnimatedTransitioning
 
-// Performs a custom view controller transition animation. (required)
-- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+-(void)animationEnded:(BOOL)transitionCompleted {
+    // reset state
+    self.presenting = NO;
+}
+
+-(NSTimeInterval)transitionDuration:(id)transitionContext {
+    return 0.4f;
+}
+
+-(void)animateTransition:(id)transitionContext {
     
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *container = [transitionContext containerView];
+    
+    UIView *containerView = [transitionContext containerView];
     
     
-    // Good when presentingVC is in portrait
+    // Adjust mask in case of rotation after presentation
+    
     [toViewController.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     
-    // Debug orientation issue
-    /*
-    UIView *fromView = [fromViewController view];
-    UIView *toView =   [toViewController view];
-    NSLog(@"fromView.frame.origin.x:        %f",fromView.frame.origin.x);
-    NSLog(@"fromView.frame.origin.y:        %f",fromView.frame.origin.y);
-    NSLog(@"fromView.bounds.size.width:     %f",fromView.bounds.size.width);
-    NSLog(@"fromView.bounds.size.height:    %f\n ",fromView.bounds.size.height);
-    NSLog(@"container.frame.origin.x:       %f",container.frame.origin.x);
-    NSLog(@"container.frame.origin.y:       %f",container.frame.origin.y);
-    NSLog(@"container.bounds.size.width:    %f",container.bounds.size.width);
-    NSLog(@"container.bounds.size.height:   %f\n ",container.bounds.size.height);
-    NSLog(@"toView.frame.origin.x:          %f",toView.frame.origin.x);
-    NSLog(@"toView.frame.origin.y:          %f",toView.frame.origin.y);
-    NSLog(@"toView.bounds.size.width:       %f",toView.bounds.size.width);
-    NSLog(@"toView.bounds.size.height:      %f\n ",toView.bounds.size.height);*/
     
+    if (self.presenting) {
     
-#warning Temp animation, needs to be changed before release.
-    if (self.reverse) {
+        // set starting rect for animation
         
-        [container insertSubview:toViewController.view belowSubview:fromViewController.view];
+        toViewController.view.frame = [self rectForDismissedState:transitionContext];
+        
+        [containerView addSubview:toViewController.view];
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext]
+                         animations:^{
+                             toViewController.view.frame = [self rectForPresentedState:transitionContext];
+                         }
+                         completion:^(BOOL finished) {
+                             [transitionContext completeTransition:YES];
+                         }];
     }
     else {
-        
-        toViewController.view.transform = CGAffineTransformMakeScale(0,0);
-        
-        [container addSubview:toViewController.view];
+        [UIView animateWithDuration:[self transitionDuration:transitionContext]
+                         animations:^{
+                             fromViewController.view.frame = [self rectForDismissedState:transitionContext];
+                         }
+                         completion:^(BOOL finished) {
+                             [transitionContext completeTransition:YES]; [fromViewController.view removeFromSuperview];
+                         }];
+    }
+}
+
+
+
+#pragma mark - Helpers methods to transform the coordinate system.
+
+-(CGRect)rectForDismissedState:(id)transitionContext {
+    
+    UIViewController *fromViewController;
+    UIView *containerView = [transitionContext containerView];
+    
+    if (self.presenting) {
+        fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    }
+    else {
+        fromViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     }
     
-    [UIView animateKeyframesWithDuration:MFAnimatedTransitionDuration
-                                   delay:0
-                                 options:0
-                              animations:^{
-                                  if (self.reverse) {
-                                      fromViewController.view.transform = CGAffineTransformMakeScale(0,0);
-                                  }
-                                  else {
-                                      toViewController.view.transform = CGAffineTransformIdentity;
-                                  }
-                              }
-                              completion:^(BOOL finished) {
-                                  
-                                  [transitionContext completeTransition:finished];
-                              }];
+    switch (fromViewController.interfaceOrientation) {
+            
+        case UIInterfaceOrientationLandscapeRight:
+            return CGRectMake(-_presentedViewHeightLandscape, 0, _presentedViewHeightLandscape, containerView.bounds.size.height);
+            break;
+            
+        case UIInterfaceOrientationLandscapeLeft:
+            return CGRectMake(containerView.bounds.size.width, 0, _presentedViewHeightLandscape, containerView.bounds.size.height);
+            break;
+            
+        case UIInterfaceOrientationPortraitUpsideDown:
+            return CGRectMake(0, -_presentedViewHeightPortrait, containerView.bounds.size.width, _presentedViewHeightPortrait);
+            break;
+            
+        case UIInterfaceOrientationPortrait:
+            return CGRectMake(0, containerView.bounds.size.height, containerView.bounds.size.width, _presentedViewHeightPortrait);
+            break;
+            
+        default:
+            return CGRectZero;
+            break;
+    }
 }
 
-// Called when the system needs the duration, in seconds, of the transition animation. (required)
-- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
+-(CGRect)rectForPresentedState:(id)transitionContext {
     
-    return MFAnimatedTransitionDuration;
-}
-
-// Called when the animation has ended.
-- (void)animationEnded:(BOOL)transitionCompleted {
-    // Do nothing for now...
+    UIViewController *fromViewController;
+    
+    if (self.presenting) {
+        fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    }
+    else {
+        fromViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    }
+    
+    switch (fromViewController.interfaceOrientation) {
+            
+        case UIInterfaceOrientationLandscapeRight:
+            return CGRectOffset([self rectForDismissedState:transitionContext], _presentedViewHeightLandscape, 0);
+            break;
+            
+        case UIInterfaceOrientationLandscapeLeft:
+            return CGRectOffset([self rectForDismissedState:transitionContext], -_presentedViewHeightLandscape, 0);
+            break;
+            
+        case UIInterfaceOrientationPortraitUpsideDown:
+            return CGRectOffset([self rectForDismissedState:transitionContext], 0, _presentedViewHeightPortrait);
+            break;
+            
+        case UIInterfaceOrientationPortrait:
+            return CGRectOffset([self rectForDismissedState:transitionContext], 0, -_presentedViewHeightPortrait);
+            break;
+            
+        default:
+            return CGRectZero;
+            break;
+    }
 }
 
 

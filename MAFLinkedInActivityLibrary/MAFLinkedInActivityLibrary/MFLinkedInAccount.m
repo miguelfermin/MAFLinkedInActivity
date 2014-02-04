@@ -155,11 +155,11 @@
         status =  MFAccessTokenStatusExpired;
     }
     
-    //return status;
+    return status;
     
     
     // Testing Algorithm: change to 1, comment the "return status" statement above, and pass one of the example values to the dateWithDays: method.
-#if 1
+#if 0
     NSDate *daysBeforeExpirationTest = [self dateWithDays:DAYS_BEFORE_EXPIRATION FromDate:tokenExpirationDate];
     // NOTE: these values would need to be change based on the expiration date
     int example1 = -20;  //      3/08
@@ -198,115 +198,47 @@
     NSURLSession *session =  [NSURLSession sessionWithConfiguration:SessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
     //NSURLSession *delegateFreeSession =  [NSURLSession sessionWithConfiguration:SessionConfiguration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     
-    NSString *authorizationRequestBody = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@/submit", API_KEY, SCOPE, STATE, REDIRECT_URI];
+    NSString *authorizationRequestBody = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@", API_KEY, SCOPE, STATE, REDIRECT_URI];
     //NSURLRequest *authorizationCodeRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:authorizationRequestBody]];
     
     
     NSURL *url = [NSURL URLWithString:authorizationRequestBody];
-    NSURL *url2 = [NSURL URLWithString:@"http://www.iphone.org"]; // used to test redirect delegate
-    NSURL *url3 = [NSURL URLWithString:@"https://www.linkedin.com"];
-    NSURL *url4 = [NSURL URLWithString:authorizationRequestBody];
+    //NSURL *url2 = [NSURL URLWithString:@"http://www.iphone.org"]; // used to test redirect delegate
+    //NSURL *url3 = [NSURL URLWithString:@"https://www.linkedin.com"];
     
     
     NSMutableURLRequest *mutableRequest = [[NSMutableURLRequest alloc]init];
     [mutableRequest setURL:url];
     [mutableRequest setHTTPMethod:@"GET"];
+    [mutableRequest setValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
     //[mutableRequest setValue:@"text/plain" forHTTPHeaderField:@"Content-Type"];
     //[mutableRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     //[mutableRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
     //[mutableRequest setHTTPShouldHandleCookies:NO];
+    //[mutableRequest setValue:authorizationRequestBody forHTTPHeaderField:@"Location"];
     
     
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     
-    NSArray *cookies = [cookieStorage cookiesForURL:url3];
-    //NSArray *cookies = [cookieStorage cookies];
+    //NSArray *cookies = [cookieStorage cookiesForURL:url3];
+    NSArray *cookies = [cookieStorage cookies];
     //NSLog(@"cookies: %i\n ",cookies.count);
     
     for (NSHTTPCookie *cookie in cookies) {
         //[cookieStorage deleteCookie:cookie];
-        //NSLog(@"cookie.name: %@\n ",cookie.name);
-        
-        //[mutableDict setValue:cookie.value forKey:cookie.name];
-        
-        //[mutableRequest setValue:cookie.value forHTTPHeaderField:@"Cookie"];
+        NSLog(@"cookie.name: %@\n ",cookie.name);
     }
-    
     
     NSDictionary *dict = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
     NSString *cookie = [dict objectForKey:@"Cookie"];
-    NSLog(@"Cookie: %@\n ",cookie);
+    
+    //NSLog(@"Cookie: %@\n ",cookie);
     [mutableRequest setValue:cookie forHTTPHeaderField:@"Cookie"];
-    
-    /*for (NSString *str in dict) {
-        NSString *cookie = [dict objectForKey:@"Cookie"];
-        NSLog(@"Cookie: %@\n ",cookie);
-        [mutableRequest setValue:cookie forHTTPHeaderField:@"Cookie"];
-    }*/
-    
-    
-    NSLog(@"Cookie: %@\n ",[mutableRequest valueForHTTPHeaderField:@"Cookie"]);
-    
+    //NSLog(@"Cookie: %@\n ",[mutableRequest valueForHTTPHeaderField:@"Cookie"]);
     
     [[session dataTaskWithRequest:mutableRequest]resume];
     //[[session dataTaskWithRequest:authorizationCodeRequest]resume];
-    
-    
-    
-    
-    /*
-    [[session dataTaskWithRequest:authorizationCodeRequest
-                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                    
-                    //NSLog(@"data: %@\n",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
-                    
-                    NSLog(@"response1: %@\n ",response);
-                    //NSLog(@"response1: %@",[[response URL]absoluteString]);
-                    
-                    //[self handleAuthorizationCodeWithResponse:[[response URL]absoluteString]];
-                }
-      ]resume];*/
-    
-    
-    
-    /* Code to share in flowdock; same as above
-    // Create and configure Session
-    NSURLSessionConfiguration *SessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    NSURLSession *session =  [NSURLSession sessionWithConfiguration:SessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-    
-    
-    // Request
-    NSString *authorizationRequestBody = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@", API_KEY, SCOPE, STATE, REDIRECT_URI];
-    
-    NSMutableURLRequest *mutableRequest = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:authorizationRequestBody]];
-    
-    [mutableRequest setHTTPMethod:@"GET"];
-    
-    [mutableRequest setValue:@"text/plain" forHTTPHeaderField:@"Content-Type"];
-    
-    
-    // Get all linkedin.com cookies from the sharedHTTPCookieStorage
-    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    
-    NSArray *cookies = [cookieStorage cookiesForURL:[NSURL URLWithString:authorizationRequestBody]];
-    
-    NSDictionary *cookiesDict = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
-    
-    
-    // Set request cookies.
-    [mutableRequest setValue:[cookiesDict objectForKey:@"Cookie"] forHTTPHeaderField:@"Cookie"];
-    
-    
-    // Statrt session
-    [[session dataTaskWithRequest:mutableRequest]resume];*/
-    
 }
-
-
-
-
 
 #pragma mark - NSURLSessionDelegates
 
@@ -316,45 +248,47 @@
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
-    //NSLog(@"URLSession:task:didCompleteWithError:\n ");
+    NSLog(@"URLSession:task:didCompleteWithError: %@",error);
 }
 
-
--(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
-    
-    NSLog(@"[[response URL]absoluteString]: %@\n ",[[response URL]absoluteString]);
-}
-
-
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler {
-    
+-(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler {
     NSLog(@"URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:....\n ");
-    
     NSLog(@"[[response URL]absoluteString]: %@\n ",[[response URL]absoluteString]);
-    
     NSLog(@"[[request URL]absoluteString]: %@",[[request URL]absoluteString]);
+    NSLog(@"[httpResponse allHeaderFields]: %@\n ",[response allHeaderFields]);
+    NSLog(@"[request allHTTPHeaderFields]: %@\n ",[request allHTTPHeaderFields]);
 }
 
-
-
+/*
+ -(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
+ 
+ NSLog(@"[[response URL]absoluteString]: %@\n ",[[response URL]absoluteString]);
+ }*/
 /*
 -(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler {
     
+    NSLog(@"challenge.error:                %@",challenge.error);
+    NSLog(@"challenge.failureResponse:      %@",challenge.failureResponse);
+    NSLog(@"challenge.previousFailureCount: %i",challenge.previousFailureCount);
+    NSLog(@"challenge.proposedCredential:   %@",challenge.proposedCredential);
+    NSLog(@"challenge.protectionSpace:      %@",challenge.protectionSpace);
+    NSLog(@"challenge.sender:               %@\n ",challenge.sender);
+    
+    
+    NSLog(@"session.description: %@",session.description);
+ 
     NSLog(@"session:           %@",session);
     NSLog(@"challenge:         %@",challenge);
     NSLog(@"completionHandler: %@",completionHandler);
-    
     completionHandler = ^(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential) {
-        
         NSLog(@"disposition: %i",disposition);
-        
         NSLog(@"credential: %@",credential);
     };
 }*/
 
 
 
-
+#pragma mark - Handle Authorization Results
 
 -(void)handleAuthorizationCodeWithResponse:(NSString*)response {
     
@@ -389,10 +323,6 @@
     }
 }
 
-
-
-#pragma mark - Handle Authorization Results
-
 ///  Request Access Token by exchanging the authorization_code for it. The response will be a JSON object containing the "expires_in" and "access_token" parameters.
 ///  @discussion    The value of parameter expires_in is the number of seconds from now that this access_token will expire in (5184000 seconds is 60 days). Ensure to keep the user access tokens secure.
 ///  @param         authorizationCode authorization_code obtained when the user was redirected to LinkedIn's authorization dialog.
@@ -421,18 +351,16 @@
                                  * You can uncomment the line below to log the response to the console.
                                  *
                                  */
-                                NSLog(@"dataString..: %@\n",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+                                //NSLog(@"dataString..: %@\n",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
                                 
                                 // This method will extract the JSON object by using the NSJSONSerialization class and saves the values in the Keychain.
                                 
-                                //[self completeAuthenticationProcessWithResponseData:data];
+                                [self completeAuthenticationProcessWithResponseData:data];
                             }
       ]resume];
 }
 
-
 ///  Conclude the authentication process by parsing the JSON objects from the date parameter into Foundation objects, saving the values in the Keychain, and dismissing the uthentication view controller
-///
 ///  @param data The NSDate object that contains the JSON object to parse and get the access_token and expires_in values
 -(void)completeAuthenticationProcessWithResponseData:(NSData*) data {
     
@@ -493,7 +421,6 @@
     return [[NSCalendar currentCalendar] dateByAddingComponents:daysBeforeComponents toDate:date options:0];
 }
 
-
 // Extract GET Parameter values from URL Response
 -(NSString *)extractGetParameter:(NSString *)parameter fromURLString:(NSString *)redirectedURLString {
     
@@ -536,18 +463,12 @@
 }
 
 ///  Handle LinkedIn Authentication error.
-///
 ///  @param error The error object to handle.
 -(void)handleLinkedInAuthenticationError:(NSError*)error {
     
 #warning Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
     NSLog(@"error code: %ld, error domain: %@",(long)error.code,error.domain);
 }
-
-
-
-
-
 
 
 
@@ -560,3 +481,4 @@
 
 
 @end
+

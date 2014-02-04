@@ -107,7 +107,7 @@
                 
             case MFAccessTokenStatusAboutToExpire:
                 
-                //NSLog(@"MFAccessTokenStatusAboutToExpire\n ");
+                NSLog(@"MFAccessTokenStatusAboutToExpire\n ");
                 
                 [self refreshAccessToken];
                 
@@ -115,7 +115,7 @@
                 
             case MFAccessTokenStatusExpired:
                 
-                //NSLog(@"MFAccessTokenStatusExpired\n ");
+                NSLog(@"MFAccessTokenStatusExpired\n ");
                 
                 [self prepareLinkedInActivityViewControllerToAuthenticate];
                 
@@ -126,7 +126,7 @@
         }
     }
     else {
-        //NSLog(@"NULL TOKEN: %@, Authentication View Should Be Presented",[_linkedInAccount accessToken]);
+        NSLog(@"NULL TOKEN: %@, Authentication View Should Be Presented",[_linkedInAccount accessToken]);
         
         // Access token doesn't exist, so the user needs to be authenticated.
         
@@ -162,13 +162,11 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPhone" bundle:nil];
-        //NSLog(@"iPhone storyboard: %@",storyboard);
         
         mfViewController = [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
     }
     else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPad" bundle:nil];
-        //NSLog(@"iPad storyboard: %@",storyboard);
         
         mfViewController = [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
     }
@@ -193,16 +191,19 @@
     
     [_composePresentationViewController setTransitioningDelegate:transitionDelegate];
     
+    
 #warning There's an issue with iPad custom presentation
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        
         [_composePresentationViewController setModalPresentationStyle:UIModalPresentationCustom];
     }
+    
     
     // Assign custom compose controller
     
     _linkedInActivityViewController = _composePresentationViewController;
 }
+
+
 
 
 
@@ -214,14 +215,9 @@
     
     [_linkedInAccount refreshToken];
     
-    
-    
     //NSLog(@"After refreshAccessToken...\n ");
-    
     // Call prepareLinkedInActivityViewControllerToCompose to start the post
-    
     //[self prepareLinkedInActivityViewControllerToCompose];
-    
 }
 
 
