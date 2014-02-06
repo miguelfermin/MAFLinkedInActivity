@@ -108,7 +108,7 @@
     
     // 2. Convert expires_in NSString to NSDate using tokenIssueDate and the expiresIn property
     
-    NSTimeInterval expires_in = [[NSNumber numberWithInt:[[self expiresIn] doubleValue]] doubleValue];
+    NSTimeInterval expires_in = [[NSNumber numberWithInt:[[self expiresIn] doubleValue]] doubleValue]; //
     
     NSDate *tokenExpirationDate = [NSDate dateWithTimeInterval:expires_in sinceDate:tokenIssueDate];
     //NSLog(@"Access Token Expiration Date: %@",tokenExpirationDate);
@@ -173,7 +173,7 @@
     // daysBeforeExpiration is earlier in time than currentDate. See currentDate example 2
     if (([daysBeforeExpirationTest compare:currentDateTest] == NSOrderedAscending) == YES) {
         status =  MFAccessTokenStatusAboutToExpire;
-        //NSLog(@"MFAccessTokenStatusAboutToExpire RAN...");
+        NSLog(@"MFAccessTokenStatusAboutToExpire RAN...");
     }
     // daysBeforeExpiration is later in time than currentDate. See currentDate example 1
     if (([daysBeforeExpirationTest compare:currentDateTest] == NSOrderedAscending) == NO) {

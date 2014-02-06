@@ -160,6 +160,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E11E53E818A28D950062FFC6 /* Custom Transition */ = {
+			isa = PBXGroup;
+			children = (
+				E1B97B9E189705AA00FE5326 /* MFTransitioningDelegate.h */,
+				E1B97B9F189705AA00FE5326 /* MFTransitioningDelegate.m */,
+			);
+			name = "Custom Transition";
+			sourceTree = "<group>";
+		};
 		E16D7E5718635E33001BA35F = {
 			isa = PBXGroup;
 			children = (
@@ -253,8 +262,7 @@
 		E1CE61C9188B1BA80017B49E /* Compose */ = {
 			isa = PBXGroup;
 			children = (
-				E1B97B9E189705AA00FE5326 /* MFTransitioningDelegate.h */,
-				E1B97B9F189705AA00FE5326 /* MFTransitioningDelegate.m */,
+				E11E53E818A28D950062FFC6 /* Custom Transition */,
 				E11F97E81892F7E500CE4F67 /* MFLinkedInComposePresentationViewController.h */,
 				E11F97E91892F7E500CE4F67 /* MFLinkedInComposePresentationViewController.m */,
 				E1DE8E22188590730010010E /* MFLinkedInComposeViewController.h */,

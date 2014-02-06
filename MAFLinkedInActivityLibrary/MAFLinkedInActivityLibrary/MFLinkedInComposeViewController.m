@@ -44,30 +44,22 @@
     
     
     // If submittedImageURL property is nil, the client only provide a link to the story, based on this load UIImageView with correct content.
-    
     if ([_linkedInActivityItem submittedImageURL] != nil) {
         
         //NSLog(@"submittedImageURL is valid, post image");
-        
         [_contentImageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:_linkedInActivityItem.submittedImageURL]]]; // Need to use GCD for performance...
         
     }
     else {
         //NSLog(@"submittedImageURL is NOT valid, post link");
-        
         [_contentImageView setImage:[UIImage imageNamed:@"linkedIn-negative"]]; // temp image for testing...
     }
     
-    
     // Set anyone  as default visibility code when the compose view is presented.
-    
     _visibilityCode = @"anyone";
-    
     [_contentVisibilityLabel setText:@"Anyone"];
     
-    
     // Present Keyboard as soon as the view is shown
-    
     [_contentCommentTextView becomeFirstResponder];
 }
 

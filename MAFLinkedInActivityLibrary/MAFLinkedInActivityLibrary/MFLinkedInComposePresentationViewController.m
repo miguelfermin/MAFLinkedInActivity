@@ -38,6 +38,25 @@
 }
 
 
+/*
+-(void)viewWillLayoutSubviews {
+    
+    NSLog(@"MFLinkedInComposePresentationViewController, viewWillLayoutSubviews");
+    //NSLog(@"[[self childViewControllers]firstObject]: %@",[[[self childViewControllers]firstObject]topViewController]);
+    //NSLog(@"[[self childViewControllers]lastObject]:  %@\n ",[[[self childViewControllers]lastObject]topViewController]);
+}
+
+-(void)updateViewConstraints {
+    
+    [super updateViewConstraints];
+    
+    NSLog(@"MFLinkedInComposePresentationViewController, updateViewConstraints");
+    //NSLog(@"[[self childViewControllers]firstObject]: %@",[[[self childViewControllers]firstObject]topViewController]);
+    //NSLog(@"[[self childViewControllers]lastObject]:  %@\n ",[[[self childViewControllers]lastObject]topViewController]);
+    
+}*/
+
+
 
 
 #pragma mark - Embed Segue Navigation
