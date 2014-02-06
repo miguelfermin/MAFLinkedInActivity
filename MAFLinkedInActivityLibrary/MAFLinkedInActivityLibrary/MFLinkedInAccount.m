@@ -21,7 +21,6 @@
 
 #define DENIED_REQUEST_ERROR_DESCRIPTION @"the+user+denied+your+request" // Short description of the user canceled authorization error. Provided by LinkedIn Documentation.
 
-
 // How soon would you like to refresh the access_token from the expiration date. This value must be negative.
 #define DAYS_BEFORE_EXPIRATION -10
 
@@ -240,6 +239,8 @@
     //[[session dataTaskWithRequest:authorizationCodeRequest]resume];
 }
 
+
+
 #pragma mark - NSURLSessionDelegates
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
@@ -258,33 +259,11 @@
     NSLog(@"[httpResponse allHeaderFields]: %@\n ",[response allHeaderFields]);
     NSLog(@"[request allHTTPHeaderFields]: %@\n ",[request allHTTPHeaderFields]);
 }
-
 /*
  -(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
  
  NSLog(@"[[response URL]absoluteString]: %@\n ",[[response URL]absoluteString]);
  }*/
-/*
--(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler {
-    
-    NSLog(@"challenge.error:                %@",challenge.error);
-    NSLog(@"challenge.failureResponse:      %@",challenge.failureResponse);
-    NSLog(@"challenge.previousFailureCount: %i",challenge.previousFailureCount);
-    NSLog(@"challenge.proposedCredential:   %@",challenge.proposedCredential);
-    NSLog(@"challenge.protectionSpace:      %@",challenge.protectionSpace);
-    NSLog(@"challenge.sender:               %@\n ",challenge.sender);
-    
-    
-    NSLog(@"session.description: %@",session.description);
- 
-    NSLog(@"session:           %@",session);
-    NSLog(@"challenge:         %@",challenge);
-    NSLog(@"completionHandler: %@",completionHandler);
-    completionHandler = ^(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential) {
-        NSLog(@"disposition: %i",disposition);
-        NSLog(@"credential: %@",credential);
-    };
-}*/
 
 
 

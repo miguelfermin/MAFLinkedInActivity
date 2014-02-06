@@ -42,7 +42,6 @@
     
     [super viewDidLoad];
     
-    
     // If submittedImageURL property is nil, the client only provide a link to the story, based on this load UIImageView with correct content.
     if ([_linkedInActivityItem submittedImageURL] != nil) {
         

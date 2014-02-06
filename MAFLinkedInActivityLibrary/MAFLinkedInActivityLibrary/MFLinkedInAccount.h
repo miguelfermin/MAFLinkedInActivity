@@ -39,7 +39,6 @@ typedef enum: NSInteger {
 
 
 
-
 ///  Determines the access token status and return a MFAccessTokenStatus to indicate the actions that need to be taken.
 ///  @return A MFAccessTokenStatus representing the access token state. Possible values are: MFAccessTokenStatusGood, MFAccessTokenStatusAboutToExpire, or MFAccessTokenStatusExpired
 -(MFAccessTokenStatus)tokenStatus;
