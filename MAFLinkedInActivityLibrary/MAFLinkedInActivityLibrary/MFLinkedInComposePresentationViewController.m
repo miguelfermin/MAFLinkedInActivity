@@ -174,15 +174,9 @@
 
 -(void)donePosting {
     
-    //NSLog(@"donePosting\n ");
-    
     // Dismiss Compose View
     
     [_linkedInUIActivity activityDidFinish:YES];
-    
-    // Present Success message
-#warning Present Success message operation pending
-    
 }
 
 @end

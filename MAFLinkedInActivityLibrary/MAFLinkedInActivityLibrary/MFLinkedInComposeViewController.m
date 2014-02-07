@@ -7,23 +7,23 @@
 //
 
 #import "MFLinkedInComposeViewController.h"
+#import "MFLinkedInAuthenticationViewController.h"
 
 @interface MFLinkedInComposeViewController ()
 
 // IB Connections
-@property(nonatomic,weak) IBOutlet UITextView *contentCommentTextView;
-
 @property(nonatomic,weak) IBOutlet UIImageView *contentImageView;
-
 @property(nonatomic,weak) IBOutlet UILabel *contentVisibilityLabel;
-
 -(IBAction)postBarButtonItem;
-
 -(IBAction)cancelBarButtonItem;
+
+// Convenient reference to linkedIn acccount object
+@property (nonatomic,strong) MFLinkedInAccount *linkedInAccount;
 
 @end
 
 @implementation MFLinkedInComposeViewController
+
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -42,24 +42,138 @@
     
     [super viewDidLoad];
     
+    _linkedInAccount = _composePresentationViewController.linkedInUIActivity.linkedInAccount;
+    
+    [self setupComposeViewController];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:YES];
+    
+    // Can't present a another view until the viewDidLoad method has finished executing, so the access_token check is performed here.
+    // And the AuthenticationViewController presented if needed.
+    
+    // First check if access_token exist, and then it's expiration status
+    
+    if ([_linkedInAccount accessToken]) {
+        
+        switch ([_linkedInAccount tokenStatus]) {
+                
+            case MFAccessTokenStatusGood:
+                
+                if (![_contentCommentTextView isFirstResponder]) {
+                    [_contentCommentTextView becomeFirstResponder];
+                }
+                break;
+                
+            case MFAccessTokenStatusAboutToExpire:
+                
+                NSLog(@"MFAccessTokenStatusAboutToExpire\n ");
+                
+                // Note: until I figure out how to refresh the access_token, go through the authentication process
+                
+                //[self refreshAccessToken];
+                
+                [self setupAuthenticationViewController];
+                
+                break;
+                
+            case MFAccessTokenStatusExpired:
+                
+                NSLog(@"MFAccessTokenStatusExpired\n ");
+                
+                [self setupAuthenticationViewController];
+                
+                break;
+                
+            default:
+                break;
+        }
+    }
+    else {
+        // Access token doesn't exist, so the user needs to be authenticated.
+        [self setupAuthenticationViewController];
+    }
+}
+
+
+
+#pragma mark - Initial setup
+
+-(void)setupComposeViewController {
+    
     // If submittedImageURL property is nil, the client only provide a link to the story, based on this load UIImageView with correct content.
+    
     if ([_linkedInActivityItem submittedImageURL] != nil) {
         
         //NSLog(@"submittedImageURL is valid, post image");
-        [_contentImageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:_linkedInActivityItem.submittedImageURL]]]; // Need to use GCD for performance...
         
+#warning Need to set a placeholder image on _contentImageView until the UIImage is downloaded in the background
+        
+        dispatch_queue_t imageDownloadQueue = dispatch_queue_create("imageDownloadQueue", DISPATCH_QUEUE_SERIAL);
+        
+        dispatch_async(imageDownloadQueue,^{
+            
+            // Download the image
+            
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:_linkedInActivityItem.submittedImageURL]];
+            
+            
+            // When done update UI on main
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [_contentImageView setImage:image];
+            });
+        });
     }
     else {
+        
         //NSLog(@"submittedImageURL is NOT valid, post link");
+        
         [_contentImageView setImage:[UIImage imageNamed:@"linkedIn-negative"]]; // temp image for testing...
     }
     
     // Set anyone  as default visibility code when the compose view is presented.
-    _visibilityCode = @"anyone";
-    [_contentVisibilityLabel setText:@"Anyone"];
     
-    // Present Keyboard as soon as the view is shown
-    [_contentCommentTextView becomeFirstResponder];
+    _visibilityCode = @"anyone";
+    
+    [_contentVisibilityLabel setText:@"Anyone"];
+}
+
+-(void)setupAuthenticationViewController {
+    
+    // To avoid keyboard scrolling on the Webview
+    
+    [_contentCommentTextView resignFirstResponder];
+    
+    
+    // Setup and present Authentication ViewController
+    
+    MFLinkedInAuthenticationViewController *authenticationViewController = [[MFLinkedInAuthenticationViewController alloc]init];
+    
+    [authenticationViewController setLinkedInAccount:_linkedInAccount];
+    
+    [authenticationViewController setLinkedInUIActivity:_composePresentationViewController.linkedInUIActivity];
+    
+    [authenticationViewController prepareAuthenticationView];
+    
+    [authenticationViewController setComposeViewController:self];
+    
+    [self presentViewController:authenticationViewController animated:YES completion:nil];
+}
+
+
+
+#pragma mark - Handle Expired Access tokens
+
+-(void)refreshAccessToken {
+    
+    // Delegate refresh operation to MFLinkedInAccount
+    
+    [_linkedInAccount refreshToken];
 }
 
 
@@ -168,32 +282,6 @@
         
         data = [json dataUsingEncoding:NSUTF8StringEncoding];
     }
-    /*
-    // Post Image REST
-    if ([composeCell isKindOfClass:[MFStoryImageCell class]]) {
-        // Gather API call fields
-        NSString *comment = [[(MFStoryImageCell*)composeCell commentTextView]text];
-        NSString *title = [_linkedInActivityItem contentTitle];
-        NSString *description = [_linkedInActivityItem contentDescription];
-        // Convert NSURL to NSString for json string
-        NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]];
-        NSString *submittedImageURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedImageURL]];
-        // Compose API call
-        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\",\"submitted-url\":\"%@\",\"submitted-image-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,title,description,submittedURL,submittedImageURL,code];
-        data = [json dataUsingEncoding:NSUTF8StringEncoding];
-    }
-    // Post Link REST
-    if ([composeCell isKindOfClass:[MFStoryLinkCell class]]) {
-        // Gather API call fields
-        NSString *comment = [[(MFStoryImageCell*)composeCell commentTextView]text];
-        NSString *title = [_linkedInActivityItem contentTitle];
-        NSString *description = [_linkedInActivityItem contentDescription];
-        // Convert NSURL to NSString for json string
-        NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]];
-        // Compose API call
-        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\",\"submitted-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,title,description,submittedURL,code];
-        data = [json dataUsingEncoding:NSUTF8StringEncoding];
-    }*/
     
     return data;
 }
@@ -247,7 +335,7 @@
 }
 
 -(void)performOperationsAfterPostFailed {
-#warning Pending implementation.
+#warning Pending implementation; performOperationsAfterPostFailed
     // 1. Re-attempt to post
     
     // 2. If re-atttemp fails, present 'post fail, please try again' message.

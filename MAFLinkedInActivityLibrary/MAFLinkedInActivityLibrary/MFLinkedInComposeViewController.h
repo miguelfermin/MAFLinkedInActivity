@@ -28,15 +28,12 @@
 ///  LinkedIn share API field value, could be one of anyone: all members or connections-only: connections only.
 @property(nonatomic,strong) NSString *visibilityCode;
 
+// IB public connection in order to show composer keyboard after authentication.
+@property(nonatomic,weak) IBOutlet UITextView *contentCommentTextView;
 
 ///  Update visibilityCode property and contentVisibilityLabel.
 ///
 ///  @param code The LinkedIn visibility code string, can be anyone or connections-only.
 -(void)updateVisibilityCodeWithString:(NSString*)code;
 
-
-//@property(nonatomic,strong) IBOutlet MFStoryImageCell *imageCell; // Could be deleted...
-//@property(nonatomic,strong) IBOutlet MFTargetAudienceCell *linkCell;
-//@property(nonatomic,weak) IBOutlet UIWebView *storyLinkWebView;
-//@property(nonatomic,weak) IBOutlet UITextView *storyLinkCommentTextView;
 @end

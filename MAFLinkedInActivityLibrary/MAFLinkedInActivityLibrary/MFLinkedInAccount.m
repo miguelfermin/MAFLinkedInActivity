@@ -9,24 +9,12 @@
 #import "MFLinkedInAccount.h"
 #import "UICKeyChainStore.h"
 
-
-// LinkedIn's authorization dialog redirect parameters macros.
-#define API_KEY         @"77tp47xbo381qe"           // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
-#define SECRET_KEY      @"kFz3z5L4XxKnbljU"         // Required. Value of your secret key given when you registered your application with LinkedIn.
-#define STATE           @"DCMMFWF10268sdffef102"    // Required. A long unique string value of your choice that is hard to guess. Used to prevent CSRF.
-#define REDIRECT_URI    @"https://www.google.com"   // Required. URI in your app where users will be sent after authorization.
-#define SCOPE           @"rw_nus"                   // Optional. Use it to specify a list of member permissions that you need and these will be shown to the user on LinkedIn's authorization form.
-                                                    // However, for the purpose of this library (share story) this value is required, and it must be of value "rw_nus" to retrieve and post updates
-                                                    // to LinkedIn as authenticated user.
-
 #define DENIED_REQUEST_ERROR_DESCRIPTION @"the+user+denied+your+request" // Short description of the user canceled authorization error. Provided by LinkedIn Documentation.
 
-// How soon would you like to refresh the access_token from the expiration date. This value must be negative.
-#define DAYS_BEFORE_EXPIRATION -10
+#define DAYS_BEFORE_EXPIRATION -1 // How soon would you like to refresh the access_token from the expiration date. This value must be negative.
 
 @interface MFLinkedInAccount ()
 @end
-
 
 @implementation MFLinkedInAccount
 
@@ -34,7 +22,6 @@
     self = [super init];
     
     if (self) {
-        // Initialize self.
         
         // Uncomment to see all items in keychain
         //NSLog(@"_keychainStore: %@", [UICKeyChainStore keyChainStoreWithService:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"]);
@@ -42,6 +29,20 @@
         // Uncomment to remove all items from keychain
         //[self removeAllItemsFromKeyChain];
         //NSLog(@"AFTER--_keychainStore: %@", [UICKeyChainStore keyChainStoreWithService:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"]);
+        
+        
+#pragma mark - LinkedIn's authorization dialog redirect parameters
+        _APIKey =       @"77tp47xbo381qe";          // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
+        
+        _secretKey =    @"kFz3z5L4XxKnbljU";        // Required. Value of your secret key given when you registered your application with LinkedIn.
+        
+        _state =        @"DCMMFWF10268sdffef102";   // Required. A long unique string value of your choice that is hard to guess. Used to prevent CSRF.
+        
+        _redirectURI =  @"https://www.newstex.com";  // Required. URI in your app where users will be sent after authorization.
+        
+        _scope =        @"rw_nus";                  // Optional. Use it to specify a list of member permissions that you need and these will be shown to the user on LinkedIn's authorization form.
+                                                    // However, for the purpose of this library (share story) this value is required, and it must be of value "rw_nus" to retrieve and post updates
+                                                    // to LinkedIn as authenticated user.
     }
     return self;
 }
@@ -197,7 +198,7 @@
     NSURLSession *session =  [NSURLSession sessionWithConfiguration:SessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
     //NSURLSession *delegateFreeSession =  [NSURLSession sessionWithConfiguration:SessionConfiguration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     
-    NSString *authorizationRequestBody = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@", API_KEY, SCOPE, STATE, REDIRECT_URI];
+    NSString *authorizationRequestBody = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@", _APIKey, _scope, _state, _redirectURI];
     //NSURLRequest *authorizationCodeRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:authorizationRequestBody]];
     
     
@@ -253,11 +254,14 @@
 }
 
 -(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler {
+    
     NSLog(@"URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:....\n ");
     NSLog(@"[[response URL]absoluteString]: %@\n ",[[response URL]absoluteString]);
     NSLog(@"[[request URL]absoluteString]: %@",[[request URL]absoluteString]);
     NSLog(@"[httpResponse allHeaderFields]: %@\n ",[response allHeaderFields]);
     NSLog(@"[request allHTTPHeaderFields]: %@\n ",[request allHTTPHeaderFields]);
+    
+    
 }
 /*
  -(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
@@ -283,7 +287,7 @@
         
         NSString *redirectURLExtractedState = [self extractGetParameter:@"state" fromURLString: response];
         
-        if ([redirectURLExtractedState isEqualToString:STATE]) {
+        if ([redirectURLExtractedState isEqualToString:_state]) {
             
             // Extract response authorization code.
             
@@ -315,7 +319,7 @@
     
     NSURLSession *delegateFreeSession =  [NSURLSession sessionWithConfiguration:SessionConfiguration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     
-    NSString *requestBodyString = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=%@&redirect_uri=%@&client_id=%@&client_secret=%@",authorizationCode,REDIRECT_URI,API_KEY,SECRET_KEY];
+    NSString *requestBodyString = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=%@&redirect_uri=%@&client_id=%@&client_secret=%@",authorizationCode,_redirectURI,_APIKey,_secretKey];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestBodyString]];
     

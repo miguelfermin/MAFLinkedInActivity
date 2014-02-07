@@ -8,17 +8,7 @@
 
 #import "MFLinkedInAuthenticationViewController.h"
 
-// LinkedIn's authorization dialog redirect parameters macros.
-#define API_KEY         @"77tp47xbo381qe"           // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
-#define SECRET_KEY      @"kFz3z5L4XxKnbljU"         // Required. Value of your secret key given when you registered your application with LinkedIn.
-#define STATE           @"DCMMFWF10268sdffef102"    // Required. A long unique string value of your choice that is hard to guess. Used to prevent CSRF.
-#define REDIRECT_URI    @"https://www.newstex.com" // Required. URI in your app where users will be sent after authorization.
-#define SCOPE           @"rw_nus"                   // Optional. Use it to specify a list of member permissions that you need and these will be shown to the user on LinkedIn's authorization form.
-                                                    // However, for the purpose of this library (share story) this value is required, and it must be of value "rw_nus" to retrieve and post updates
-                                                    // to LinkedIn as authenticated user.
-
 #define DENIED_REQUEST_ERROR_DESCRIPTION @"the+user+denied+your+request" // Short description of the user canceled authorization error. Provided by LinkedIn Documentation.
-
 
 @interface MFLinkedInAuthenticationViewController ()
 
@@ -33,10 +23,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
-        // Prepared Authentication View as soon as this controller is initialized
-        
-        [self prepareAuthenticationView];
+        //
     }
     return self;
 }
@@ -55,7 +42,7 @@
 
 #pragma mark - UIWebViewDelegate Methods
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     /* 
      * Here we have the opportunity to prevent the URI (URL) redirect and handle the response accordingly.
@@ -71,22 +58,12 @@
      */
     
     NSString *redirectedURLString = [[request URL] absoluteString];
-    //NSLog(@"request: %@",request);
     //NSLog(@"[[request URL] absoluteString]: %@\n ",[[request URL] absoluteString]);
-    
-    /*
-    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (NSHTTPCookie *cookie in [cookieStorage cookiesForURL:[request URL]]) {
-        NSLog(@"cookie in URL: %@",cookie.name);
-    }
-    for (NSHTTPCookie *cookie in [cookieStorage cookies]) {
-        NSLog(@"cookie: %@",cookie.name);
-    }*/
     
     
     // Ensure the response has the redirected URI to then avoid it althogether. This is to make sure the redirect is avoided only when the authorization_code is requested.
     
-    if ([redirectedURLString hasPrefix:REDIRECT_URI]) {
+    if ([redirectedURLString hasPrefix:_linkedInAccount.redirectURI]) {
         
         // If the keyword "error" is in the response string, authorization was denied. Here are two possible reasons, (1) user tapped the cancel button, (2) An unknown error occurred.
         
@@ -96,7 +73,8 @@
             
             if ([redirectedURLString rangeOfString:DENIED_REQUEST_ERROR_DESCRIPTION].location != NSNotFound) {
                 
-                NSLog(@"ACCESS WAS DENIED\n ");
+                //NSLog(@"ACCESS WAS DENIED\n ");
+                
                 [self cancelActivity];
             }
             else {
@@ -112,7 +90,7 @@
             
             // If the state changed, the request may be a result of CSRF and must be rejected.
             
-            if ([redirectURLExtractedState isEqualToString:STATE]) {
+            if ([redirectURLExtractedState isEqualToString:_linkedInAccount.state]) {
                 
                 // Extract response authorization code.
                 
@@ -130,27 +108,25 @@
         }
     }
     
-#warning The width of the webview on iPad has to be adjusted...
-    
     return YES;
 }
 
-/*
-- (void)webViewDidStartLoad:(UIWebView *)webView { // To be determined if the rest of the delegate methods are needed.
-    //NSLog(@"webViewDidStartLoad:(UIWebView *)webView\n ");
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    //NSLog(@"webViewDidFinishLoad:(UIWebView *)webView\n ");
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
     
-    //NSLog(@"[[webView.request URL]absoluteString]: %@",[[webView.request URL]absoluteString]);
-    //NSURLRequest *httpRequest = (NSURLRequest*)webView.request;
-    //NSLog(@"[httpRequest allHTTPHeaderFields]: %@",[httpRequest allHTTPHeaderFields]);
+    // LinkedIn Authorization Dialog on iPad modal form sheet is too wide.
+    // Use javascript to adjust the width to the equivalent of a modal form sheet.
+    
+	if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        
+		NSString* javascript =
+		@"var meta = document.createElement('meta'); "
+		@"meta.setAttribute( 'name', 'viewport' ); "
+		@"meta.setAttribute( 'content', 'width = 540px, initial-scale = 1.0, user-scalable = yes' ); "
+		@"document.getElementsByTagName('head')[0].appendChild(meta)";
+        
+		[webView stringByEvaluatingJavaScriptFromString: javascript];
+	}
 }
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    //NSLog(@"webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error\n ");
-}*/
 
 
 
@@ -169,7 +145,7 @@
     
     NSURLSession *delegateFreeSession =  [NSURLSession sessionWithConfiguration:SessionConfiguration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     
-    NSString *requestBodyString = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=%@&redirect_uri=%@&client_id=%@&client_secret=%@",authorizationCode,REDIRECT_URI,API_KEY,SECRET_KEY];
+    NSString *requestBodyString = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=%@&redirect_uri=%@&client_id=%@&client_secret=%@",authorizationCode,_linkedInAccount.redirectURI,_linkedInAccount.APIKey,_linkedInAccount.secretKey];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestBodyString]];
     
@@ -213,13 +189,15 @@
     
     // Save access_token and expires_in in Keychain, along with a timestamp to know the date the token was created
     
-    [_linkedInUIActivity.linkedInAccount setAccessToken:accessTokenString];
+    [_linkedInAccount setAccessToken:accessTokenString];
     
-    [_linkedInUIActivity.linkedInAccount setExpiresIn:expiresInString];
+    [_linkedInAccount setExpiresIn:expiresInString];
     
-    [_linkedInUIActivity.linkedInAccount setTokenIssueDateString:[_linkedInUIActivity.linkedInAccount stringFromDate:[NSDate date]]];
+    [_linkedInAccount setTokenIssueDateString:[_linkedInAccount stringFromDate:[NSDate date]]];
+    
     
 #warning Setting the username is pending... todo when working on the sign out feature. MF, 2014.01.13
+    
     
     // Dismiss Authentication Dialog
     
@@ -294,7 +272,7 @@
     
     // Generate Authorization Code by redirecting user to LinkedIn's authorization dialog. UIWebViewDelegate methods will handle the redirected URI
     
-    NSString *linkedInAuthorizationDialog = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@", API_KEY, SCOPE, STATE, REDIRECT_URI];
+    NSString *linkedInAuthorizationDialog = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@", _linkedInAccount.APIKey, _linkedInAccount.scope, _linkedInAccount.state, _linkedInAccount.redirectURI];
     
     [_authenticationWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:linkedInAuthorizationDialog]]];
     
@@ -309,15 +287,15 @@
 ///  This method calls _linkedInUIActivity's activityDidFinish: method passing YES to the didFinishe parameter to indicate the authentication was successful.
 -(void)dismissAuthenticationView {
     
-    [_linkedInUIActivity activityDidFinish:YES];
+    [_composeViewController dismissViewControllerAnimated:YES completion:nil];
     
-#warning Need to find a way to present the Compose View right after dismissing this view
-    //[_linkedInUIActivity prepareLinkedInActivityViewControllerToCompose];
+    [_composeViewController.contentCommentTextView becomeFirstResponder];
 }
 
 ///  This method dismisses the sharing interface, whether it is the LinkedIn authentication interface or the Composing interface.
 ///  This method calls activityDidFinish: method and sends NO to it's complete parameter to indicate that the service wasn't completed successfully.
 -(void)cancelActivity; {
+    
     [_linkedInUIActivity activityDidFinish:NO];
 }
 

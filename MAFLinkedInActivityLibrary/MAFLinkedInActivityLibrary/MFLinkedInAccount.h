@@ -16,7 +16,7 @@ typedef enum: NSInteger {
     
     MFAccessTokenStatusAboutToExpire,   // Access Token is about to expire (based on DAYS_BEFORE_EXPIRATION), refresh without the authorization dialog (preferred method).
     
-    MFAccessTokenStatusExpired          // Access Token has expired, refresh token by going through the authorization dialog.
+    MFAccessTokenStatusExpired            // Access Token doesn't exist, refresh token by going through the authorization dialog.
 
 } MFAccessTokenStatus;
 
@@ -37,16 +37,22 @@ typedef enum: NSInteger {
 ///  User's LinkedIn account user name.
 @property (nonatomic,strong) NSString *username;
 
+// LinkedIn's authorization dialog redirect parameters
+@property (nonatomic,strong) NSString *APIKey;
+@property (nonatomic,strong) NSString *secretKey;
+@property (nonatomic,strong) NSString *state;
+@property (nonatomic,strong) NSString *redirectURI;
+@property (nonatomic,strong) NSString *scope;
 
 
 ///  Determines the access token status and return a MFAccessTokenStatus to indicate the actions that need to be taken.
-///  @return A MFAccessTokenStatus representing the access token state. Possible values are: MFAccessTokenStatusGood, MFAccessTokenStatusAboutToExpire, or MFAccessTokenStatusExpired
+///  @return A MFAccessTokenStatus representing the access token state. Possible values are: MFAccessTokenStatusGood, MFAccessTokenStatusAboutToExpire, MFAccessTokenStatusExpired, or MFAccessTokenStatusNone (if token doesn't exist).
+/// @note The MFAccessTokenStatusNone is never returned by this method.
 -(MFAccessTokenStatus)tokenStatus;
 
 ///  Converts a NSDate with the format "dd-MM-yyyy" to a NSString.
 ///  @return A NSString representing the passed parameter date formatted as "dd-MM-yyyy"
 -(NSString*)stringFromDate:(NSDate*)date;
-
 
 ///  Converts passed string parameter to a NSDate object with the format "dd-MM-yyyy".
 ///
@@ -54,7 +60,6 @@ typedef enum: NSInteger {
 ///
 ///  @return NSDate object with format "dd-MM-yyyy"
 -(NSDate*)dateFromString:(NSString*)string;
-
 
 ///  Creates an NSDate with n days away from the passed date parameter, where n = days parameter.
 ///
@@ -64,13 +69,11 @@ typedef enum: NSInteger {
 ///  @return A date which is n days away from the passed date, where n = days parameter.
 -(NSDate*)dateWithDays:(NSInteger)days FromDate:(NSDate*)date;
 
-
 ///  Go through the authorization flow in order to fetch a new access token with an additional 60 day life span.
 ///  @discussion The following two conditions must exist:
 ///  (1) User is still logged into Linkedin.com.
 ///  (2) The current access token isn't expired (within the 60 life span).
 -(void)refreshToken;
-
 
 ///  Calls UICKeyChainStore's removeAllItems method.
 -(void)removeAllItemsFromKeyChain;

@@ -58,8 +58,9 @@
             return;
         }
         
-#warning The two cases (commented) below are for when there's no content to share, only a link. Still experimantal
          /*
+          The two cases (commented) below are for when there's no content to share, only a link. Still experimantal
+          
         // If a URL was passed
         if ([obj isKindOfClass:[NSURL class]] == YES) {
             
@@ -86,78 +87,19 @@
 
 -(void)prepareWithActivityItems:(NSArray *)activityItems {
     
-    // Store a reference to the data items in the activityItems parameter so it can be retrieve by other methods
+    // Store a reference to the data items in the activityItems parameter so it can be retrieved later.
     
     _linkedInActivityItems = activityItems;
-    
-    if ([_linkedInAccount accessToken]) {
-        //NSLog(@"GOOD TOKEN: %@, Composing View Should Be Presented\n ",[_linkedInAccount accessToken]);
-        
-        // Access token exists, but the expiration date needs to be checked. If access token is expired, ask _linkedInAccount to refresh it.
-        
-        switch ([_linkedInAccount tokenStatus]) {
-                
-            case MFAccessTokenStatusGood:
-                
-                NSLog(@"MFAccessTokenStatusGood\n ");
-                
-                [self prepareLinkedInActivityViewControllerToCompose];
-                
-                break;
-                
-            case MFAccessTokenStatusAboutToExpire:
-                
-                NSLog(@"MFAccessTokenStatusAboutToExpire\n ");
-                
-                [self refreshAccessToken];
-                
-                break;
-                
-            case MFAccessTokenStatusExpired:
-                
-                NSLog(@"MFAccessTokenStatusExpired\n ");
-                
-                [self prepareLinkedInActivityViewControllerToAuthenticate];
-                
-                break;
-                
-            default:
-                break;
-        }
-    }
-    else {
-        NSLog(@"NULL TOKEN: %@, Authentication View Should Be Presented",[_linkedInAccount accessToken]);
-        
-        // Access token doesn't exist, so the user needs to be authenticated.
-        
-        [self prepareLinkedInActivityViewControllerToAuthenticate];
-    }
 }
 
 -(UIViewController *)activityViewController {
-    return _linkedInActivityViewController;
-}
-
-
-
-#pragma mark - activityViewController Setup
-
--(void)prepareLinkedInActivityViewControllerToAuthenticate {
-    
-    // Setup  _authenticationViewController and assign it to the _linkedInActivityViewController.
-    
-    _authenticationViewController = [[MFLinkedInAuthenticationViewController alloc]init];
-    
-    [_authenticationViewController setLinkedInUIActivity:self];
-    
-    _linkedInActivityViewController = _authenticationViewController;
-}
-
--(void)prepareLinkedInActivityViewControllerToCompose {
     
     // Setup  _composePresentationViewController and assign it to the _linkedInActivityViewController.
     
     UIViewController *mfViewController;
+    
+    
+    // Load storyboard
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
@@ -171,57 +113,39 @@
         mfViewController = [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
     }
     
-    _composePresentationViewController = (MFLinkedInComposePresentationViewController*)mfViewController;
     
-   [_composePresentationViewController setLinkedInUIActivity:self];
+    // Setup activityViewController
+    
+    MFLinkedInComposePresentationViewController *composePresentationViewController = (MFLinkedInComposePresentationViewController*)mfViewController;
+    
+    [composePresentationViewController setLinkedInUIActivity:self];
     
     
+    // Safety check to ensure a MFLinkedInActivityItem object was passed. This should never be the case, but for future updates it might be needed.
     if ([[_linkedInActivityItems objectAtIndex:0] isKindOfClass:[MFLinkedInActivityItem class]]) {
         
-        [_composePresentationViewController setLinkedInActivityItem:[_linkedInActivityItems objectAtIndex:0]];
-    }
-    else {
-#warning Code to box _linkedInActivityItems items into a single MFLinkedInActivityItem might be needed here... MF, 2014-01-23
-    }
+        [composePresentationViewController setLinkedInActivityItem:[_linkedInActivityItems objectAtIndex:0]];
+    }/*else {
+        // Code to box _linkedInActivityItems items into a single MFLinkedInActivityItem might be needed here... MF, 2014-01-23
+    }*/
     
     
     // Setup Custom Transition and Animation Delegate
     
     MFTransitioningDelegate *transitionDelegate = [[MFTransitioningDelegate alloc]init];
     
-    [_composePresentationViewController setTransitioningDelegate:transitionDelegate];
+    [composePresentationViewController setTransitioningDelegate:transitionDelegate];
     
     
-#warning There's an issue with iPad custom presentation
+    /* Since UIActivityViewController is the one presenting the activityViewController, the custom iPad presentation
+       is not set correctly, thus, don't assign the UIModalPresentationCustom and the full modal presentation works fine. */
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        [_composePresentationViewController setModalPresentationStyle:UIModalPresentationCustom];
+        
+        [composePresentationViewController setModalPresentationStyle:UIModalPresentationCustom];
     }
     
-    
-    // Assign custom compose controller
-    
-    _linkedInActivityViewController = _composePresentationViewController;
+    return composePresentationViewController;
 }
-
-
-
-
-
-#pragma mark - Handle Expired Access tokens
-
--(void)refreshAccessToken {
-    
-    // Delegate refresh operation to MFLinkedInAccount
-    
-    [_linkedInAccount refreshToken];
-    
-    //NSLog(@"After refreshAccessToken...\n ");
-    // Call prepareLinkedInActivityViewControllerToCompose to start the post
-    //[self prepareLinkedInActivityViewControllerToCompose];
-}
-
-
-
-
 
 @end
