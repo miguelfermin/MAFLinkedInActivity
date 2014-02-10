@@ -75,8 +75,9 @@ typedef enum: NSInteger {
 ///  (2) The current access token isn't expired (within the 60 life span).
 -(void)refreshToken;
 
-///  Calls UICKeyChainStore's removeAllItems method.
--(void)removeAllItemsFromKeyChain;
+
+///  Signs user out of their LinkedIn account by deleting their login information from the keychain. This method calls UICKeyChainStore's removeAllItemsForService: method and passes the service to be deleted, "com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn". Next time the user wants to use LinkedIn, they'll have to go through the authentication process.
+-(void)signOutUser;
 
 
 @end

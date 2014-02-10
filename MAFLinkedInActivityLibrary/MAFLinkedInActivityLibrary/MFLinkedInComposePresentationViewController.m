@@ -16,8 +16,10 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *trailingConstraint;
 @property (nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (nonatomic) IBOutlet NSLayoutConstraint *leadingConstraint;
-// iPhone only, use for setting 3.5 vs 4.0 screen size constraint
+
+// iPhone only, use for setting 3.5 vs 4.0 screen size constraints
 @property (nonatomic) IBOutlet NSLayoutConstraint *bottomConstraintTwo;
+
 
 @end
 
@@ -76,7 +78,7 @@
                     _bottomConstraintTwo.constant = 263.0; // Bottom constraint for 4.0 inch iPhone
                 }
                 else {
-                    _bottomConstraintTwo.constant = 175.0; // Bottom constraint for 3.5 inch iPhone
+                    _bottomConstraintTwo.constant = 222.0; // Bottom constraint for 3.5 inch iPhone
                 }
                 break;
                 
@@ -92,7 +94,7 @@
                 
                 _leadingConstraint.constant = 20.0;
                 
-                _bottomConstraintTwo.constant = 30.0;
+                _bottomConstraintTwo.constant = 79.0;
                 
                 break;
                 

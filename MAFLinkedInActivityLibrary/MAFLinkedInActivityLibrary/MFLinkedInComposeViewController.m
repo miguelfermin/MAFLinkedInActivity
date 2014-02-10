@@ -9,6 +9,8 @@
 #import "MFLinkedInComposeViewController.h"
 #import "MFLinkedInAuthenticationViewController.h"
 
+#define IS_IPHONE5 (([[ UIScreen mainScreen ] bounds ].size.height == 568) ? YES : NO)
+
 @interface MFLinkedInComposeViewController ()
 
 // IB Connections
@@ -19,6 +21,10 @@
 
 // Convenient reference to linkedIn acccount object
 @property (nonatomic,strong) MFLinkedInAccount *linkedInAccount;
+
+
+// Update constraints dynamically depending on iPhone screen size
+@property (nonatomic) IBOutlet NSLayoutConstraint *imageVerticalSpaceConstraint;
 
 @end
 
@@ -45,6 +51,17 @@
     _linkedInAccount = _composePresentationViewController.linkedInUIActivity.linkedInAccount;
     
     [self setupComposeViewController];
+    
+    
+    // Change text insets, check for device since image size on iPad is larger.
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
+        [_contentCommentTextView setTextContainerInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, 86.0)];
+    }
+    else {
+        [_contentCommentTextView setTextContainerInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, 100.0)];
+    }
     
 }
 
@@ -98,6 +115,129 @@
     }
 }
 
+
+#pragma mark - Whenever the device orientation changes, update constraints constants to position view correctly
+
+-(void)viewWillLayoutSubviews {
+    
+    // UIImage bottom vertical constraint need to be adjusted based  on iPhone screen size.
+    
+    // iPad UIImage doesn't need update, so the _imageVerticalSpaceConstraint IBOutlet doesn't exist for iPad.
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
+        if (IS_IPHONE5) {
+            _imageVerticalSpaceConstraint.constant = 89.0;
+        }
+        else {
+            _imageVerticalSpaceConstraint.constant = 38.0;
+        }
+    }
+    /*
+    else { // Device iPad
+        
+        switch (self.interfaceOrientation) {
+                
+            case UIInterfaceOrientationPortraitUpsideDown:
+            case UIInterfaceOrientationPortrait:
+                //NSLog(@"Orientation Portrait\n ");
+                
+                _topConstraint.constant = 283.0;
+                
+                _trailingConstraint.constant = 190.0;
+                
+                _bottomConstraint.constant = 451.0;
+                
+                _leadingConstraint.constant = 190.0;
+                break;
+                
+            case UIInterfaceOrientationLandscapeRight:
+            case UIInterfaceOrientationLandscapeLeft:
+                //NSLog(@"Orientation Landscape\n ");
+                
+                _topConstraint.constant = 51.0;
+                
+                _trailingConstraint.constant = 318.0;
+                
+                _bottomConstraint.constant = 427.0;
+                
+                _leadingConstraint.constant = 318.0;
+                break;
+            default:
+                break;
+        }
+    }*/
+}
+
+
+
+#pragma mark - Table View Delegate
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [cell setBackgroundColor:[UIColor colorWithRed:239.0f/255.0f green:239.0/255.0 blue:244.0/255.0 alpha:1]];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Flash cell when selected for better visual
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
+        if (indexPath.section == 0) {
+            
+            if (IS_IPHONE5) {
+                
+                return 178.0; // Cell height for 4.0 inch iPhone
+                
+                
+                /*switch (self.interfaceOrientation) {
+                    case UIInterfaceOrientationPortraitUpsideDown:
+                    case UIInterfaceOrientationPortrait:
+                        return 178.0; // Cell height for 4.0 inch iPhone
+                        break;
+                    case UIInterfaceOrientationLandscapeRight:
+                    case UIInterfaceOrientationLandscapeLeft:
+                        return 100.0; // Cell height for 4.0 inch iPhone
+                        break;
+                    default:
+                        break;
+                }*/
+            }
+            
+            else {
+                
+                return 129.0; // Cell height for 3.5 inch iPhone
+            }
+        }
+        else { // Audience cell height is the same for both screen sizes
+            return 50.0f;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    else { // iPad
+        
+        if (indexPath.section == 0) {
+            return 176.0;
+        }
+        else {
+            return 50.0;
+        }
+    }
+    
+}
 
 
 #pragma mark - Initial setup

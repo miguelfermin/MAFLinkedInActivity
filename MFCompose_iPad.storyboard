@@ -68,7 +68,7 @@
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Bnh-3C-WBg">
                         <rect key="frame" x="0.0" y="0.0" width="388" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <sections>
@@ -82,14 +82,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xWe-S8-11I">
-                                                    <rect key="frame" x="6" y="6" width="274" height="169"/>
+                                                    <rect key="frame" x="6" y="8" width="382" height="173"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ARM-5N-ext">
-                                                    <rect key="frame" x="288" y="20" width="80" height="80"/>
+                                                    <rect key="frame" x="288" y="18" width="80" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="stB-70-QM1"/>
@@ -98,9 +98,9 @@
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="ARM-5N-ext" secondAttribute="trailing" constant="20" symbolic="YES" id="CZY-ny-VJo"/>
-                                                <constraint firstItem="ARM-5N-ext" firstAttribute="top" secondItem="WKZ-EO-UGT" secondAttribute="top" constant="20" symbolic="YES" id="TWO-mT-1dP"/>
-                                                <constraint firstAttribute="bottom" secondItem="ARM-5N-ext" secondAttribute="bottom" constant="75" id="ffk-fc-Eh4"/>
+                                                <constraint firstAttribute="trailing" secondItem="ARM-5N-ext" secondAttribute="trailing" constant="20" id="CZY-ny-VJo"/>
+                                                <constraint firstItem="ARM-5N-ext" firstAttribute="top" secondItem="WKZ-EO-UGT" secondAttribute="top" constant="18" id="TWO-mT-1dP"/>
+                                                <constraint firstAttribute="bottom" secondItem="ARM-5N-ext" secondAttribute="bottom" constant="77" id="ffk-fc-Eh4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -109,7 +109,7 @@
                             </tableViewSection>
                             <tableViewSection id="eS8-V9-Ap3">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="HzC-1Z-3aV">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="50" id="HzC-1Z-3aV">
                                         <rect key="frame" x="0.0" y="220" width="388" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HzC-1Z-3aV" id="tJV-Rt-o6U">
@@ -134,13 +134,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="XUX-m4-v95" firstAttribute="top" secondItem="tJV-Rt-o6U" secondAttribute="top" constant="14" id="Kjk-cL-bL3"/>
                                                 <constraint firstAttribute="trailing" secondItem="XUX-m4-v95" secondAttribute="trailing" id="yBr-gS-4NB"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <connections>
                                             <segue destination="NW0-e2-uHs" kind="push" identifier="Visibility View Controller Segue" id="LZd-cj-yYU"/>
                                         </connections>

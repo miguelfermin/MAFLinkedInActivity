@@ -27,7 +27,7 @@
         //NSLog(@"_keychainStore: %@", [UICKeyChainStore keyChainStoreWithService:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"]);
         
         // Uncomment to remove all items from keychain
-        //[self removeAllItemsFromKeyChain];
+        //[self signOutUser];
         //NSLog(@"AFTER--_keychainStore: %@", [UICKeyChainStore keyChainStoreWithService:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"]);
         
         
@@ -457,7 +457,7 @@
 
 #pragma mark - Delete Account From Keychain
 
--(void)removeAllItemsFromKeyChain {
+-(void)signOutUser {
     
     [UICKeyChainStore removeAllItemsForService:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
 }

@@ -82,11 +82,33 @@
         default:
             break;
     }
+    
     // Update table view with new selection and pop current VC
     
     [self updateInterface];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    // Delay the popViewControllerAnimated: so the user can see the check mark before the view disappears.
+    
+    NSTimeInterval delay = 0.3f;
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
+    
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    });
+    
+    
+    // Flash cell when selected for better visual
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [cell setBackgroundColor:[UIColor colorWithRed:239.0f/255.0f green:239.0/255.0 blue:244.0/255.0 alpha:1]];
+}
+
 
 @end

@@ -147,7 +147,7 @@
     [linkedInActivityItem setContentDescription:description];
     [linkedInActivityItem setSubmittedImageURL:submittedImageURL];
     
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[linkedInActivityItem] applicationActivities:@[linkedInActivity]];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[linkedInActivityItem,submittedImageURL] applicationActivities:@[linkedInActivity]];
     
     // Set the Activity types we don't want to present.
     [activityViewController setExcludedActivityTypes:@[UIActivityTypeMail,
@@ -158,8 +158,7 @@
                                                        UIActivityTypeAssignToContact,
                                                        UIActivityTypeSaveToCameraRoll,
                                                        UIActivityTypeAddToReadingList,
-                                                       UIActivityTypePostToTwitter,
-                                                       UIActivityTypePostToFacebook]];
+                                                       UIActivityTypePostToTwitter]]; // UIActivityTypePostToFacebook
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
@@ -195,7 +194,7 @@
     [linkedInActivityItem setContentTitle:title];
     [linkedInActivityItem setContentDescription:description];
     
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[linkedInActivityItem] applicationActivities:@[linkedInActivity]];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[linkedInActivityItem,submittedURL] applicationActivities:@[linkedInActivity]];
     
     // Set the Activity types we don't want to present.
     [activityViewController setExcludedActivityTypes:@[UIActivityTypeMail,
@@ -206,12 +205,11 @@
                                                        UIActivityTypeAssignToContact,
                                                        UIActivityTypeSaveToCameraRoll,
                                                        UIActivityTypeAddToReadingList,
-                                                       UIActivityTypePostToTwitter,
-                                                       UIActivityTypePostToFacebook]];
+                                                       UIActivityTypePostToTwitter]]; // UIActivityTypePostToFacebook
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) { // Pending implementation, MF, 2013.12.18
-        //NSLog(@"activityType: %@, completed: %d", activityType, completed);
+        NSLog(@"activityType: %@, completed: %d", activityType, completed);
     }];
     
     
