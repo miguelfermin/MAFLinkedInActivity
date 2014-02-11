@@ -376,6 +376,26 @@
 
 -(NSData*)postData {
     
+    
+    // You use the NSJSONSerialization class to convert JSON to Foundation objects and convert Foundation objects to JSON.
+    
+    /*
+     Creating a JSON Object
+     + JSONObjectWithData:options:error:
+     + JSONObjectWithStream:options:error:
+     
+     
+     Creating JSON Data
+     + dataWithJSONObject:options:error:
+     + writeJSONObject:toStream:options:error:
+     + isValidJSONObject:
+     */
+    
+    
+    
+    
+    
+    
     NSData *data = nil;
     
     if ([_linkedInActivityItem submittedImageURL] != nil) {
@@ -390,19 +410,21 @@
         
         NSString *description = [_linkedInActivityItem contentDescription];
         
-        
-        // Convert NSURL to NSString for json string
-        
-        NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]];
+        NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]]; // Convert NSURL to NSString
         
         NSString *submittedImageURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedImageURL]];
         
         
         // Compose API call
         
-        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\",\"submitted-url\":\"%@\",\"submitted-image-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,title,description,submittedURL,submittedImageURL,_visibilityCode];
+        NSDictionary *jsonDict = @{@"comment":comment,
+                                   
+                                   @"content":@{@"title": title, @"description":description, @"submitted-url":submittedURL, @"submitted-image-url":submittedImageURL},
+                                   
+                                   @"visibility":@{@"code": _visibilityCode}};
+        NSError *error;
         
-        data = [json dataUsingEncoding:NSUTF8StringEncoding];
+        data = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&error];
     }
     else {
         // Post Link REST
@@ -415,17 +437,19 @@
         
         NSString *description = [_linkedInActivityItem contentDescription];
         
-        
-        // Convert NSURL to NSString for json string
-        
-        NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]];
+        NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]]; // Convert NSURL to NSString
         
         
         // Compose API call
         
-        NSString *json = [NSString stringWithFormat:@"{\"comment\":\"%@\",\"content\":{\"title\":\"%@\",\"description\":\"%@\",\"submitted-url\":\"%@\"},\"visibility\":{\"code\":\"%@\"} }",comment,title,description,submittedURL,_visibilityCode];
+        NSDictionary *jsonDict = @{@"comment":comment,
+                                   
+                                   @"content":@{@"title": title, @"description":description, @"submitted-url":submittedURL},
+                                   
+                                   @"visibility":@{@"code": _visibilityCode}};
+        NSError *error;
         
-        data = [json dataUsingEncoding:NSUTF8StringEncoding];
+        data = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&error];
     }
     
     return data;
