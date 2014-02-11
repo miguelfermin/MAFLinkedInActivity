@@ -11,6 +11,32 @@
 
 #define IS_IPHONE_5 (([[ UIScreen mainScreen ] bounds ].size.height == 568) ? YES : NO)
 
+/*
+ * LinkedIn Common Errors: If there's an error with your API call, LinkedIn will return a HTTP status code along with a message detailing the error
+ *
+ * Code   Description                         Solution
+ * ----   -----------                         ---------
+ * 400    Bad Request                         The request was invalid, which is usually caused by a programming error. Ensure that the request is formatted correctly
+ *
+ * 401    This token has expired. Renew it    Your application needs to take the user through the authorization flow again since their access token has expired
+ *
+ * 401    Invalid access token                Ensure that a valid access token is being used in your API call
+ *
+ * 403    Throttle limit is reached.          You've reached the throttle limit for a particular resource.
+ *
+ * 404    Page not found                      The endpoint or resource your application is trying to reach doesn't exist
+ *
+ * 500    Internal Service Error              There was an application error on the LinkedIn server. Usually your request is valid but needs to be made at a later time
+ *
+ *
+ * NOTE: This version of the library only handles the 401 error, by requesting a new access token.
+ *       Other errors that make sense to be handle are 403 (Throttle limit) and 500 (Internal Service Error).
+ */
+#define INVALID_OR_EXPIRED_TOKEN_STATUS_CODE    401
+#define RESPONSE_SUCCESS_STATUS_CODE            201 // For future implementation
+#define THROTTLE_LIMIT_STATUS_CODE              403
+#define INTERNAL_SERVICE_ERROR_STATUS_CODE      500
+
 @interface MFLinkedInComposeViewController ()
 
 // IB Connections
@@ -355,46 +381,57 @@
                               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                   
                                   NSLog(@"data: %@\n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+                                  NSLog(@"[(NSHTTPURLResponse*)response statusCode]: %i",[(NSHTTPURLResponse*)response statusCode]);
                                   
-#warning There are cases when the access_token becomes invalid, the data object should be checked and access_token renew if needed..
-                                  // NOTE: This needs better checking code, perhaps checking the data HTML content, but for now use the error varible value
                                   
-                                  if (!error) {
+                                  // Check response status code to handle invalid or expired token.
+                                  
+                                  if ([(NSHTTPURLResponse*)response statusCode] == INVALID_OR_EXPIRED_TOKEN_STATUS_CODE) {
                                       
-                                      // Assuming there's no error and the post was successful.
+                                      [self performOperationsAfterPostFailedWithInvalidOrExpiredTokenError];
+                                  }
+                                  else {
                                       
                                       [self performOperationsAfterPostSucceeded];
                                   }
-                                  else {
-                                      // Handle case when post fails
-                                      
-                                      [self performOperationsAfterPostFailed];
-                                  }
+                                  
+                                  // Check response status code to handle invalid or expired token, throttle limit, and LinkedIn Internal Service Error. Note: This implementation is pending. MF, 2014.02.11
+                                  /*
+                                  switch ([(NSHTTPURLResponse*)response statusCode]) {
+                                          
+                                      case RESPONSE_SUCCESS_STATUS_CODE:
+
+                                          [self performOperationsAfterPostSucceeded];
+                                          
+                                          break;
+                                          
+                                      case INVALID_OR_EXPIRED_TOKEN_STATUS_CODE:
+                                          
+                                          [self performOperationsAfterPostFailedWithInvalidOrExpiredTokenError];
+                                          
+                                          break;
+                                          
+                                      case THROTTLE_LIMIT_STATUS_CODE:
+                                          
+                                          //[self performOperationsAfterPostFailedWithUserReachedThrottleLimitError]; // to be implemented
+                                          
+                                          break;
+                                          
+                                      case INTERNAL_SERVICE_ERROR_STATUS_CODE:
+                                          
+                                          //[self performOperationsAfterPostFailedWithLinkedInInternalServiceError]; // to be implemented
+                                          
+                                          break;
+                                          
+                                      default:
+                                          [self performOperationsAfterPostFailedWithInvalidOrExpiredTokenError]; // worst case scenario
+                                          break;
+                                  }*/
                               }
       ]resume];
 }
 
 -(NSData*)postData {
-    
-    
-    // You use the NSJSONSerialization class to convert JSON to Foundation objects and convert Foundation objects to JSON.
-    
-    /*
-     Creating a JSON Object
-     + JSONObjectWithData:options:error:
-     + JSONObjectWithStream:options:error:
-     
-     
-     Creating JSON Data
-     + dataWithJSONObject:options:error:
-     + writeJSONObject:toStream:options:error:
-     + isValidJSONObject:
-     */
-    
-    
-    
-    
-    
     
     NSData *data = nil;
     
@@ -410,16 +447,16 @@
         
         NSString *description = [_linkedInActivityItem contentDescription];
         
-        NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]]; // Convert NSURL to NSString
+        NSString *submittedURLString = [[_linkedInActivityItem submittedURL]absoluteString];
         
-        NSString *submittedImageURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedImageURL]];
+        NSString *submittedImageURLString = [[_linkedInActivityItem submittedImageURL]absoluteString];
         
         
         // Compose API call
         
         NSDictionary *jsonDict = @{@"comment":comment,
                                    
-                                   @"content":@{@"title": title, @"description":description, @"submitted-url":submittedURL, @"submitted-image-url":submittedImageURL},
+                                   @"content":@{@"title": title, @"description":description, @"submitted-url":submittedURLString, @"submitted-image-url":submittedImageURLString},
                                    
                                    @"visibility":@{@"code": _visibilityCode}};
         NSError *error;
@@ -437,19 +474,21 @@
         
         NSString *description = [_linkedInActivityItem contentDescription];
         
-        NSString *submittedURL = [NSString stringWithFormat:@"%@",[_linkedInActivityItem submittedURL]]; // Convert NSURL to NSString
+        NSString *submittedURLString = [[_linkedInActivityItem submittedURL]absoluteString];
         
         
         // Compose API call
         
         NSDictionary *jsonDict = @{@"comment":comment,
                                    
-                                   @"content":@{@"title": title, @"description":description, @"submitted-url":submittedURL},
+                                   @"content":@{@"title": title, @"description":description, @"submitted-url":submittedURLString},
                                    
                                    @"visibility":@{@"code": _visibilityCode}};
         NSError *error;
         
         data = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&error];
+        
+        //NSLog(@"data: %@\n \n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
     }
     
     return data;
@@ -497,11 +536,16 @@
     [_composePresentationViewController donePosting];
 }
 
--(void)performOperationsAfterPostFailed {
-#warning Pending implementation; performOperationsAfterPostFailed
-    // 1. Re-attempt to post
+-(void)performOperationsAfterPostFailedWithInvalidOrExpiredTokenError {
     
-    // 2. If re-atttemp fails, present 'post fail, please try again' message.
+    // 1. Delete user info from keychain before getting new info
+    
+    [_linkedInAccount signOutUser];
+    
+    
+    // 2. Re-authenticate and get new access token
+    
+    [self setupAuthenticationViewController];
 }
 
 
