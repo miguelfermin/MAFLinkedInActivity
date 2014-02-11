@@ -11,7 +11,9 @@
 
 #define DENIED_REQUEST_ERROR_DESCRIPTION @"the+user+denied+your+request" // Short description of the user canceled authorization error. Provided by LinkedIn Documentation.
 
-#define DAYS_BEFORE_EXPIRATION -1 // How soon would you like to refresh the access_token from the expiration date. This value must be negative.
+#define DAYS_BEFORE_EXPIRATION -10 // How soon would you like to refresh the access_token from the expiration date. This value must be negative.
+
+static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDomain";
 
 @interface MFLinkedInAccount ()
 @end
@@ -56,31 +58,39 @@
     return [UICKeyChainStore stringForKey:@"access_token" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
 }
 
--(NSString*)expiresIn {
+-(NSTimeInterval)expiresIn {
     
-    return [UICKeyChainStore stringForKey:@"expires_in" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    NSString *expiresInString = [UICKeyChainStore stringForKey:@"expires_in" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    
+    return [expiresInString doubleValue];
 }
 
--(NSString*)tokenIssueDateString {
+-(NSDate*)tokenIssueDate {
     
-    return [UICKeyChainStore stringForKey:@"token_issue_date_string" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    NSString *tokenIssueDateString = [UICKeyChainStore stringForKey:@"token_issue_date_string" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    
+    return [self dateFromString:tokenIssueDateString];
 }
 
 
 
-#pragma mark - Custom Setters
+#pragma mark - Custom Setters, To abstract the keychain operation
 
 -(void)setAccessToken:(NSString *)accessToken {
     
     [UICKeyChainStore setString:accessToken forKey:@"access_token" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
 }
 
--(void)setExpiresIn:(NSString *)expiresIn {
+-(void)setExpiresIn:(NSTimeInterval)expiresIn {
     
-    [UICKeyChainStore setString:expiresIn forKey:@"expires_in" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    NSString *expiresInString = [NSString stringWithFormat:@"%f",expiresIn];
+    
+    [UICKeyChainStore setString:expiresInString forKey:@"expires_in" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
 }
 
--(void)setTokenIssueDateString:(NSString *)tokenIssueDateString {
+-(void)setTokenIssueDate:(NSDate*)tokenIssueDate {
+    
+    NSString *tokenIssueDateString = [self stringFromDate:tokenIssueDate];
     
     [UICKeyChainStore setString:tokenIssueDateString forKey:@"token_issue_date_string" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
 }
@@ -91,26 +101,17 @@
 
 -(MFAccessTokenStatus)tokenStatus {
     
-    // 1. Convert "token_issue_date_string" NSString to NSDate using the tokenIssueDateString property
-    
-    NSDate *tokenIssueDate = [self dateFromString:[self tokenIssueDateString]];
-    
-    
-    // 2. Convert expires_in NSString to NSDate using tokenIssueDate and the expiresIn property
-    
-    NSTimeInterval expires_in = [[NSNumber numberWithInt:[[self expiresIn] doubleValue]] doubleValue]; //
-    
-    NSDate *tokenExpirationDate = [NSDate dateWithTimeInterval:expires_in sinceDate:tokenIssueDate];
+    NSDate *tokenExpirationDate = [NSDate dateWithTimeInterval:self.expiresIn sinceDate:self.tokenIssueDate];
     //NSLog(@"Access Token Expiration Date: %@",tokenExpirationDate);
     
     
-    // 3. Create an NSDate representing 'n' days before the access_token expiration date.
+    // 1. Create an NSDate representing 'n' days before the access_token expiration date.
     //    NOTE: the value you pass to the dateWithDays:FromDate: method's 'days' parameter will be the number of days.
     
     NSDate *daysBeforeExpiration = [self dateWithDays:DAYS_BEFORE_EXPIRATION FromDate:tokenExpirationDate];
     
     /*
-     * 4. Determine the access token status and return approproate value.
+     * 2. Determine the access token status and return approproate value.
      *    The time graph below shows the process for determining the token status, the examples show the possible scenarios
      *
      *     example 1                            example 2                            example 3
@@ -126,17 +127,16 @@
     
     // daysBeforeExpiration is earlier in time than currentDate. See currentDate example 2
     
-    if (([daysBeforeExpiration compare:currentDate] == NSOrderedAscending) == YES) {
+    if (([daysBeforeExpiration compare:currentDate] == NSOrderedAscending)) {
         
         status =  MFAccessTokenStatusAboutToExpire;
     }
-    
-    // daysBeforeExpiration is later in time than currentDate. See currentDate example 1
-
-    if (([daysBeforeExpiration compare:currentDate] == NSOrderedAscending) == NO) {
+    else {
+        // daysBeforeExpiration is later in time than currentDate. See currentDate example 1
         
         status =  MFAccessTokenStatusGood;
     }
+    
     
     // tokenExpirationDate is earlier in time than currentDate. See currentDate example 3
     
@@ -151,22 +151,20 @@
     // Testing Algorithm: change to 1, comment the "return status" statement above, and pass one of the example values to the dateWithDays: method.
 #if 0
     NSDate *daysBeforeExpirationTest = [self dateWithDays:DAYS_BEFORE_EXPIRATION FromDate:tokenExpirationDate];
-    // NOTE: these values would need to be change based on the expiration date
     int example1 = -20;  //      3/08
     int example2 = -5;   //      3/23
     int example3 = 1;    //      3/29
-    //
-    NSDate *currentDateTest =          [self dateWithDays:example2 FromDate:tokenExpirationDate];
+    NSDate *currentDateTest =          [self dateWithDays:example3 FromDate:tokenExpirationDate];
     //NSLog(@"tokenExpirationDate:        %@",tokenExpirationDate);
     //NSLog(@"daysBeforeExpirationTest:   %@\n ",daysBeforeExpirationTest);
     //NSLog(@"currentDateTest:            %@\n ",currentDateTest);
     // daysBeforeExpiration is earlier in time than currentDate. See currentDate example 2
-    if (([daysBeforeExpirationTest compare:currentDateTest] == NSOrderedAscending) == YES) {
+    if (([daysBeforeExpirationTest compare:currentDateTest] == NSOrderedAscending)) {
         status =  MFAccessTokenStatusAboutToExpire;
         NSLog(@"MFAccessTokenStatusAboutToExpire RAN...");
     }
     // daysBeforeExpiration is later in time than currentDate. See currentDate example 1
-    if (([daysBeforeExpirationTest compare:currentDateTest] == NSOrderedAscending) == NO) {
+    if (!([daysBeforeExpirationTest compare:currentDateTest] == NSOrderedAscending)) {
         status =  MFAccessTokenStatusGood;
         NSLog(@"MFAccessTokenStatusGood RAN...");
     }
@@ -262,7 +260,15 @@
     
     if ([response rangeOfString:@"error"].location != NSNotFound) {
         
-        [self handleLinkedInAuthenticationError:[[ NSError alloc]initWithDomain:@"An error other in the response while trying to refresh the access token" code:0 userInfo:@{}]];
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Refresh access token was unsuccessful.", nil),
+                                   NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"An error other in the response while trying to refresh the access token.", nil),
+                                   NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Re-attempt to refresh token or re-authenticate user", nil)
+                                   };
+        
+        NSError *error = [NSError errorWithDomain:MAFLinkedInActivityErrorDomain code:28 userInfo:userInfo];
+        
+        [self handleLinkedInAuthenticationError:error];
+        
         
     }
     else {
@@ -284,7 +290,15 @@
             NSLog(@"handleAuthorizationCodeWithResponse::");
         }
         else {
-            [self handleLinkedInAuthenticationError:[[ NSError alloc]initWithDomain:@"Received state parameter != STATE macro def, this could be a due to CSRF" code:1 userInfo:@{}]];
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Refresh access token was unsuccessful.", nil),
+                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Received state parameter != STATE macro def, this could be a due to CSRF.", nil),
+                                       NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Re-attempt to refresh token or re-authenticate user", nil)
+                                       };
+            
+            NSError *error = [NSError errorWithDomain:MAFLinkedInActivityErrorDomain code:29 userInfo:userInfo];
+            
+            [self handleLinkedInAuthenticationError:error];
+            
         }
     }
 }
@@ -338,16 +352,14 @@
     
     NSString *accessTokenString = [(NSDictionary*)dictionayFromJsonData objectForKey:@"access_token"];
     
-    NSString *expiresInString =   [NSString stringWithFormat:@"%@",[(NSDictionary*)dictionayFromJsonData objectForKey:@"expires_in"]]; // NSJSONSerialization returns __NSCFNumber, convert to NSString
-    
     
     // Save access_token and expires_in in Keychain, along with a timestamp to know the date the token was created
     
     [self setAccessToken:accessTokenString];
     
-    [self setExpiresIn:expiresInString];
+    [self setExpiresIn:[[(NSDictionary*)dictionayFromJsonData objectForKey:@"expires_in"]doubleValue]];
     
-    [self setTokenIssueDateString:[self stringFromDate:[NSDate date]]];
+    [self setTokenIssueDate:[NSDate date]];
 }
 
 
@@ -360,7 +372,7 @@
     
     [dateFormatter setDateFormat:@"dd-MM-yyyy"];
     
-    return [dateFormatter stringFromDate:[NSDate date]];
+    return [dateFormatter stringFromDate:date];
 }
 
 -(NSDate*)dateFromString:(NSString*)string {

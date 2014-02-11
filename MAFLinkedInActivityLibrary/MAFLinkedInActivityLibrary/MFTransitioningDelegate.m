@@ -40,7 +40,7 @@
 }
 
 -(NSTimeInterval)transitionDuration:(id)transitionContext {
-    return 0.4f;
+    return 0.2f;
 }
 
 -(void)animateTransition:(id)transitionContext {
@@ -74,12 +74,19 @@
         //[containerView addSubview:toViewController.view];
         [containerView insertSubview:toViewController.view belowSubview:fromViewController.view];
         
+        
         [UIView animateWithDuration:[self transitionDuration:transitionContext]
          
                          animations:^{
+                             
                              toViewController.view.frame = [self rectForPresentedState:transitionContext];
+                             
+                             // Create a fade effect when presenting the view  - EXPERIMENTAL CODE.. /*** Currently breaks transition when landscape ***/
+                             //toViewController.view.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+                             //toViewController.view.transform = CGAffineTransformIdentity;
                          }
                          completion:^(BOOL finished) {
+                             
                              [transitionContext completeTransition:YES];
                          }];
     }
@@ -87,7 +94,12 @@
         [UIView animateWithDuration:[self transitionDuration:transitionContext]
                          animations:^{
                              
-                             //fromViewController.view.frame = [self rectForDismissedState:transitionContext];
+                             fromViewController.view.frame = [self rectForDismissedState:transitionContext];
+                             
+                             // Create a fade effect when presenting the view - EXPERIMENTAL CODE.. /*** Currently breaks transition when landscape ***/
+                             //fromViewController.view.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+                             //fromViewController.view.transform = CGAffineTransformIdentity;
+                             
                          }
                          completion:^(BOOL finished) {
                              

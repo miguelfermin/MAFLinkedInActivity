@@ -42,8 +42,8 @@
 // IB Connections
 @property(nonatomic,weak) IBOutlet UIImageView *contentImageView;
 @property(nonatomic,weak) IBOutlet UILabel *contentVisibilityLabel;
--(IBAction)postBarButtonItem;
--(IBAction)cancelBarButtonItem;
+-(IBAction)post;
+-(IBAction)cancel;
 
 // Convenient reference to linkedIn acccount object
 @property (nonatomic,strong) MFLinkedInAccount *linkedInAccount;
@@ -459,9 +459,10 @@
                                    @"content":@{@"title": title, @"description":description, @"submitted-url":submittedURLString, @"submitted-image-url":submittedImageURLString},
                                    
                                    @"visibility":@{@"code": _visibilityCode}};
-        NSError *error;
         
-        data = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&error];
+        NSError *error = [[NSError alloc]init];
+        
+        data = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:&error];
     }
     else {
         // Post Link REST
@@ -484,9 +485,10 @@
                                    @"content":@{@"title": title, @"description":description, @"submitted-url":submittedURLString},
                                    
                                    @"visibility":@{@"code": _visibilityCode}};
-        NSError *error;
         
-        data = [NSJSONSerialization dataWithJSONObject:jsonDict options:NSJSONWritingPrettyPrinted error:&error];
+        NSError *error = [[NSError alloc]init];
+        
+        data = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:&error];
         
         //NSLog(@"data: %@\n \n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
     }
@@ -498,12 +500,12 @@
 
 #pragma mark - Helper Methods
 
--(IBAction)postBarButtonItem {
+-(IBAction)post {
     
     [self postStory];
 }
 
--(IBAction)cancelBarButtonItem {
+-(IBAction)cancel {
     
     [_composePresentationViewController cancelActivity];
 }

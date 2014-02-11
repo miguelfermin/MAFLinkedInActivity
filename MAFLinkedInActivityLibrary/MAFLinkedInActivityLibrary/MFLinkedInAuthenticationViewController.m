@@ -10,6 +10,8 @@
 
 #define DENIED_REQUEST_ERROR_DESCRIPTION @"the+user+denied+your+request" // Short description of the user canceled authorization error. Provided by LinkedIn Documentation.
 
+static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDomain";
+
 @interface MFLinkedInAuthenticationViewController ()
 
 // Private properties
@@ -78,8 +80,17 @@
                 [self cancelActivity];
             }
             else {
+                
                 // Handle error
-                [self handleLinkedInAuthenticationError:[[ NSError alloc]initWithDomain:@"An error other than -user canceled authorization error- in the response" code:0 userInfo:@{}]];
+                
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"User Authorization was unsuccessful.", nil),
+                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"An error other than -user canceled authorization error- in the response.", nil),
+                                           NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Re-attempt to authenticate user", nil)
+                                           };
+                
+                NSError *error = [NSError errorWithDomain:MAFLinkedInActivityErrorDomain code:26 userInfo:userInfo];
+                
+                [self handleLinkedInAuthenticationError:error];
             }
         }
         else {
@@ -103,7 +114,16 @@
                 
             }
             else {
-                [self handleLinkedInAuthenticationError:[[ NSError alloc]initWithDomain:@"Received state parameter != STATE macro def, this could be a due to CSRF" code:1 userInfo:@{}]];
+                
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"User Authorization was unsuccessful.", nil),
+                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Received state parameter != STATE macro def, this could be a due to CSRF.", nil),
+                                           NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Re-attempt to authenticate user", nil)
+                                           };
+                
+                NSError *error = [NSError errorWithDomain:MAFLinkedInActivityErrorDomain code:27 userInfo:userInfo];
+                
+                [self handleLinkedInAuthenticationError:error];
+                
             }
         }
     }
@@ -184,16 +204,16 @@
     
     NSString *accessTokenString = [(NSDictionary*)dictionayFromJsonData objectForKey:@"access_token"];
     
-    NSString *expiresInString =   [NSString stringWithFormat:@"%@",[(NSDictionary*)dictionayFromJsonData objectForKey:@"expires_in"]]; // NSJSONSerialization returns __NSCFNumber, convert to NSString
     
     
     // Save access_token and expires_in in Keychain, along with a timestamp to know the date the token was created
     
     [_linkedInAccount setAccessToken:accessTokenString];
     
-    [_linkedInAccount setExpiresIn:expiresInString];
+    [_linkedInAccount setExpiresIn:[[(NSDictionary*)dictionayFromJsonData objectForKey:@"expires_in"] doubleValue]];
     
-    [_linkedInAccount setTokenIssueDateString:[_linkedInAccount stringFromDate:[NSDate date]]];
+    [_linkedInAccount setTokenIssueDate:[NSDate date]];
+    
     
     
     // Dismiss Authentication Dialog

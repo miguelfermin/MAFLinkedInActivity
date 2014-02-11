@@ -141,12 +141,12 @@
                     <navigationItem key="navigationItem" title="LinkedIn" id="63A-Pa-8Fu">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="z7d-er-b6e">
                             <connections>
-                                <action selector="cancelBarButtonItem" destination="CM7-si-irS" id="Ehc-st-rlH"/>
+                                <action selector="cancel" destination="CM7-si-irS" id="Szu-hc-TCH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Post" style="done" id="Bjs-lg-4h6">
                             <connections>
-                                <action selector="postBarButtonItem" destination="CM7-si-irS" id="gR2-S5-8t1"/>
+                                <action selector="post" destination="CM7-si-irS" id="mqU-R7-nX7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

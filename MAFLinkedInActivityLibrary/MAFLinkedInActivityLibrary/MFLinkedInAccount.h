@@ -29,10 +29,10 @@ typedef enum: NSInteger {
 @property (nonatomic,strong) NSString *accessToken;
 
 ///  The value of parameter "expires_in" is the number of seconds from the date the access_token is obtained that this access_token will expire in (usually in 60 days).
-@property (nonatomic,strong) NSString *expiresIn;
+@property (nonatomic) NSTimeInterval expiresIn;
 
 ///  A timestamp string representing the date the access_token was obtain. This value will be used to reconstruct a date from expiresIn and compare that date to the present date to determine if the access_token needs to be refreshed.
-@property (nonatomic,strong) NSString *tokenIssueDateString;
+@property (nonatomic,strong) NSDate *tokenIssueDate;
 
 
 // LinkedIn's authorization dialog redirect parameters

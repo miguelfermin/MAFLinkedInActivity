@@ -155,12 +155,12 @@
                     <navigationItem key="navigationItem" title="LinkedIn" id="CZ2-vu-ioq">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="uTR-z7-aAF">
                             <connections>
-                                <action selector="cancelBarButtonItem" destination="KkI-ho-iQB" id="am3-go-hXz"/>
+                                <action selector="cancel" destination="KkI-ho-iQB" id="XOd-4M-Al9"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Post" style="done" id="c8h-d2-r68">
                             <connections>
-                                <action selector="postBarButtonItem" destination="KkI-ho-iQB" id="5t8-Mq-Cj7"/>
+                                <action selector="post" destination="KkI-ho-iQB" id="aE3-h6-FKN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
