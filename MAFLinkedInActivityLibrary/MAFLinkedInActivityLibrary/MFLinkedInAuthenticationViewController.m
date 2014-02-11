@@ -196,9 +196,6 @@
     [_linkedInAccount setTokenIssueDateString:[_linkedInAccount stringFromDate:[NSDate date]]];
     
     
-#warning Setting the username is pending... todo when working on the sign out feature. MF, 2014.01.13
-    
-    
     // Dismiss Authentication Dialog
     
     [self dismissAuthenticationView];
@@ -302,8 +299,7 @@
 ///  Handle LinkedIn Authentication error.
 ///  @param error The error object to handle.
 -(void)handleLinkedInAuthenticationError:(NSError*)error {
-    
-#warning Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
+    // Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
     //NSLog(@"error code: %ld, error domain: %@",(long)error.code,error.domain);
 }
 

@@ -34,8 +34,6 @@ typedef enum: NSInteger {
 ///  A timestamp string representing the date the access_token was obtain. This value will be used to reconstruct a date from expiresIn and compare that date to the present date to determine if the access_token needs to be refreshed.
 @property (nonatomic,strong) NSString *tokenIssueDateString;
 
-///  User's LinkedIn account user name.
-@property (nonatomic,strong) NSString *username;
 
 // LinkedIn's authorization dialog redirect parameters
 @property (nonatomic,strong) NSString *APIKey;

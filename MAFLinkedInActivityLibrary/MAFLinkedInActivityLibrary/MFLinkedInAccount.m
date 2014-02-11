@@ -51,11 +51,6 @@
 
 #pragma mark - Custom Getters, To abstract the keychain operation
 
--(NSString*)username {
-    
-    return [UICKeyChainStore stringForKey:@"user_name" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
-}
-
 -(NSString*)accessToken {
     
     return [UICKeyChainStore stringForKey:@"access_token" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
@@ -74,11 +69,6 @@
 
 
 #pragma mark - Custom Setters
-
--(void)setUsername:(NSString *)username {
-    
-    [UICKeyChainStore setString:username forKey:@"user_name" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
-}
 
 -(void)setAccessToken:(NSString *)accessToken {
     
@@ -260,14 +250,7 @@
     NSLog(@"[[request URL]absoluteString]: %@",[[request URL]absoluteString]);
     NSLog(@"[httpResponse allHeaderFields]: %@\n ",[response allHeaderFields]);
     NSLog(@"[request allHTTPHeaderFields]: %@\n ",[request allHTTPHeaderFields]);
-    
-    
 }
-/*
- -(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
- 
- NSLog(@"[[response URL]absoluteString]: %@\n ",[[response URL]absoluteString]);
- }*/
 
 
 
@@ -365,12 +348,6 @@
     [self setExpiresIn:expiresInString];
     
     [self setTokenIssueDateString:[self stringFromDate:[NSDate date]]];
-    
-    
-#warning Setting the username is pending... todo when working on the sign out feature. MF, 2014.01.13
-    
-    // Dismiss Authentication Dialog. This applies to web view only
-    //[self dismissAuthenticationView];
 }
 
 
@@ -448,8 +425,7 @@
 ///  Handle LinkedIn Authentication error.
 ///  @param error The error object to handle.
 -(void)handleLinkedInAuthenticationError:(NSError*)error {
-    
-#warning Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
+    // Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
     NSLog(@"error code: %ld, error domain: %@",(long)error.code,error.domain);
 }
 

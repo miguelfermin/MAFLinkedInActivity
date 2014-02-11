@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gsn-JZ-TTT">
-                                <rect key="frame" x="10" y="35" width="300" height="311"/>
+                                <rect key="frame" x="10" y="35" width="300" height="312"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -28,15 +28,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Gsn-JZ-TTT" firstAttribute="leading" secondItem="VWB-W4-jZj" secondAttribute="leading" constant="10" id="6Zn-d2-J2v"/>
-                            <constraint firstItem="R30-OE-Lmq" firstAttribute="top" secondItem="Gsn-JZ-TTT" secondAttribute="bottom" constant="222" id="dEW-W7-xg3"/>
-                            <constraint firstItem="R30-OE-Lmq" firstAttribute="top" relation="lessThanOrEqual" secondItem="Gsn-JZ-TTT" secondAttribute="bottom" priority="250" constant="263" id="mRy-h8-YZw"/>
+                            <constraint firstItem="R30-OE-Lmq" firstAttribute="top" secondItem="Gsn-JZ-TTT" secondAttribute="bottom" constant="221" id="dEW-W7-xg3"/>
                             <constraint firstItem="Gsn-JZ-TTT" firstAttribute="top" secondItem="rOF-pY-y7l" secondAttribute="bottom" constant="15" id="mkQ-tV-1jU"/>
                             <constraint firstAttribute="trailing" secondItem="Gsn-JZ-TTT" secondAttribute="trailing" constant="10" id="pKI-Jw-NAz"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomConstraint" destination="mRy-h8-YZw" id="HY5-X7-LPL"/>
-                        <outlet property="bottomConstraintTwo" destination="dEW-W7-xg3" id="ep4-2y-m64"/>
+                        <outlet property="bottomConstraint" destination="dEW-W7-xg3" id="Bdl-L6-NxK"/>
                         <outlet property="leadingConstraint" destination="6Zn-d2-J2v" id="pXr-wR-aan"/>
                         <outlet property="topConstraint" destination="mkQ-tV-1jU" id="Pif-06-2tJ"/>
                         <outlet property="trailingConstraint" destination="pKI-Jw-NAz" id="KJy-9y-8Ma"/>
@@ -51,7 +49,7 @@
             <objects>
                 <tableViewController id="CM7-si-irS" customClass="MFLinkedInComposeViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="R9B-KF-1uQ">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="311"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="312"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -66,7 +64,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLc-nD-GPi">
-                                                    <rect key="frame" x="6" y="14" width="134" height="171"/>
+                                                    <rect key="frame" x="6" y="5" width="294" height="172"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -82,11 +80,11 @@
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="RLc-nD-GPi" secondAttribute="bottom" constant="-8" id="H0M-MX-dIz"/>
+                                                <constraint firstAttribute="bottom" secondItem="RLc-nD-GPi" secondAttribute="bottom" id="H0M-MX-dIz"/>
                                                 <constraint firstAttribute="trailing" secondItem="RLc-nD-GPi" secondAttribute="trailing" id="eC9-4b-fWz"/>
-                                                <constraint firstAttribute="bottom" secondItem="6r8-LI-Uov" secondAttribute="bottom" constant="91" id="ihm-xJ-mCY"/>
+                                                <constraint firstAttribute="bottom" secondItem="6r8-LI-Uov" secondAttribute="bottom" priority="999" constant="91" id="ihm-xJ-mCY"/>
                                                 <constraint firstItem="6r8-LI-Uov" firstAttribute="top" secondItem="4m8-i8-1wf" secondAttribute="top" constant="16" id="pfB-Se-ksx"/>
-                                                <constraint firstItem="RLc-nD-GPi" firstAttribute="top" secondItem="4m8-i8-1wf" secondAttribute="top" constant="14" id="rUx-E2-Uo6"/>
+                                                <constraint firstItem="RLc-nD-GPi" firstAttribute="top" secondItem="4m8-i8-1wf" secondAttribute="top" constant="5" id="rUx-E2-Uo6"/>
                                                 <constraint firstAttribute="trailing" secondItem="6r8-LI-Uov" secondAttribute="trailing" constant="16" id="rtL-c0-5aC"/>
                                                 <constraint firstItem="RLc-nD-GPi" firstAttribute="leading" secondItem="4m8-i8-1wf" secondAttribute="leading" constant="6" id="zO0-uX-UcM"/>
                                             </constraints>
@@ -156,7 +154,8 @@
                         <outlet property="contentCommentTextView" destination="RLc-nD-GPi" id="aJg-jQ-Yg1"/>
                         <outlet property="contentImageView" destination="6r8-LI-Uov" id="lKG-gE-6aO"/>
                         <outlet property="contentVisibilityLabel" destination="IfS-KI-DWD" id="umM-OQ-hul"/>
-                        <outlet property="imageVerticalSpaceConstraint" destination="ihm-xJ-mCY" id="Qad-bJ-rMl"/>
+                        <outlet property="imageBottomVerticalSpaceConstraint" destination="ihm-xJ-mCY" id="IwH-oW-CBh"/>
+                        <outlet property="imageTopVerticalSpaceConstraint" destination="pfB-Se-ksx" id="rtU-qt-OJy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Sm-DK-Kir" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -183,7 +182,7 @@
             <objects>
                 <tableViewController id="o8Q-z0-hLH" customClass="MFLinkedInVisivilityViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="zJG-p2-4GQ">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="311"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="312"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>

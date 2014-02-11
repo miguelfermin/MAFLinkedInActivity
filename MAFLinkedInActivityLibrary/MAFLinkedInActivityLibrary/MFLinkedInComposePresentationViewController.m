@@ -8,7 +8,7 @@
 
 #import "MFLinkedInComposePresentationViewController.h"
 
-#define IS_IPHONE5 (([[ UIScreen mainScreen ] bounds ].size.height == 568) ? YES : NO)
+#define IS_IPHONE_5 (([[ UIScreen mainScreen ] bounds ].size.height == 568) ? YES : NO)
 
 @interface MFLinkedInComposePresentationViewController ()
 
@@ -16,9 +16,6 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *trailingConstraint;
 @property (nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (nonatomic) IBOutlet NSLayoutConstraint *leadingConstraint;
-
-// iPhone only, use for setting 3.5 vs 4.0 screen size constraints
-@property (nonatomic) IBOutlet NSLayoutConstraint *bottomConstraintTwo;
 
 
 @end
@@ -53,10 +50,6 @@
 #pragma mark - Whenever the device orientation changes, update constraints constants to position view correctly
 
 -(void)viewWillLayoutSubviews {
-    /*NSLog(@"_topConstraint: %f",_topConstraint.constant);
-     NSLog(@"_trailingConstraint: %f",_trailingConstraint.constant);
-     NSLog(@"_bottomConstraint: %f",_bottomConstraint.constant);
-     NSLog(@"_leadingConstraint: %f\n ",_leadingConstraint.constant);*/
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
@@ -64,40 +57,34 @@
                 
             case UIInterfaceOrientationPortraitUpsideDown:
             case UIInterfaceOrientationPortrait:
-                //NSLog(@"Orientation Portrait\n ");
                 
                 _topConstraint.constant = 15.0;
                 
                 _trailingConstraint.constant = 10.0;
                 
-                _bottomConstraint.constant = 263.0;
-                
                 _leadingConstraint.constant = 10.0;
                 
-                if (IS_IPHONE5) {
-                    _bottomConstraintTwo.constant = 263.0; // Bottom constraint for 4.0 inch iPhone
+                if (IS_IPHONE_5) {
+                    _bottomConstraint.constant = 263.0; // Bottom constraint for 4.0 inch iPhone
                 }
                 else {
-                    _bottomConstraintTwo.constant = 222.0; // Bottom constraint for 3.5 inch iPhone
+                    _bottomConstraint.constant = 222.0; // Bottom constraint for 3.5 inch iPhone
                 }
                 break;
+                
                 
             case UIInterfaceOrientationLandscapeRight:
             case UIInterfaceOrientationLandscapeLeft:
-                //NSLog(@"Orientation Landscape\n ");
                 
-                _topConstraint.constant = 10.0;
+                _topConstraint.constant = 5.0;
                 
                 _trailingConstraint.constant = 20.0;
                 
-                _bottomConstraint.constant = 30.0;
+                _bottomConstraint.constant = 133.0;
                 
                 _leadingConstraint.constant = 20.0;
                 
-                _bottomConstraintTwo.constant = 79.0;
-                
                 break;
-                
             default:
                 break;
         }
@@ -108,7 +95,6 @@
                 
             case UIInterfaceOrientationPortraitUpsideDown:
             case UIInterfaceOrientationPortrait:
-                //NSLog(@"Orientation Portrait\n ");
                 
                 _topConstraint.constant = 283.0;
                 
@@ -121,7 +107,6 @@
                 
             case UIInterfaceOrientationLandscapeRight:
             case UIInterfaceOrientationLandscapeLeft:
-                //NSLog(@"Orientation Landscape\n ");
                 
                 _topConstraint.constant = 51.0;
                 
@@ -148,7 +133,7 @@
         // Make view corners rounded and change the bar color of the navigation controller
         
         UINavigationController *nc = [segue destinationViewController];
-        nc.view.layer.cornerRadius = 10;
+        nc.view.layer.cornerRadius = 7;
         nc.view.layer.masksToBounds = YES;
         [nc.navigationBar setBarTintColor:[UIColor colorWithRed:239.0f/255.0 green:239.0f/255.0  blue:244.0f/255.0  alpha:1.0]];
         

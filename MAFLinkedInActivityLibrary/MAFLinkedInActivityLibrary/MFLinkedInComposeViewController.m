@@ -9,7 +9,7 @@
 #import "MFLinkedInComposeViewController.h"
 #import "MFLinkedInAuthenticationViewController.h"
 
-#define IS_IPHONE5 (([[ UIScreen mainScreen ] bounds ].size.height == 568) ? YES : NO)
+#define IS_IPHONE_5 (([[ UIScreen mainScreen ] bounds ].size.height == 568) ? YES : NO)
 
 @interface MFLinkedInComposeViewController ()
 
@@ -24,7 +24,8 @@
 
 
 // Update constraints dynamically depending on iPhone screen size
-@property (nonatomic) IBOutlet NSLayoutConstraint *imageVerticalSpaceConstraint;
+@property (nonatomic) IBOutlet NSLayoutConstraint *imageTopVerticalSpaceConstraint;
+@property (nonatomic) IBOutlet NSLayoutConstraint *imageBottomVerticalSpaceConstraint;
 
 @end
 
@@ -57,12 +58,11 @@
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
-        [_contentCommentTextView setTextContainerInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, 86.0)];
+        [_contentCommentTextView setTextContainerInset:UIEdgeInsetsMake(6.0, 0.0, 0.0, 86.0)];
     }
     else {
-        [_contentCommentTextView setTextContainerInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, 100.0)];
+        [_contentCommentTextView setTextContainerInset:UIEdgeInsetsMake(6.0, 0.0, 0.0, 100.0)];
     }
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -126,47 +126,48 @@
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
-        if (IS_IPHONE5) {
-            _imageVerticalSpaceConstraint.constant = 89.0;
+        if (IS_IPHONE_5) {
+            
+            switch (self.interfaceOrientation) {
+                    
+                case UIInterfaceOrientationPortraitUpsideDown: // Vertical spacing is more when portrait
+                case UIInterfaceOrientationPortrait:
+                    
+                    _imageTopVerticalSpaceConstraint.constant = 16.0;
+                    _imageBottomVerticalSpaceConstraint.constant = 91.0;
+                    break;
+                    
+                case UIInterfaceOrientationLandscapeRight:
+                case UIInterfaceOrientationLandscapeLeft:
+                    
+                    _imageTopVerticalSpaceConstraint.constant = 5.0; // Vertical spacing is less when portrait
+                    _imageBottomVerticalSpaceConstraint.constant = 4.0;
+                    break;
+                default:
+                    break;
+            }
         }
         else {
-            _imageVerticalSpaceConstraint.constant = 38.0;
+            switch (self.interfaceOrientation) {
+                    
+                case UIInterfaceOrientationPortraitUpsideDown:
+                case UIInterfaceOrientationPortrait:
+                    
+                    _imageTopVerticalSpaceConstraint.constant = 16.0;
+                    _imageBottomVerticalSpaceConstraint.constant = 42.0;
+                    break;
+                    
+                case UIInterfaceOrientationLandscapeRight:
+                case UIInterfaceOrientationLandscapeLeft:
+                    
+                    _imageTopVerticalSpaceConstraint.constant = 5.0;
+                    _imageBottomVerticalSpaceConstraint.constant = 4.0;
+                    break;
+                default:
+                    break;
+            }
         }
     }
-    /*
-    else { // Device iPad
-        
-        switch (self.interfaceOrientation) {
-                
-            case UIInterfaceOrientationPortraitUpsideDown:
-            case UIInterfaceOrientationPortrait:
-                //NSLog(@"Orientation Portrait\n ");
-                
-                _topConstraint.constant = 283.0;
-                
-                _trailingConstraint.constant = 190.0;
-                
-                _bottomConstraint.constant = 451.0;
-                
-                _leadingConstraint.constant = 190.0;
-                break;
-                
-            case UIInterfaceOrientationLandscapeRight:
-            case UIInterfaceOrientationLandscapeLeft:
-                //NSLog(@"Orientation Landscape\n ");
-                
-                _topConstraint.constant = 51.0;
-                
-                _trailingConstraint.constant = 318.0;
-                
-                _bottomConstraint.constant = 427.0;
-                
-                _leadingConstraint.constant = 318.0;
-                break;
-            default:
-                break;
-        }
-    }*/
 }
 
 
@@ -185,50 +186,54 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Change table view cells height dynamically depending on device and screen size (in the case of iPhone)
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
         if (indexPath.section == 0) {
             
-            if (IS_IPHONE5) {
+            if (IS_IPHONE_5) {
                 
-                return 178.0; // Cell height for 4.0 inch iPhone
-                
-                
-                /*switch (self.interfaceOrientation) {
+                switch (self.interfaceOrientation) {
+                        
                     case UIInterfaceOrientationPortraitUpsideDown:
                     case UIInterfaceOrientationPortrait:
+                        
                         return 178.0; // Cell height for 4.0 inch iPhone
                         break;
                     case UIInterfaceOrientationLandscapeRight:
                     case UIInterfaceOrientationLandscapeLeft:
-                        return 100.0; // Cell height for 4.0 inch iPhone
+                        
+                        return 80.0;
                         break;
                     default:
                         break;
-                }*/
+                }
             }
-            
             else {
-                
-                return 129.0; // Cell height for 3.5 inch iPhone
+                switch (self.interfaceOrientation) {
+                    case UIInterfaceOrientationPortraitUpsideDown:
+                    case UIInterfaceOrientationPortrait:
+                        
+                        return 129.0; // Cell height for 3.5 inch iPhone
+                        break;
+                        
+                    case UIInterfaceOrientationLandscapeRight:
+                    case UIInterfaceOrientationLandscapeLeft:
+                        return 80.0;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         else { // Audience cell height is the same for both screen sizes
             return 50.0f;
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    else { // iPad
-        
+    else { // iPad. Nothing changes dynamically with iPad but since we implementing this method we must provide values.
         if (indexPath.section == 0) {
             return 176.0;
         }
@@ -455,12 +460,6 @@
     else {
         [_contentVisibilityLabel setText:@"Connections Only"];
     }
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    
-    // Scroll to top cell after rotation, in order to always show the text view.
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 
