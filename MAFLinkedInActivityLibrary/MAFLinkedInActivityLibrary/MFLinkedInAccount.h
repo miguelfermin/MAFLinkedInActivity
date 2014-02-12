@@ -71,6 +71,7 @@ typedef enum: NSInteger {
 ///  @discussion The following two conditions must exist:
 ///  (1) User is still logged into Linkedin.com.
 ///  (2) The current access token isn't expired (within the 60 life span).
+///  @warning As of version 1.0 of the library, there's an issue with LinkedIn refresh mechanism for native mobile devices which don't have a browser, so this method is not used at all
 -(void)refreshToken;
 
 

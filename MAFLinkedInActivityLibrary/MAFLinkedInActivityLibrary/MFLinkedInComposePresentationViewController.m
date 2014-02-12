@@ -17,7 +17,6 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (nonatomic) IBOutlet NSLayoutConstraint *leadingConstraint;
 
-
 @end
 
 @implementation MFLinkedInComposePresentationViewController
@@ -50,6 +49,14 @@
 #pragma mark - Whenever the device orientation changes, update constraints constants to position view correctly
 
 -(void)viewWillLayoutSubviews {
+    /* 
+     * All constraints are setup in IB. Here we adjust the constraint constant property to compensate for device type and orientation changes.
+     *
+     * It is more effecient to change the constraint constant property value then creating a brand new constraint. Below is Apple doc explaing that:
+     *
+     * Unlike the other properties, the constant may be modified after constraint creation. 
+     * Setting the constant on an existing constraint performs much better than removing the constraint and adding a new one that's just like the old but for having a new constant.
+     */
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
@@ -71,7 +78,6 @@
                     _bottomConstraint.constant = 222.0; // Bottom constraint for 3.5 inch iPhone
                 }
                 break;
-                
                 
             case UIInterfaceOrientationLandscapeRight:
             case UIInterfaceOrientationLandscapeLeft:
@@ -132,10 +138,13 @@
         
         // Make view corners rounded and change the bar color of the navigation controller
         
-        UINavigationController *nc = [segue destinationViewController];
-        nc.view.layer.cornerRadius = 7;
-        nc.view.layer.masksToBounds = YES;
-        [nc.navigationBar setBarTintColor:[UIColor colorWithRed:239.0f/255.0 green:239.0f/255.0  blue:244.0f/255.0  alpha:1.0]];
+        UINavigationController *navigationController = [segue destinationViewController];
+        
+        navigationController.view.layer.cornerRadius = 7;
+        
+        navigationController.view.layer.masksToBounds = YES;
+        
+        [navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:239.0f/255.0 green:239.0f/255.0  blue:244.0f/255.0  alpha:0.99]];
         
         
         // Setup Compose View Controller
@@ -154,14 +163,10 @@
 
 -(void)cancelActivity; {
     
-    //NSLog(@"cancelActivity\n ");
-    
     [_linkedInUIActivity activityDidFinish:NO];
 }
 
 -(void)donePosting {
-    
-    // Dismiss Compose View
     
     [_linkedInUIActivity activityDidFinish:YES];
 }

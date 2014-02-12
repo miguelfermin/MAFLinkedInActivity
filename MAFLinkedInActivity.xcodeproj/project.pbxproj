@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E11F97E71892F0D800CE4F67 /* MFCompose_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11F97E61892F0D800CE4F67 /* MFCompose_iPad.storyboard */; };
 		E15E0955187F45EA0091ABA6 /* libMAFLinkedInActivityLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E15E0954187F45EA0091ABA6 /* libMAFLinkedInActivityLibrary.a */; };
+		E18415B018AC19D30051D795 /* Post-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = E18415AF18AC19D30051D795 /* Post-placeholder.png */; };
 		E1D5C87D188B0F2200848372 /* AGI Sells Aircraft.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D5C873188B0F2200848372 /* AGI Sells Aircraft.png */; };
 		E1D5C886188B0F2200848372 /* Tech Companies Press.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D5C87C188B0F2200848372 /* Tech Companies Press.png */; };
 		E1D5C8D9188B195E00848372 /* MFCompose_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1D5C8D8188B195E00848372 /* MFCompose_iPhone.storyboard */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		E11F97E61892F0D800CE4F67 /* MFCompose_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFCompose_iPad.storyboard; sourceTree = "<group>"; };
 		E15E0954187F45EA0091ABA6 /* libMAFLinkedInActivityLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMAFLinkedInActivityLibrary.a; path = "../../../../Library/Developer/Xcode/DerivedData/MAFLinkedInActivity-aslfnacxzhmqcjarqeyzqpjgzyvo/Build/Products/Debug-iphoneos/libMAFLinkedInActivityLibrary.a"; sourceTree = "<group>"; };
+		E18415AF18AC19D30051D795 /* Post-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Post-placeholder.png"; sourceTree = "<group>"; };
 		E1D5C873188B0F2200848372 /* AGI Sells Aircraft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AGI Sells Aircraft.png"; path = "MAFLinkedInActivity/MAFLinkedInActivityResources/AGI Sells Aircraft.png"; sourceTree = "<group>"; };
 		E1D5C87C188B0F2200848372 /* Tech Companies Press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tech Companies Press.png"; path = "MAFLinkedInActivity/MAFLinkedInActivityResources/Tech Companies Press.png"; sourceTree = "<group>"; };
 		E1D5C8D8188B195E00848372 /* MFCompose_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFCompose_iPhone.storyboard; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				E1D5C873188B0F2200848372 /* AGI Sells Aircraft.png */,
 				E1D5C87C188B0F2200848372 /* Tech Companies Press.png */,
+				E18415AF18AC19D30051D795 /* Post-placeholder.png */,
 			);
 			name = "MAFLinkedInActivity Resources";
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E18415B018AC19D30051D795 /* Post-placeholder.png in Resources */,
 				E1D5C87D188B0F2200848372 /* AGI Sells Aircraft.png in Resources */,
 				E1E8F79A18593AC00078909D /* Main_iPad.storyboard in Resources */,
 				E1E8F7A218593AC00078909D /* Images.xcassets in Resources */,

@@ -11,6 +11,7 @@
 
 @class MFLinkedInComposeViewController;
 
+///  Responsably to change the LinkedIn visibility property.
 @interface MFLinkedInVisivilityViewController : UITableViewController
 
 ///  Parent View Controller; used for setting the LinkedIn Visibility code, which can be "anyone" or "connections only"

@@ -35,6 +35,10 @@
     // Reload table view to see current selection
     
     [[self tableView] reloadData];
+    
+    // Set alpha to simulate built-in service transucent activity
+    
+     self.view.alpha = 0.96f;
 }
 
 
@@ -71,6 +75,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    // Set LinkedIn visibility code based on selection
+    
     switch (indexPath.row) {
         case 0:
             [_composeViewController updateVisibilityCodeWithString:@"anyone"];
@@ -83,7 +89,7 @@
             break;
     }
     
-    // Update table view with new selection and pop current VC
+    // Update table view with new selection
     
     [self updateInterface];
     
@@ -106,6 +112,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Make sure the entire cell content view has the same color, when set in IB the disclosure indicator area stayed white on iPad.
     
     [cell setBackgroundColor:[UIColor colorWithRed:239.0f/255.0f green:239.0/255.0 blue:244.0/255.0 alpha:1]];
 }

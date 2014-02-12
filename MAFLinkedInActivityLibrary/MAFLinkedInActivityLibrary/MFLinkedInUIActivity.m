@@ -15,6 +15,7 @@
     if (self) {
         
         // Initialize linkedInAccount instance variable.
+        
         _linkedInAccount = [[MFLinkedInAccount alloc]init];
     }
     return self;

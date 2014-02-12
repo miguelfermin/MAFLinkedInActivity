@@ -52,9 +52,14 @@
     UIView *containerView = [transitionContext containerView];
     
     
-    
     // Used for testing
     /*
+    CATransition *transition = [CATransition animation];
+    transition.startProgress = 0;
+    transition.endProgress = 1.0;
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromTop;
+    transition.duration = 0.3;
     UIView *fromView = [fromViewController view];
     UIView *toView =   [toViewController view];
     NSLog(@"BEFORE");
@@ -97,8 +102,6 @@
         _presentedViewHeightLandscape = toViewController.view.frame.size.width+20;
     }
     
-    
-    
     /* Perform presinting animation */
     
     if (self.presenting) {
@@ -129,7 +132,6 @@
                          }];
     }
     else {
-        
         // Simulate fade effect when dismissing the from view
         
         fromViewController.view.alpha = 1.0;
@@ -158,19 +160,19 @@
 
 #pragma mark - Helpers methods to transform the coordinate system.
 /*
- * The purpose of the two methods below, I found it researching only
+ * The purpose of the two methods below are described here. Information was found during an online reseach.
  *
  * For custom presentation transitions Apple setup an intermediate view between the window and the windows rootViewController's view.
  *
  * This view is the containerView that we perform our animation within.
  *
- * Due to an implementation detail of auto-rotation on iOS, when the interface rotates we apply an affine transform to the windows rootViewController's view and modify its bounds accordingly.
+ * Due to an implementation detail of auto-rotation on iOS, when the interface rotates Apple applies an affine transform to the windows rootViewController's view and modify its bounds accordingly.
  *
  * Because the containerView inherits its dimensions from the window instead of the root view controller's view, it is always in the portrait orientation.
  *
  * If the presentation animation depends upon the orientation of the presenting view controller, we will need to detect the presenting view controller's orientation and modify our animation appropriately.
  *
- * The system will apply the correct transform to the incoming view controller but you're animator need to configure the frame of the incoming view controller.
+ * The system will apply the correct transform to the incoming view controller but your animator needs to configure the frame of the incoming view controller.
  *
  *
  * So, the methods below detect the presenting view controller's orientation, modify the view frame, and return it. Note, actual animation doesn't happen inside these methods.

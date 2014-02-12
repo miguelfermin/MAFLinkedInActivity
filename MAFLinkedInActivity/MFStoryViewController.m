@@ -157,8 +157,7 @@
                                                        UIActivityTypePrint,
                                                        UIActivityTypeAssignToContact,
                                                        UIActivityTypeSaveToCameraRoll,
-                                                       UIActivityTypeAddToReadingList,
-                                                       UIActivityTypePostToTwitter]]; // UIActivityTypePostToFacebook
+                                                       UIActivityTypeAddToReadingList]]; // UIActivityTypePostToTwitter, UIActivityTypePostToFacebook
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
@@ -204,8 +203,7 @@
                                                        UIActivityTypePrint,
                                                        UIActivityTypeAssignToContact,
                                                        UIActivityTypeSaveToCameraRoll,
-                                                       UIActivityTypeAddToReadingList,
-                                                       UIActivityTypePostToTwitter]]; // UIActivityTypePostToFacebook
+                                                       UIActivityTypeAddToReadingList]]; // UIActivityTypePostToTwitter, UIActivityTypePostToFacebook
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) { // Pending implementation, MF, 2013.12.18

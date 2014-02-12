@@ -101,6 +101,8 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 -(MFAccessTokenStatus)tokenStatus {
     
+    // Construct access token expiration date using the expiresIn and tokenIssueDate properties
+    
     NSDate *tokenExpirationDate = [NSDate dateWithTimeInterval:self.expiresIn sinceDate:self.tokenIssueDate];
     //NSLog(@"Access Token Expiration Date: %@",tokenExpirationDate);
     
@@ -180,6 +182,7 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 -(void)refreshToken {
     
+    /* NOTE: as of version 1.0 of the library, there's an issue with LinkedIn refresh mechanism for native mobile devices which don't have a browser, so this method is not used at all  */
     // Request Authorization Code in order to refresh the token
     NSURLSessionConfiguration *SessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
@@ -436,9 +439,10 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 ///  Handle LinkedIn Authentication error.
 ///  @param error The error object to handle.
+///  @warning As of version 1.0 of the library, this method doesn nothing. Future implementation is needed.
 -(void)handleLinkedInAuthenticationError:(NSError*)error {
     // Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
-    NSLog(@"error code: %ld, error domain: %@",(long)error.code,error.domain);
+    //NSLog(@"error code: %ld, error domain: %@",(long)error.code,error.domain);
 }
 
 

@@ -48,15 +48,13 @@
 // Convenient reference to linkedIn acccount object
 @property (nonatomic,strong) MFLinkedInAccount *linkedInAccount;
 
-
-// Update constraints dynamically depending on iPhone screen size
+// To update constraints dynamically depending on iPhone screen size
 @property (nonatomic) IBOutlet NSLayoutConstraint *imageTopVerticalSpaceConstraint;
 @property (nonatomic) IBOutlet NSLayoutConstraint *imageBottomVerticalSpaceConstraint;
 
 @end
 
 @implementation MFLinkedInComposeViewController
-
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -75,7 +73,12 @@
     
     [super viewDidLoad];
     
+    // init MFLinkedInAccount object to be used in multiple places
+    
     _linkedInAccount = _composePresentationViewController.linkedInUIActivity.linkedInAccount;
+    
+    
+    // Show compose view regardless of access token status, if we need to authenticate, the authentication view will be presented modally on top of the compose view
     
     [self setupComposeViewController];
     
@@ -89,6 +92,11 @@
     else {
         [_contentCommentTextView setTextContainerInset:UIEdgeInsetsMake(6.0, 0.0, 0.0, 100.0)];
     }
+    
+    
+    // Added transucent effect similar to the built-in service
+    
+    self.view.alpha = 0.96f;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -113,7 +121,7 @@
                 
             case MFAccessTokenStatusAboutToExpire:
                 
-                NSLog(@"MFAccessTokenStatusAboutToExpire\n ");
+                //NSLog(@"MFAccessTokenStatusAboutToExpire\n ");
                 
                 // Note: until I figure out how to refresh the access_token, go through the authentication process
                 
@@ -125,7 +133,7 @@
                 
             case MFAccessTokenStatusExpired:
                 
-                NSLog(@"MFAccessTokenStatusExpired\n ");
+                //NSLog(@"MFAccessTokenStatusExpired\n ");
                 
                 [self setupAuthenticationViewController];
                 
@@ -140,6 +148,7 @@
         [self setupAuthenticationViewController];
     }
 }
+
 
 
 #pragma mark - Whenever the device orientation changes, update constraints constants to position view correctly
@@ -202,6 +211,8 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    // Make sure the entire cell content view has the same color, when set in IB the disclosure indicator area stayed white on iPad.
+    
     [cell setBackgroundColor:[UIColor colorWithRed:239.0f/255.0f green:239.0/255.0 blue:244.0/255.0 alpha:1]];
 }
 
@@ -259,7 +270,7 @@
             return 50.0f;
         }
     }
-    else { // iPad. Nothing changes dynamically with iPad but since we implementing this method we must provide values.
+    else { // iPad. Nothing changes dynamically with iPad but since we're implementing this method we must provide values.
         if (indexPath.section == 0) {
             return 176.0;
         }
@@ -267,12 +278,13 @@
             return 50.0;
         }
     }
-    
 }
 
 
 #pragma mark - Initial setup
 
+///  Prepares the Compose view. Checks the _linkedInActivityItem ivar to determine if it should post an URL alone or an image with an URL.
+///  If the post contains an image, it downloads the image in a background queue and updates the UI when done, in the mean time it sets a placeholder image.
 -(void)setupComposeViewController {
     
     // If submittedImageURL property is nil, the client only provide a link to the story, based on this load UIImageView with correct content.
@@ -281,7 +293,10 @@
         
         //NSLog(@"submittedImageURL is valid, post image");
         
-#warning Need to set a placeholder image on _contentImageView until the UIImage is downloaded in the background
+        
+        // Placeholder image
+        
+        [_contentImageView setImage:[UIImage imageNamed:@"Post-placeholder"]];
         
         dispatch_queue_t imageDownloadQueue = dispatch_queue_create("imageDownloadQueue", DISPATCH_QUEUE_SERIAL);
         
@@ -304,7 +319,7 @@
         
         //NSLog(@"submittedImageURL is NOT valid, post link");
         
-        [_contentImageView setImage:[UIImage imageNamed:@"linkedIn-negative"]]; // temp image for testing...
+        [_contentImageView setImage:[UIImage imageNamed:@"Post-placeholder"]];
     }
     
     // Set anyone  as default visibility code when the compose view is presented.
@@ -314,6 +329,9 @@
     [_contentVisibilityLabel setText:@"Anyone"];
 }
 
+///  Prepare and present the MFLinkedInAuthenticationViewController. There are two cases when this method gets called,
+///  1. if the access token was determined to be expired in the viewDidAppear: method, and
+///  2. If during a POST the response header contains a status code 401. If the access token is determined to be invalid during a Post, it's less likely that it expired, since the viewDidAppear: would've caught it.
 -(void)setupAuthenticationViewController {
     
     // To avoid keyboard scrolling on the Webview
@@ -340,9 +358,8 @@
 
 #pragma mark - Handle Expired Access tokens
 
+///  Delegates the task of refreshing the access token a MFLinkedInAccount object; to the _linkedInAccount property.
 -(void)refreshAccessToken {
-    
-    // Delegate refresh operation to MFLinkedInAccount
     
     [_linkedInAccount refreshToken];
 }
@@ -351,6 +368,7 @@
 
 #pragma mark - LinkedIn Share
 
+///  Post story to LinkedIn.
 -(void)postStory {
     
     // Initialize networking API
@@ -381,7 +399,7 @@
                               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                   
                                   NSLog(@"data: %@\n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
-                                  NSLog(@"[(NSHTTPURLResponse*)response statusCode]: %i",[(NSHTTPURLResponse*)response statusCode]);
+                                  NSLog(@"[(NSHTTPURLResponse*)response statusCode]: %li",(long)[(NSHTTPURLResponse*)response statusCode]);
                                   
                                   
                                   // Check response status code to handle invalid or expired token.
@@ -424,13 +442,16 @@
                                           break;
                                           
                                       default:
-                                          [self performOperationsAfterPostFailedWithInvalidOrExpiredTokenError]; // worst case scenario
+                                          [self performOperationsAfterPostFailedWithInvalidOrExpiredTokenError]; // worst case scenario, to be implemented
                                           break;
                                   }*/
                               }
       ]resume];
 }
 
+///  Prepare the LinkedIn Share API Post data and returns it.
+///
+///  @return A NSData object with the LinkedIn Share JSON data.
 -(NSData*)postData {
     
     NSData *data = nil;
@@ -499,12 +520,13 @@
 
 
 #pragma mark - Helper Methods
-
+///  IB connection to trigger the post.
 -(IBAction)post {
     
     [self postStory];
 }
 
+///  IB connection to cancel the post
 -(IBAction)cancel {
     
     [_composePresentationViewController cancelActivity];
@@ -513,7 +535,6 @@
 -(void)updateVisibilityCodeWithString:(NSString*)code {
     
     _visibilityCode = code;
-    
     
     // Ensure UILabel is in upper case
     
@@ -531,6 +552,7 @@
 
 #pragma mark - After POST request Callbacks
 
+///  Tells parent view controller that the Post succeded and the compose view needs to be dismissed.
 -(void)performOperationsAfterPostSucceeded {
     
     // Delegate the dismiss after succeeded operation to parent view controller.
@@ -538,14 +560,16 @@
     [_composePresentationViewController donePosting];
 }
 
+///  Ask MFLinkedInAccount object (the _linkedInAccount property) to sign the user out of LinkedIn (by deleteing their info from the keychain)
+///  and calls the setupAuthenticationViewController method to re-authenticate the user.
 -(void)performOperationsAfterPostFailedWithInvalidOrExpiredTokenError {
     
-    // 1. Delete user info from keychain before getting new info
+    // Delete user info from keychain before getting new info
     
     [_linkedInAccount signOutUser];
     
     
-    // 2. Re-authenticate and get new access token
+    // Re-authenticate and get new access token
     
     [self setupAuthenticationViewController];
 }
@@ -555,6 +579,8 @@
 #pragma mark - Segue Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    /* Present MFLinkedInVisibilityViewController to change the LinkedIn visibility/code parameter. */
     
     if ([[segue identifier]isEqualToString:@"Visibility View Controller Segue"]) {
         

@@ -14,7 +14,6 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 @interface MFLinkedInAuthenticationViewController ()
 
-// Private properties
 @property (nonatomic,strong) UIViewController *authenticationViewController;
 @property (nonatomic,strong) UIWebView *authenticationWebView;
 
@@ -22,7 +21,7 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 @implementation MFLinkedInAuthenticationViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         //
@@ -30,12 +29,12 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
     return self;
 }
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
+-(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -45,7 +44,6 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 #pragma mark - UIWebViewDelegate Methods
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    
     /* 
      * Here we have the opportunity to prevent the URI (URL) redirect and handle the response accordingly.
      * 
@@ -150,7 +148,7 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 
 
-#pragma mark - Handle Authorization Results
+#pragma mark - Handle Authorization Results. Note: this methods are duplicated, here and in MFLinkedAccount class, needs future refactoring.
 
 ///  Request Access Token by exchanging the authorization_code for it. The response will be a JSON object containing the "expires_in" and "access_token" parameters.
 ///  @discussion    The value of parameter expires_in is the number of seconds from now that this access_token will expire in (5184000 seconds is 60 days). Ensure to keep the user access tokens secure.
@@ -318,6 +316,7 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 ///  Handle LinkedIn Authentication error.
 ///  @param error The error object to handle.
+///  @warning As of version 1.0 of the library, this method doesn nothing. Future implementation is needed.
 -(void)handleLinkedInAuthenticationError:(NSError*)error {
     // Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
     //NSLog(@"error code: %ld, error domain: %@",(long)error.code,error.domain);

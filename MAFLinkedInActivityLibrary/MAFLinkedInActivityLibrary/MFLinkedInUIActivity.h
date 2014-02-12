@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Miguel Fermin. All rights reserved.
 //
 
-
 #import <UIKit/UIKit.h>
 #import "MFLinkedInAccount.h"
 #import "MFLinkedInAuthenticationViewController.h"

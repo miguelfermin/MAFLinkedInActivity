@@ -14,6 +14,7 @@
 
 @class MFLinkedInComposePresentationViewController, MFLinkedInVisivilityViewController;
 
+///  Design to present the compose overlay view which has a container view controller (MFLinkedInComposeViewController).
 @interface MFLinkedInComposeViewController : UITableViewController
 
 ///  Parent ViewController; responsable for the overlay presentation

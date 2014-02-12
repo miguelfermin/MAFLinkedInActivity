@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+///  Designed to encapsulate the data to be posted.
 @interface MFLinkedInActivityItem : NSObject
 
 @property (nonatomic,strong) NSString *contentTitle;
