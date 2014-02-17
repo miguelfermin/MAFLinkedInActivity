@@ -28,56 +28,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection headerTitle="Text Stories" id="RL3-wM-gsi">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="2pz-XF-uhl" style="IBUITableViewCellStyleDefault" id="m0d-ak-lc9">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0d-ak-lc9" id="3g7-El-HxZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Tech Companies Press" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2pz-XF-uhl">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="59"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <segue destination="Ah7-4n-0Wa" kind="push" identifier="showDetail" id="jUr-3t-vfg"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="76w-yC-ubp" style="IBUITableViewCellStyleDefault" id="xP9-C8-Ob1">
-                                        <rect key="frame" x="0.0" y="146" width="320" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xP9-C8-Ob1" id="XVZ-23-tcc">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="A.I.G. Sells Aircraft " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="76w-yC-ubp">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="59"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <segue destination="nUR-c4-sfQ" kind="push" id="gJv-Sh-sbG"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Image Stories" id="sqY-15-C1P">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="H6m-zq-inE" style="IBUITableViewCellStyleDefault" id="XGZ-CL-13A">
-                                        <rect key="frame" x="0.0" y="228" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XGZ-CL-13A" id="WOd-5Z-N5Y">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
@@ -98,7 +52,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Hy8-au-bLz" style="IBUITableViewCellStyleDefault" id="gCt-Ej-eS9">
-                                        <rect key="frame" x="0.0" y="288" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="146" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gCt-Ej-eS9" id="nBW-Nw-UFV">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
@@ -123,7 +77,7 @@
                             <tableViewSection headerTitle="URLs Stories" id="G5i-sI-mUY">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="v8w-lk-eJg" style="IBUITableViewCellStyleDefault" id="mhg-qb-cuh">
-                                        <rect key="frame" x="0.0" y="370" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="228" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mhg-qb-cuh" id="RMh-VK-LdR">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
@@ -144,7 +98,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="hzf-oe-c3q" style="IBUITableViewCellStyleDefault" id="J5l-ec-2Uz">
-                                        <rect key="frame" x="0.0" y="430" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="288" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J5l-ec-2Uz" id="wRl-6k-FEE">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
@@ -428,132 +382,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kwf-Km-FWd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1887" y="1498"/>
-        </scene>
-        <!--Story View Controller - Detail-->
-        <scene sceneID="Cn3-H9-jdl">
-            <objects>
-                <viewController title="Detail" id="Ah7-4n-0Wa" customClass="MFStoryViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gWU-cy-8Tt"/>
-                        <viewControllerLayoutGuide type="bottom" id="B32-kI-vSF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MMQ-IT-qOo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LC0-ya-7Ln">
-                                <rect key="frame" x="0.0" y="107" width="320" height="417"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">The new vision of electronics retailing was on display last week at a spacious new Verizon Wireless store in a mall in Puyallup, Wash., outside Seattle. An employee used an app on a smartphone to pilot a toy drone. Music thumped from an array of wireless speakers. And another employee coached a couple perched on stools about using their smartphones. Brian Garduno, a customer reclining in a red leather chair, likened the old Verizon store in the same mall to “being in a train car.”</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tech Companies Press for Experience" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omn-GV-5Uq">
-                                <rect key="frame" x="15" y="78" width="291" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="NgY-Dm-eQq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bj1-MK-Z2a">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="YMD-I0-rLJ"/>
-                                    <barButtonItem title="Item" systemItem="action" id="oSc-Lh-5cO">
-                                        <connections>
-                                            <action selector="storyOneShareTextBarButtonItem:" destination="Ah7-4n-0Wa" id="5pd-bp-x65"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="omn-GV-5Uq" firstAttribute="top" secondItem="gWU-cy-8Tt" secondAttribute="bottom" constant="14" id="CuT-kn-42H"/>
-                            <constraint firstItem="LC0-ya-7Ln" firstAttribute="centerX" secondItem="Bj1-MK-Z2a" secondAttribute="centerX" id="Mzw-C6-f1O"/>
-                            <constraint firstAttribute="bottom" secondItem="Bj1-MK-Z2a" secondAttribute="bottom" id="SPw-OM-QI9"/>
-                            <constraint firstItem="LC0-ya-7Ln" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" id="VQw-e7-ujW"/>
-                            <constraint firstItem="LC0-ya-7Ln" firstAttribute="top" secondItem="omn-GV-5Uq" secondAttribute="bottom" constant="8" id="VbM-3d-ltI"/>
-                            <constraint firstItem="Bj1-MK-Z2a" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" id="Xyg-XM-khk"/>
-                            <constraint firstAttribute="trailing" secondItem="LC0-ya-7Ln" secondAttribute="trailing" id="ZFY-FH-v0G"/>
-                            <constraint firstItem="Bj1-MK-Z2a" firstAttribute="top" secondItem="LC0-ya-7Ln" secondAttribute="bottom" id="cFm-cG-6o3"/>
-                            <constraint firstItem="omn-GV-5Uq" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" constant="15" id="h8l-gm-xDX"/>
-                            <constraint firstItem="LC0-ya-7Ln" firstAttribute="centerX" secondItem="omn-GV-5Uq" secondAttribute="centerX" id="sf4-oI-Cgp"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Tech Companies Press" id="cra-N8-TIN"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1887" y="-2051"/>
-        </scene>
-        <!--Story View Controller - A.I.G. Sells Aircraft -->
-        <scene sceneID="enC-Mw-Anb">
-            <objects>
-                <viewController id="nUR-c4-sfQ" customClass="MFStoryViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ntP-yH-9mU"/>
-                        <viewControllerLayoutGuide type="bottom" id="ScO-ss-2nI"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5Ar-Ll-qgG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mi8-Sb-iYz">
-                                <rect key="frame" x="0.0" y="107" width="320" height="417"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">The business has long been regarded as one of the crown jewels in A.I.G.’s empire. But since its taxpayer-financed bailout in 2008, A.I.G. has sought to sell off nonessential operations to raise money. I.L.F.C., as the aircraft lessor is known, was long considered an attractive asset to sell, given both its size – it owned 913 planes as of Sept. 30 – and the capital requirements needed to support the business.</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A.I.G. Sells Aircraft Leasing Unit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VV1-bi-h5j">
-                                <rect key="frame" x="38" y="78" width="245" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="QZb-Tc-2Jc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ze8-Xk-JYv">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem width="260" style="plain" systemItem="fixedSpace" id="tso-wS-hFQ"/>
-                                    <barButtonItem title="Item" systemItem="action" id="nT6-mY-9SO">
-                                        <connections>
-                                            <action selector="storyTwoShareTextBarButtonItem:" destination="nUR-c4-sfQ" id="Ys7-B7-77W"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ze8-Xk-JYv" firstAttribute="top" secondItem="mi8-Sb-iYz" secondAttribute="bottom" id="5ak-nf-ifi"/>
-                            <constraint firstItem="VV1-bi-h5j" firstAttribute="leading" secondItem="5Ar-Ll-qgG" secondAttribute="leading" constant="38" id="8gr-YU-0X4"/>
-                            <constraint firstItem="VV1-bi-h5j" firstAttribute="centerX" secondItem="mi8-Sb-iYz" secondAttribute="centerX" id="D5H-if-x9L"/>
-                            <constraint firstItem="ze8-Xk-JYv" firstAttribute="trailing" secondItem="mi8-Sb-iYz" secondAttribute="trailing" id="LIt-5C-6BN"/>
-                            <constraint firstItem="mi8-Sb-iYz" firstAttribute="top" secondItem="VV1-bi-h5j" secondAttribute="bottom" constant="8" symbolic="YES" id="Mex-F6-F0Y"/>
-                            <constraint firstItem="mi8-Sb-iYz" firstAttribute="leading" secondItem="ze8-Xk-JYv" secondAttribute="leading" id="aNQ-dc-7Zx"/>
-                            <constraint firstAttribute="trailing" secondItem="mi8-Sb-iYz" secondAttribute="trailing" id="iWu-hg-v3D"/>
-                            <constraint firstItem="VV1-bi-h5j" firstAttribute="top" secondItem="ntP-yH-9mU" secondAttribute="bottom" constant="14" id="iZw-YS-J3u"/>
-                            <constraint firstItem="mi8-Sb-iYz" firstAttribute="leading" secondItem="5Ar-Ll-qgG" secondAttribute="leading" id="pPY-7m-4qv"/>
-                            <constraint firstAttribute="bottom" secondItem="ze8-Xk-JYv" secondAttribute="bottom" id="t3P-R6-J6p"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="A.I.G. Sells Aircraft " id="sc4-uc-D5c"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dab-tv-UeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1887" y="-1328"/>
         </scene>
     </scenes>
     <resources>

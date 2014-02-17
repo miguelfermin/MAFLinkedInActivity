@@ -57,19 +57,18 @@
                                     <constraint firstAttribute="height" constant="44" id="L8P-09-Uaa"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem width="151" style="plain" systemItem="fixedSpace" id="5vc-hJ-1op"/>
+                                    <barButtonItem width="160" style="plain" systemItem="fixedSpace" id="5vc-hJ-1op"/>
                                     <barButtonItem style="plain" id="Krx-AH-Amv">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="qXV-io-5gs">
-                                            <rect key="frame" x="167" y="7" width="361" height="30"/>
+                                            <rect key="frame" x="176" y="7" width="361" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
-                                                <segment title="Share Story"/>
                                                 <segment title="Share Image"/>
                                                 <segment title="Share Link"/>
                                             </segments>
                                         </segmentedControl>
                                     </barButtonItem>
-                                    <barButtonItem width="126" style="plain" systemItem="fixedSpace" id="hbm-LQ-KxE"/>
+                                    <barButtonItem width="110" style="plain" systemItem="fixedSpace" id="hbm-LQ-KxE"/>
                                     <barButtonItem systemItem="action" id="4mC-Oe-CGV">
                                         <connections>
                                             <action selector="shareStoryBarButtonItem:" destination="JEX-9P-axG" id="QkH-M6-cNd"/>

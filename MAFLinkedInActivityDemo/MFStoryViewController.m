@@ -21,8 +21,6 @@
 @property(weak, nonatomic) IBOutlet UIBarButtonItem *shareBarButtonItem; // Share UIBarButtonItem (iPad), use for presenting the popover which contains the activity view.
 
 -(IBAction)shareStoryBarButtonItem:(id)sender; // Share UIBarButtonItem event handler: iPad
--(IBAction)storyOneShareTextBarButtonItem:(id)sender; // Share UIBarButtonItem event handlers: iPhone.
--(IBAction)storyTwoShareTextBarButtonItem:(id)sender;
 -(IBAction)storyOneShareImageBarButtonItem:(id)sender;
 -(IBAction)storyTwoShareImageBarButtonItem:(id)sender;
 -(IBAction)storyOneShareLinkBarButtonItem:(id)sender;
@@ -48,8 +46,8 @@
     _storyOneDescription = @"The new vision of electronics retailing was on display last week at a spacious new Verizon Wireless store in a mall in Puyallup, Wash., outside Seattle. An employee used an app on a smartphone to pilot a toy drone. Music thumped from an array of wireless speakers. And another employee coached a couple perched on stools about using their smartphones. Brian Garduno, a customer reclining in a red leather chair, likened the old Verizon store in the same mall to “being in a train car.”";
     _storyTwoDescription = @"The business has long been regarded as one of the crown jewels in A.I.G.’s empire. But since its taxpayer-financed bailout in 2008, A.I.G. has sought to sell off nonessential operations to raise money. I.L.F.C., as the aircraft lessor is known, was long considered an attractive asset to sell, given both its size – it owned 913 planes as of Sept. 30 – and the capital requirements needed to support the business. ";
     
-    _storyOneImageURL = [NSURL URLWithString:@"https://raw.github.com/miguelfermin/MAFLinkedInActivity/share_story/MAFLinkedInActivity/MAFLinkedInActivityResources/Tech%20Companies%20Press.png"];
-    _storyTwoImageURL = [NSURL URLWithString:@"https://raw.github.com/miguelfermin/MAFLinkedInActivity/share_story/MAFLinkedInActivity/MAFLinkedInActivityResources/AGI%20Sells%20Aircraft.png"];
+    _storyOneImageURL = [NSURL URLWithString:@"https://raw.github.com/miguelfermin/MAFLinkedInActivity/share_story/MAFLinkedInActivityDemo/Tech%20Companies%20Press.png"];
+    _storyTwoImageURL = [NSURL URLWithString:@"https://raw.github.com/miguelfermin/MAFLinkedInActivity/share_story/MAFLinkedInActivityDemo/AGI%20Sells%20Aircraft.png"];
     
     _storyOneURL = [NSURL URLWithString:@"http://www.nytimes.com/2013/12/16/technology/tech-companies-press-for-a-better-retail-experience.html?ref=technology"];
     _storyTwoURL = [NSURL URLWithString:@"http://dealbook.nytimes.com/2013/12/15/a-i-g-said-near-deal-to-sell-aircraft-leasing-unit/?ref=business&_r=0"];
@@ -69,15 +67,8 @@
     // Present appropriate UIActivityView depending on the "sharingOptionsSegmentedControl" options and _story flag
     
     switch ([_sharingOptionsSegmentedControl selectedSegmentIndex]) {
+            
         case 0:
-            if ([_story isEqualToString:STORY_ONE]) {
-                [self presentActivityViewToShareStoryWithTitle:_storyOneTitle description:_storyOneDescription];
-            }
-            else {
-                [self presentActivityViewToShareStoryWithTitle:_storyTwoTitle description:_storyTwoDescription];
-            }
-            break;
-        case 1:
             if ([_story isEqualToString:STORY_ONE]) {
                 [self presentActivityViewToShareStoryWithTitle:_storyOneTitle description:_storyOneDescription URL:_storyOneURL imageURL:_storyOneImageURL];
             }
@@ -85,7 +76,7 @@
                 [self presentActivityViewToShareStoryWithTitle:_storyTwoTitle description:_storyTwoDescription URL:_storyTwoURL imageURL:_storyTwoImageURL];
             }
             break;
-        case 2:
+        case 1:
             if ([_story isEqualToString:STORY_ONE]) {
                 [self presentActivityViewToShareStoryWithTitle:_storyOneTitle description:_storyOneDescription URL:_storyOneURL];
             }
@@ -103,29 +94,20 @@
 
 #pragma mark - Share UIBarButtonItem event handlers: iPhone
 
--(IBAction)storyOneShareTextBarButtonItem:(id)sender {
-    
-    [self presentActivityViewToShareStoryWithTitle:_storyOneTitle description:_storyOneDescription];
-}
-
--(IBAction)storyTwoShareTextBarButtonItem:(id)sender {
-    
-    [self presentActivityViewToShareStoryWithTitle:_storyTwoTitle description:_storyTwoDescription];
-}
-
 -(IBAction)storyOneShareImageBarButtonItem:(id)sender {
     
     [self presentActivityViewToShareStoryWithTitle:_storyOneTitle description:_storyOneDescription URL:_storyOneURL imageURL:_storyOneImageURL];
 }
 
--(IBAction)storyTwoShareImageBarButtonItem:(id)sender {
-    
-    [self presentActivityViewToShareStoryWithTitle:_storyTwoTitle description:_storyTwoDescription URL:_storyTwoURL imageURL:_storyTwoImageURL];
-}
-
 -(IBAction)storyOneShareLinkBarButtonItem:(id)sender {
     
     [self presentActivityViewToShareStoryWithTitle:_storyOneTitle description:_storyOneDescription URL:_storyOneURL];
+}
+
+
+-(IBAction)storyTwoShareImageBarButtonItem:(id)sender {
+    
+    [self presentActivityViewToShareStoryWithTitle:_storyTwoTitle description:_storyTwoDescription URL:_storyTwoURL imageURL:_storyTwoImageURL];
 }
 
 -(IBAction)storyTwoShareLinkBarButtonItem:(id)sender {
@@ -161,7 +143,7 @@
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
-        NSLog(@"activityType: %@, completed: %d", activityType, completed);
+        //NSLog(@"activityType: %@, completed: %d", activityType, completed);
     }];
     
     
@@ -207,7 +189,7 @@
     
     // The completion handler to execute after the activity view controller is dismissed.
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) { // Pending implementation, MF, 2013.12.18
-        NSLog(@"activityType: %@, completed: %d", activityType, completed);
+        //NSLog(@"activityType: %@, completed: %d", activityType, completed);
     }];
     
     
@@ -229,42 +211,6 @@
         [self presentViewController:activityViewController animated:YES completion:nil];
     }
     
-}
-
--(void)presentActivityViewToShareStoryWithTitle:(NSString*)title description:(NSString*)description {
-    
-    // Properties used to pass to UIActivityViewController
-    MFLinkedInUIActivity   *linkedInActivity = [[MFLinkedInUIActivity alloc]init];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:@[title,description] applicationActivities:@[linkedInActivity]];
-    
-    // Set the Activity types we don't want to present.
-    [activityViewController setExcludedActivityTypes:@[UIActivityTypeMail,
-                                                       UIActivityTypeMessage,
-                                                       UIActivityTypeCopyToPasteboard,
-                                                       UIActivityTypeAirDrop,
-                                                       UIActivityTypePrint,
-                                                       UIActivityTypeAssignToContact,
-                                                       UIActivityTypeSaveToCameraRoll,
-                                                       UIActivityTypeAddToReadingList,
-                                                       UIActivityTypePostToTwitter,
-                                                       UIActivityTypePostToFacebook]];
-    
-    // The completion handler to execute after the activity view controller is dismissed.
-    [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) { // Pending implementation, MF, 2013.12.18
-        //NSLog(@"activityType: %@, completed: %d", activityType, completed);
-    }];
-    
-    // Present for correct device
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        _sharingActivityViewPopoverController = [[UIPopoverController alloc]initWithContentViewController:activityViewController];
-        _sharingActivityViewPopoverController.delegate = self;
-        [_sharingActivityViewPopoverController presentPopoverFromBarButtonItem:_shareBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        [_shareBarButtonItem setEnabled:NO];
-    }
-    else {
-        // Present activityViewController in a modal view
-        [self presentViewController:activityViewController animated:YES completion:nil];
-    }
 }
 
 
