@@ -22,7 +22,6 @@
 }
 
 
-
 #pragma mark - Methods to Override to provide LinkedIn service information.
 
 +(UIActivityCategory)activityCategory {

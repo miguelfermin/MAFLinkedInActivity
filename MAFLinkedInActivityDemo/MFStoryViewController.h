@@ -9,10 +9,7 @@
 //               This class is responsable to handle views transition; presents and dismiss the UIActivityView, etc.
 
 #import <UIKit/UIKit.h>
-
-// static library headers
-#import "MAFLinkedInActivity/MFLinkedInUIActivity.h"
-#import "MAFLinkedInActivity/MFLinkedInActivityItem.h"
+#import <MAFLinkedInActivity/MAFLinkedInActivity.h> // Header clients must import.
 
 @interface MFStoryViewController : UIViewController <UISplitViewControllerDelegate, UIPopoverControllerDelegate>
 

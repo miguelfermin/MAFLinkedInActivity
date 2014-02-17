@@ -8,6 +8,7 @@
 
 #import "MFLinkedInComposeViewController.h"
 #import "MFLinkedInAuthenticationViewController.h"
+#import "MAFLinkedInActivity.h"
 
 #define IS_IPHONE_5 (([[ UIScreen mainScreen ] bounds ].size.height == 568) ? YES : NO)
 
@@ -121,7 +122,7 @@
                 
             case MFAccessTokenStatusAboutToExpire:
                 
-                //NSLog(@"MFAccessTokenStatusAboutToExpire\n ");
+                MFLog(@"MFLinkedInComposeViewController-viewDidAppear:. MFAccessTokenStatusAboutToExpire\n ");
                 
                 // Note: until I figure out how to refresh the access_token, go through the authentication process
                 
@@ -133,7 +134,7 @@
                 
             case MFAccessTokenStatusExpired:
                 
-                //NSLog(@"MFAccessTokenStatusExpired\n ");
+                MFLog(@"MFLinkedInComposeViewController-viewDidAppear:. MFAccessTokenStatusExpired\n ");
                 
                 [self setupAuthenticationViewController];
                 
@@ -148,7 +149,6 @@
         [self setupAuthenticationViewController];
     }
 }
-
 
 
 #pragma mark - Whenever the device orientation changes, update constraints constants to position view correctly
@@ -204,7 +204,6 @@
         }
     }
 }
-
 
 
 #pragma mark - Table View Delegate
@@ -354,7 +353,6 @@
 }
 
 
-
 #pragma mark - Handle Expired Access tokens
 
 ///  Delegates the task of refreshing the access token a MFLinkedInAccount object; to the _linkedInAccount property.
@@ -362,7 +360,6 @@
     
     [_linkedInAccount refreshToken];
 }
-
 
 
 #pragma mark - LinkedIn Share
@@ -397,9 +394,8 @@
                                        fromData:data
                               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                   
-                                  NSLog(@"data: %@\n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
-                                  NSLog(@"[(NSHTTPURLResponse*)response statusCode]: %li",(long)[(NSHTTPURLResponse*)response statusCode]);
-                                  
+                                  MFLog(@"MFLinkedInComposeViewController-postStory. Data: %@\n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+                                  MFLog(@"MFLinkedInComposeViewController-postStory. Response statusCode: %li",(long)[(NSHTTPURLResponse*)response statusCode]);
                                   
                                   // Check response status code to handle invalid or expired token.
                                   
@@ -509,13 +505,10 @@
         NSError *error = [[NSError alloc]init];
         
         data = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:&error];
-        
-        //NSLog(@"data: %@\n \n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
     }
     
     return data;
 }
-
 
 
 #pragma mark - Helper Methods
@@ -548,7 +541,6 @@
 }
 
 
-
 #pragma mark - After POST request Callbacks
 
 ///  Tells parent view controller that the Post succeded and the compose view needs to be dismissed.
@@ -574,7 +566,6 @@
 }
 
 
-
 #pragma mark - Segue Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -595,31 +586,5 @@
         [_contentCommentTextView resignFirstResponder];
     }
 }
-
-
-#pragma mark - Load the Resource Bundle
-
-+ (NSBundle *)frameworkBundle {
-    
-    static NSBundle* frameworkBundle = nil;
-    
-    static dispatch_once_t predicate;
-    
-    dispatch_once(&predicate, ^{
-        
-        NSString* mainBundlePath = [[NSBundle mainBundle] resourcePath];
-        
-        //NSLog(@"mainBundlePath: %@",mainBundlePath);
-        
-        NSString* frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:@"MAFLinkedInActivityLibrary.bundle"];
-        
-        frameworkBundle = [NSBundle bundleWithPath:frameworkBundlePath];
-        
-        NSLog(@"frameworkBundle: %@",frameworkBundle);
-    });
-    
-    return frameworkBundle;
-}
-
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "MFTransitioningDelegate.h"
+#import "MAFLinkedInActivity.h"
 
 @interface MFTransitioningDelegate ()
 // Use to convert coordinate system, see rectForPresentedState: and rectForDismissedState: methods.
@@ -15,7 +16,6 @@
 @end
 
 @implementation MFTransitioningDelegate
-
 
 
 #pragma mark - UIViewControllerTransitioningDelegate
@@ -29,7 +29,6 @@
     self.presenting = NO;
     return self;
 }
-
 
 
 #pragma mark - UIViewControllerAnimatedTransitioning
@@ -62,24 +61,24 @@
     transition.duration = 0.3;
     UIView *fromView = [fromViewController view];
     UIView *toView =   [toViewController view];
-    NSLog(@"BEFORE");
-    NSLog(@"toView.frame.origin.x:        %f",toView.frame.origin.x);
-    NSLog(@"toView.frame.origin.y:        %f",toView.frame.origin.y);
-    NSLog(@"toView.frame.origin.width:    %f",toView.frame.size.width);
-    NSLog(@"toView.frame.origin.height:   %f\n ",toView.frame.size.height);
-    NSLog(@"toView.bounds.size.width:     %f",toView.bounds.size.width);
-    NSLog(@"toView.bounds.size.height:    %f",toView.bounds.size.height);
-    NSLog(@"toView.bounds.origin.x:       %f",toView.bounds.origin.x);
-    NSLog(@"toView.bounds.origin.y:       %f\n ",toView.bounds.origin.y);
-    NSLog(@"BEFORE");
-    NSLog(@"containerView.frame.origin.x:        %f",containerView.frame.origin.x);
-    NSLog(@"containerView.frame.origin.y:        %f",containerView.frame.origin.y);
-    NSLog(@"containerView.frame.origin.width:    %f",containerView.frame.size.width);
-    NSLog(@"containerView.frame.origin.height:   %f\n ",containerView.frame.size.height);
-    NSLog(@"containerView.bounds.size.width:     %f",containerView.bounds.size.width);
-    NSLog(@"containerView.bounds.size.height:    %f",containerView.bounds.size.height);
-    NSLog(@"containerView.bounds.origin.x:       %f",containerView.bounds.origin.x);
-    NSLog(@"containerView.bounds.origin.y:       %f\n ",containerView.bounds.origin.y);*/
+    MFLog(@"BEFORE");
+    MFLog(@"toView.frame.origin.x:        %f",toView.frame.origin.x);
+    MFLog(@"toView.frame.origin.y:        %f",toView.frame.origin.y);
+    MFLog(@"toView.frame.origin.width:    %f",toView.frame.size.width);
+    MFLog(@"toView.frame.origin.height:   %f\n ",toView.frame.size.height);
+    MFLog(@"toView.bounds.size.width:     %f",toView.bounds.size.width);
+    MFLog(@"toView.bounds.size.height:    %f",toView.bounds.size.height);
+    MFLog(@"toView.bounds.origin.x:       %f",toView.bounds.origin.x);
+    MFLog(@"toView.bounds.origin.y:       %f\n ",toView.bounds.origin.y);
+    MFLog(@"BEFORE");
+    MFLog(@"containerView.frame.origin.x:        %f",containerView.frame.origin.x);
+    MFLog(@"containerView.frame.origin.y:        %f",containerView.frame.origin.y);
+    MFLog(@"containerView.frame.origin.width:    %f",containerView.frame.size.width);
+    MFLog(@"containerView.frame.origin.height:   %f\n ",containerView.frame.size.height);
+    MFLog(@"containerView.bounds.size.width:     %f",containerView.bounds.size.width);
+    MFLog(@"containerView.bounds.size.height:    %f",containerView.bounds.size.height);
+    MFLog(@"containerView.bounds.origin.x:       %f",containerView.bounds.origin.x);
+    MFLog(@"containerView.bounds.origin.y:       %f\n ",containerView.bounds.origin.y);*/
     
     
     /* Get the correct device frame  */
@@ -155,7 +154,6 @@
                          }];
     }
 }
-
 
 
 #pragma mark - Helpers methods to transform the coordinate system.

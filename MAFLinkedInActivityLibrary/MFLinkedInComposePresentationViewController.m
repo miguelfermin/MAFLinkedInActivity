@@ -45,14 +45,13 @@
 }
 
 
-
 #pragma mark - Whenever the device orientation changes, update constraints constants to position view correctly
 
 -(void)viewWillLayoutSubviews {
     /* 
      * All constraints are setup in IB. Here we adjust the constraint constant property to compensate for device type and orientation changes.
      *
-     * It is more effecient to change the constraint constant property value then creating a brand new constraint. Below is Apple doc explaing that:
+     * It is more effecient to change the constraint constant property value than creating a brand new constraint. Below is Apple doc explaing that:
      *
      * Unlike the other properties, the constant may be modified after constraint creation. 
      * Setting the constant on an existing constraint performs much better than removing the constraint and adding a new one that's just like the old but for having a new constant.
@@ -129,7 +128,6 @@
 }
 
 
-
 #pragma mark - Embed Segue Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -156,7 +154,6 @@
         [_composeViewController setLinkedInActivityItem:_linkedInActivityItem];
     }
 }
-
 
 
 #pragma mark - Helper Methods

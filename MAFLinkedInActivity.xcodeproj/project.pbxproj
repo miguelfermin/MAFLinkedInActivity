@@ -30,7 +30,6 @@
 		E150A48C187B525100F7B446 /* MFLinkedInAccount.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E150A489187B4BFC00F7B446 /* MFLinkedInAccount.h */; };
 		E150A48F187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E150A48E187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m */; };
 		E150A490187B631200F7B446 /* MFLinkedInAuthenticationViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E150A48D187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.h */; };
-		E1510F5D18AE4F880089FEA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1510F5B18AE4F880089FEA4 /* InfoPlist.strings */; };
 		E16D7E6418635E33001BA35F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6318635E33001BA35F /* Foundation.framework */; };
 		E16D7E7218635E33001BA35F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E7118635E33001BA35F /* XCTest.framework */; };
 		E16D7E7318635E33001BA35F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6318635E33001BA35F /* Foundation.framework */; };
@@ -66,6 +65,8 @@
 		E187302418B253BB0092C604 /* Tech Companies Press.png in Resources */ = {isa = PBXBuildFile; fileRef = E187302218B253BB0092C604 /* Tech Companies Press.png */; };
 		E187302918B254150092C604 /* libMAFLinkedInActivity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6018635E33001BA35F /* libMAFLinkedInActivity.a */; };
 		E187302A18B254A80092C604 /* MAFLinkedInActivityResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityResources.bundle */; };
+		E19ACD4218B2A26200BDF2F4 /* MAFLinkedInActivity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E19ACD4118B29EF200BDF2F4 /* MAFLinkedInActivity.h */; };
+		E19ACD4918B2B90C00BDF2F4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E19ACD4718B2B90C00BDF2F4 /* Localizable.strings */; };
 		E1B97B9C1896C99600FE5326 /* MFLinkedInComposePresentationViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E11F97E81892F7E500CE4F67 /* MFLinkedInComposePresentationViewController.h */; };
 		E1B97B9D1896F17400FE5326 /* MFLinkedInVisivilityViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E11F97EE1892FB3300CE4F67 /* MFLinkedInVisivilityViewController.h */; };
 		E1B97BA0189705AA00FE5326 /* MFTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B97B9F189705AA00FE5326 /* MFTransitioningDelegate.m */; };
@@ -115,6 +116,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				E19ACD4218B2A26200BDF2F4 /* MAFLinkedInActivity.h in CopyFiles */,
 				E1B97B9D1896F17400FE5326 /* MFLinkedInVisivilityViewController.h in CopyFiles */,
 				E1DE8E25188591EE0010010E /* MFLinkedInComposeViewController.h in CopyFiles */,
 				E16D7E96186368AA001BA35F /* MFLinkedInUIActivity.h in CopyFiles */,
@@ -142,7 +144,6 @@
 		E150A48E187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInAuthenticationViewController.m; sourceTree = "<group>"; };
 		E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MAFLinkedInActivityResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1510F5A18AE4F880089FEA4 /* MAFLinkedInActivityResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MAFLinkedInActivityResources-Info.plist"; sourceTree = "<group>"; };
-		E1510F5C18AE4F880089FEA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E16D7E6018635E33001BA35F /* libMAFLinkedInActivity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMAFLinkedInActivity.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16D7E6318635E33001BA35F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E16D7E6718635E33001BA35F /* MAFLinkedInActivity-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MAFLinkedInActivity-Prefix.pch"; sourceTree = "<group>"; };
@@ -182,6 +183,8 @@
 		E187301E18B253940092C604 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		E187302118B253BB0092C604 /* AGI Sells Aircraft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AGI Sells Aircraft.png"; sourceTree = "<group>"; };
 		E187302218B253BB0092C604 /* Tech Companies Press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tech Companies Press.png"; sourceTree = "<group>"; };
+		E19ACD4118B29EF200BDF2F4 /* MAFLinkedInActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAFLinkedInActivity.h; sourceTree = "<group>"; };
+		E19ACD4818B2B90C00BDF2F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E1B97B9E189705AA00FE5326 /* MFTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitioningDelegate.h; sourceTree = "<group>"; };
 		E1B97B9F189705AA00FE5326 /* MFTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitioningDelegate.m; sourceTree = "<group>"; };
 		E1DE8E22188590730010010E /* MFLinkedInComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInComposeViewController.h; sourceTree = "<group>"; };
@@ -247,7 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				E1510F5A18AE4F880089FEA4 /* MAFLinkedInActivityResources-Info.plist */,
-				E1510F5B18AE4F880089FEA4 /* InfoPlist.strings */,
+				E19ACD4718B2B90C00BDF2F4 /* Localizable.strings */,
 				E1872FC618B251F70092C604 /* linkedIn-negative.png */,
 				E1872FC718B251F70092C604 /* linkedIn-negative@2x.png */,
 				E1872FC818B251F70092C604 /* linkedIn-negative@2x~ipad.png */,
@@ -320,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				E16D7E6718635E33001BA35F /* MAFLinkedInActivity-Prefix.pch */,
+				E19ACD4118B29EF200BDF2F4 /* MAFLinkedInActivity.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -492,6 +496,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = E16D7E5718635E33001BA35F;
 			productRefGroup = E16D7E6118635E33001BA35F /* Products */;
@@ -513,6 +518,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1872FD518B251F70092C604 /* linkedIn-positive~ipad.png in Resources */,
+				E19ACD4918B2B90C00BDF2F4 /* Localizable.strings in Resources */,
 				E1872FD018B251F70092C604 /* linkedIn-negative@2x~ipad.png in Resources */,
 				E1872FD318B251F70092C604 /* linkedIn-positive@2x.png in Resources */,
 				E1872FD118B251F70092C604 /* linkedIn-negative~ipad.png in Resources */,
@@ -523,7 +529,6 @@
 				E1872FCF18B251F70092C604 /* linkedIn-negative@2x.png in Resources */,
 				E187301618B2533D0092C604 /* Post-placeholder.png in Resources */,
 				E1872FCE18B251F70092C604 /* linkedIn-negative.png in Resources */,
-				E1510F5D18AE4F880089FEA4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,14 +673,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E1510F5B18AE4F880089FEA4 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1510F5C18AE4F880089FEA4 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		E16D7E7C18635E33001BA35F /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -690,6 +687,14 @@
 				E1872FE718B252F90092C604 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E19ACD4718B2B90C00BDF2F4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E19ACD4818B2B90C00BDF2F4 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

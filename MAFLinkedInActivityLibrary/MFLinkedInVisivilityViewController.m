@@ -7,6 +7,7 @@
 //
 
 #import "MFLinkedInVisivilityViewController.h"
+#import "MAFLinkedInActivity.h"
 
 @interface MFLinkedInVisivilityViewController ()
 
@@ -42,12 +43,11 @@
 }
 
 
-
 #pragma mark - Update UI
 
 -(void)updateInterface {
     
-    //NSLog(@"_composeViewController.visibilityCode: %@",_composeViewController.visibilityCode);
+    MFLog(@"MFLinkedInVisivilityViewController-updateInterface. Visibility Code: %@",_composeViewController.visibilityCode);
     
     // Make sure all cells accessory types are "UITableViewCellAccessoryNone" before setting them.
     
@@ -68,7 +68,6 @@
         [[[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] setAccessoryType:UITableViewCellAccessoryCheckmark];
     }
 }
-
 
 
 #pragma mark - Table view delegate

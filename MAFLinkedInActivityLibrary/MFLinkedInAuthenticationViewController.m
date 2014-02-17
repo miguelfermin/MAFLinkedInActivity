@@ -7,6 +7,7 @@
 //
 
 #import "MFLinkedInAuthenticationViewController.h"
+#import "MAFLinkedInActivity.h"
 
 #define DENIED_REQUEST_ERROR_DESCRIPTION @"the+user+denied+your+request" // Short description of the user canceled authorization error. Provided by LinkedIn Documentation.
 
@@ -40,7 +41,6 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 }
 
 
-
 #pragma mark - UIWebViewDelegate Methods
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -58,7 +58,7 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
      */
     
     NSString *redirectedURLString = [[request URL] absoluteString];
-    //NSLog(@"[[request URL] absoluteString]: %@\n ",[[request URL] absoluteString]);
+    MFLog(@"MFLinkedInAuthenticationViewController-webViewshouldStartLoadWithRequest:navigationType: Request URL absoluteString: %@\n ",[[request URL] absoluteString]);
     
     
     // Ensure the response has the redirected URI to then avoid it althogether. This is to make sure the redirect is avoided only when the authorization_code is requested.
@@ -73,7 +73,7 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
             
             if ([redirectedURLString rangeOfString:DENIED_REQUEST_ERROR_DESCRIPTION].location != NSNotFound) {
                 
-                //NSLog(@"ACCESS WAS DENIED\n ");
+                MFLog(@"MFLinkedInAuthenticationViewController-webViewshouldStartLoadWithRequest:navigationType:. ACCESS WAS DENIED\n ");
                 
                 [self cancelActivity];
             }
@@ -147,7 +147,6 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 }
 
 
-
 #pragma mark - Handle Authorization Results. Note: this methods are duplicated, here and in MFLinkedAccount class, needs future refactoring.
 
 ///  Request Access Token by exchanging the authorization_code for it. The response will be a JSON object containing the "expires_in" and "access_token" parameters.
@@ -155,7 +154,7 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 ///  @param         authorizationCode authorization_code obtained when the user was redirected to LinkedIn's authorization dialog.
 -(void)requestAccessTokenByExchangingAuthorizationCode:(NSString*)authorizationCode {
     
-    //NSLog(@"Authorization Code: %@\n ",authorizationCode);
+    MFLog(@"MFLinkedInAuthenticationViewController-requestAccessTokenByExchangingAuthorizationCode:. Authorization Code: %@\n ",authorizationCode);
     
     // Perform request to get access_token
     
@@ -178,8 +177,8 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
                                  * You can uncomment the line below to log the response to the console.
                                  *
                                  */
-                                //NSLog(@"data: %@\n \n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
-                                //NSLog(@"response: %@\n \n ",[[response URL]absoluteString]);
+                                //MFLog(@"MFLinkedInAuthenticationViewController-requestAccessTokenByExchangingAuthorizationCode:. data: %@\n \n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+                                MFLog(@"MFLinkedInAuthenticationViewController-requestAccessTokenByExchangingAuthorizationCode:. response: %@\n \n ",[[response URL]absoluteString]);
                                 
                                 
                                 // This method will extract the JSON object by using the NSJSONSerialization class, saves the values in the Keychain, and dismisses the authentication view.
@@ -218,7 +217,6 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
     
     [self dismissAuthenticationView];
 }
-
 
 
 #pragma mark - Helper Methods
@@ -319,7 +317,7 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 ///  @warning As of version 1.0 of the library, this method doesn nothing. Future implementation is needed.
 -(void)handleLinkedInAuthenticationError:(NSError*)error {
     // Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
-    //NSLog(@"error code: %ld, error domain: %@",(long)error.code,error.domain);
+    MFLog(@"MFLinkedInAuthenticationViewController-handleLinkedInAuthenticationError:. error code: %ld, error domain: %@",(long)error.code,error.domain);
 }
 
 // Before releasing an instance of UIWebView for which you have set a delegate, you must first set the UIWebView delegate property to nil before disposing of the UIWebView instance.
