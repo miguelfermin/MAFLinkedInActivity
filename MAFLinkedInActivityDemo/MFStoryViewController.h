@@ -11,8 +11,8 @@
 #import <UIKit/UIKit.h>
 
 // static library headers
-#import "MAFLinkedInActivityLibrary/MFLinkedInUIActivity.h"
-#import "MAFLinkedInActivityLibrary/MFLinkedInActivityItem.h"
+#import "MAFLinkedInActivity/MFLinkedInUIActivity.h"
+#import "MAFLinkedInActivity/MFLinkedInActivityItem.h"
 
 @interface MFStoryViewController : UIViewController <UISplitViewControllerDelegate, UIPopoverControllerDelegate>
 

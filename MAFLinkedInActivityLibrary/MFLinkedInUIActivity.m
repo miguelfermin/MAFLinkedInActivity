@@ -38,8 +38,7 @@
 }
 
 -(UIImage *)activityImage {
-    
-    return [UIImage imageNamed:@"linkedIn-positive"];
+    return [UIImage imageNamed:@"MAFLinkedInActivityResources.bundle/linkedIn-positive.png"];
 }
 
 -(BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
@@ -95,6 +94,11 @@
 
 -(UIViewController *)activityViewController {
     
+    // Get the resource bundle
+    NSString *resourceBundlePath = [[NSBundle mainBundle] pathForResource:@"MAFLinkedInActivityResources" ofType:@"bundle"];
+    NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
+    
+    
     // Setup  _composePresentationViewController and assign it to the _linkedInActivityViewController.
     
     UIViewController *mfViewController;
@@ -104,12 +108,12 @@
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPhone" bundle:nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPhone" bundle:resourceBundle];
         
         mfViewController = [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
     }
     else {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPad" bundle:nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPad" bundle:resourceBundle];
         
         mfViewController = [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
     }

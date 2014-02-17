@@ -1,14 +1,14 @@
 //
-//  MFAppDelegate.m
-//  MAFLinkedInActivity
+//  AppDelegate.m
+//  MAFLinkedInActivityDemo
 //
-//  Created by Miguel Fermin on 12/11/13.
-//  Copyright (c) 2013 Miguel Fermin. All rights reserved.
+//  Created by Miguel Fermin on 2/17/14.
+//  Copyright (c) 2014 Miguel Fermin. All rights reserved.
 //
 
-#import "MFAppDelegate.h"
+#import "AppDelegate.h"
 
-@implementation MFAppDelegate
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

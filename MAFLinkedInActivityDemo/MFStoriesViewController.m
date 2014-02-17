@@ -28,10 +28,8 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
-    NSLog(@"mainBundle, Demo App: %@\n ",[NSBundle mainBundle]);
+    [super viewDidLoad];
     
     // initialize MFStoryViewController
     self.storyViewController = (MFStoryViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
