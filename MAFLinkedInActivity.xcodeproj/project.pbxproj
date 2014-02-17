@@ -886,6 +886,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "MAFLinkedInActivityDemo/MAFLinkedInActivityDemo-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -906,6 +907,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAFLinkedInActivityDemo/MAFLinkedInActivityDemo-Prefix.pch";
 				INFOPLIST_FILE = "MAFLinkedInActivityDemo/MAFLinkedInActivityDemo-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -972,6 +974,7 @@
 				E187301118B252FA0092C604 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1DC946D1875BDFA0001C0C5 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
 			isa = XCConfigurationList;

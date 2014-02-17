@@ -119,21 +119,6 @@
     }
     
     
-#if 1
-    /* In order for the library client to compile these classes before the storybaords in the resource bundle are loaded, they have to be instantiated.
-     * Adding them to the Compile sources would only work for the Demo app which is a target of the same project, if for example, this library is used in a
-     * client app that has its own xcodeproj, adding the classes to the Compile Sources phase won't work.
-     */
-    MFLinkedInComposePresentationViewController *composePresentationVC = [[MFLinkedInComposePresentationViewController alloc]init];
-    MFLinkedInComposeViewController *composeVC = [[MFLinkedInComposeViewController alloc]init];
-    MFLinkedInVisivilityViewController *visivilityVC = [[MFLinkedInVisivilityViewController alloc]init];
-    
-    // Silence Objective-C #warnings
-#pragma unused(composePresentationVC,composeVC,visivilityVC)
-#endif
-    
-    
-    
     // Setup activityViewController
     
     MFLinkedInComposePresentationViewController *composePresentationViewController = (MFLinkedInComposePresentationViewController*)mfViewController;
