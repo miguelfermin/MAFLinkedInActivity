@@ -1,18 +1,18 @@
 //
-//  MAFLinkedInActivityTests.m
-//  MAFLinkedInActivityTests
+//  MAFLinkedInActivityLibraryTests.m
+//  MAFLinkedInActivityLibraryTests
 //
-//  Created by Miguel Fermin on 12/11/13.
+//  Created by Miguel Fermin on 12/19/13.
 //  Copyright (c) 2013 Miguel Fermin. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface MAFLinkedInActivityTests : XCTestCase
+@interface MAFLinkedInActivityLibraryTests : XCTestCase
 
 @end
 
-@implementation MAFLinkedInActivityTests
+@implementation MAFLinkedInActivityLibraryTests
 
 - (void)setUp
 {
