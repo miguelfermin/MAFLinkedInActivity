@@ -43,6 +43,10 @@
 
 /* Begin PBXFileReference section */
 		E11F97E61892F0D800CE4F67 /* MFCompose_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFCompose_iPad.storyboard; sourceTree = "<group>"; };
+		E13AD57618AEF04E008C3E54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E13AD57718AEF04E008C3E54 /* MAFLinkedInActivityResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MAFLinkedInActivityResources-Info.plist"; sourceTree = "<group>"; };
+		E13AD57818AEF04E008C3E54 /* MAFLinkedInActivityResources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MAFLinkedInActivityResources-Prefix.pch"; sourceTree = "<group>"; };
+		E13AD57918AEF04E008C3E54 /* orange.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = orange.jpeg; sourceTree = "<group>"; };
 		E15E0954187F45EA0091ABA6 /* libMAFLinkedInActivityLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMAFLinkedInActivityLibrary.a; path = "../../../../Library/Developer/Xcode/DerivedData/MAFLinkedInActivity-aslfnacxzhmqcjarqeyzqpjgzyvo/Build/Products/Debug-iphoneos/libMAFLinkedInActivityLibrary.a"; sourceTree = "<group>"; };
 		E18415AF18AC19D30051D795 /* Post-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Post-placeholder.png"; sourceTree = "<group>"; };
 		E1D5C873188B0F2200848372 /* AGI Sells Aircraft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AGI Sells Aircraft.png"; path = "MAFLinkedInActivity/MAFLinkedInActivityResources/AGI Sells Aircraft.png"; sourceTree = "<group>"; };
@@ -107,6 +111,18 @@
 			name = "MAFLinkedInActivity Resources";
 			sourceTree = "<group>";
 		};
+		E13AD57418AEF04E008C3E54 /* MAFLinkedInActivityResources */ = {
+			isa = PBXGroup;
+			children = (
+				E13AD57518AEF04E008C3E54 /* InfoPlist.strings */,
+				E13AD57718AEF04E008C3E54 /* MAFLinkedInActivityResources-Info.plist */,
+				E13AD57818AEF04E008C3E54 /* MAFLinkedInActivityResources-Prefix.pch */,
+				E13AD57918AEF04E008C3E54 /* orange.jpeg */,
+			);
+			name = MAFLinkedInActivityResources;
+			path = MAFLinkedInActivityLibrary/MAFLinkedInActivityResources;
+			sourceTree = "<group>";
+		};
 		E199B305185F833D0010035F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +148,7 @@
 		E1E8F77718593AC00078909D = {
 			isa = PBXGroup;
 			children = (
+				E13AD57418AEF04E008C3E54 /* MAFLinkedInActivityResources */,
 				E112A136188ADC02007EDB18 /* MAFLinkedInActivity Resources */,
 				E199B306185F83B70010035F /* Views */,
 				E199B305185F833D0010035F /* View Controllers */,
@@ -333,6 +350,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E13AD57518AEF04E008C3E54 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E13AD57618AEF04E008C3E54 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		E1E8F78C18593AC00078909D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

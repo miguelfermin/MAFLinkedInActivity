@@ -13,6 +13,11 @@
 
 #define DAYS_BEFORE_EXPIRATION -10 // How soon would you like to refresh the access_token from the expiration date. This value must be negative.
 
+
+#ifndef MFLog
+    #define MFLog(fmt, ...) NSLog(fmt, ##__VA_ARGS__)
+#endif
+
 static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDomain";
 
 @interface MFLinkedInAccount ()
@@ -24,6 +29,8 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
     self = [super init];
     
     if (self) {
+        
+        //MFLog(@"Just testing the MFLog macro: %@",MAFLinkedInActivityErrorDomain);
         
         // Uncomment to see all items in keychain
         //NSLog(@"_keychainStore: %@", [UICKeyChainStore keyChainStoreWithService:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"]);
@@ -289,8 +296,6 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
             // Request Access Token by exchanging the authorization_code for it.
             
             [self requestAccessTokenByExchangingAuthorizationCode:authorizationCode];
-            
-            NSLog(@"handleAuthorizationCodeWithResponse::");
         }
         else {
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: NSLocalizedString(@"Refresh access token was unsuccessful.", nil),

@@ -30,6 +30,8 @@
 		E150A48C187B525100F7B446 /* MFLinkedInAccount.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E150A489187B4BFC00F7B446 /* MFLinkedInAccount.h */; };
 		E150A48F187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E150A48E187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m */; };
 		E150A490187B631200F7B446 /* MFLinkedInAuthenticationViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E150A48D187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.h */; };
+		E1510F5D18AE4F880089FEA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1510F5B18AE4F880089FEA4 /* InfoPlist.strings */; };
+		E1510F6C18AE54950089FEA4 /* orange.jpeg in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1510F6B18AE54950089FEA4 /* orange.jpeg */; };
 		E16D7E6418635E33001BA35F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6318635E33001BA35F /* Foundation.framework */; };
 		E16D7E7218635E33001BA35F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E7118635E33001BA35F /* XCTest.framework */; };
 		E16D7E7318635E33001BA35F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6318635E33001BA35F /* Foundation.framework */; };
@@ -43,6 +45,7 @@
 		E1B97B9D1896F17400FE5326 /* MFLinkedInVisivilityViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E11F97EE1892FB3300CE4F67 /* MFLinkedInVisivilityViewController.h */; };
 		E1B97BA0189705AA00FE5326 /* MFTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B97B9F189705AA00FE5326 /* MFTransitioningDelegate.m */; };
 		E1B97BA21897076700FE5326 /* MFTransitioningDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1B97B9E189705AA00FE5326 /* MFTransitioningDelegate.h */; };
+		E1D6164018AE743700290E36 /* MAFLinkedInActivityLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityLibrary.bundle */; };
 		E1DE8E24188590730010010E /* MFLinkedInComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DE8E23188590730010010E /* MFLinkedInComposeViewController.m */; };
 		E1DE8E25188591EE0010010E /* MFLinkedInComposeViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1DE8E22188590730010010E /* MFLinkedInComposeViewController.h */; };
 /* End PBXBuildFile section */
@@ -58,6 +61,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		E1510F6218AE532D0089FEA4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				E1510F6C18AE54950089FEA4 /* orange.jpeg in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E16D7E5E18635E33001BA35F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -89,6 +102,11 @@
 		E150A48A187B4BFC00F7B446 /* MFLinkedInAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInAccount.m; sourceTree = "<group>"; };
 		E150A48D187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInAuthenticationViewController.h; sourceTree = "<group>"; };
 		E150A48E187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInAuthenticationViewController.m; sourceTree = "<group>"; };
+		E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityLibrary.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MAFLinkedInActivityLibrary.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1510F5A18AE4F880089FEA4 /* MAFLinkedInActivityResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MAFLinkedInActivityResources-Info.plist"; sourceTree = "<group>"; };
+		E1510F5C18AE4F880089FEA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1510F5E18AE4F880089FEA4 /* MAFLinkedInActivityResources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MAFLinkedInActivityResources-Prefix.pch"; sourceTree = "<group>"; };
+		E1510F6B18AE54950089FEA4 /* orange.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = orange.jpeg; path = MAFLinkedInActivityResources/orange.jpeg; sourceTree = "<group>"; };
 		E16D7E6018635E33001BA35F /* libMAFLinkedInActivityLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMAFLinkedInActivityLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16D7E6318635E33001BA35F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E16D7E6718635E33001BA35F /* MAFLinkedInActivityLibrary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MAFLinkedInActivityLibrary-Prefix.pch"; sourceTree = "<group>"; };
@@ -117,6 +135,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E1510F5318AE4F880089FEA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E16D7E5D18635E33001BA35F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -151,12 +176,32 @@
 			name = "Custom Transition";
 			sourceTree = "<group>";
 		};
+		E1510F5818AE4F880089FEA4 /* MAFLinkedInActivityResources */ = {
+			isa = PBXGroup;
+			children = (
+				E1510F5A18AE4F880089FEA4 /* MAFLinkedInActivityResources-Info.plist */,
+				E1510F5918AE4F880089FEA4 /* Supporting Files */,
+			);
+			path = MAFLinkedInActivityResources;
+			sourceTree = "<group>";
+		};
+		E1510F5918AE4F880089FEA4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1510F5B18AE4F880089FEA4 /* InfoPlist.strings */,
+				E1510F5E18AE4F880089FEA4 /* MAFLinkedInActivityResources-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		E16D7E5718635E33001BA35F = {
 			isa = PBXGroup;
 			children = (
+				E1510F6B18AE54950089FEA4 /* orange.jpeg */,
 				E16D7E6518635E33001BA35F /* MAFLinkedInActivityLibrary */,
 				E1D5C842188B0A1800848372 /* MAFLinkedInActivityLibrary Resources */,
 				E16D7E7918635E33001BA35F /* MAFLinkedInActivityLibraryTests */,
+				E1510F5818AE4F880089FEA4 /* MAFLinkedInActivityResources */,
 				E16D7E6218635E33001BA35F /* Frameworks */,
 				E16D7E6118635E33001BA35F /* Products */,
 				2F43C997E76E473B9C8E9600 /* Pods.xcconfig */,
@@ -168,6 +213,7 @@
 			children = (
 				E16D7E6018635E33001BA35F /* libMAFLinkedInActivityLibrary.a */,
 				E16D7E7018635E33001BA35F /* MAFLinkedInActivityLibraryTests.xctest */,
+				E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityLibrary.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -265,6 +311,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E1510F5518AE4F880089FEA4 /* MAFLinkedInActivityResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1510F6118AE4F880089FEA4 /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityResources" */;
+			buildPhases = (
+				E1510F5218AE4F880089FEA4 /* Sources */,
+				E1510F5318AE4F880089FEA4 /* Frameworks */,
+				E1510F5418AE4F880089FEA4 /* Resources */,
+				E1510F6218AE532D0089FEA4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MAFLinkedInActivityResources;
+			productName = MAFLinkedInActivityResources;
+			productReference = E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityLibrary.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		E16D7E5F18635E33001BA35F /* MAFLinkedInActivityLibrary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E16D7E8318635E33001BA35F /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityLibrary" */;
@@ -327,11 +391,20 @@
 				E16D7E5F18635E33001BA35F /* MAFLinkedInActivityLibrary */,
 				E16D7E6F18635E33001BA35F /* MAFLinkedInActivityLibraryTests */,
 				E1DC946A1875BDFA0001C0C5 /* Documentation */,
+				E1510F5518AE4F880089FEA4 /* MAFLinkedInActivityResources */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E1510F5418AE4F880089FEA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1510F5D18AE4F880089FEA4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E16D7E6E18635E33001BA35F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -344,6 +417,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1D6164018AE743700290E36 /* MAFLinkedInActivityLibrary.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +470,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E1510F5218AE4F880089FEA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E16D7E5C18635E33001BA35F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,6 +511,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E1510F5B18AE4F880089FEA4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1510F5C18AE4F880089FEA4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		E16D7E7C18635E33001BA35F /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -441,6 +530,39 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E1510F5F18AE4F880089FEA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MAFLinkedInActivityResources/MAFLinkedInActivityResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = MAFLinkedInActivityLibrary;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		E1510F6018AE4F880089FEA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "MAFLinkedInActivityResources/MAFLinkedInActivityResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = MAFLinkedInActivityLibrary;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		E16D7E8118635E33001BA35F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -598,6 +720,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E1510F6118AE4F880089FEA4 /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1510F5F18AE4F880089FEA4 /* Debug */,
+				E1510F6018AE4F880089FEA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E16D7E5B18635E33001BA35F /* Build configuration list for PBXProject "MAFLinkedInActivityLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

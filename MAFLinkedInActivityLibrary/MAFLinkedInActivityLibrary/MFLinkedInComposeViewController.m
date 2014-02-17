@@ -97,6 +97,19 @@
     // Added transucent effect similar to the built-in service
     
     self.view.alpha = 0.96f;
+    
+    
+    NSLog(@"mainBundle, Library: %@\n ",[NSBundle mainBundle]);
+    //[MFLinkedInComposeViewController frameworkBundle];
+    
+    //NSLog(@"main bundle: %@",[NSBundle mainBundle]);
+    
+    
+    NSString *resourceBundlePath = [[NSBundle mainBundle] pathForResource:@"MAFLinkedInActivityLibrary" ofType:@"bundle"];
+    
+    NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
+    
+    NSLog(@"resourceBundle: %@",resourceBundle);
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -590,6 +603,31 @@
         
         [_visivilityViewController updateInterface];
     }
+}
+
+
+#pragma mark - Load the Resource Bundle
+
++ (NSBundle *)frameworkBundle {
+    
+    static NSBundle* frameworkBundle = nil;
+    
+    static dispatch_once_t predicate;
+    
+    dispatch_once(&predicate, ^{
+        
+        NSString* mainBundlePath = [[NSBundle mainBundle] resourcePath];
+        
+        //NSLog(@"mainBundlePath: %@",mainBundlePath);
+        
+        NSString* frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:@"MAFLinkedInActivityLibrary.bundle"];
+        
+        frameworkBundle = [NSBundle bundleWithPath:frameworkBundlePath];
+        
+        NSLog(@"frameworkBundle: %@",frameworkBundle);
+    });
+    
+    return frameworkBundle;
 }
 
 
