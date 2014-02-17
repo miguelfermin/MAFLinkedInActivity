@@ -97,19 +97,6 @@
     // Added transucent effect similar to the built-in service
     
     self.view.alpha = 0.96f;
-    
-    
-    NSLog(@"mainBundle, Library: %@\n ",[NSBundle mainBundle]);
-    //[MFLinkedInComposeViewController frameworkBundle];
-    
-    //NSLog(@"main bundle: %@",[NSBundle mainBundle]);
-    
-    
-    NSString *resourceBundlePath = [[NSBundle mainBundle] pathForResource:@"MAFLinkedInActivityLibrary" ofType:@"bundle"];
-    
-    NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
-    
-    NSLog(@"resourceBundle: %@",resourceBundle);
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -304,12 +291,11 @@
     
     if ([_linkedInActivityItem submittedImageURL] != nil) {
         
-        //NSLog(@"submittedImageURL is valid, post image");
-        
+        // submittedImageURL is valid, post image
         
         // Placeholder image
         
-        [_contentImageView setImage:[UIImage imageNamed:@"Post-placeholder"]];
+        [_contentImageView setImage:[UIImage imageNamed:@"MAFLinkedInActivityResources.bundle/Post-placeholder.png"]];
         
         dispatch_queue_t imageDownloadQueue = dispatch_queue_create("imageDownloadQueue", DISPATCH_QUEUE_SERIAL);
         
@@ -330,9 +316,9 @@
     }
     else {
         
-        //NSLog(@"submittedImageURL is NOT valid, post link");
+        // submittedImageURL is NOT valid, post link
         
-        [_contentImageView setImage:[UIImage imageNamed:@"Post-placeholder"]];
+        [_contentImageView setImage:[UIImage imageNamed:@"MAFLinkedInActivityResources.bundle/Post-placeholder.png"]];
     }
     
     // Set anyone  as default visibility code when the compose view is presented.
@@ -602,6 +588,11 @@
         [_visivilityViewController setComposeViewController:self];
         
         [_visivilityViewController updateInterface];
+        
+        
+        // Dismiss keyboard when presenting Visibility view to match the built-in services
+        
+        [_contentCommentTextView resignFirstResponder];
     }
 }
 

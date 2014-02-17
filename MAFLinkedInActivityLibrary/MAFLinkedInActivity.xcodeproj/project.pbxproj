@@ -31,21 +31,46 @@
 		E150A48F187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E150A48E187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m */; };
 		E150A490187B631200F7B446 /* MFLinkedInAuthenticationViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E150A48D187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.h */; };
 		E1510F5D18AE4F880089FEA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1510F5B18AE4F880089FEA4 /* InfoPlist.strings */; };
-		E1510F6C18AE54950089FEA4 /* orange.jpeg in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1510F6B18AE54950089FEA4 /* orange.jpeg */; };
 		E16D7E6418635E33001BA35F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6318635E33001BA35F /* Foundation.framework */; };
 		E16D7E7218635E33001BA35F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E7118635E33001BA35F /* XCTest.framework */; };
 		E16D7E7318635E33001BA35F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6318635E33001BA35F /* Foundation.framework */; };
 		E16D7E7518635E33001BA35F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E7418635E33001BA35F /* UIKit.framework */; };
-		E16D7E7818635E33001BA35F /* libMAFLinkedInActivityLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6018635E33001BA35F /* libMAFLinkedInActivityLibrary.a */; };
+		E16D7E7818635E33001BA35F /* libMAFLinkedInActivity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6018635E33001BA35F /* libMAFLinkedInActivity.a */; };
 		E16D7E7E18635E33001BA35F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E16D7E7C18635E33001BA35F /* InfoPlist.strings */; };
 		E16D7E8018635E33001BA35F /* MAFLinkedInActivityLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E16D7E7F18635E33001BA35F /* MAFLinkedInActivityLibraryTests.m */; };
 		E16D7E95186368A0001BA35F /* MFLinkedInUIActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E16D7E94186368A0001BA35F /* MFLinkedInUIActivity.m */; };
 		E16D7E96186368AA001BA35F /* MFLinkedInUIActivity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E16D7E93186368A0001BA35F /* MFLinkedInUIActivity.h */; };
+		E1872FCE18B251F70092C604 /* linkedIn-negative.png in Resources */ = {isa = PBXBuildFile; fileRef = E1872FC618B251F70092C604 /* linkedIn-negative.png */; };
+		E1872FCF18B251F70092C604 /* linkedIn-negative@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1872FC718B251F70092C604 /* linkedIn-negative@2x.png */; };
+		E1872FD018B251F70092C604 /* linkedIn-negative@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E1872FC818B251F70092C604 /* linkedIn-negative@2x~ipad.png */; };
+		E1872FD118B251F70092C604 /* linkedIn-negative~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E1872FC918B251F70092C604 /* linkedIn-negative~ipad.png */; };
+		E1872FD218B251F70092C604 /* linkedIn-positive.png in Resources */ = {isa = PBXBuildFile; fileRef = E1872FCA18B251F70092C604 /* linkedIn-positive.png */; };
+		E1872FD318B251F70092C604 /* linkedIn-positive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1872FCB18B251F70092C604 /* linkedIn-positive@2x.png */; };
+		E1872FD418B251F70092C604 /* linkedIn-positive@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E1872FCC18B251F70092C604 /* linkedIn-positive@2x~ipad.png */; };
+		E1872FD518B251F70092C604 /* linkedIn-positive~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E1872FCD18B251F70092C604 /* linkedIn-positive~ipad.png */; };
+		E1872FD818B2523A0092C604 /* MFCompose_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1872FD618B2523A0092C604 /* MFCompose_iPad.storyboard */; };
+		E1872FD918B2523A0092C604 /* MFCompose_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1872FD718B2523A0092C604 /* MFCompose_iPhone.storyboard */; };
+		E1872FDF18B252F90092C604 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6318635E33001BA35F /* Foundation.framework */; };
+		E1872FE118B252F90092C604 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1872FE018B252F90092C604 /* CoreGraphics.framework */; };
+		E1872FE218B252F90092C604 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E7418635E33001BA35F /* UIKit.framework */; };
+		E1872FE818B252F90092C604 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1872FE618B252F90092C604 /* InfoPlist.strings */; };
+		E1872FEA18B252F90092C604 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E1872FE918B252F90092C604 /* main.m */; };
+		E1872FEE18B252FA0092C604 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1872FED18B252FA0092C604 /* AppDelegate.m */; };
+		E1872FFC18B252FA0092C604 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1872FFB18B252FA0092C604 /* Images.xcassets */; };
+		E187301618B2533D0092C604 /* Post-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = E187301518B2533D0092C604 /* Post-placeholder.png */; };
+		E187301B18B253790092C604 /* MFStoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E187301818B253790092C604 /* MFStoriesViewController.m */; };
+		E187301C18B253790092C604 /* MFStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E187301A18B253790092C604 /* MFStoryViewController.m */; };
+		E187301F18B253940092C604 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E187301D18B253940092C604 /* Main_iPad.storyboard */; };
+		E187302018B253940092C604 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E187301E18B253940092C604 /* Main_iPhone.storyboard */; };
+		E187302318B253BB0092C604 /* AGI Sells Aircraft.png in Resources */ = {isa = PBXBuildFile; fileRef = E187302118B253BB0092C604 /* AGI Sells Aircraft.png */; };
+		E187302418B253BB0092C604 /* Tech Companies Press.png in Resources */ = {isa = PBXBuildFile; fileRef = E187302218B253BB0092C604 /* Tech Companies Press.png */; };
+		E187302918B254150092C604 /* libMAFLinkedInActivity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6018635E33001BA35F /* libMAFLinkedInActivity.a */; };
+		E187302A18B254A80092C604 /* MAFLinkedInActivityResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityResources.bundle */; };
 		E1B97B9C1896C99600FE5326 /* MFLinkedInComposePresentationViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E11F97E81892F7E500CE4F67 /* MFLinkedInComposePresentationViewController.h */; };
 		E1B97B9D1896F17400FE5326 /* MFLinkedInVisivilityViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E11F97EE1892FB3300CE4F67 /* MFLinkedInVisivilityViewController.h */; };
 		E1B97BA0189705AA00FE5326 /* MFTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B97B9F189705AA00FE5326 /* MFTransitioningDelegate.m */; };
 		E1B97BA21897076700FE5326 /* MFTransitioningDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1B97B9E189705AA00FE5326 /* MFTransitioningDelegate.h */; };
-		E1D6164018AE743700290E36 /* MAFLinkedInActivityLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityLibrary.bundle */; };
+		E1D6164018AE743700290E36 /* MAFLinkedInActivityResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityResources.bundle */; };
 		E1DE8E24188590730010010E /* MFLinkedInComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DE8E23188590730010010E /* MFLinkedInComposeViewController.m */; };
 		E1DE8E25188591EE0010010E /* MFLinkedInComposeViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E1DE8E22188590730010010E /* MFLinkedInComposeViewController.h */; };
 /* End PBXBuildFile section */
@@ -58,6 +83,20 @@
 			remoteGlobalIDString = E16D7E5F18635E33001BA35F;
 			remoteInfo = MAFLinkedInActivityLibrary;
 		};
+		E187302518B254020092C604 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E16D7E5818635E33001BA35F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E16D7E5F18635E33001BA35F;
+			remoteInfo = MAFLinkedInActivity;
+		};
+		E187302718B254070092C604 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E16D7E5818635E33001BA35F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1510F5518AE4F880089FEA4;
+			remoteInfo = MAFLinkedInActivityResources;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,7 +106,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				E1510F6C18AE54950089FEA4 /* orange.jpeg in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,15 +140,13 @@
 		E150A48A187B4BFC00F7B446 /* MFLinkedInAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInAccount.m; sourceTree = "<group>"; };
 		E150A48D187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInAuthenticationViewController.h; sourceTree = "<group>"; };
 		E150A48E187B62CC00F7B446 /* MFLinkedInAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInAuthenticationViewController.m; sourceTree = "<group>"; };
-		E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityLibrary.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MAFLinkedInActivityLibrary.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MAFLinkedInActivityResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1510F5A18AE4F880089FEA4 /* MAFLinkedInActivityResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MAFLinkedInActivityResources-Info.plist"; sourceTree = "<group>"; };
 		E1510F5C18AE4F880089FEA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E1510F5E18AE4F880089FEA4 /* MAFLinkedInActivityResources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MAFLinkedInActivityResources-Prefix.pch"; sourceTree = "<group>"; };
-		E1510F6B18AE54950089FEA4 /* orange.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = orange.jpeg; path = MAFLinkedInActivityResources/orange.jpeg; sourceTree = "<group>"; };
-		E16D7E6018635E33001BA35F /* libMAFLinkedInActivityLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMAFLinkedInActivityLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E16D7E6018635E33001BA35F /* libMAFLinkedInActivity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMAFLinkedInActivity.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16D7E6318635E33001BA35F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		E16D7E6718635E33001BA35F /* MAFLinkedInActivityLibrary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MAFLinkedInActivityLibrary-Prefix.pch"; sourceTree = "<group>"; };
-		E16D7E7018635E33001BA35F /* MAFLinkedInActivityLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MAFLinkedInActivityLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E16D7E6718635E33001BA35F /* MAFLinkedInActivity-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MAFLinkedInActivity-Prefix.pch"; sourceTree = "<group>"; };
+		E16D7E7018635E33001BA35F /* MAFLinkedInActivityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MAFLinkedInActivityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E16D7E7118635E33001BA35F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E16D7E7418635E33001BA35F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		E16D7E7B18635E33001BA35F /* MAFLinkedInActivityLibraryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MAFLinkedInActivityLibraryTests-Info.plist"; sourceTree = "<group>"; };
@@ -118,16 +154,36 @@
 		E16D7E7F18635E33001BA35F /* MAFLinkedInActivityLibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAFLinkedInActivityLibraryTests.m; sourceTree = "<group>"; };
 		E16D7E93186368A0001BA35F /* MFLinkedInUIActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInUIActivity.h; sourceTree = "<group>"; };
 		E16D7E94186368A0001BA35F /* MFLinkedInUIActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInUIActivity.m; sourceTree = "<group>"; };
+		E1872FC618B251F70092C604 /* linkedIn-negative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative.png"; sourceTree = "<group>"; };
+		E1872FC718B251F70092C604 /* linkedIn-negative@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative@2x.png"; sourceTree = "<group>"; };
+		E1872FC818B251F70092C604 /* linkedIn-negative@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative@2x~ipad.png"; sourceTree = "<group>"; };
+		E1872FC918B251F70092C604 /* linkedIn-negative~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative~ipad.png"; sourceTree = "<group>"; };
+		E1872FCA18B251F70092C604 /* linkedIn-positive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive.png"; sourceTree = "<group>"; };
+		E1872FCB18B251F70092C604 /* linkedIn-positive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive@2x.png"; sourceTree = "<group>"; };
+		E1872FCC18B251F70092C604 /* linkedIn-positive@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive@2x~ipad.png"; sourceTree = "<group>"; };
+		E1872FCD18B251F70092C604 /* linkedIn-positive~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive~ipad.png"; sourceTree = "<group>"; };
+		E1872FD618B2523A0092C604 /* MFCompose_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFCompose_iPad.storyboard; sourceTree = "<group>"; };
+		E1872FD718B2523A0092C604 /* MFCompose_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MFCompose_iPhone.storyboard; sourceTree = "<group>"; };
+		E1872FDE18B252F90092C604 /* MAFLinkedInActivityDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAFLinkedInActivityDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1872FE018B252F90092C604 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E1872FE518B252F90092C604 /* MAFLinkedInActivityDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MAFLinkedInActivityDemo-Info.plist"; sourceTree = "<group>"; };
+		E1872FE718B252F90092C604 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1872FE918B252F90092C604 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E1872FEB18B252F90092C604 /* MAFLinkedInActivityDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MAFLinkedInActivityDemo-Prefix.pch"; sourceTree = "<group>"; };
+		E1872FEC18B252FA0092C604 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E1872FED18B252FA0092C604 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E1872FFB18B252FA0092C604 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E187301518B2533D0092C604 /* Post-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Post-placeholder.png"; sourceTree = "<group>"; };
+		E187301718B253790092C604 /* MFStoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFStoriesViewController.h; sourceTree = "<group>"; };
+		E187301818B253790092C604 /* MFStoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFStoriesViewController.m; sourceTree = "<group>"; };
+		E187301918B253790092C604 /* MFStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFStoryViewController.h; sourceTree = "<group>"; };
+		E187301A18B253790092C604 /* MFStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFStoryViewController.m; sourceTree = "<group>"; };
+		E187301D18B253940092C604 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
+		E187301E18B253940092C604 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
+		E187302118B253BB0092C604 /* AGI Sells Aircraft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AGI Sells Aircraft.png"; sourceTree = "<group>"; };
+		E187302218B253BB0092C604 /* Tech Companies Press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tech Companies Press.png"; sourceTree = "<group>"; };
 		E1B97B9E189705AA00FE5326 /* MFTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitioningDelegate.h; sourceTree = "<group>"; };
 		E1B97B9F189705AA00FE5326 /* MFTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitioningDelegate.m; sourceTree = "<group>"; };
-		E1CE61C1188B1AE20017B49E /* linkedIn-negative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative.png"; sourceTree = "<group>"; };
-		E1CE61C2188B1AE20017B49E /* linkedIn-negative@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative@2x.png"; sourceTree = "<group>"; };
-		E1CE61C3188B1AE20017B49E /* linkedIn-negative@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative@2x~ipad.png"; sourceTree = "<group>"; };
-		E1CE61C4188B1AE20017B49E /* linkedIn-negative~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-negative~ipad.png"; sourceTree = "<group>"; };
-		E1CE61C5188B1AE20017B49E /* linkedIn-positive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive.png"; sourceTree = "<group>"; };
-		E1CE61C6188B1AE20017B49E /* linkedIn-positive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive@2x.png"; sourceTree = "<group>"; };
-		E1CE61C7188B1AE20017B49E /* linkedIn-positive@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive@2x~ipad.png"; sourceTree = "<group>"; };
-		E1CE61C8188B1AE20017B49E /* linkedIn-positive~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkedIn-positive~ipad.png"; sourceTree = "<group>"; };
 		E1DE8E22188590730010010E /* MFLinkedInComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInComposeViewController.h; sourceTree = "<group>"; };
 		E1DE8E23188590730010010E /* MFLinkedInComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInComposeViewController.m; sourceTree = "<group>"; };
 		E1E1CF29188A2E9600A9258F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -156,9 +212,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E16D7E7218635E33001BA35F /* XCTest.framework in Frameworks */,
-				E16D7E7818635E33001BA35F /* libMAFLinkedInActivityLibrary.a in Frameworks */,
+				E16D7E7818635E33001BA35F /* libMAFLinkedInActivity.a in Frameworks */,
 				E16D7E7518635E33001BA35F /* UIKit.framework in Frameworks */,
 				E16D7E7318635E33001BA35F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1872FDB18B252F90092C604 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E187302918B254150092C604 /* libMAFLinkedInActivity.a in Frameworks */,
+				E1872FE118B252F90092C604 /* CoreGraphics.framework in Frameworks */,
+				E1872FE218B252F90092C604 /* UIKit.framework in Frameworks */,
+				E1872FDF18B252F90092C604 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,28 +247,29 @@
 			isa = PBXGroup;
 			children = (
 				E1510F5A18AE4F880089FEA4 /* MAFLinkedInActivityResources-Info.plist */,
-				E1510F5918AE4F880089FEA4 /* Supporting Files */,
+				E1510F5B18AE4F880089FEA4 /* InfoPlist.strings */,
+				E1872FC618B251F70092C604 /* linkedIn-negative.png */,
+				E1872FC718B251F70092C604 /* linkedIn-negative@2x.png */,
+				E1872FC818B251F70092C604 /* linkedIn-negative@2x~ipad.png */,
+				E1872FC918B251F70092C604 /* linkedIn-negative~ipad.png */,
+				E1872FCA18B251F70092C604 /* linkedIn-positive.png */,
+				E1872FCB18B251F70092C604 /* linkedIn-positive@2x.png */,
+				E1872FCC18B251F70092C604 /* linkedIn-positive@2x~ipad.png */,
+				E1872FCD18B251F70092C604 /* linkedIn-positive~ipad.png */,
+				E187301518B2533D0092C604 /* Post-placeholder.png */,
+				E1872FD618B2523A0092C604 /* MFCompose_iPad.storyboard */,
+				E1872FD718B2523A0092C604 /* MFCompose_iPhone.storyboard */,
 			);
 			path = MAFLinkedInActivityResources;
-			sourceTree = "<group>";
-		};
-		E1510F5918AE4F880089FEA4 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E1510F5B18AE4F880089FEA4 /* InfoPlist.strings */,
-				E1510F5E18AE4F880089FEA4 /* MAFLinkedInActivityResources-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		E16D7E5718635E33001BA35F = {
 			isa = PBXGroup;
 			children = (
-				E1510F6B18AE54950089FEA4 /* orange.jpeg */,
 				E16D7E6518635E33001BA35F /* MAFLinkedInActivityLibrary */,
-				E1D5C842188B0A1800848372 /* MAFLinkedInActivityLibrary Resources */,
 				E16D7E7918635E33001BA35F /* MAFLinkedInActivityLibraryTests */,
 				E1510F5818AE4F880089FEA4 /* MAFLinkedInActivityResources */,
+				E1872FE318B252F90092C604 /* MAFLinkedInActivityDemo */,
 				E16D7E6218635E33001BA35F /* Frameworks */,
 				E16D7E6118635E33001BA35F /* Products */,
 				2F43C997E76E473B9C8E9600 /* Pods.xcconfig */,
@@ -211,9 +279,10 @@
 		E16D7E6118635E33001BA35F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E16D7E6018635E33001BA35F /* libMAFLinkedInActivityLibrary.a */,
-				E16D7E7018635E33001BA35F /* MAFLinkedInActivityLibraryTests.xctest */,
-				E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityLibrary.bundle */,
+				E16D7E6018635E33001BA35F /* libMAFLinkedInActivity.a */,
+				E16D7E7018635E33001BA35F /* MAFLinkedInActivityTests.xctest */,
+				E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityResources.bundle */,
+				E1872FDE18B252F90092C604 /* MAFLinkedInActivityDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -226,6 +295,7 @@
 				E16D7E7418635E33001BA35F /* UIKit.framework */,
 				F53BFFDA43E3466CA0582DC0 /* libPods.a */,
 				E1E1CF29188A2E9600A9258F /* CoreFoundation.framework */,
+				E1872FE018B252F90092C604 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -249,7 +319,7 @@
 		E16D7E6618635E33001BA35F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E16D7E6718635E33001BA35F /* MAFLinkedInActivityLibrary-Prefix.pch */,
+				E16D7E6718635E33001BA35F /* MAFLinkedInActivity-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -268,6 +338,36 @@
 			children = (
 				E16D7E7B18635E33001BA35F /* MAFLinkedInActivityLibraryTests-Info.plist */,
 				E16D7E7C18635E33001BA35F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1872FE318B252F90092C604 /* MAFLinkedInActivityDemo */ = {
+			isa = PBXGroup;
+			children = (
+				E1872FEC18B252FA0092C604 /* AppDelegate.h */,
+				E1872FED18B252FA0092C604 /* AppDelegate.m */,
+				E187301718B253790092C604 /* MFStoriesViewController.h */,
+				E187301818B253790092C604 /* MFStoriesViewController.m */,
+				E187301918B253790092C604 /* MFStoryViewController.h */,
+				E187301A18B253790092C604 /* MFStoryViewController.m */,
+				E187301D18B253940092C604 /* Main_iPad.storyboard */,
+				E187301E18B253940092C604 /* Main_iPhone.storyboard */,
+				E187302118B253BB0092C604 /* AGI Sells Aircraft.png */,
+				E187302218B253BB0092C604 /* Tech Companies Press.png */,
+				E1872FFB18B252FA0092C604 /* Images.xcassets */,
+				E1872FE418B252F90092C604 /* Supporting Files */,
+			);
+			path = MAFLinkedInActivityDemo;
+			sourceTree = "<group>";
+		};
+		E1872FE418B252F90092C604 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1872FE518B252F90092C604 /* MAFLinkedInActivityDemo-Info.plist */,
+				E1872FE618B252F90092C604 /* InfoPlist.strings */,
+				E1872FE918B252F90092C604 /* main.m */,
+				E1872FEB18B252F90092C604 /* MAFLinkedInActivityDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -293,21 +393,6 @@
 			name = Authenticate;
 			sourceTree = "<group>";
 		};
-		E1D5C842188B0A1800848372 /* MAFLinkedInActivityLibrary Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E1CE61C1188B1AE20017B49E /* linkedIn-negative.png */,
-				E1CE61C2188B1AE20017B49E /* linkedIn-negative@2x.png */,
-				E1CE61C3188B1AE20017B49E /* linkedIn-negative@2x~ipad.png */,
-				E1CE61C4188B1AE20017B49E /* linkedIn-negative~ipad.png */,
-				E1CE61C5188B1AE20017B49E /* linkedIn-positive.png */,
-				E1CE61C6188B1AE20017B49E /* linkedIn-positive@2x.png */,
-				E1CE61C7188B1AE20017B49E /* linkedIn-positive@2x~ipad.png */,
-				E1CE61C8188B1AE20017B49E /* linkedIn-positive~ipad.png */,
-			);
-			name = "MAFLinkedInActivityLibrary Resources";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -326,12 +411,12 @@
 			);
 			name = MAFLinkedInActivityResources;
 			productName = MAFLinkedInActivityResources;
-			productReference = E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityLibrary.bundle */;
+			productReference = E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityResources.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
-		E16D7E5F18635E33001BA35F /* MAFLinkedInActivityLibrary */ = {
+		E16D7E5F18635E33001BA35F /* MAFLinkedInActivity */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E16D7E8318635E33001BA35F /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityLibrary" */;
+			buildConfigurationList = E16D7E8318635E33001BA35F /* Build configuration list for PBXNativeTarget "MAFLinkedInActivity" */;
 			buildPhases = (
 				9DE893097ED94000A4C0BC8E /* Check Pods Manifest.lock */,
 				E16D7E5C18635E33001BA35F /* Sources */,
@@ -344,14 +429,14 @@
 			);
 			dependencies = (
 			);
-			name = MAFLinkedInActivityLibrary;
+			name = MAFLinkedInActivity;
 			productName = MAFLinkedInActivityLibrary;
-			productReference = E16D7E6018635E33001BA35F /* libMAFLinkedInActivityLibrary.a */;
+			productReference = E16D7E6018635E33001BA35F /* libMAFLinkedInActivity.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		E16D7E6F18635E33001BA35F /* MAFLinkedInActivityLibraryTests */ = {
+		E16D7E6F18635E33001BA35F /* MAFLinkedInActivityTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E16D7E8618635E33001BA35F /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityLibraryTests" */;
+			buildConfigurationList = E16D7E8618635E33001BA35F /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityTests" */;
 			buildPhases = (
 				E16D7E6C18635E33001BA35F /* Sources */,
 				E16D7E6D18635E33001BA35F /* Frameworks */,
@@ -362,10 +447,29 @@
 			dependencies = (
 				E16D7E7718635E33001BA35F /* PBXTargetDependency */,
 			);
-			name = MAFLinkedInActivityLibraryTests;
+			name = MAFLinkedInActivityTests;
 			productName = MAFLinkedInActivityLibraryTests;
-			productReference = E16D7E7018635E33001BA35F /* MAFLinkedInActivityLibraryTests.xctest */;
+			productReference = E16D7E7018635E33001BA35F /* MAFLinkedInActivityTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E1872FDD18B252F90092C604 /* MAFLinkedInActivityDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E187300F18B252FA0092C604 /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityDemo" */;
+			buildPhases = (
+				E1872FDA18B252F90092C604 /* Sources */,
+				E1872FDB18B252F90092C604 /* Frameworks */,
+				E1872FDC18B252F90092C604 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E187302818B254070092C604 /* PBXTargetDependency */,
+				E187302618B254020092C604 /* PBXTargetDependency */,
+			);
+			name = MAFLinkedInActivityDemo;
+			productName = MAFLinkedInActivityDemo;
+			productReference = E1872FDE18B252F90092C604 /* MAFLinkedInActivityDemo.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -375,23 +479,30 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Miguel Fermin";
+				TargetAttributes = {
+					E16D7E6F18635E33001BA35F = {
+						TestTargetID = E1872FDD18B252F90092C604;
+					};
+				};
 			};
-			buildConfigurationList = E16D7E5B18635E33001BA35F /* Build configuration list for PBXProject "MAFLinkedInActivityLibrary" */;
+			buildConfigurationList = E16D7E5B18635E33001BA35F /* Build configuration list for PBXProject "MAFLinkedInActivity" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = E16D7E5718635E33001BA35F;
 			productRefGroup = E16D7E6118635E33001BA35F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E16D7E5F18635E33001BA35F /* MAFLinkedInActivityLibrary */,
-				E16D7E6F18635E33001BA35F /* MAFLinkedInActivityLibraryTests */,
-				E1DC946A1875BDFA0001C0C5 /* Documentation */,
+				E16D7E5F18635E33001BA35F /* MAFLinkedInActivity */,
 				E1510F5518AE4F880089FEA4 /* MAFLinkedInActivityResources */,
+				E1872FDD18B252F90092C604 /* MAFLinkedInActivityDemo */,
+				E16D7E6F18635E33001BA35F /* MAFLinkedInActivityTests */,
+				E1DC946A1875BDFA0001C0C5 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -401,6 +512,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1872FD518B251F70092C604 /* linkedIn-positive~ipad.png in Resources */,
+				E1872FD018B251F70092C604 /* linkedIn-negative@2x~ipad.png in Resources */,
+				E1872FD318B251F70092C604 /* linkedIn-positive@2x.png in Resources */,
+				E1872FD118B251F70092C604 /* linkedIn-negative~ipad.png in Resources */,
+				E1872FD818B2523A0092C604 /* MFCompose_iPad.storyboard in Resources */,
+				E1872FD218B251F70092C604 /* linkedIn-positive.png in Resources */,
+				E1872FD418B251F70092C604 /* linkedIn-positive@2x~ipad.png in Resources */,
+				E1872FD918B2523A0092C604 /* MFCompose_iPhone.storyboard in Resources */,
+				E1872FCF18B251F70092C604 /* linkedIn-negative@2x.png in Resources */,
+				E187301618B2533D0092C604 /* Post-placeholder.png in Resources */,
+				E1872FCE18B251F70092C604 /* linkedIn-negative.png in Resources */,
 				E1510F5D18AE4F880089FEA4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,11 +535,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1872FDC18B252F90092C604 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E187302A18B254A80092C604 /* MAFLinkedInActivityResources.bundle in Resources */,
+				E187302318B253BB0092C604 /* AGI Sells Aircraft.png in Resources */,
+				E187302018B253940092C604 /* Main_iPhone.storyboard in Resources */,
+				E187301F18B253940092C604 /* Main_iPad.storyboard in Resources */,
+				E187302418B253BB0092C604 /* Tech Companies Press.png in Resources */,
+				E1872FFC18B252FA0092C604 /* Images.xcassets in Resources */,
+				E1872FE818B252F90092C604 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1A25A12188AEFC100903C96 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1D6164018AE743700290E36 /* MAFLinkedInActivityLibrary.bundle in Resources */,
+				E1D6164018AE743700290E36 /* MAFLinkedInActivityResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,13 +636,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1872FDA18B252F90092C604 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1872FEE18B252FA0092C604 /* AppDelegate.m in Sources */,
+				E187301C18B253790092C604 /* MFStoryViewController.m in Sources */,
+				E1872FEA18B252F90092C604 /* main.m in Sources */,
+				E187301B18B253790092C604 /* MFStoriesViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		E16D7E7718635E33001BA35F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E16D7E5F18635E33001BA35F /* MAFLinkedInActivityLibrary */;
+			target = E16D7E5F18635E33001BA35F /* MAFLinkedInActivity */;
 			targetProxy = E16D7E7618635E33001BA35F /* PBXContainerItemProxy */;
+		};
+		E187302618B254020092C604 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E16D7E5F18635E33001BA35F /* MAFLinkedInActivity */;
+			targetProxy = E187302518B254020092C604 /* PBXContainerItemProxy */;
+		};
+		E187302818B254070092C604 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1510F5518AE4F880089FEA4 /* MAFLinkedInActivityResources */;
+			targetProxy = E187302718B254070092C604 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -527,6 +684,14 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		E1872FE618B252F90092C604 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1872FE718B252F90092C604 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -540,9 +705,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "MAFLinkedInActivityResources/MAFLinkedInActivityResources-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = MAFLinkedInActivityLibrary;
+				PRODUCT_NAME = MAFLinkedInActivityResources;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -555,9 +718,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "MAFLinkedInActivityResources/MAFLinkedInActivityResources-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = MAFLinkedInActivityLibrary;
+				PRODUCT_NAME = MAFLinkedInActivityResources;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -639,12 +800,12 @@
 			buildSettings = {
 				DSTROOT = /tmp/MAFLinkedInActivityLibrary.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MAFLinkedInActivityLibrary/MAFLinkedInActivityLibrary-Prefix.pch";
+				GCC_PREFIX_HEADER = "MAFLinkedInActivityLibrary/MAFLinkedInActivity-Prefix.pch";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MAFLinkedInActivity;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -655,12 +816,12 @@
 			buildSettings = {
 				DSTROOT = /tmp/MAFLinkedInActivityLibrary.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MAFLinkedInActivityLibrary/MAFLinkedInActivityLibrary-Prefix.pch";
+				GCC_PREFIX_HEADER = "MAFLinkedInActivityLibrary/MAFLinkedInActivity-Prefix.pch";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MAFLinkedInActivity;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -669,6 +830,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MAFLinkedInActivityDemo.app/MAFLinkedInActivityDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -681,7 +843,8 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "MAFLinkedInActivityLibraryTests/MAFLinkedInActivityLibraryTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MAFLinkedInActivityTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -690,6 +853,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MAFLinkedInActivityDemo.app/MAFLinkedInActivityDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -698,8 +862,53 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MAFLinkedInActivityLibrary/MAFLinkedInActivityLibrary-Prefix.pch";
 				INFOPLIST_FILE = "MAFLinkedInActivityLibraryTests/MAFLinkedInActivityLibraryTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MAFLinkedInActivityTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		E187301018B252FA0092C604 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MAFLinkedInActivityDemo/MAFLinkedInActivityDemo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MAFLinkedInActivityDemo/MAFLinkedInActivityDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E187301118B252FA0092C604 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MAFLinkedInActivityDemo/MAFLinkedInActivityDemo-Prefix.pch";
+				INFOPLIST_FILE = "MAFLinkedInActivityDemo/MAFLinkedInActivityDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
@@ -729,7 +938,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E16D7E5B18635E33001BA35F /* Build configuration list for PBXProject "MAFLinkedInActivityLibrary" */ = {
+		E16D7E5B18635E33001BA35F /* Build configuration list for PBXProject "MAFLinkedInActivity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E16D7E8118635E33001BA35F /* Debug */,
@@ -738,7 +947,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E16D7E8318635E33001BA35F /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityLibrary" */ = {
+		E16D7E8318635E33001BA35F /* Build configuration list for PBXNativeTarget "MAFLinkedInActivity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E16D7E8418635E33001BA35F /* Debug */,
@@ -747,7 +956,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E16D7E8618635E33001BA35F /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityLibraryTests" */ = {
+		E16D7E8618635E33001BA35F /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E16D7E8718635E33001BA35F /* Debug */,
@@ -755,6 +964,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E187300F18B252FA0092C604 /* Build configuration list for PBXNativeTarget "MAFLinkedInActivityDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E187301018B252FA0092C604 /* Debug */,
+				E187301118B252FA0092C604 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		E1DC946D1875BDFA0001C0C5 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
 			isa = XCConfigurationList;

@@ -38,8 +38,7 @@
 }
 
 -(UIImage *)activityImage {
-    
-    return [UIImage imageNamed:@"linkedIn-positive"];
+    return [UIImage imageNamed:@"MAFLinkedInActivityResources.bundle/linkedIn-positive.png"];
 }
 
 -(BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
@@ -95,6 +94,11 @@
 
 -(UIViewController *)activityViewController {
     
+    // Get the resource bundle
+    NSString *resourceBundlePath = [[NSBundle mainBundle] pathForResource:@"MAFLinkedInActivityResources" ofType:@"bundle"];
+    NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
+    
+    
     // Setup  _composePresentationViewController and assign it to the _linkedInActivityViewController.
     
     UIViewController *mfViewController;
@@ -104,15 +108,30 @@
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPhone" bundle:nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPhone" bundle:resourceBundle];
         
         mfViewController = [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
     }
     else {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPad" bundle:nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPad" bundle:resourceBundle];
         
         mfViewController = [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
     }
+    
+    
+#if 1
+    /* In order for the library client to compile these classes before the storybaords in the resource bundle are loaded, they have to be instantiated.
+     * Adding them to the Compile sources would only work for the Demo app which is a target of the same project, if for example, this library is used in a
+     * client app that has its own xcodeproj, adding the classes to the Compile Sources phase won't work.
+     */
+    MFLinkedInComposePresentationViewController *composePresentationVC = [[MFLinkedInComposePresentationViewController alloc]init];
+    MFLinkedInComposeViewController *composeVC = [[MFLinkedInComposeViewController alloc]init];
+    MFLinkedInVisivilityViewController *visivilityVC = [[MFLinkedInVisivilityViewController alloc]init];
+    
+    // Silence Objective-C #warnings
+#pragma unused(composePresentationVC,composeVC,visivilityVC)
+#endif
+    
     
     
     // Setup activityViewController
