@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "MAFLinkedInActivity"
   s.version      = "0.0.1"
-  s.summary      = "A short description of MAFLinkedInActivity."
+  s.summary      = "A more detail description of is MAFLinkedInActivity in the works."
 
   s.description  = <<-DESC
                    A longer description of MAFLinkedInActivity in Markdown format.
@@ -28,8 +28,7 @@ Pod::Spec.new do |s|
                    * Finally, don't worry about the indent, CocoaPods strips it!
                    DESC
 
-  s.homepage     = "http://EXAMPLE/MAFLinkedInActivity"
-  # s.screenshots  = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage     = "https://github.com/miguelfermin/MAFLinkedInActivity"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -39,8 +38,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = 'MIT (example)'
-  # s.license      = { :type => 'MIT', :file => 'FILE_LICENSE' }
+  s.license      = 'MIT'
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -51,9 +49,6 @@ Pod::Spec.new do |s|
   #
 
   s.author             = { "Miguel Fermin" => "miguel.fermin.dev@gmail.com" }
-  # s.authors          = { "Miguel Fermin" => "miguel.fermin.dev@gmail.com", "other author" => "email@address.com" }
-  # s.author           = 'Miguel Fermin', 'other author'
-  # s.social_media_url = "http://twitter.com/Miguel Fermin"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -61,12 +56,7 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
-  # s.platform     = :ios, '5.0'
-
-  #  When using multiple platforms
-  # s.ios.deployment_target = '5.0'
-  # s.osx.deployment_target = '10.7'
+  s.platform     = :ios, '7.0'
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -75,7 +65,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://EXAMPLE/MAFLinkedInActivity.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/miguelfermin/MAFLinkedInActivity", :tag => "0.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -86,10 +76,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = 'Classes', 'Classes/**/*.{h,m}'
-  s.exclude_files = 'Classes/Exclude'
-
-  # s.public_header_files = 'Classes/**/*.h'
+  s.source_files  = 'MAFLinkedInActivityLibrary/*'
+  s.public_header_files = 'MAFLinkedInActivityLibrary/MAFLinkedInActivity.h'
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -100,19 +88,9 @@ Pod::Spec.new do |s|
   #  non-essential files like tests, examples and documentation.
   #
 
-     s.activity_icons_bundle = [‘MAFLinkedInActivityLibraryResources/linkedIn-positive.png’,
-                                ‘MAFLinkedInActivityLibraryResources/linkedIn-positive@2x.png’,
-                                ‘MAFLinkedInActivityLibraryResources/linkedIn-positive~ipad.png’,
-                                ‘MAFLinkedInActivityLibraryResources/linkedIn-positive@2x~ipad.png’,
-                                ‘MAFLinkedInActivityLibraryResources/linkedIn-negative.png’,
-                                ‘MAFLinkedInActivityLibraryResources/linkedIn-negative@2x.png’,
-                                ‘MAFLinkedInActivityLibraryResources/linkedIn-negative~ipad.png’,
-                                ‘MAFLinkedInActivityLibraryResources/linkedIn-negative@2x~ipad.png’]
-
-  # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
-
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
+  # s.ios.resource_bundle = { 'MAFLinkedInActivityResources' => ‘MAFLinkedInActivityResources/*’}
+    s.ios.resource_bundle = { 'MAFLinkedInActivityResources' => 'MAFLinkedInActivityResources/*' }
+    
 
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -120,12 +98,8 @@ Pod::Spec.new do |s|
   #  Link your library with frameworks, or libraries. Libraries do not include
   #  the lib prefix of their name.
   #
-
-  # s.framework  = 'SomeFramework'
-  # s.frameworks = 'SomeFramework', 'AnotherFramework'
-
-  # s.library   = 'iconv'
-  # s.libraries = 'iconv', 'xml2'
+  
+    s.framework  = 'SystemConfiguration'
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -134,9 +108,7 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
-
-  # s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
-  # s.dependency 'JSONKit', '~> 1.4'
+    s.requires_arc = true
+    s.dependency 'UICKeyChainStore', '~> 1.0.4'
 
 end
