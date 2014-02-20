@@ -77,6 +77,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E134D98318B65EB900B338EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1C9FF4018B530CB00452419 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21787E7172B94F8B8C1D7006;
+			remoteInfo = Pods;
+		};
 		E16D7E7618635E33001BA35F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E16D7E5818635E33001BA35F /* Project object */;
@@ -457,6 +464,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E134D98418B65EB900B338EF /* PBXTargetDependency */,
 			);
 			name = MAFLinkedInActivity;
 			productName = MAFLinkedInActivityLibrary;
@@ -703,6 +711,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E134D98418B65EB900B338EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Pods;
+			targetProxy = E134D98318B65EB900B338EF /* PBXContainerItemProxy */;
+		};
 		E16D7E7718635E33001BA35F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E16D7E5F18635E33001BA35F /* MAFLinkedInActivity */;

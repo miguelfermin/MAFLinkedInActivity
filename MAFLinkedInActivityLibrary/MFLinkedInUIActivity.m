@@ -132,19 +132,37 @@
     [composePresentationViewController setLinkedInUIActivity:self];
     
     
-    // Safety check to ensure a MFLinkedInActivityItem object was passed. This should never be the case, but for future updates it might be needed.
-    if ([[_linkedInActivityItems objectAtIndex:0] isKindOfClass:[MFLinkedInActivityItem class]]) {
+    // If there's no MFLinkedInActivityItem in _linkedInActivityItems, an URL was passed. If this is the case, create a MFLinkedInActivityItem using that URL.
+    
+    NSURL * url = nil;
+    MFLinkedInActivityItem * activityItem = nil;
+    
+    for (id item in _linkedInActivityItems) {
         
-        [composePresentationViewController setLinkedInActivityItem:[_linkedInActivityItems objectAtIndex:0]];
-        
-        for (id item in _linkedInActivityItems) {
-            NSLog(@"item: %@\n ",item);
+        if ([item isKindOfClass:[MFLinkedInActivityItem class]]) {
+            activityItem = item;
+            break;
         }
+        if ([item isKindOfClass:[NSURL class]]) {
+            url = item;
+        }
+    }
+    
+    if (activityItem) {
+        // use activityItem
+        [composePresentationViewController setLinkedInActivityItem:activityItem];
+    }
+    else {
+        // use url
+        activityItem = [[MFLinkedInActivityItem alloc]initWithURL:url];
         
+        [activityItem setContentTitle:@""];
         
-    }/*else {
-        // Code to box _linkedInActivityItems items into a single MFLinkedInActivityItem might be needed here... MF, 2014-01-23
-    }*/
+        [activityItem setContentDescription:@""];
+        
+        [composePresentationViewController setLinkedInActivityItem:activityItem];
+    }
+    
     
     
     // Setup Custom Transition and Animation Delegate
