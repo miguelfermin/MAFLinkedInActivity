@@ -497,9 +497,7 @@
         // Compose API call
         
         NSDictionary *jsonDict = @{@"comment":comment,
-                                   
                                    @"content":@{@"title": title, @"description":description, @"submitted-url":submittedURLString},
-                                   
                                    @"visibility":@{@"code": _visibilityCode}};
         
         NSError *error = [[NSError alloc]init];

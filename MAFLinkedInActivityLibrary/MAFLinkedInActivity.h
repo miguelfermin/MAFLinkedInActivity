@@ -13,11 +13,12 @@
 
 
 // Public Header Files
+#import "MFLinkedInAccount.h"
 #import "MFLinkedInUIActivity.h"
 #import "MFLinkedInActivityItem.h"
 
+
 /* Private Header Files
-#import "MFLinkedInAccount.h"
 #import "MFLinkedInAuthenticationViewController.h"
 #import "MFTransitioningDelegate.h"
 #import "MFLinkedInComposePresentationViewController.h"

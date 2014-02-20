@@ -50,6 +50,8 @@
         
         if ([obj isKindOfClass:[MFLinkedInActivityItem class]] == YES) {
             
+            NSLog(@"activity is MFLinkedInActivityItem class");
+            
             hasURL = YES;
             
             *stop  = YES;
@@ -57,11 +59,12 @@
             return;
         }
         
-         /*
-          The two cases (commented) below are for when there's no content to share, only a link. Still experimantal
           
         // If a URL was passed
+        
         if ([obj isKindOfClass:[NSURL class]] == YES) {
+            
+            NSLog(@"activity is NSURL class");
             
             hasURL = YES;
             
@@ -70,6 +73,8 @@
             return;
         }
         
+        
+        /*
         // If a String formatted as URL was passed
         if ([obj isKindOfClass:[NSString class]] == YES && [NSURL URLWithString:obj] != nil) {
             
@@ -94,7 +99,9 @@
 -(UIViewController *)activityViewController {
     
     // Get the resource bundle
+    
     NSString *resourceBundlePath = [[NSBundle mainBundle] pathForResource:@"MAFLinkedInActivityResources" ofType:@"bundle"];
+    
     NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
     
     
@@ -129,6 +136,12 @@
     if ([[_linkedInActivityItems objectAtIndex:0] isKindOfClass:[MFLinkedInActivityItem class]]) {
         
         [composePresentationViewController setLinkedInActivityItem:[_linkedInActivityItems objectAtIndex:0]];
+        
+        for (id item in _linkedInActivityItems) {
+            NSLog(@"item: %@\n ",item);
+        }
+        
+        
     }/*else {
         // Code to box _linkedInActivityItems items into a single MFLinkedInActivityItem might be needed here... MF, 2014-01-23
     }*/

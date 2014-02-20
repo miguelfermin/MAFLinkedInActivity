@@ -98,6 +98,20 @@
 			remoteGlobalIDString = E1510F5518AE4F880089FEA4;
 			remoteInfo = MAFLinkedInActivityResources;
 		};
+		E1C9FF4518B530CC00452419 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1C9FF4018B530CB00452419 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7268D79F5DD14898A6F5E459;
+			remoteInfo = Pods;
+		};
+		E1C9FF4718B530CC00452419 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1C9FF4018B530CB00452419 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 115C44FB02024991B2B41768;
+			remoteInfo = "Pods-UICKeyChainStore";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -187,6 +201,7 @@
 		E19ACD4818B2B90C00BDF2F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E1B97B9E189705AA00FE5326 /* MFTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitioningDelegate.h; sourceTree = "<group>"; };
 		E1B97B9F189705AA00FE5326 /* MFTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitioningDelegate.m; sourceTree = "<group>"; };
+		E1C9FF4018B530CB00452419 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		E1DE8E22188590730010010E /* MFLinkedInComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInComposeViewController.h; sourceTree = "<group>"; };
 		E1DE8E23188590730010010E /* MFLinkedInComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLinkedInComposeViewController.m; sourceTree = "<group>"; };
 		E1E1CF29188A2E9600A9258F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -269,6 +284,7 @@
 		E16D7E5718635E33001BA35F = {
 			isa = PBXGroup;
 			children = (
+				E1C9FF4018B530CB00452419 /* Pods.xcodeproj */,
 				E16D7E6518635E33001BA35F /* MAFLinkedInActivityLibrary */,
 				E16D7E7918635E33001BA35F /* MAFLinkedInActivityLibraryTests */,
 				E1510F5818AE4F880089FEA4 /* MAFLinkedInActivityResources */,
@@ -374,6 +390,15 @@
 				E1872FEB18B252F90092C604 /* MAFLinkedInActivityDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1C9FF4118B530CB00452419 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1C9FF4618B530CC00452419 /* libPods.a */,
+				E1C9FF4818B530CC00452419 /* libPods-UICKeyChainStore.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E1CE61C9188B1BA80017B49E /* Compose */ = {
@@ -501,6 +526,12 @@
 			mainGroup = E16D7E5718635E33001BA35F;
 			productRefGroup = E16D7E6118635E33001BA35F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E1C9FF4118B530CB00452419 /* Products */;
+					ProjectRef = E1C9FF4018B530CB00452419 /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E16D7E5F18635E33001BA35F /* MAFLinkedInActivity */,
@@ -511,6 +542,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E1C9FF4618B530CC00452419 /* libPods.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPods.a;
+			remoteRef = E1C9FF4518B530CC00452419 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E1C9FF4818B530CC00452419 /* libPods-UICKeyChainStore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-UICKeyChainStore.a";
+			remoteRef = E1C9FF4718B530CC00452419 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E1510F5418AE4F880089FEA4 /* Resources */ = {
