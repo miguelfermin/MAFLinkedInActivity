@@ -16,6 +16,7 @@
 #import "MFLinkedInAccount.h"
 #import "MFLinkedInUIActivity.h"
 #import "MFLinkedInActivityItem.h"
+#import "MFLinkedInActivityDelegate.h"
 
 
 /* Private Header Files
@@ -29,6 +30,6 @@
 /* Logging Macro */
 
 #ifndef MFLog
-//#define MFLog(fmt, ...) NSLog(fmt, ##__VA_ARGS__) // To log comments
-#define MFLog(fmt, ...) // To not log comments
+#define MFLog(fmt, ...) NSLog(fmt, ##__VA_ARGS__) // To log comments
+//#define MFLog(fmt, ...) // To not log comments
 #endif

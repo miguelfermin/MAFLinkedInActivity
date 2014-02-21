@@ -30,12 +30,14 @@
  * 500    Internal Service Error              There was an application error on the LinkedIn server. Usually your request is valid but needs to be made at a later time
  *
  *
- * NOTE: This version of the library only handles the 401 error, by requesting a new access token.
- *       Other errors that make sense to be handle are 403 (Throttle limit) and 500 (Internal Service Error).
+ * NOTE: This version of the library only handles the 401 error, by requesting a new access token. A delegate-protocol is provided to handle all cases by the client.
  */
+#define RESPONSE_SUCCESS_STATUS_CODE            201
+
+#define BAD_REQUEST_STATUS_CODE                 400
 #define INVALID_OR_EXPIRED_TOKEN_STATUS_CODE    401
-#define RESPONSE_SUCCESS_STATUS_CODE            201 // For future implementation
 #define THROTTLE_LIMIT_STATUS_CODE              403
+#define PAGE_NOT_FOUND_STATUS_CODE              404
 #define INTERNAL_SERVICE_ERROR_STATUS_CODE      500
 
 @interface MFLinkedInComposeViewController ()
@@ -397,49 +399,108 @@
                                   MFLog(@"MFLinkedInComposeViewController-postStory. Data: %@\n ",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
                                   MFLog(@"MFLinkedInComposeViewController-postStory. Response statusCode: %li",(long)[(NSHTTPURLResponse*)response statusCode]);
                                   
-                                  // Check response status code to handle invalid or expired token.
                                   
-                                  if ([(NSHTTPURLResponse*)response statusCode] == INVALID_OR_EXPIRED_TOKEN_STATUS_CODE) {
-                                      
-                                      [self performOperationsAfterPostFailedWithInvalidOrExpiredTokenError];
-                                  }
-                                  else {
-                                      
-                                      [self performOperationsAfterPostSucceeded];
-                                  }
+                                  // Get a reference to the MFLinkedInUIActivity delegate
                                   
-                                  // Check response status code to handle invalid or expired token, throttle limit, and LinkedIn Internal Service Error. Note: This implementation is pending. MF, 2014.02.11
-                                  /*
+                                  id<MFLinkedInActivityDelegate> delegate = _composePresentationViewController.linkedInUIActivity.delegate;
+                                  
+                                  
+                                  // Check response status code to handle invalid or expired token, throttle limit, and LinkedIn Internal Service Error.
+                                  
                                   switch ([(NSHTTPURLResponse*)response statusCode]) {
                                           
                                       case RESPONSE_SUCCESS_STATUS_CODE:
-
+                                          
+                                          MFLog(@"RESPONSE_SUCCESS_STATUS_CODE");
+                                          
+                                          // Handle response internally
+                                          
                                           [self performOperationsAfterPostSucceeded];
+                                          
+                                          
+                                          // Allow Library clients to handle response
+                                          
+                                          if ([delegate respondsToSelector:@selector(postWithResponse:didSucceedWithData:)]) {
+                                              
+                                              [delegate postWithResponse:response didSucceedWithData:data];
+                                          }
+                                          
+                                          break;
+                                          
+                                      case BAD_REQUEST_STATUS_CODE:
+                                          
+                                          MFLog(@"BAD_REQUEST_STATUS_CODE");
+                                          
+                                          // Allow Library clients to handle response
+                                          
+                                          
+                                          if ([delegate respondsToSelector:@selector(postWithResponse:didFailWithBadRequestWithData:error:)]) {
+                                              
+                                              [delegate postWithResponse:response didFailWithBadRequestWithData:data error:error];
+                                          }
                                           
                                           break;
                                           
                                       case INVALID_OR_EXPIRED_TOKEN_STATUS_CODE:
                                           
+                                          MFLog(@"INVALID_OR_EXPIRED_TOKEN_STATUS_CODE");
+                                          
+                                          // Handle response internally
+                                          
                                           [self performOperationsAfterPostFailedWithInvalidOrExpiredTokenError];
+                                          
+                                          
+                                          // Allow Library clients to handle response
+                                          
+                                          if ([delegate respondsToSelector:@selector(postWithResponse:didFailWithInvalidOrExpiredTokenWithData:error:)]) {
+                                              
+                                              [delegate postWithResponse:response didFailWithInvalidOrExpiredTokenWithData:data error:error];
+                                          }
                                           
                                           break;
                                           
                                       case THROTTLE_LIMIT_STATUS_CODE:
                                           
-                                          //[self performOperationsAfterPostFailedWithUserReachedThrottleLimitError]; // to be implemented
+                                          MFLog(@"THROTTLE_LIMIT_STATUS_CODE");
+                                          
+                                          // Allow Library clients to handle response
+                                          
+                                          if ([delegate respondsToSelector:@selector(postWithResponse:didReachThrottleLimitWithData:error:)]) {
+                                              
+                                              [delegate postWithResponse:response didReachThrottleLimitWithData:data error:error];
+                                          }
+                                          
+                                          break;
+                                          
+                                      case PAGE_NOT_FOUND_STATUS_CODE:
+                                          
+                                          MFLog(@"PAGE_NOT_FOUND_STATUS_CODE");
+                                          
+                                          // Allow Library clients to handle response
+                                          
+                                          if ([delegate respondsToSelector:@selector(postWithResponse:didFailWithPageNotFoundWithData:error:)]) {
+                                           
+                                              [delegate postWithResponse:response didFailWithPageNotFoundWithData:data error:error];
+                                          }
                                           
                                           break;
                                           
                                       case INTERNAL_SERVICE_ERROR_STATUS_CODE:
                                           
-                                          //[self performOperationsAfterPostFailedWithLinkedInInternalServiceError]; // to be implemented
+                                          MFLog(@"INTERNAL_SERVICE_ERROR_STATUS_CODE");
+                                          
+                                          // Allow Library clients to handle response
+                                          
+                                          if ([delegate respondsToSelector:@selector(postWithResponse:didFailWithInternalServiceErrorWithData:error:)]) {
+                                           
+                                              [delegate postWithResponse:response didFailWithInternalServiceErrorWithData:data error:error];
+                                          }
                                           
                                           break;
                                           
                                       default:
-                                          [self performOperationsAfterPostFailedWithInvalidOrExpiredTokenError]; // worst case scenario, to be implemented
                                           break;
-                                  }*/
+                                  }
                               }
       ]resume];
 }

@@ -13,6 +13,8 @@
 #import "MFLinkedInComposePresentationViewController.h"
 #import "MFTransitioningDelegate.h"
 
+#import "MFLinkedInActivityDelegate.h"
+
 @class MFLinkedInAuthenticationViewController,MFLinkedInComposePresentationViewController;
 
 ///  Provide LinkedIn sharing service to the user. Handle sign-in and authentication process.
@@ -23,5 +25,8 @@
 
 ///  An instance of MFLinkedInAccount is responsable for saving/storing the access token obtained from the MFLinkedInAuthenticationViewController (in the application keychain), retrieving the access token, and refresh it when it expires.
 @property (nonatomic,strong) MFLinkedInAccount *linkedInAccount;
+
+///  Delegate object use to send messages to client app from either MFLinkedInComposeViewController or MFLinkedInAuthenticationViewController.
+@property (nonatomic, weak) id<MFLinkedInActivityDelegate> delegate;
 
 @end

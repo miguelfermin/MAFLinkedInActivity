@@ -65,6 +65,7 @@
 		E187302418B253BB0092C604 /* Tech Companies Press.png in Resources */ = {isa = PBXBuildFile; fileRef = E187302218B253BB0092C604 /* Tech Companies Press.png */; };
 		E187302918B254150092C604 /* libMAFLinkedInActivity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E16D7E6018635E33001BA35F /* libMAFLinkedInActivity.a */; };
 		E187302A18B254A80092C604 /* MAFLinkedInActivityResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1510F5618AE4F880089FEA4 /* MAFLinkedInActivityResources.bundle */; };
+		E195D6AC18B7C9510015F8F2 /* MFLinkedInActivityDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E195D6AA18B7AE7B0015F8F2 /* MFLinkedInActivityDelegate.h */; };
 		E19ACD4218B2A26200BDF2F4 /* MAFLinkedInActivity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E19ACD4118B29EF200BDF2F4 /* MAFLinkedInActivity.h */; };
 		E19ACD4918B2B90C00BDF2F4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E19ACD4718B2B90C00BDF2F4 /* Localizable.strings */; };
 		E1B97B9C1896C99600FE5326 /* MFLinkedInComposePresentationViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E11F97E81892F7E500CE4F67 /* MFLinkedInComposePresentationViewController.h */; };
@@ -137,6 +138,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				E195D6AC18B7C9510015F8F2 /* MFLinkedInActivityDelegate.h in CopyFiles */,
 				E19ACD4218B2A26200BDF2F4 /* MAFLinkedInActivity.h in CopyFiles */,
 				E1B97B9D1896F17400FE5326 /* MFLinkedInVisivilityViewController.h in CopyFiles */,
 				E1DE8E25188591EE0010010E /* MFLinkedInComposeViewController.h in CopyFiles */,
@@ -204,6 +206,7 @@
 		E187301E18B253940092C604 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		E187302118B253BB0092C604 /* AGI Sells Aircraft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AGI Sells Aircraft.png"; sourceTree = "<group>"; };
 		E187302218B253BB0092C604 /* Tech Companies Press.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tech Companies Press.png"; sourceTree = "<group>"; };
+		E195D6AA18B7AE7B0015F8F2 /* MFLinkedInActivityDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInActivityDelegate.h; sourceTree = "<group>"; };
 		E19ACD4118B29EF200BDF2F4 /* MAFLinkedInActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAFLinkedInActivity.h; sourceTree = "<group>"; };
 		E19ACD4818B2B90C00BDF2F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E1B97B9E189705AA00FE5326 /* MFTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitioningDelegate.h; sourceTree = "<group>"; };
@@ -257,7 +260,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E11E53E818A28D950062FFC6 /* Custom Transition */ = {
+		E11E53E818A28D950062FFC6 /* Custom Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				E1B97B9E189705AA00FE5326 /* MFTransitioningDelegate.h */,
@@ -265,7 +268,7 @@
 				E11F97E81892F7E500CE4F67 /* MFLinkedInComposePresentationViewController.h */,
 				E11F97E91892F7E500CE4F67 /* MFLinkedInComposePresentationViewController.m */,
 			);
-			name = "Custom Transition";
+			name = "Custom Presentation";
 			sourceTree = "<group>";
 		};
 		E1510F5818AE4F880089FEA4 /* MAFLinkedInActivityResources */ = {
@@ -337,6 +340,7 @@
 				E127B9741891ADD200D2D310 /* MFLinkedInActivityItem.m */,
 				E1CE61CA188B1BB60017B49E /* Authenticate */,
 				E1CE61C9188B1BA80017B49E /* Compose */,
+				E195D6A818B7AE240015F8F2 /* Protocols */,
 				E16D7E6618635E33001BA35F /* Supporting Files */,
 			);
 			path = MAFLinkedInActivityLibrary;
@@ -399,6 +403,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E195D6A818B7AE240015F8F2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E195D6AA18B7AE7B0015F8F2 /* MFLinkedInActivityDelegate.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		E1C9FF4118B530CB00452419 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,7 +423,7 @@
 		E1CE61C9188B1BA80017B49E /* Compose */ = {
 			isa = PBXGroup;
 			children = (
-				E11E53E818A28D950062FFC6 /* Custom Transition */,
+				E11E53E818A28D950062FFC6 /* Custom Presentation */,
 				E1DE8E22188590730010010E /* MFLinkedInComposeViewController.h */,
 				E1DE8E23188590730010010E /* MFLinkedInComposeViewController.m */,
 				E11F97EE1892FB3300CE4F67 /* MFLinkedInVisivilityViewController.h */,
