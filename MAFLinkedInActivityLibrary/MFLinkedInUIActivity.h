@@ -29,4 +29,13 @@
 ///  Delegate object use to send messages to client app from either MFLinkedInComposeViewController or MFLinkedInAuthenticationViewController.
 @property (nonatomic, weak) id<MFLinkedInActivityDelegate> delegate;
 
+
+///  Initializes itself and uses the LinkedIn parameters to initialize it's MFLinkedInAccount property.
+///
+///  @param APIKey    LinkedIn API Key
+///  @param secretKey LinkedIn Secret Key
+///
+///  @return Initialized MFLinkedInUIActivity
+-(id)initWithAPIKey:(NSString*)APIKey secretKey:(NSString*)secretKey;
+
 @end

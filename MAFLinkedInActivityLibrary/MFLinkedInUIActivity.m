@@ -7,16 +7,19 @@
 
 
 #import "MFLinkedInUIActivity.h"
+#import "MAFLinkedInActivity.h"
 
 @implementation MFLinkedInUIActivity
 
--(id)init {
+-(id)initWithAPIKey:(NSString*)APIKey secretKey:(NSString*)secretKey {
+    
     self = [super init];
+    
     if (self) {
         
-        // Initialize linkedInAccount instance variable.
+        // Initialize linkedInAccount instance variable and set its LinkedIn sharing parameters.
         
-        _linkedInAccount = [[MFLinkedInAccount alloc]init];
+        _linkedInAccount = [[MFLinkedInAccount alloc]initWithAPIKey:APIKey secretKey:secretKey];
     }
     return self;
 }
@@ -50,7 +53,7 @@
         
         if ([obj isKindOfClass:[MFLinkedInActivityItem class]] == YES) {
             
-            NSLog(@"activity is MFLinkedInActivityItem class");
+            MFLog(@"activity is MFLinkedInActivityItem class");
             
             hasURL = YES;
             
@@ -64,7 +67,7 @@
         
         if ([obj isKindOfClass:[NSURL class]] == YES) {
             
-            NSLog(@"activity is NSURL class");
+            MFLog(@"activity is NSURL class");
             
             hasURL = YES;
             
@@ -136,6 +139,8 @@
     
     NSURL * url = nil;
     MFLinkedInActivityItem * activityItem = nil;
+    
+    MFLog(@"_linkedInActivityItems: %@",_linkedInActivityItems);
     
     for (id item in _linkedInActivityItems) {
         

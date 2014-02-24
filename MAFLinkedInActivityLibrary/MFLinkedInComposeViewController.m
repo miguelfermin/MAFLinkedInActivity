@@ -463,6 +463,11 @@
                                           
                                           MFLog(@"THROTTLE_LIMIT_STATUS_CODE");
                                           
+                                          // Once throttle limit is reached, the compose view needs to be dismiss
+                                          
+                                          [self performOperationsAfterPostFailedWithThrottleLimitReachedError];
+                                          
+                                          
                                           // Allow Library clients to handle response
                                           
                                           if ([delegate respondsToSelector:@selector(postWithResponse:didReachThrottleLimitWithData:error:)]) {
@@ -622,6 +627,13 @@
     // Re-authenticate and get new access token
     
     [self setupAuthenticationViewController];
+}
+
+///  Simply dismiss compose view since this is s a LinkedIn limitation and there's nothing the library can do.
+///  Ultimately the activityDidFinish: method is called and its complete parametrer set to NO.
+-(void)performOperationsAfterPostFailedWithThrottleLimitReachedError {
+    
+    [_composePresentationViewController cancelActivity];
 }
 
 

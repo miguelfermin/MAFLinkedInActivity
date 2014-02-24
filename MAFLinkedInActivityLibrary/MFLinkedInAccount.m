@@ -21,7 +21,7 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 @implementation MFLinkedInAccount
 
-- (id)init {
+-(id)initWithAPIKey:(NSString*)APIKey secretKey:(NSString*)secretKey {
     self = [super init];
     
     if (self) {
@@ -33,9 +33,10 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
         //[self signOutUser];
         
 #pragma mark - LinkedIn's authorization dialog redirect parameters
-        _APIKey =       @"77tp47xbo381qe";          // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
         
-        _secretKey =    @"kFz3z5L4XxKnbljU";        // Required. Value of your secret key given when you registered your application with LinkedIn.
+        _APIKey =       APIKey;                     // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
+        
+        _secretKey =    secretKey;                  // Required. Value of your secret key given when you registered your application with LinkedIn.
         
         _state =        @"DCMMFWF10268sdffef102";   // Required. A long unique string value of your choice that is hard to guess. Used to prevent CSRF.
         

@@ -34,13 +34,21 @@ typedef enum: NSInteger {
 ///  A timestamp string representing the date the access_token was obtain. This value will be used to reconstruct a date from expiresIn and compare that date to the present date to determine if the access_token needs to be refreshed.
 @property (nonatomic,strong) NSDate *tokenIssueDate;
 
-
 // LinkedIn's authorization dialog redirect parameters
 @property (nonatomic,strong) NSString *APIKey;
 @property (nonatomic,strong) NSString *secretKey;
 @property (nonatomic,strong) NSString *state;
 @property (nonatomic,strong) NSString *redirectURI;
 @property (nonatomic,strong) NSString *scope;
+
+
+///  Initializes itself and sets its APIKey and secretKey with passed parameters
+///
+///  @param APIKey    LinkedIn API Key
+///  @param secretKey LinkedIn Secret Key
+///
+///  @return Initialized MFLinkedInAccount with its APIKey and secretKey properties set.
+-(id)initWithAPIKey:(NSString*)APIKey secretKey:(NSString*)secretKey;
 
 
 ///  Determines the access token status and return a MFAccessTokenStatus to indicate the actions that need to be taken.
