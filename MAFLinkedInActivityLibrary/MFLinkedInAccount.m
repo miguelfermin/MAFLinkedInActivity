@@ -13,8 +13,8 @@
 #define DENIED_REQUEST_ERROR_DESCRIPTION @"the+user+denied+your+request" // Short description of the user canceled authorization error. Provided by LinkedIn Documentation.
 #define DAYS_BEFORE_EXPIRATION -10 // How soon would you like to refresh the access_token from the expiration date. This value must be negative.
 
-
-static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDomain";
+NSString * const MAFLinkedInService =               @"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn";
+NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDomain";
 
 @interface MFLinkedInAccount ()
 @end
@@ -27,7 +27,7 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
     if (self) {
         
         // Uncomment to see all items in keychain
-        MFLog(@"MFLinkedInAccount-init. All items in keychain: %@", [UICKeyChainStore keyChainStoreWithService:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"]);
+        MFLog(@"MFLinkedInAccount-init. All items in keychain: %@", [UICKeyChainStore keyChainStoreWithService:MAFLinkedInService]);
         
         // Uncomment to remove all items from keychain
         //[self signOutUser];
@@ -54,19 +54,19 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 -(NSString*)accessToken {
     
-    return [UICKeyChainStore stringForKey:@"access_token" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    return [UICKeyChainStore stringForKey:@"access_token" service:MAFLinkedInService];
 }
 
 -(NSTimeInterval)expiresIn {
     
-    NSString *expiresInString = [UICKeyChainStore stringForKey:@"expires_in" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    NSString *expiresInString = [UICKeyChainStore stringForKey:@"expires_in" service:MAFLinkedInService];
     
     return [expiresInString doubleValue];
 }
 
 -(NSDate*)tokenIssueDate {
     
-    NSString *tokenIssueDateString = [UICKeyChainStore stringForKey:@"token_issue_date_string" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    NSString *tokenIssueDateString = [UICKeyChainStore stringForKey:@"token_issue_date_string" service:MAFLinkedInService];
     
     return [self dateFromString:tokenIssueDateString];
 }
@@ -76,21 +76,21 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 -(void)setAccessToken:(NSString *)accessToken {
     
-    [UICKeyChainStore setString:accessToken forKey:@"access_token" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    [UICKeyChainStore setString:accessToken forKey:@"access_token" service:MAFLinkedInService];
 }
 
 -(void)setExpiresIn:(NSTimeInterval)expiresIn {
     
     NSString *expiresInString = [NSString stringWithFormat:@"%f",expiresIn];
     
-    [UICKeyChainStore setString:expiresInString forKey:@"expires_in" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    [UICKeyChainStore setString:expiresInString forKey:@"expires_in" service:MAFLinkedInService];
 }
 
 -(void)setTokenIssueDate:(NSDate*)tokenIssueDate {
     
     NSString *tokenIssueDateString = [self stringFromDate:tokenIssueDate];
     
-    [UICKeyChainStore setString:tokenIssueDateString forKey:@"token_issue_date_string" service:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    [UICKeyChainStore setString:tokenIssueDateString forKey:@"token_issue_date_string" service:MAFLinkedInService];
 }
 
 
@@ -441,9 +441,28 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 +(void)signOutUser {
     
-    [UICKeyChainStore removeAllItemsForService:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
+    [UICKeyChainStore removeAllItemsForService:MAFLinkedInService];
 }
 
++(BOOL)userIsSignedInToLinkedIn {
+    
+    // Create an instance of self to check if there's an access token in the key chain.
+    
+    MFLinkedInAccount *account = [[MFLinkedInAccount alloc]initWithAPIKey:@"" secretKey:@""];
+    
+    if ([account accessToken]) {
+        
+        MFLog(@"accessToken: %@ does exist\n ",[account accessToken]);
+        
+        return YES;
+    }
+    else {
+        
+        MFLog(@"accessToken: %@ does NOT exist\n ",[account accessToken]);
+        
+        return NO;
+    }
+}
 
 @end
 

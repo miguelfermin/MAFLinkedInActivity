@@ -50,7 +50,6 @@ typedef enum: NSInteger {
 ///  @return Initialized MFLinkedInAccount with its APIKey and secretKey properties set.
 -(id)initWithAPIKey:(NSString*)APIKey secretKey:(NSString*)secretKey;
 
-
 ///  Determines the access token status and return a MFAccessTokenStatus to indicate the actions that need to be taken.
 ///  @return A MFAccessTokenStatus representing the access token state. Possible values are: MFAccessTokenStatusGood, MFAccessTokenStatusAboutToExpire, MFAccessTokenStatusExpired, or MFAccessTokenStatusNone (if token doesn't exist).
 /// @note The MFAccessTokenStatusNone is never returned by this method.
@@ -82,9 +81,12 @@ typedef enum: NSInteger {
 ///  @warning As of version 1.0 of the library, there's an issue with LinkedIn refresh mechanism for native mobile devices which don't have a browser, so this method is not used at all
 -(void)refreshToken;
 
-
 ///  Signs user out of their LinkedIn account by deleting their login information from the keychain. This method calls UICKeyChainStore's removeAllItemsForService: method and passes the service to be deleted, "com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn". Next time the user wants to use LinkedIn, they'll have to go through the authentication process.
 +(void)signOutUser;
 
+///  Checks if the user is signed in to his/her LinkedIn account and return YES or NO.
+///
+///  @return YES if user is signed in to LinkedIn, NO otherwise.
++(BOOL)userIsSignedInToLinkedIn;
 
 @end
