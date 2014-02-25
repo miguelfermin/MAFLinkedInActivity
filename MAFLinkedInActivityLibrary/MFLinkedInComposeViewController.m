@@ -621,7 +621,7 @@
     
     // Delete user info from keychain before getting new info
     
-    [_linkedInAccount signOutUser];
+    [MFLinkedInAccount signOutUser];
     
     
     // Re-authenticate and get new access token

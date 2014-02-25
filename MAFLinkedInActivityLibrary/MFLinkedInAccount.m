@@ -439,7 +439,7 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
 
 #pragma mark - Delete Account From Keychain
 
--(void)signOutUser {
++(void)signOutUser {
     
     [UICKeyChainStore removeAllItemsForService:@"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn"];
 }
