@@ -61,4 +61,11 @@
 ///  @note  all parameters are actually a reference sent from the completion handler of the uploadTaskWithRequest:fromData:completionHandler: method after posting a story.
 -(void)postWithResponse:(NSURLResponse *)response didFailWithInternalServiceErrorWithData:(NSData *)data error:(NSError *)error;
 
+///  Tells the delegate that the user has granted the client app access to their LinkedIn account. This method is called after the user has entered their user name and password
+///  in the LinkedIn Authentication WebView and an access_token has been obtained.
+///
+///  @param response The body of the response after the user has successfully logged-in to their LinkedIn account.
+///  @param data     The response data in the form of a JSON object containing the access_token and the exipes_in LinkedIn paramenters.
+-(void)authenticationWithResponse:(NSURLResponse *)response didSucceedWithData:(NSData *)data;
+
 @end

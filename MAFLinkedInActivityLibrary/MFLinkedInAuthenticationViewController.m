@@ -184,6 +184,17 @@ static NSString *MAFLinkedInActivityErrorDomain = @"MAFLinkedInActivityErrorDoma
                                 // This method will extract the JSON object by using the NSJSONSerialization class, saves the values in the Keychain, and dismisses the authentication view.
                                 
                                 [self completeAuthenticationProcessWithResponseData:data];
+                                
+                                
+                                // Once the completeAuthenticationProcessWithResponseData: method finished executing.
+                                // Allow Library clients to handle response by letting them know authentication was succesful.
+                                
+                                id<MFLinkedInActivityDelegate> delegate = _linkedInUIActivity.delegate;
+                                
+                                if ([delegate respondsToSelector:@selector(authenticationWithResponse:didSucceedWithData:)]) {
+                                    
+                                    [delegate authenticationWithResponse:response didSucceedWithData:data];
+                                }
     }
      ]resume];
 }
