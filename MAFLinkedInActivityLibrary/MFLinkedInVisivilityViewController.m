@@ -42,6 +42,19 @@
      self.view.alpha = 0.96f;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    // Table cells don't finish drawing correctly when presented on landscape (iPhone only). Reloading the tableView data fixes that issue.
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
+        if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+            
+            [[self tableView] reloadData];
+        }
+    }
+}
+
 
 #pragma mark - Update UI
 
