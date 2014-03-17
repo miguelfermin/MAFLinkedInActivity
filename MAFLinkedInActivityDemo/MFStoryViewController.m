@@ -122,7 +122,12 @@
 -(void)presentActivityViewToShareStoryWithTitle:(NSString*)title description:(NSString*)description URL:(NSURL*)submittedURL imageURL:(NSURL*)submittedImageURL {
     
     // Properties used to pass to UIActivityViewController
-    MFLinkedInUIActivity   *linkedInActivity = [[MFLinkedInUIActivity alloc]init];
+    
+    /* To test the demo, provide your own LinkedIn API and Secret Keys */
+    NSString *APIKey =      @"API KEY GOES HERE";
+    NSString *secrectKey =  @"SECRET KEY GOES HERE";
+    
+    MFLinkedInUIActivity   *linkedInActivity = [[MFLinkedInUIActivity alloc]initWithAPIKey:APIKey secretKey:secrectKey];
     
     MFLinkedInActivityItem *linkedInActivityItem = [[MFLinkedInActivityItem alloc]initWithURL:submittedURL];
     [linkedInActivityItem setContentTitle:title];
@@ -169,7 +174,11 @@
 -(void)presentActivityViewToShareStoryWithTitle:(NSString*)title description:(NSString*)description URL:(NSURL*)submittedURL {
     
     // Properties used to pass to UIActivityViewController
-    MFLinkedInUIActivity   *linkedInActivity = [[MFLinkedInUIActivity alloc]init];
+    /* To test the demo, provide your own LinkedIn API and Secret Keys */
+    NSString *APIKey =      @"API KEY GOES HERE";
+    NSString *secrectKey =  @"SECRET KEY GOES HERE";
+    
+    MFLinkedInUIActivity   *linkedInActivity = [[MFLinkedInUIActivity alloc]initWithAPIKey:APIKey secretKey:secrectKey];
     
     MFLinkedInActivityItem *linkedInActivityItem = [[MFLinkedInActivityItem alloc]initWithURL:submittedURL];
     [linkedInActivityItem setContentTitle:title];

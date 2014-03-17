@@ -5,14 +5,19 @@
 //  Created by Miguel Fermin on 12/19/13.
 //  Copyright (c) 2013 Miguel Fermin. All rights reserved.
 
-
 #import "MFLinkedInUIActivity.h"
 #import "MAFLinkedInActivity.h"
 
+@interface MFLinkedInUIActivity ()
+
+@property(nonatomic, strong) MFTransitioningDelegate *transitionDelegate;
+
+@end
+
 @implementation MFLinkedInUIActivity
 
--(id)initWithAPIKey:(NSString*)APIKey secretKey:(NSString*)secretKey {
-    
+- (id)initWithAPIKey:(NSString*)APIKey secretKey:(NSString*)secretKey
+{
     self = [super init];
     
     if (self) {
@@ -27,24 +32,28 @@
 
 #pragma mark - Methods to Override to provide LinkedIn service information.
 
-+(UIActivityCategory)activityCategory {
++ (UIActivityCategory)activityCategory
+{
     return UIActivityCategoryShare;
 }
 
--(NSString *)activityType {
+- (NSString *)activityType
+{
     return @"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn";
 }
 
--(NSString *)activityTitle {
+- (NSString *)activityTitle
+{
     return NSLocalizedString(@"LinkedIn", @"LinkedIn");
 }
 
--(UIImage *)activityImage {
+- (UIImage *)activityImage
+{
     return [UIImage imageNamed:@"MAFLinkedInActivityResources.bundle/linkedIn-positive.png"];
 }
 
--(BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
-    
+- (BOOL)canPerformWithActivityItems:(NSArray *)activityItems
+{
     __block BOOL hasURL = NO;
     
     [activityItems enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -92,45 +101,18 @@
     return hasURL;
 }
 
--(void)prepareWithActivityItems:(NSArray *)activityItems {
-    
+- (void)prepareWithActivityItems:(NSArray *)activityItems
+{
     // Store a reference to the data items in the activityItems parameter so it can be retrieved later.
     
     _linkedInActivityItems = activityItems;
 }
 
--(UIViewController *)activityViewController {
-    
-    // Get the resource bundle
-    
-    NSString *resourceBundlePath = [[NSBundle mainBundle] pathForResource:@"MAFLinkedInActivityResources" ofType:@"bundle"];
-    
-    NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
-    
-    
-    // Setup  _composePresentationViewController and assign it to the _linkedInActivityViewController.
-    
-    UIViewController *mfViewController;
-    
-    
-    // Load storyboard
-    
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPhone" bundle:resourceBundle];
-        
-        mfViewController = [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
-    }
-    else {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPad" bundle:resourceBundle];
-        
-        mfViewController = [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
-    }
-    
-    
+-(UIViewController *)activityViewController
+{
     // Setup activityViewController
     
-    MFLinkedInComposePresentationViewController *composePresentationViewController = (MFLinkedInComposePresentationViewController*)mfViewController;
+    MFLinkedInComposePresentationViewController *composePresentationViewController = [self composePresentationViewController];
     
     [composePresentationViewController setLinkedInUIActivity:self];
     
@@ -169,12 +151,11 @@
     }
     
     
-    
     // Setup Custom Transition and Animation Delegate
     
-    MFTransitioningDelegate *transitionDelegate = [[MFTransitioningDelegate alloc]init];
+    _transitionDelegate = [[MFTransitioningDelegate alloc]init];
     
-    [composePresentationViewController setTransitioningDelegate:transitionDelegate];
+    [composePresentationViewController setTransitioningDelegate:_transitionDelegate];
     
     
     /* Since UIActivityViewController is the one presenting the activityViewController, the custom iPad presentation
@@ -186,6 +167,32 @@
     }
     
     return composePresentationViewController;
+}
+
+
+#pragma mark - Helper Methods
+
+- (MFLinkedInComposePresentationViewController *)composePresentationViewController
+{
+    // Get the resource bundle
+    
+    NSString *resourceBundlePath = [[NSBundle mainBundle] pathForResource:@"MAFLinkedInActivityResources" ofType:@"bundle"];
+    
+    NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
+    
+    // Load view controller from storyboard and return for proper device
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPhone" bundle:resourceBundle];
+        
+        return (MFLinkedInComposePresentationViewController*) [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
+    }
+    else {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MFCompose_iPad" bundle:resourceBundle];
+        
+        return (MFLinkedInComposePresentationViewController*) [storyboard instantiateViewControllerWithIdentifier:@"MFLinkedInComposePresentationViewController"];
+    }
 }
 
 @end

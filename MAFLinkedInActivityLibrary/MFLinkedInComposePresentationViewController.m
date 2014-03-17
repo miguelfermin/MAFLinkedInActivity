@@ -21,8 +21,8 @@
 
 @implementation MFLinkedInComposePresentationViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -30,25 +30,26 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidLoad {
-    
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // Set overlay transparent color
-    
     self.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
 }
 
 
 #pragma mark - Whenever the device orientation changes, update constraints constants to position view correctly
 
--(void)viewWillLayoutSubviews {
-    /* 
+- (void)viewWillLayoutSubviews
+{
+    /*
      * All constraints are setup in IB. Here we adjust the constraint constant property to compensate for device type and orientation changes.
      *
      * It is more effecient to change the constraint constant property value than creating a brand new constraint. Below is Apple doc explaing that:
@@ -130,8 +131,8 @@
 
 #pragma mark - Embed Segue Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     if ([[segue identifier]isEqualToString:@"MFLinkedInComposeViewController Segue"]) {
         
         // Make view corners rounded and change the bar color of the navigation controller
@@ -158,13 +159,13 @@
 
 #pragma mark - Helper Methods
 
--(void)cancelActivity; {
-    
+- (void)cancelActivity
+{
     [_linkedInUIActivity activityDidFinish:NO];
 }
 
--(void)donePosting {
-    
+- (void)donePosting
+{
     [_linkedInUIActivity activityDidFinish:YES];
 }
 
