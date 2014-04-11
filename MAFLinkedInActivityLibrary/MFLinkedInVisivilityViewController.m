@@ -11,6 +11,15 @@
 
 @interface MFLinkedInVisivilityViewController ()
 
+// IB Connections
+// For some reason, self.title, makes the text shift left, so I made this connection to update the title.
+@property(nonatomic,weak) IBOutlet UINavigationItem *audienceLabel;
+
+@property(nonatomic,weak) IBOutlet UILabel *anyoneLabel;
+
+@property(nonatomic,weak) IBOutlet UILabel *connectionsOnlyLabel;
+
+
 @end
 
 @implementation MFLinkedInVisivilityViewController
@@ -40,6 +49,17 @@
     // Set alpha to simulate built-in service transucent activity
     
      self.view.alpha = 0.96f;
+    
+    
+    // Update UI with Localized Strings. First get the resource bundle and then update the labels
+    
+    NSBundle *resourceBundle = [_composeViewController resourceBundle];
+    
+    [_audienceLabel setTitle:NSLocalizedStringFromTableInBundle(@"Posting/Labels/Audience label", nil, resourceBundle, nil)];
+    
+    [_anyoneLabel setText:NSLocalizedStringFromTableInBundle(@"Posting/Labels/Anyone label", nil, resourceBundle, nil)];
+    
+    [_connectionsOnlyLabel setText:NSLocalizedStringFromTableInBundle(@"Posting/Labels/Connections Only label", nil, resourceBundle, nil)];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -85,16 +105,16 @@
 
 #pragma mark - Table view delegate
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Set LinkedIn visibility code based on selection
     
     switch (indexPath.row) {
         case 0:
-            [_composeViewController updateVisibilityCodeWithString:@"anyone"];
+            [_composeViewController updateVisibilityCodeWithLocalizedString:@"anyone"];
             break;
         case 1:
-            [_composeViewController updateVisibilityCodeWithString:@"connections-only"];
+            [_composeViewController updateVisibilityCodeWithLocalizedString:@"connections-only"];
             break;
             
         default:

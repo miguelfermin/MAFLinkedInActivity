@@ -33,8 +33,10 @@
 @property(nonatomic,weak) IBOutlet UITextView *contentCommentTextView;
 
 ///  Update visibilityCode property and contentVisibilityLabel.
-///
 ///  @param code The LinkedIn visibility code string, can be anyone or connections-only.
--(void)updateVisibilityCodeWithString:(NSString*)code;
+-(void)updateVisibilityCodeWithLocalizedString:(NSString*)code;
 
+/// Gets the MAFLinkedInActivityResources's main bundle and returns it
+/// @return The MAFLinkedInActivityResources's main bundle
+- (NSBundle *)resourceBundle;
 @end

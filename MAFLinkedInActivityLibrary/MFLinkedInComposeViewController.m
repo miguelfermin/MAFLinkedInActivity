@@ -45,6 +45,15 @@
 // IB Connections
 @property(nonatomic,weak) IBOutlet UIImageView *contentImageView;
 @property(nonatomic,weak) IBOutlet UILabel *contentVisibilityLabel;
+
+
+@property(nonatomic,weak) IBOutlet UIBarButtonItem *postButton;
+
+@property(nonatomic,weak) IBOutlet UIBarButtonItem *cancelButton;
+
+@property(nonatomic,weak) IBOutlet UILabel *audienceLabel;
+
+
 -(IBAction)post;
 -(IBAction)cancel;
 
@@ -54,6 +63,9 @@
 // To update constraints dynamically depending on iPhone screen size
 @property (nonatomic) IBOutlet NSLayoutConstraint *imageTopVerticalSpaceConstraint;
 @property (nonatomic) IBOutlet NSLayoutConstraint *imageBottomVerticalSpaceConstraint;
+
+/// Updates the Post interfacace with NSLocalizedStrings.
+- (void)updateInterface;
 
 @end
 
@@ -100,6 +112,12 @@
     // Added transucent effect similar to the built-in service
     
     self.view.alpha = 0.96f;
+    
+    
+    // Update UI with Localizations Strings
+    
+    [self updateInterface];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -577,31 +595,60 @@
 
 #pragma mark - Helper Methods
 ///  IB connection to trigger the post.
--(IBAction)post {
-    
+- (IBAction)post
+{
     [self postStory];
 }
 
 ///  IB connection to cancel the post
--(IBAction)cancel {
-    
+- (IBAction)cancel
+{
     [_composePresentationViewController cancelActivity];
 }
 
--(void)updateVisibilityCodeWithString:(NSString*)code {
-    
+-(void)updateVisibilityCodeWithLocalizedString:(NSString*)code
+{
     _visibilityCode = code;
     
     // Ensure UILabel is in upper case
+    [_contentVisibilityLabel setText:[code capitalizedStringWithLocale:[NSLocale currentLocale]]];
     
     if ([code isEqualToString:@"anyone"]) {
         
-        [_contentVisibilityLabel setText:@"Anyone"];
+        NSString *anyoneString = NSLocalizedStringFromTableInBundle(@"Posting/Labels/Anyone label", nil, [self resourceBundle], nil);
+        
+        [_contentVisibilityLabel setText:[anyoneString capitalizedStringWithLocale:[NSLocale currentLocale]]];
         
     }
     else {
-        [_contentVisibilityLabel setText:@"Connections Only"];
+        NSString *connectionsOnlyString = NSLocalizedStringFromTableInBundle(@"Posting/Labels/Connections Only label", nil, [self resourceBundle], nil);
+        
+        [_contentVisibilityLabel setText:[connectionsOnlyString capitalizedStringWithLocale:[NSLocale currentLocale]]];
     }
+}
+
+- (void)updateInterface
+{
+    // The the resource bundle
+    NSBundle *resourceBundle = [self resourceBundle];
+    
+    // Update UI
+    [_postButton setTitle:NSLocalizedStringFromTableInBundle(@"Posting/Buttons/Post story/Title", nil, resourceBundle, nil)];
+    
+    [_cancelButton setTitle:NSLocalizedStringFromTableInBundle(@"Posting/Buttons/Cancel post/Title", nil, resourceBundle, nil)];
+    
+    [_audienceLabel setText:NSLocalizedStringFromTableInBundle(@"Posting/Labels/Audience label", nil, resourceBundle, nil)];
+    
+    [_contentVisibilityLabel setText:NSLocalizedStringFromTableInBundle(@"Posting/Labels/Anyone label", nil, resourceBundle, nil)];
+}
+
+- (NSBundle *)resourceBundle
+{
+    // Get the MAFLinkedInActivityResources's bundle and return it
+    
+    NSString *resourceBundlePath = [[NSBundle mainBundle] pathForResource:@"MAFLinkedInActivityResources" ofType:@"bundle"];
+    
+    return [NSBundle bundleWithPath:resourceBundlePath];;
 }
 
 

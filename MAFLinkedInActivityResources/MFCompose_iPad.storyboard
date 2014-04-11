@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="6r2-f3-Nay">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="6r2-f3-Nay">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Linked In Compose Presentation View Controller-->
@@ -124,10 +124,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connections Only" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUX-m4-v95">
-                                                    <rect key="frame" x="214" y="14" width="141" height="21"/>
+                                                    <rect key="frame" x="136" y="14" width="219" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="141" id="I19-5J-hMR"/>
+                                                        <constraint firstAttribute="width" constant="219" id="I19-5J-hMR"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -165,9 +165,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="audienceLabel" destination="obz-UJ-oGW" id="Gak-Ho-Jtz"/>
+                        <outlet property="cancelButton" destination="uTR-z7-aAF" id="Bxz-qn-jaY"/>
                         <outlet property="contentCommentTextView" destination="xWe-S8-11I" id="FA3-ba-zgg"/>
                         <outlet property="contentImageView" destination="ARM-5N-ext" id="zWs-l4-Pkh"/>
                         <outlet property="contentVisibilityLabel" destination="XUX-m4-v95" id="0MY-Re-Gfg"/>
+                        <outlet property="postButton" destination="c8h-d2-r68" id="zna-vx-RxP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOV-km-56N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,17 +190,17 @@
                         <sections>
                             <tableViewSection id="72d-QB-tfm">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ZOK-bB-9bI" style="IBUITableViewCellStyleDefault" id="m1A-05-6gd">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="m1A-05-6gd">
                                         <rect key="frame" x="0.0" y="44" width="388" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1A-05-6gd" id="yL1-df-ciJ">
                                             <rect key="frame" x="0.0" y="0.0" width="388" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Anyone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZOK-bB-9bI">
-                                                    <rect key="frame" x="15" y="0.0" width="358" height="49"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Anyone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kf-Ei-T2J">
+                                                    <rect key="frame" x="20" y="14" width="348" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -206,17 +209,17 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="wkQ-aW-O7s" style="IBUITableViewCellStyleDefault" id="LUD-ku-31G">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="LUD-ku-31G">
                                         <rect key="frame" x="0.0" y="94" width="388" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LUD-ku-31G" id="9rz-mT-6nF">
                                             <rect key="frame" x="0.0" y="0.0" width="388" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Connections Only" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wkQ-aW-O7s">
-                                                    <rect key="frame" x="15" y="0.0" width="358" height="49"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connections Only" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqs-Da-qPa">
+                                                    <rect key="frame" x="20" y="14" width="348" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -234,6 +237,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Audience" id="54h-Ze-rca"/>
+                    <connections>
+                        <outlet property="anyoneLabel" destination="1Kf-Ei-T2J" id="S7M-dL-NtD"/>
+                        <outlet property="audienceLabel" destination="54h-Ze-rca" id="bKl-BI-JG6"/>
+                        <outlet property="connectionsOnlyLabel" destination="Jqs-Da-qPa" id="USh-uq-onO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TGS-Hj-og0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
