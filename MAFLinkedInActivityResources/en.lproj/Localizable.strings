@@ -1,2 +1,17 @@
-// Example
-"Messages/Temporary network error/Title" = "Error";
+//
+// Posting stories
+//
+/* Posting a story */
+"Posting/Buttons/Post story/Title" = "Post";
+
+/* Cancel the post process */
+"Posting/Buttons/Cancel post/Title" = "Cancel";
+
+/* Target Audience label */
+"Posting/Labels/Audience label" = "Audience";
+
+/* Anyone label */
+"Posting/Labels/Anyone label" = "Anyone";
+
+/* Connections Only label */
+"Posting/Labels/Connections Only label" = "Connections Only";

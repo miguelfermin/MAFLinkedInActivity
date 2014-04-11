@@ -209,6 +209,7 @@
 		E195D6AA18B7AE7B0015F8F2 /* MFLinkedInActivityDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLinkedInActivityDelegate.h; sourceTree = "<group>"; };
 		E19ACD4118B29EF200BDF2F4 /* MAFLinkedInActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAFLinkedInActivity.h; sourceTree = "<group>"; };
 		E19ACD4818B2B90C00BDF2F4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E1AC475118F873D2003FC285 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E1B97B9E189705AA00FE5326 /* MFTransitioningDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFTransitioningDelegate.h; sourceTree = "<group>"; };
 		E1B97B9F189705AA00FE5326 /* MFTransitioningDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFTransitioningDelegate.m; sourceTree = "<group>"; };
 		E1C9FF4018B530CB00452419 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
@@ -766,6 +767,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E19ACD4818B2B90C00BDF2F4 /* en */,
+				E1AC475118F873D2003FC285 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
