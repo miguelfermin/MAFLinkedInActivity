@@ -12,13 +12,9 @@
 @interface MFLinkedInVisivilityViewController ()
 
 // IB Connections
-// For some reason, self.title, makes the text shift left, so I made this connection to update the title.
-@property(nonatomic,weak) IBOutlet UINavigationItem *audienceLabel;
-
 @property(nonatomic,weak) IBOutlet UILabel *anyoneLabel;
 
 @property(nonatomic,weak) IBOutlet UILabel *connectionsOnlyLabel;
-
 
 @end
 
@@ -55,7 +51,7 @@
     
     NSBundle *resourceBundle = [_composeViewController resourceBundle];
     
-    [_audienceLabel setTitle:NSLocalizedStringFromTableInBundle(@"Posting/Labels/Audience label", nil, resourceBundle, nil)];
+    self.title = NSLocalizedStringFromTableInBundle(@"Posting/Labels/Audience label", nil, resourceBundle, nil);
     
     [_anyoneLabel setText:NSLocalizedStringFromTableInBundle(@"Posting/Labels/Anyone label", nil, resourceBundle, nil)];
     

@@ -239,7 +239,6 @@
                     <navigationItem key="navigationItem" title="Audience" id="54h-Ze-rca"/>
                     <connections>
                         <outlet property="anyoneLabel" destination="1Kf-Ei-T2J" id="S7M-dL-NtD"/>
-                        <outlet property="audienceLabel" destination="54h-Ze-rca" id="bKl-BI-JG6"/>
                         <outlet property="connectionsOnlyLabel" destination="Jqs-Da-qPa" id="USh-uq-onO"/>
                     </connections>
                 </tableViewController>
