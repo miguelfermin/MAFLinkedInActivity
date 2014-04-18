@@ -41,14 +41,16 @@ typedef enum: NSInteger {
 @property (nonatomic,strong) NSString *redirectURI;
 @property (nonatomic,strong) NSString *scope;
 
-
-///  Initializes itself and sets its APIKey and secretKey with passed parameters
-///
+///  Initializes a MFLinkedInAccount and sets its LinkedIn properties.
 ///  @param APIKey    LinkedIn API Key
 ///  @param secretKey LinkedIn Secret Key
-///
-///  @return Initialized MFLinkedInAccount with its APIKey and secretKey properties set.
--(id)initWithAPIKey:(NSString*)APIKey secretKey:(NSString*)secretKey;
+///  @param redirectURL LinkedIn redirect_uri. Even though the pass value is a NSURL, it gets converted to a NSString before the assignment, since the redirectURI property is a NSString.
+///  @note  To comply with the security specifications of OAuth 2, as of April 11, 2014, LinkedIn is requiring developers to register their applications redirect URLs.
+///         LinkedIn has to confirm that the \b redirect_uri in your OAuth 2 authorization request matches a URL you've registered with them.
+///         If the redirect URL you registered with LinkedIn doesn't match the redirect_uri you use here, requests to authorize new members or refresh tokens will fail
+///  @return Initialized MFLinkedInAccount
+///  @see https://developer.linkedin.com/blog/register-your-oauth-2-redirect-urls
+- (id)initWithAPIKey:(NSString *)APIKey secretKey:(NSString *)secretKey redirectURL:(NSURL *)redirectURL;
 
 ///  Determines the access token status and return a MFAccessTokenStatus to indicate the actions that need to be taken.
 ///  @return A MFAccessTokenStatus representing the access token state. Possible values are: MFAccessTokenStatusGood, MFAccessTokenStatusAboutToExpire, MFAccessTokenStatusExpired, or MFAccessTokenStatusNone (if token doesn't exist).

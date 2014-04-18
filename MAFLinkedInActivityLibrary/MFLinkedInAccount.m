@@ -21,7 +21,14 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 
 @implementation MFLinkedInAccount
 
--(id)initWithAPIKey:(NSString*)APIKey secretKey:(NSString*)secretKey {
+/*
+ * NOTE: To comply with the security specifications of OAuth 2, as of April 11, 2014, LinkedIn is requiring developers to register their applications redirect URLs.
+ *       LinkedIn has to confirm that the \b redirect_uri in your OAuth 2 authorization request matches a URL you've registered with them.
+ *       If the redirect URL you registered with LinkedIn doesn't match the redirect_uri you use here, requests to authorize new members or refresh tokens will fail
+ *       For more details, go to https://developer.linkedin.com/blog/register-your-oauth-2-redirect-urls
+ */
+- (id)initWithAPIKey:(NSString *)APIKey secretKey:(NSString *)secretKey redirectURL:(NSURL *)redirectURL
+{
     self = [super init];
     
     if (self) {
@@ -34,17 +41,17 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
         
 #pragma mark - LinkedIn's authorization dialog redirect parameters
         
-        _APIKey =       APIKey;                     // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
+        _APIKey =       APIKey;                         // Required  (A.K.A. client_id). Value of your API Key given when you registered your application with LinkedIn.
         
-        _secretKey =    secretKey;                  // Required. Value of your secret key given when you registered your application with LinkedIn.
+        _secretKey =    secretKey;                      // Required. Value of your secret key given when you registered your application with LinkedIn.
         
-        _state =        @"DCMMFWF10268sdffef102";   // Required. A long unique string value of your choice that is hard to guess. Used to prevent CSRF.
+        _redirectURI =  [redirectURL absoluteString];   // Required. URI in your app where users will be sent after authorization.
         
-        _redirectURI =  @"https://www.newstex.com";  // Required. URI in your app where users will be sent after authorization.
+        _state =        @"DCMMFWF10268sdffef102";       // Required. A long unique string value of your choice that is hard to guess. Used to prevent CSRF.
         
-        _scope =        @"rw_nus";                  // Optional. Use it to specify a list of member permissions that you need and these will be shown to the user on LinkedIn's authorization form.
-                                                    // However, for the purpose of this library (share story) this value is required, and it must be of value "rw_nus" to retrieve and post updates
-                                                    // to LinkedIn as authenticated user.
+        _scope =        @"rw_nus";                      // Optional. Use it to specify a list of member permissions that you need and these will be shown to the user on LinkedIn's authorization form.
+                                                        // However, for the purpose of this library (share story) this value is required, and it must be of value "rw_nus" to retrieve and post updates
+                                                        // to LinkedIn as authenticated user.
     }
     return self;
 }
@@ -448,7 +455,7 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
     
     // Create an instance of self to check if there's an access token in the key chain.
     
-    MFLinkedInAccount *account = [[MFLinkedInAccount alloc]initWithAPIKey:@"" secretKey:@""];
+    MFLinkedInAccount *account = [[MFLinkedInAccount alloc]initWithAPIKey:@"" secretKey:@"" redirectURL:nil];
     
     if ([account accessToken]) {
         

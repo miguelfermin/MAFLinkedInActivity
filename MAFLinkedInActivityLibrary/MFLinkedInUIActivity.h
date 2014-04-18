@@ -29,13 +29,15 @@
 ///  Delegate object use to send messages to client app from either MFLinkedInComposeViewController or MFLinkedInAuthenticationViewController.
 @property (nonatomic, weak) id<MFLinkedInActivityDelegate> delegate;
 
-
-///  Initializes itself and uses the LinkedIn parameters to initialize it's MFLinkedInAccount property.
-///
+///  Initializes a MFLinkedInUIActivity and uses the passed LinkedIn parameters to initialize it's MFLinkedInAccount property.
 ///  @param APIKey    LinkedIn API Key
 ///  @param secretKey LinkedIn Secret Key
-///
+///  @param redirectURL LinkedIn redirect_uri
+///  @note  To comply with the security specifications of OAuth 2, as of April 11, 2014, LinkedIn is requiring developers to register their applications redirect URLs.
+///         LinkedIn has to confirm that the \b redirect_uri in your OAuth 2 authorization request matches a URL you've registered with them.
+///         If the redirect URL you registered with LinkedIn doesn't match the redirect_uri you use here, requests to authorize new members or refresh tokens will fail
 ///  @return Initialized MFLinkedInUIActivity
--(id)initWithAPIKey:(NSString*)APIKey secretKey:(NSString*)secretKey;
+///  @see https://developer.linkedin.com/blog/register-your-oauth-2-redirect-urls
+- (id)initWithAPIKey:(NSString *)APIKey secretKey:(NSString *)secretKey redirectURL:(NSURL *)redirectURL;
 
 @end
