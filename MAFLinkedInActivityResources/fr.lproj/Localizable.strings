@@ -1,8 +1,8 @@
 //
 // Posting stories
 //
-"Posting/Labels/Anyone label" = "N'importe qui";
+"Posting/Labels/Anyone label" = "Tous";
 "Posting/Labels/Audience label" = "Auditoire";
 "Posting/Labels/Connections Only label" = "Connexions seulement";
 "Posting/Buttons/Cancel post/Title" = "Annuler";
-"Posting/Buttons/Post story/Title" = "Afficher";
+"Posting/Buttons/Post story/Title" = "Publier";
