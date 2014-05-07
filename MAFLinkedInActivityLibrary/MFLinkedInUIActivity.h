@@ -12,7 +12,6 @@
 #import "MFLinkedInActivityItem.h"
 #import "MFLinkedInComposePresentationViewController.h"
 #import "MFTransitioningDelegate.h"
-
 #import "MFLinkedInActivityDelegate.h"
 
 @class MFLinkedInAuthenticationViewController,MFLinkedInComposePresentationViewController;
@@ -39,5 +38,12 @@
 ///  @return Initialized MFLinkedInUIActivity
 ///  @see https://developer.linkedin.com/blog/register-your-oauth-2-redirect-urls
 - (id)initWithAPIKey:(NSString *)APIKey secretKey:(NSString *)secretKey redirectURL:(NSURL *)redirectURL;
+
+///  This is an identifier for the type of service being provided, in this case LinkedIn.
+///  @abstract This is a NSString constant containing the following:
+///  @code
+///  NSString * const MAFUIActivityTypePostToLinkedIn = @"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn";
+///  @endcode
+OBJC_EXPORT NSString * const MAFUIActivityTypePostToLinkedIn;
 
 @end

@@ -8,6 +8,8 @@
 #import "MFLinkedInUIActivity.h"
 #import "MAFLinkedInActivity.h"
 
+NSString * const MAFUIActivityTypePostToLinkedIn = @"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn";
+
 @interface MFLinkedInUIActivity ()
 
 @property(nonatomic, strong) MFTransitioningDelegate *transitionDelegate;
@@ -45,7 +47,7 @@
 
 - (NSString *)activityType
 {
-    return @"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn";
+    return MAFUIActivityTypePostToLinkedIn;
 }
 
 - (NSString *)activityTitle
@@ -114,7 +116,7 @@
     _linkedInActivityItems = activityItems;
 }
 
--(UIViewController *)activityViewController
+- (UIViewController *)activityViewController
 {
     // Setup activityViewController
     

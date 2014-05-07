@@ -13,7 +13,6 @@
 #define DENIED_REQUEST_ERROR_DESCRIPTION @"the+user+denied+your+request" // Short description of the user canceled authorization error. Provided by LinkedIn Documentation.
 #define DAYS_BEFORE_EXPIRATION -10 // How soon would you like to refresh the access_token from the expiration date. This value must be negative.
 
-NSString * const MAFLinkedInService =               @"com.newstex.MAFLinkedInActivityLibrary.activity.PostToLinkedIn";
 NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDomain";
 
 @interface MFLinkedInAccount ()
@@ -34,7 +33,7 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
     if (self) {
         
         // Uncomment to see all items in keychain
-        MFLog(@"MFLinkedInAccount-init. All items in keychain: %@", [UICKeyChainStore keyChainStoreWithService:MAFLinkedInService]);
+        MFLog(@"MFLinkedInAccount-init. All items in keychain: %@", [UICKeyChainStore keyChainStoreWithService:MAFUIActivityTypePostToLinkedIn]);
         
         // Uncomment to remove all items from keychain
         //[self signOutUser];
@@ -59,21 +58,21 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 
 #pragma mark - Custom Getters, To abstract the keychain operation
 
--(NSString*)accessToken {
-    
-    return [UICKeyChainStore stringForKey:@"access_token" service:MAFLinkedInService];
+- (NSString *)accessToken
+{
+    return [UICKeyChainStore stringForKey:@"access_token" service:MAFUIActivityTypePostToLinkedIn];
 }
 
--(NSTimeInterval)expiresIn {
-    
-    NSString *expiresInString = [UICKeyChainStore stringForKey:@"expires_in" service:MAFLinkedInService];
+- (NSTimeInterval)expiresIn
+{
+    NSString *expiresInString = [UICKeyChainStore stringForKey:@"expires_in" service:MAFUIActivityTypePostToLinkedIn];
     
     return [expiresInString doubleValue];
 }
 
--(NSDate*)tokenIssueDate {
-    
-    NSString *tokenIssueDateString = [UICKeyChainStore stringForKey:@"token_issue_date_string" service:MAFLinkedInService];
+- (NSDate *)tokenIssueDate
+{
+    NSString *tokenIssueDateString = [UICKeyChainStore stringForKey:@"token_issue_date_string" service:MAFUIActivityTypePostToLinkedIn];
     
     return [self dateFromString:tokenIssueDateString];
 }
@@ -81,30 +80,30 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 
 #pragma mark - Custom Setters, To abstract the keychain operation
 
--(void)setAccessToken:(NSString *)accessToken {
-    
-    [UICKeyChainStore setString:accessToken forKey:@"access_token" service:MAFLinkedInService];
+- (void)setAccessToken:(NSString *)accessToken
+{
+    [UICKeyChainStore setString:accessToken forKey:@"access_token" service:MAFUIActivityTypePostToLinkedIn];
 }
 
--(void)setExpiresIn:(NSTimeInterval)expiresIn {
-    
+- (void)setExpiresIn:(NSTimeInterval)expiresIn
+{
     NSString *expiresInString = [NSString stringWithFormat:@"%f",expiresIn];
     
-    [UICKeyChainStore setString:expiresInString forKey:@"expires_in" service:MAFLinkedInService];
+    [UICKeyChainStore setString:expiresInString forKey:@"expires_in" service:MAFUIActivityTypePostToLinkedIn];
 }
 
--(void)setTokenIssueDate:(NSDate*)tokenIssueDate {
-    
+- (void)setTokenIssueDate:(NSDate*)tokenIssueDate
+{
     NSString *tokenIssueDateString = [self stringFromDate:tokenIssueDate];
     
-    [UICKeyChainStore setString:tokenIssueDateString forKey:@"token_issue_date_string" service:MAFLinkedInService];
+    [UICKeyChainStore setString:tokenIssueDateString forKey:@"token_issue_date_string" service:MAFUIActivityTypePostToLinkedIn];
 }
 
 
 #pragma mark - Access Token Refresh Mechanism
 
--(MFAccessTokenStatus)tokenStatus {
-    
+- (MFAccessTokenStatus)tokenStatus
+{
     // Construct access token expiration date using the expiresIn and tokenIssueDate properties
     
     NSDate *tokenExpirationDate = [NSDate dateWithTimeInterval:self.expiresIn sinceDate:self.tokenIssueDate];
@@ -184,8 +183,8 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 #endif
 }
 
--(void)refreshToken {
-    
+- (void)refreshToken
+{
     /* NOTE: as of version 1.0 of the library, there's an issue with LinkedIn refresh mechanism for native mobile devices which don't have a browser, so this method is not used at all  */
     // Request Authorization Code in order to refresh the token
     NSURLSessionConfiguration *SessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -238,16 +237,19 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 
 #pragma mark - NSURLSessionDelegates
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
+{
     MFLog(@"MFLinkedInAccount-URLSession:dataTask:didReceiveData:. URLSession:dataTask:didReceiveData:\n ");
     MFLog(@"MFLinkedInAccount-URLSession:dataTask:didReceiveData: data: %@\n",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
 }
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
+{
     MFLog(@"MFLinkedInAccount-URLSession:task:didCompleteWithError:. URLSession:task:didCompleteWithError: %@",error);
 }
 
--(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler {
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest *))completionHandler
+{
     MFLog(@"MFLinkedInAccount-URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:. URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:....\n ");
     MFLog(@"MFLinkedInAccount-URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:. [[response URL]absoluteString]: %@\n ",[[response URL]absoluteString]);
     MFLog(@"MFLinkedInAccount-URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:. [[request URL]absoluteString]: %@",[[request URL]absoluteString]);
@@ -258,8 +260,8 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 
 #pragma mark - Handle Authorization Results
 
--(void)handleAuthorizationCodeWithResponse:(NSString*)response {
-    
+- (void)handleAuthorizationCodeWithResponse:(NSString*)response
+{
     // If the keyword "error" is in the response string, authorization failed.
     
     if ([response rangeOfString:@"error"].location != NSNotFound) {
@@ -308,8 +310,8 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 ///  Request Access Token by exchanging the authorization_code for it. The response will be a JSON object containing the "expires_in" and "access_token" parameters.
 ///  @discussion    The value of parameter expires_in is the number of seconds from now that this access_token will expire in (5184000 seconds is 60 days). Ensure to keep the user access tokens secure.
 ///  @param         authorizationCode authorization_code obtained when the user was redirected to LinkedIn's authorization dialog.
--(void)requestAccessTokenByExchangingAuthorizationCode:(NSString*)authorizationCode {
-    
+- (void)requestAccessTokenByExchangingAuthorizationCode:(NSString*)authorizationCode
+{
     MFLog(@"MFLinkedInAccount-requestAccessTokenByExchangingAuthorizationCode:. Authorization Code: %@\n ",authorizationCode);
     
     // Perform request to get access_token
@@ -344,8 +346,8 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 
 ///  Conclude the authentication process by parsing the JSON objects from the date parameter into Foundation objects, saving the values in the Keychain, and dismissing the uthentication view controller
 ///  @param data The NSDate object that contains the JSON object to parse and get the access_token and expires_in values
--(void)completeAuthenticationProcessWithResponseData:(NSData*) data {
-    
+- (void)completeAuthenticationProcessWithResponseData:(NSData*) data
+{
     // Extract "access_toke" and "expires_in" values from JSON response using the NSJSONSerialization class
     
     NSError *jsonParsingError = nil;
@@ -367,8 +369,8 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 
 #pragma mark - Helper Methods
 
--(NSString*)stringFromDate:(NSDate *)date {
-          
+- (NSString *)stringFromDate:(NSDate *)date
+{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // Format is very important!!
     
     [dateFormatter setDateFormat:@"dd-MM-yyyy"];
@@ -376,8 +378,8 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
     return [dateFormatter stringFromDate:date];
 }
 
--(NSDate*)dateFromString:(NSString*)string {
-    
+- (NSDate *)dateFromString:(NSString*)string
+{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // Format is very important!!
     
     [dateFormatter setDateFormat:@"dd-MM-yyyy"];
@@ -385,8 +387,8 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
     return [dateFormatter dateFromString:string];
 }
 
--(NSDate*)dateWithDays:(NSInteger)days FromDate:(NSDate*)date {
-    
+- (NSDate *)dateWithDays:(NSInteger)days FromDate:(NSDate*)date
+{
     NSDateComponents *daysBeforeComponents = [[NSDateComponents alloc]init];
     
     daysBeforeComponents.day = days;
@@ -395,8 +397,8 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 }
 
 // Extract GET Parameter values from URL Response
--(NSString *)extractGetParameter:(NSString *)parameter fromURLString:(NSString *)redirectedURLString {
-    
+- (NSString *)extractGetParameter:(NSString *)parameter fromURLString:(NSString *)redirectedURLString
+{
     // This dictionary will be used to store parameter names and values once they are extracted in the fast enumeration below.
     
     NSMutableDictionary *queryStringsDictionary = [[NSMutableDictionary alloc] init];
@@ -438,7 +440,8 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 ///  Handle LinkedIn Authentication error.
 ///  @param error The error object to handle.
 ///  @warning As of version 1.0 of the library, this method doesn nothing. Future implementation is needed.
--(void)handleLinkedInAuthenticationError:(NSError*)error {
+- (void)handleLinkedInAuthenticationError:(NSError*)error
+{
     // Don't have any code to handle the error, just log to console for now. MF, 2014.01.08
     MFLog(@"MFLinkedInAccount-handleLinkedInAuthenticationError:. error code: %ld, error domain: %@",(long)error.code,error.domain);
 }
@@ -446,13 +449,13 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 
 #pragma mark - Delete Account From Keychain
 
-+(void)signOutUser {
-    
-    [UICKeyChainStore removeAllItemsForService:MAFLinkedInService];
++ (void)signOutUser
+{
+    [UICKeyChainStore removeAllItemsForService:MAFUIActivityTypePostToLinkedIn];
 }
 
-+(BOOL)userIsSignedInToLinkedIn {
-    
++ (BOOL)userIsSignedInToLinkedIn
+{
     // Create an instance of self to check if there's an access token in the key chain.
     
     MFLinkedInAccount *account = [[MFLinkedInAccount alloc]initWithAPIKey:@"" secretKey:@"" redirectURL:nil];
@@ -472,4 +475,3 @@ NSString * const MAFLinkedInActivityErrorDomain =   @"MAFLinkedInActivityErrorDo
 }
 
 @end
-
