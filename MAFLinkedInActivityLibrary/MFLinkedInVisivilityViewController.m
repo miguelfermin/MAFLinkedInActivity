@@ -38,10 +38,6 @@
     
     [super viewDidLoad];
     
-    // Reload table view to see current selection
-    
-    [[self tableView] reloadData];
-    
     // Set alpha to simulate built-in service transucent activity
     
      self.view.alpha = 0.96f;
@@ -69,6 +65,11 @@
             [[self tableView] reloadData];
         }
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    // Show selected cell and avoid app theming logic to modify the UITableViewCellAccessoryCheckmark's color
+    [self updateInterface];
 }
 
 

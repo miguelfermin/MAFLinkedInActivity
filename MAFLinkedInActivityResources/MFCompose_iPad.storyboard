@@ -52,6 +52,7 @@
                 <navigationController definesPresentationContext="YES" id="1qq-VY-kBQ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1hM-eK-URJ">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="KkI-ho-iQB" kind="relationship" relationship="rootViewController" id="bn1-Bx-orT"/>

@@ -171,6 +171,7 @@
                 <navigationController definesPresentationContext="YES" id="gGc-UX-sWY" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Bi-18-W9B">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="CM7-si-irS" kind="relationship" relationship="rootViewController" id="0fD-qt-S5w"/>
