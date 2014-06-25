@@ -89,17 +89,12 @@
     [super viewDidLoad];
     
     // init MFLinkedInAccount object to be used in multiple places
-    
     _linkedInAccount = _composePresentationViewController.linkedInUIActivity.linkedInAccount;
     
-    
     // Show compose view regardless of access token status, if we need to authenticate, the authentication view will be presented modally on top of the compose view
-    
     [self setupComposeViewController];
     
-    
     // Change text insets, check for device since image size on iPad is larger.
-    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
         [_contentCommentTextView setTextContainerInset:UIEdgeInsetsMake(6.0, 0.0, 0.0, 86.0)];
@@ -108,16 +103,14 @@
         [_contentCommentTextView setTextContainerInset:UIEdgeInsetsMake(6.0, 0.0, 0.0, 100.0)];
     }
     
-    
     // Added transucent effect similar to the built-in service
-    
     self.view.alpha = 0.96f;
     
-    
     // Update UI with Localizations Strings
-    
     [self updateInterface];
     
+    // To ensure the app's color theming doesn't invert the navigation bar button colors
+    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
